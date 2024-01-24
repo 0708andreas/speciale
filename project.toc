@@ -1,0 +1,12 @@
+\babel@toc {nil}{}\relax 
+\contentsline {section}{\numberline {1}Preliminaries}{3}{section.1}%
+\contentsline {section}{\numberline {2}Definitions and initial results}{3}{section.2}%
+\contentsline {section}{\numberline {3}Martin-Löf dependent type theory}{5}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Intuition and how to read the notation}{5}{subsection.3.1}%
+\contentsline {subsubsection}{\numberline {3.1.1}Deduction rules}{6}{subsubsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.2}Inference rules}{6}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Logic in type theory}{8}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}The natural numbers}{11}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.5}Equality}{13}{subsection.3.5}%
+\contentsline {subsection}{\numberline {3.6}Higher order types}{16}{subsection.3.6}%
+\contentsline {subsection}{\numberline {3.7}Propositions as some types and universes}{17}{subsection.3.7}%
