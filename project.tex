@@ -213,7 +213,7 @@ This project will assume familiarity with ring theory, multivariate polynomials 
   Given a monomial order $<$ and a polynomial $f \in R[X]$, the \textit{leading term} of $f$ is the term with the largest monomial w.r.t. $<$ and is denoted by $\LT_{<}(f)$. If $\LT_{<}(f) = a\cdot m$ for some monomial $m$ and $a \in R$, then we denote $\LM_{<}(f) = m$ and $\LC_{<}(f) = a$. If $<$ is clear from context, it will be omitted.
 \end{definition}
 
-These definitions naturally extend to sets of polynomials, so given a set of polynomials $F \subset k[X]$, we denote $\LM_{<}(F) := \{\LM_{<}(f) \mid f \in F\}$. The above definitions work over a general ring (and we will use that), for from here, we'll work over a field $k$. With this, we can give the definition of a Gröbner basis.
+These definitions naturally extend to sets of polynomials, so given a set of polynomials $F \subset k[X]$, we denote $\LM_{<}(F) := \{\LM_{<}(f) \mid f \in F\}$. The above definitions work over a general ring (and we will use that), but from here, we'll work over a field $k$. With this, we can give the definition of a Gröbner basis.
 
 \begin{definition}[Gröbner basis]
   Let $G \subset k[X]$ be a finite set of polynomials and $<$ be a monomial order. We say $G$ is a \textit{Gröbner basis} if
@@ -224,7 +224,7 @@ These definitions naturally extend to sets of polynomials, so given a set of pol
 The purpose of this project is to study parametric Gröbner bases, so let's introduce those. The bare concept is rather simple.
 
 \begin{definition}[Parametric Gröbner basis]\label{def:par_grb}
-  Let $k$, $k_{1}$ be fields, $U$ and $X$ be collections of variables and $F \subset k[X, U]$ be a finite set of polynomials. A \textit{parametric Gröbner basis} is a finite set of polynomials $G \subset k[X, U]$ such that $\sigma(G)$ is a Gröbner basis of $\langle \sigma(F) \rangle$ for any ring homomorphism $\sigma : k[U] \to k_{1}$.
+  Let $k$ and $k_{1}$ be fields, $U$ and $X$ be sets of variables and $F \subset k[X, U]$ be a finite set of polynomials. A \textit{parametric Gröbner basis} is a finite set of polynomials $G \subset k[X, U]$ such that $\sigma(G)$ is a Gröbner basis of $\langle \sigma(F) \rangle$ for any ring homomorphism $\sigma : k[U] \to k_{1}$.
 \end{definition}
 
 We call such a $\sigma : k[U] \to k_{1}$ a \textit{specialization}. By the linearity of $\sigma$, all such ring homomorphisms can be characterized by their image of $U$. Thus, we can identify $\{\sigma : k[U] \to k_{1} \mid \sigma \text{ is a ring hom.}\}$ with the affine space $k_{1}^{m}$ when $U$ has $m$ elements. For $\alpha \in k_{1}^{m}$ we'll denote the corresponding map
@@ -233,13 +233,17 @@ We call such a $\sigma : k[U] \to k_{1}$ a \textit{specialization}. By the linea
 When we work with these parametric Gröbner bases, it will be more convenient to have a bit more information attached to them, namely which elements are required for which $\sigma$. Since $\sigma$ is described by an $\alpha \in k_{1}^{m}$, we can restrict them using subsets of $k_{1}^{m}$.
 
 \begin{definition}[Vanishing sets \& algebraic sets]
-  Let $E$ be a finite subset of $k[X]$. Then the \textit{vanishing set} of $E$ is $V(E) := \{v \in k^{n} \mid e(v) = 0 \;\; \forall e \in E\}$.
+  Let $E \subset k[X]$. Then the \textit{vanishing set} of $E$ is $V(E) := \{v \in k^{n} \mid e(v) = 0 \;\; \forall e \in E\}$.
 
-  An \textit{algebraic set} is a set of the form $V(E) \setminus V(N)$ for two finite subsets $E$ and $N$ of $k[X]$.
+  An \textit{algebraic set} is a set of the form $V(E) \setminus V(N)$ for two subsets $E$ and $N$ of $k[X]$.
 \end{definition}
 
 \begin{definition}[Gröbner system]
-  Let $A$ be an algebraic set and $F, G \subset k[X, U]$ be finite sets. Then $(A, G)$ is called a \textit{segment of a Gröbner system for $F$} if $\sigma_{\alpha}(G)$ is a Gröbner basis of $\langle \sigma_{\alpha}(F) \rangle$ for all $\alpha \in A$. A set $\{(A_{1}, G_{1}), \dots, (A_{t}, G_{t})\}$ is called a \textit{Gröbner system} if each $(A_{i}, G_{i})$ is a segment of a Gröbner system. A Gröbner system $\{(A_{1}, G_{1}, \dots, (A_{t}, G_{t}))\}$ is called \textit{comprehensive}, if $\bigcup_{i=1}^{t}A_{i} = k_{1}^{|U|}$. We also say a Gröbner system is \textit{comprehensive on $L \subset k_{1}^{|U|}$} if $\bigcup_{i=1}^{t}A_{i} = L$.
+  Let $A$ be an algebraic set and $F, G \subset k[X, U]$ be finite sets. Then $(A, G)$ is called a \textit{segment of a Gröbner system for $F$} if $\sigma_{\alpha}(G)$ is a Gröbner basis of $\langle \sigma_{\alpha}(F) \rangle$ for all $\alpha \in A$. A set $\{(A_{1}, G_{1}), \dots, (A_{t}, G_{t})\}$ is called a \textit{Gröbner system} if each $(A_{i}, G_{i})$ is a segment of a Gröbner system.
+
+  We call the algebraic sets $A_{i}$ for the $\textit{conditions}$ on a segment.
+
+  A Gröbner system $\{(A_{1}, G_{1}), \dots, (A_{t}, G_{t}))\}$ is called \textit{comprehensive}, if $\bigcup_{i=1}^{t}A_{i} = k_{1}^{|U|}$. We also say a Gröbner system is \textit{comprehensive on $L \subset k_{1}^{|U|}$} if $\bigcup_{i=1}^{t}A_{i} = L$.
 \end{definition}
 
 We will sometimes call a triple $(E, N, G)$ for a segment of a Gröbner system. By this we mean that $(V(E) \setminus V(N), G)$ is a segment of a Gröbner system.
@@ -300,24 +304,24 @@ If we take $G$ to be a reduced Gröbner basis, then $h \notin \langle F \rangle$
 This gives us the ingredients for a simple algorithm for computing Gröbner systems, given below:
 
 \begin{algorithm}
-  \caption{$\mathtt{CGS_{simple}}$, an algorithm for computing comprehensive Gröbner systems on $V(E)$}
-  \Input{Two finite sets $F \subset k[X, U]$, $E \subset k[U]$}
-  \Output{A finite set of triples $(A, N, G)$, each forming a segment of a comprehensive Gröbner system on $V(E)$.}
-  \eIf{$\exists g \in E \cap (k \setminus \{0\})$}  {
+  \caption{$\mathtt{CGS_{simple}}$, an algorithm for computing comprehensive Gröbner systems on $V(S)$}
+  \Input{Two finite sets $F \subset k[X, U]$, $S \subset k[U]$}
+  \Output{A finite set of triples $(E, N, G)$, each forming a segment of a comprehensive Gröbner system on $V(S)$.}
+  \eIf{$\exists g \in S \cap (k \setminus \{0\})$}  {
     \KwRet{\emptyset}\;
   } {
     $G \gets \mathbf{groebner}(F)$\;
     $H \gets \{\LC_{U}(g) \mid g \in G \setminus k[U]\}$\;
     $h \gets \lcm(H)$\;
-    \eIf{$h = 1$} {
-      \KwRet{$\{(E, \{h\}, F)\}$}\;
-    } {
-      \KwRet{$\{(E, \{h\}, G)\} \cup \bigcup_{h' \in H} \mathtt{CGS_{simple}}(G \cup \{h'\}, E \cup \{h'\})$}
-    }
+    % \eIf{$h = 1$} {
+    %   \KwRet{$\{(S, \{h\}, F)\}$}\;
+    % } {
+      \KwRet{$\{(S, \{h\}, G)\} \cup \bigcup_{h' \in H} \mathtt{CGS_{simple}}(G \cup \{h'\}, S \cup \{h'\})$}
+    % }
   }
 \end{algorithm}
 
-However, this algorithm has a crucial law: if $(E, N, G)$ is a triple returned by $\mathtt{CGS_{simple}}$, then we don't necesarily have $G \subset \langle F \rangle$. This may or may not be a problem depending on the application. For some of the applications of this project, this is indeed a flaw.
+However, this algorithm has a crucial flaw: if $(E, N, G)$ is a triple returned by $\mathtt{CGS_{simple}}$, then we don't necesarily have $G \subset \langle F \rangle$. This may or may not be a problem depending on the application. For some of the applications of this project, this is indeed a flaw.
 To fix this, we present an alternative algorithm, which will be extended to produce Gröbner segments, which are properly contained in $\langle F \rangle$. This algorithm depends on the following proposition.
 
 \begin{proposition}\label{prop:segment}
@@ -393,8 +397,8 @@ We now move on to the problem of computing parametric Gröbner bases, which is t
   A Gröbner system $\{(A_{1}, G_{1}), \dots, (A_{t}, G_{t})\}$ of an ideal $\langle F \rangle$ is called \textit{faithful} if $G_{i} \subset \langle F \rangle$ for all $i$.
 \end{definition}
 
-\begin{corollary}
-  Let $\mathcal G = \{(A_{1}, G_{1}), \dots, (A_{t}, G_{t})\}$ be a comprehensive, faithful Gröbner system of an ideal $\langle F \rangle$. Then $\bigcup_{(A, G) \in \mathcal G} G$ is a parametric Gröbner basis.
+\begin{corollary}\label{cor:faithful_cgs_to_cgb}
+  Let $\mathcal G = \{(A_{1}, G_{1}), \dots, (A_{t}, G_{t})\}$ be a faithful comprehensive Gröbner system of an ideal $\langle F \rangle$. Then $\bigcup_{(A, G) \in \mathcal G} G$ is a parametric Gröbner basis of $\langle F \rangle$.
 \end{corollary}
 \begin{proof}
   Let $\sigma_{\alpha}$ be a specialization. Since $\mathcal G$ was comprehensive, there is some $l$ such that $\alpha \in A_{l}$. Then $\sigma_{\alpha}(G_{l})$ is a Gröbner basis of $\langle \sigma_{\alpha}(F) \rangle$, so $\langle \LT(\sigma_{\alpha}(G_{l})) \rangle = \langle \LT(\sigma_{\alpha}(\langle F \rangle)) \rangle$. Since for all $i$ we have that $\langle \sigma_{\alpha}(G_{i}) \rangle \subset \langle \sigma_{\alpha}(F) \rangle$, we have that $\langle \LT(\sigma_{\alpha}(G_{i})) \rangle = \langle \LT(\sigma_{\alpha}(\langle F \rangle)) \rangle$, so $\sum_{i=1}^{t} \langle \LT(\sigma_{\alpha}(G_{i})) \rangle = \langle \sigma_{\alpha}(F) \rangle$, thus $\sigma_{\alpha}\left(\bigcup_{(A, G) \in \mathcal G} G\right)$ is a Gröbner basis for $\langle \sigma_{\alpha}(F) \rangle$.
@@ -402,7 +406,9 @@ We now move on to the problem of computing parametric Gröbner bases, which is t
 
 The path to computing parametric Gröbner bases seem clear. We simply need to modify the segments of a comprehensive Gröbner system to be faithful, then we're done. While this is surpisingly easy to implement, proving that the way we do it works is a little more cumbersome.
 
-We follow the path laid out by \cite{ss_algo}, and introduce a new variable $t$ and extend the monomial order such that $t^{n} > X^{v_{1}} > U^{v_{2}}$ for all $n \in \N$ and vectors $v_{1}, v_{2}$. In the $\mathtt{CGS}$ algorithm we added leading coefficients $h$ to a set $S \subset k[U]$, and computed reduced Gröbner bases of $\langle F \cup S \rangle$ to produce the segments. However, this ``mixes up'' the original ideal with the added leading coefficients. We need a way to seperate them. We do this by replacing $F \cup S$ with $t\cdot F \cup (1-t)\cdot S$. Here we use the convention, that for a polynomial $a$ and a set of polynomials $F$, $a\cdot F := \{a \cdot f \mid f \in F\}$.
+\subsection{Computing faithful segments}
+
+We follow the path laid out by \cite{ss_algo}, and introduce a new variable $t$ and extend the monomial order such that $t^{n} > X^{v_{1}} > U^{v_{2}}$ for all $n \in \N$ and vectors $v_{1}, v_{2}$. In the $\mathtt{CGS}$ algorithm we added leading coefficients $h$ to a set $S \subset k[U]$, and computed reduced Gröbner bases of $\langle F \cup S \rangle$ to produce the segments. However, this ``mixes up'' the original ideal with the added leading coefficients. We need a way to seperate them. We do this by replacing $F \cup S$ with $t\cdot F \cup (1-t)\cdot S$. Here we use the convention, that for a polynomial $a$ and a set of polynomials $F$, $a\cdot F := \{a \cdot f \mid f \in F\}$. Note, that this need not be an ideal.
 
 In this way we can seperate the original ideal from the added polynomials by specializing away $t$. That is the content of this first lemma.
 
@@ -420,14 +426,71 @@ In this way we can seperate the original ideal from the added polynomials by spe
 
 We're going to need these two specializations a lot, so we'll give them names. Let $\sigma^{0}(f) = f(0, X, U)$ and $\sigma^{1}(f) = f(1, X, U)$. We also need that Gröbner bases are preserved under $\sigma^{1}$. While that is not true in general, the following is good enough for our uses.
 
-\begin{lemma}
+\begin{lemma}\label{lem:grb_if_nmap_to_z_t}
   Let $F \subset k[X, U]$, $S \subset k[U]$ be finite sets with $V(S) \subset V(\langle F \rangle \cap k[U])$ and let $G$ be the reduced Gröbner basis of $\langle t\cdot F \cup (1-t)\cdot S \rangle$. Let also \[H = \{\LC_{U}(g) \mid g \in G,\; \LT(g) \notin k[X, U],\; \LC_{X, U}(g) \notin k[U]\}.\] Then $\sigma_{\alpha}(\sigma^{1}(G))$ is a Gröbner basis of $\langle \sigma_{\alpha}(F) \rangle$ for any $\alpha \in V(S) \setminus V(\lcm(H))$.
 \end{lemma}
 \begin{proof}
   First note, that $\LT(g) \notin k[X, U]$ means that the leading term of $g$ contains the variable $t$ and since $t$ dominates the other variables, this means that $g \in k[t, X, U] \setminus k[X, U]$. Also, any polynomial in $G$ has degree at most 1 in $t$, again since $t$ dominates the other variables. For any polynomial $g \in G$ we can therefor write $g = t\,g^{t} + g_{t}$ where $g_{t} = \sigma^{0}(g)$ and $g^{t} = \sigma^{1}(g) - \sigma^{0}(g)$.
 
+  Let $\alpha \in V(S) \setminus V(\lcm(H))$. By lemma~\ref{lem:seperation} we have that $\langle \sigma^{1}(G) \rangle = \langle F \rangle$ and thus $\langle \sigma_{\alpha}(\sigma^{1}(G)) \rangle = \langle \sigma_{\alpha}(F) \rangle$ for any specialization $\sigma_{\alpha}$. Thus we only need to show that $\sigma_{\alpha}(\sigma^{1}(G))$ is a Gröbner basis for itself.
 
+  Let $G' = \{g \in G \mid \LT(g) \notin k[X, U],\; \LC_{X, U}(g) \notin k[U]\}$. Then $\sigma_{\alpha}(\LC_{U}(g)) \neq 0$ for any $g \in G'$ since $\alpha \notin V(\lcm(H))$. We will show later, that if $g \in G \setminus G'$ then $\sigma_{\alpha}(g) = 0$. Thus $\sigma_{\alpha}(G) = \sigma_{\alpha}(G') \cup \{0\}$. By lemma~\ref{lem:grb_if_nmap_to_z} this means that both $\sigma_{\alpha}(G)$ and $\sigma_{\alpha}(G')$ are Gröbner bases in $k_{1}[t, X]$.
+
+  Now we only need to show, that $\sigma_{\alpha}(\sigma^{1}(G'))$ is a Gröbner basis in $k_{1}[X]$. For any $g \in G'$ we have that $\sigma_{\alpha}(g) = \sigma_{\alpha}(t\cdot g^{t}) + \sigma_{\alpha}(g_{t})$. Since $g_{t} = \sigma^{0}(g) \in \langle S \rangle$ by lemma~\ref{lem:seperation} and $\alpha \in V(S)$, we have that $\sigma_{\alpha}(g_{t}) = 0$, thus $\sigma_{\alpha}(g) = \sigma_{\alpha}(t \cdot g^{t})$. This means that $\sigma_{\alpha}(G') = \sigma_{\alpha}(\{t \cdot g^{t} \mid g \in G'\})$. Since $t$ divides every polynomial, and thus term, in that ideal, divisibility of leading terms is independent of $t$. Thus $\sigma_{\alpha}(\sigma^{1}(G'))$ is a Gröbner basis.
+
+  To finish the proof, we need to prove the assertion that if $g \in G \setminus G'$ then $\sigma_{\alpha}(g) = 0$. If $g \in G \setminus G'$, then either $\LT(g) \in k[X, U]$ or $\LC_{X, U}(g) \in k[U]$. In the first case, since $t$ dominates the other variables, $g$ cannot contain $t$ as a variable. Thus $g = \sigma^{0}(g) \in \langle S \rangle_{k[X, U]}$ by lemma~\ref{lem:seperation}. Since $\alpha \in V(S)$, $\sigma_{\alpha}(g) = 0$. On the other hand, if $\LT(g) \notin k[X, U]$ but $\LC_{X, U}(g) \in k[U]$, we note that $g^{t} = \LC_{X, U}(g)$. Since $g^{t} = \sigma^{1}(g) - \sigma^{0}(g)$, we get from lemma~\ref{lem:seperation} that $g^{t} \in \langle F \rangle + \langle S \rangle = \langle F \cup S \rangle$. Since we also had $g^{t} \in k[U]$, we have $g^{t} \in \langle F \cup S \rangle \cap k[U]$. But by assumption $V(S) \subset V(\langle F \rangle \cap k[U])$, thus $\alpha \in V(S) \cup V(\langle F \rangle \cap k[U]) = V(\langle F \cup S \rangle \cap k[U])$. Hence, $\sigma_{\alpha}(g^{t}) = 0$. But we proved earlier that for any $g \in G$ we have $\sigma_{\alpha}(g_{t}) = 0$, so as $\sigma_{\alpha}(g) = t\cdot \sigma_{\alpha}(g^{t}) + \sigma_{\alpha}(g_{t}) = 0$, we are done.
 \end{proof}
+
+This lemma is a generalization of lemma~\ref{lem:grb_if_nmap_to_z}, and as such, it leads us to an algorithm for computing comprehensive, faithful Gröbner systems, at least on the vanishing set of some $S \subset k[U]$. We compute the reduced Gröbner basis of $\langle t\cdot F \cup (1-t)\cdot S \rangle$, which gives a faithful Gröbner segment on $V(S) \setminus V(\lcm(H))$, where $H = \{\LC_{U}(g) \mid g \in G,\; \LT(g) \notin k[X, U],\; \LC_{X, U}(g) \notin k[U]\}$. Then, we recursively compute faithful Gröbner segments on each $V(h)$ for $h \in H$, by adding $h$ to $S$.
+
+\begin{algorithm}
+  \caption{$\mathbf{CGB_{aux}}$}
+  \Input{$F \subset k[X, U]$ and $S \subset k[U]$, two finite sets such that $V(S) \subset V(\langle F \rangle \cap k[U])$}
+  \Output{A finite set of triples $(E, N, G)$ forming a comprehensive, faithful Gröbner system on $V(S)$}
+  \eIf{$1 \in \langle S \rangle$}{
+    \KwRet{$\emptyset$}\;
+  }{
+    $G \gets \mathbf{groebner}(t \cdot F \cup (1-t) \cdot S)$\;
+    $H \gets \{\LC_{U}(g) \mid g \in G,\; \LT(g) \notin k[X, U],\; \LC_{X, U}(g) \notin k[U] \}$\;
+    $h \gets \lcm(H)$\;
+    \KwRet{$\{(S, \{h\}, \sigma^{1}(G))\} \cup \bigcup_{h' \in H} \mathbf{CGB_{aux}}(F, S \cup \{h'\})$}\;
+  }
+\end{algorithm}
+\begin{theorem}\label{thm:CGB_aux}
+  Let $F \subset k[X, U]$ and $S \subset k[U]$ be finite and assume $V(S) \subset V(\langle F \rangle \cap k[U])$. Then $\mathbf{CGB_{aux}}(F, S)$ terminates, and the result is a faithful, comprehensive Gröbner system on $V(S)$ for $F$.
+\end{theorem}
+\begin{proof}
+  We first show termination. Let $G$ be the reduced Gröbner basis of $\langle t\cdot F \cup (1-t)\cdot S\rangle$, and let $h \in \{\LC_{U}(g) \mid g \in G,\; \LT(g) \notin k[X, U],\; \LC_{X, U}(g) \notin k[U]\}$. Let $g \in G$ be the element such that $\LC_{U}(g) = h$. By assumption, $g$ is of the form $h \cdot t \cdot X^{v} + g'$ for some vector $v$ and $g' \in k[X, U]$. If $g \in \langle S \rangle$, then $(1-t) \cdot h \in \langle G \rangle$, by the construction of $G$. This means that $\LT((1-t)\cdot h) = \LT(t \cdot h)$ is divisible by some leading term of $G$, and since the leading term of $g$ doesn't divide it, $\LT(t \cdot h)$ must be divisible by some leading term of $G \setminus \{g\}$. But this implies that the leading term of $g$ is divisible by some leading term in $G \setminus \{g\}$, which is not allowed as $G$ is a \textit{reduced} Gröbner basis. Thus $\langle S \rangle \subsetneq \langle S \cup \{h\} \rangle$. Since $k[t, X, U]$ is Noetherian, we can only expand this ideal finitely many times. Thus the algorithm terminates.
+
+  Next, observe that the precondition $V(S) \subset V(\langle F \rangle \cap k[U])$ always hold if it held initially, as $V(S') \subset V(S)$ for any $S' \supset S$. Apply this to $S' = S \cup \{h\}$.
+
+  If $(S, \{h\}, G)$ is in the output of $\mathbf{CGB_{aux}}(F, S)$, then $(V(S) \setminus V(h), G)$ is a segment of a Gröbner system by lemma~\ref{lem:grb_if_nmap_to_z_t}. It is also faithful by lemma~\ref{lem:seperation}.
+
+  Finally, we need to show that $V(S) = \bigcup_{E, N, G} \in \mathbf{CGB_{aux}(F, S)} V(E) \setminus V(N)$. Let $H = \{\LC_{U}(g) \mid g \in G,\; \LT(g) \notin k[X, U],\; \LC_{X, U}(g) \notin k[U] \}$ and $h = \lcm(H)$. Then
+  \begin{align*}
+    V(S) &= (V(S) \setminus V(h)) \cup \bigcup_{h' \in H} V(h') \\
+    &= (V(S) \setminus V(h)) \cup \bigcup_{h' \in H} V(S \cup \{h'\})
+  \end{align*}
+  By induction, the recursive calls to $\mathbf{CGB_{aux}}$ computes segments covering each $V(S \cup \{h'\})$. The base case is when $S \cup \{h'\} = k[U]$, but in this case $V(S \cup \{h'\}) = \emptyset$, and $\emptyset$ is a comprehensive Gröbner system on $\emptyset$.
+\end{proof}
+
+The only thing left is to figure out what to do with that $V(S)$. With the $\mathbf{CGS}$ algorithm we could choose $S = \emptyset$, then $V(S) = k_{1}^{|U|}$, but that doesn't work here, as it violates the assumption that $V(S) \subset V(\langle F \rangle \cap k[U])$. However, we can choose $S$ to be a set of generators of the ideal $\langle F \rangle \cap k[U]$. Then $S \subset \langle F \rangle$ and $\langle \sigma_{\alpha}(S) \rangle$ is either zero or $k_{1}[X]$, depending whether $\alpha \in V(S)$ or not. Hence, $(k^{|U|} \setminus V(S), S)$ is a faithful segment of a Gröbner system.
+
+\begin{algorithm}
+  \caption{$\mathbf{CGB}$}
+  \Input{$F \subset k[X, U]$ a finite set of polynomials}
+  \Output{$G \subset k[U, X]$ a comprehensive Gröbner basis of $F$}
+  $S \gets \mathbf{groebner}(F) \cap k[U]$\;
+  $\mathcal H \gets \mathbf{CGB_{aux}}(F, S)$\;
+  \KwRet{$S \cup \bigcup_{(E, N, G) \in \mathcal H} G$}\;
+\end{algorithm}
+\begin{theorem}
+  Let $F \subset k[X, U]$ be a finite set of polynomials. Then $\mathbf{CGB}(F)$ terminates and the output is a parametric Gröbner basis of $\langle F \rangle$.
+\end{theorem}
+\begin{proof}
+  $\mathbf{CGB}$ doesn't loop, and every subroutine it calls terminates, so it terminates. Since $S$ is a set of generator of the ideal $\langle F \rangle \cap k[U]$, we have that $V(S) = V(\langle F \rangle \cap k[U])$, so by theorem~\ref{thm:CGB_aux}, $\mathcal H$ is a faithful, comprehensive Gröbner system on $V(S)$. Since $\langle \sigma_{\alpha}(S) \rangle$ is either 0 or $k_{1}[X]$, $(k^{|U|} \setminus V(S), S)$ is a segment of a faithful, comprehensive Gröbner system. Hence \[\{(V(\emptyset) \setminus V(S), S)\} \cup \mathcal H\] is a faithful, comprehensive Gröbner system for $\langle F \rangle$. By corollary~\ref{cor:faithful_cgs_to_cgb} we get that $S \cup \bigcup_{(E, N, G) \in \mathcal H} G$ is a parametric Gröbner basis for $\langle F \rangle$.
+\end{proof}
+
 
 
 
