@@ -208,7 +208,7 @@
 This project will assume familiarity with ring theory, multivariate polynomials over fields. A familiarity with Gröbner bases will be beneficial, but we will introduce the necesary notations and definitions. Let $R$ be a Noetherian, commutative ring and $X = (x_{1}, x_{2}, \dots, x_{n})$ be an ordered collection of symbols. We denote the ring of polynomials in these variables $R[X]$. Given two (disjoint) sets of variables $X$ and $Y$, we will use $R[X, Y]$ to mean $R[X \cup Y]$, which is isomorphic to $R[X][Y]$. A monomial is a product of variables and a term is a monomial times a coefficient. We denote a monomial as $X^{v}$ for some $v \in \N^{n}$.
 
 \begin{definition}[Monomial order, leading term]
-  A \textit{monomial order} is a total order $<$ on the set of monomials satisfying that $u < v \implies wu < wv$.
+  A \textit{monomial order} is a well-order\footnote{A total order, for which any chain $a > b > c > \dots$ must be finite.} $<$ on the set of monomials satisfying that $u < v \implies wu < wv$.
 
   Given a monomial order $<$ and a polynomial $f \in R[X]$, the \textit{leading term} of $f$ is the term with the largest monomial w.r.t. $<$ and is denoted by $\LT_{<}(f)$. If $\LT_{<}(f) = a\cdot m$ for some monomial $m$ and $a \in R$, then we denote $\LM_{<}(f) = m$ and $\LC_{<}(f) = a$. If $<$ is clear from context, it will be omitted.
 \end{definition}
@@ -219,6 +219,20 @@ These definitions naturally extend to sets of polynomials, so given a set of pol
   Let $G \subset k[X]$ be a finite set of polynomials and $<$ be a monomial order. We say $G$ is a \textit{Gröbner basis} if
   $\langle \LT_{<}(G) \rangle = \langle \LT_{<}(\langle G \rangle ) \rangle $.
 \end{definition}
+
+We say $G$ is a Gröbner basis for an ideal $I$ if $G$ is a Gröbner basis and $\langle G \rangle = I$. We will also have to use an alternative description of Gröbner bases.
+
+\begin{definition}[Reduction modulo]
+  Let $f, g \in R[X]$ be polynomials and $<$ be a term order. We say $f$ \textit{reduces modulo} $g$ if $\LT(g) \mid \LT(f)$, since in that case $\LT(\LC(g)\cdot f - p\cdot \LC(f) \cdot g) < \LT(f)$ where $\LM(f) = p \cdot \LM(g)$. We say a polynomial reduces modulo a set of polynomials if it reduces modulo any polynomial in the set. We say a polynomial \textit{reduces to zero} if there is a chain of reductions that end in the zero polynomial.
+\end{definition}
+
+\begin{theorem}\label{thm:grb}
+  Let $G \subset R[X]$. Then $G$ is a Gröbner basis if and only if every polynomial in $\langle G \rangle$ reduces to 0 modulo $G$.
+\end{theorem}
+\begin{proof}
+  A good exercise.
+\end{proof}
+
 
 \section{Definitions and initial results}
 The purpose of this project is to study parametric Gröbner bases, so let's introduce those. The bare concept is rather simple.
@@ -265,52 +279,54 @@ From this point, we assume that the monomial order on $k[X, U]$ satisfies $X^{v_
 In this section we will prove a criterion to decide when a Gröbner basis $G$ of an ideal $\langle F \rangle$ maps to a Gröbner basis $\sigma(G)$ if the ideal $\langle \sigma(F) \rangle$. This is theorem 3.1 in \cite{Kalkbrener}.
 
 \begin{lemma}\label{lem:grb_iff_reduc_to_z}
-  Let $G$ be a Gröbner basis of an ideal $\langle F \rangle$ w.r.t. $<$, let $\sigma : k[U] \to k_{1}$ be a specialization and set $G_{\sigma} = \{\sigma(g) \in G \mid \sigma(\LC_{U}(g)) \neq 0\} = \{g_{1}, g_{2}, \dots, g_{l}\} \subset k_{1}[X]$. Then $G_{\sigma}$ is a Gröbner basis of the ideal $\langle \sigma(F) \rangle$ w.r.t. $<_{X}$ if and only if $\sigma(g)$ is reducible to 0 modulo $G_{\sigma}$ for every $g \in G$.
+  Let $G$ be a Gröbner basis of an ideal $\langle F \rangle \subset R[X]$ w.r.t. $<$, let $\sigma : R \to K$ be a ring homomorphism to a field $K$ and set $G_{\sigma} = \{g \in G \mid \sigma(\LC(g)) \neq 0\} = \{g_{1}, g_{2}, \dots, g_{l}\} \subset R[X]$. Then $\sigma(G_{\sigma})$ is a Gröbner basis of the ideal $\langle \sigma(F) \rangle$ w.r.t. $<_{X}$ if and only if $\sigma(g)$ is reducible to 0 modulo $\sigma(G_{\sigma})$ for every $g \in G$.
 \end{lemma}
 \begin{proof}
-  First, we prove ``$\implies$'': Suppose $G_{\sigma}$ is a Gröbner basis of $\langle \sigma(F) \rangle$. Since $\sigma$ is linear and every element of $\langle F \rangle$ is a linear combination of elements in $F$, we have $\langle \sigma(F) \rangle = \sigma(\langle F \rangle)$. Since $g \in F$ for every $g \in G$, $\sigma(g) \in \langle \sigma(F) \rangle$, thus $\sigma(g)$ reduces to 0 modulo $G_{\sigma}$.
+  First, we prove ``$\Longrightarrow$'': Suppose $\sigma(G_{\sigma})$ is a Gröbner basis of $\langle \sigma(F) \rangle$. Since $\sigma(g) \in \langle \sigma(F) \rangle$, we get that $\sigma(g)$ reduces to zero modulo any Gröbner basis of $\langle \sigma(F) \rangle$ by theorem~\ref{thm:grb}, in particular $\sigma(G_{\sigma})$.
 
-  Next, we prove ``$\Longleftarrow$'': Assume that $\sigma(g)$ is reducible to 0 modulo $G_{\sigma}$ for every $g \in G$ and let $f \in \langle F \rangle$ such that $\sigma(f) \neq 0$. It's enough to show that there exists a $g \in \langle F \rangle$ such that $\LM_{U}(g) \mid \LM_{U}(\sigma(f))$ and $\sigma(\LC_{U}(g)) \neq 0$. Indeed, if that is the case, then $\LT(\sigma(g))$
+  Next, we prove ``$\Longleftarrow$'': Assume that $\sigma(g)$ is reducible to 0 modulo $G_{\sigma}$ for every $g \in G$ and let $f \in \langle F \rangle$ such that $\sigma(f) \neq 0$. It's enough to show that
+  \[\exists\, h \in \langle F \rangle : \sigma(\LC(h)) \neq 0 \land \LM(h) \mid \LM(\sigma(f)).\]
+  Indeed, since $G$ is a Gröbner basis of $\langle F \rangle$, that implies there is some $g \in G$ such that $\LM(g) \mid \LM(h)$ and $\LM(h) = \LM(\sigma(h)) \mid \LM(\sigma(f))$. Furthermore, since $\LC(g) \mid \LC(h)$, we have that $\sigma(\LC(g)) \neq 0$, hence $\LT(\sigma(g)) \mid \LT(\sigma(f))$. Thus, if the above holds for any $f$, then $\sigma(G)$ is a Gröbner basis of $\langle \sigma(F) \rangle$. We prove this claim by induction on $<_{X}$.
+
+  The base case is when $\LM(f) = 1$, which means $f \in R$. Since we assumed $\sigma(f) \neq 0$, we have $\LM(\sigma(f)) = \LM(f)$ and $\sigma(\LC(f)) \neq 0$.
+
+  Now, the induction step. Let $f \in \langle F \rangle$ with $\sigma(\LC(f)) \neq 0$ and assume that every $f' \in \langle F \rangle$ with $\LM(f') < \LM(f)$ we have $\exists\, h \in \langle F \rangle : \sigma(\LC(h)) \neq 0 \land \LM(h) \mid \LM(\sigma(f'))$. If $\sigma(\LC(f)) \neq 0$, we can simply use $h = f$, so consider the case when $\sigma(\LC(f)) = 0$. If there is some $\sigma(g) \in G_{\sigma}$ such that $\LM(g) \mid \LM(f)$, then we can reduce $f$ by $g$ to get $f' = \LC(g) \cdot f - \LC(f) \cdot \frac{\LM(f)}{\LM(g)}g$. Then $\LM(\sigma(f')) = \LM(\sigma(f))$ since $\sigma(\LC(f)) = 0$ and $\LM(f') < \LM(f)$, so the assertion holds by the induction hypothesis.
+
+  On the other hand, if there is no such $\sigma(g) \in G_{\sigma}$, then we must have some $g \in G \setminus G_{\sigma}$ such that $\LM(g) \mid \LM(f)$. However, we can't simply reduce by $g$, since the factor $\LC(g)$ is zero under $\sigma$. Instead, we can find a subset $\{g_{j_{1}}, \dots, g_{j_{r}}\} \subset G \setminus G_{\alpha}$ such that \[\LM(f) = \sum_{i = 1}^{r} c_{i} \frac{\LM(f)}{\LM(g_{j_{i}})} \LM(g_{j_{i}}).\]
+  Since each of the $\sigma(g_{j_{i}})$ are reducible to 0 modulo $G_{\sigma}$, we can find some $h_{i} \in \langle F \rangle$ and $b_{i} \in R \setminus \ker(\sigma)$ such that $\sigma(b_{i} g_{j_{i}}) = \sigma(h_{i})$ and $\LM(\sigma(h_{i})) = \LM(\sigma(g_{j_{i}})) > \LM(g_{j_{i}})$ for each $i \in \{1, \dots, r\}$. Let $b = \prod_{i = 1}^{r} b_{i}$, which is non-zero, then
+  \[f' = b f - \sum_{i = 1}^{r} c_{i} \frac{b}{b_{i}} \frac{\LM(f)}{\LM(g_{j_{i}})}(b_{i}g_{j_{i}} - h_{i})\]
+  is a new polynomial with
+  \[\sigma(f') = \sigma(b f) - \sum_{i = 1}^{r} \sigma\left(c_{i} \frac{b}{b_{i}} \frac{\LM(f)}{\LM(g_{j_{i}})}\right) (\sigma(b_{i} g_{j_{i}}) - \sigma(h_{i})) = \sigma(b f)\]
+  hence $\LM(\sigma(f')) = \LM(\sigma(f))$ but also $\LM(f') < \LM(f)$ since $\LM(g_{j_{i}}) > \LM(h_{i})$. Thus the conclusion follows from the induction hypothesis.
 \end{proof}
 
-\subsection{Computing Gröbner systems}
-We will use lemma~\ref{lem:grb_iff_reduc_to_z} in a slightly different formulation:
-
-% \begin{lemma}
-%   Let $G = \{g_{1}, g_{2}, \dots, g_{k}\}$ be a Gröbner basis of an ideal $\langle F \rangle$ in $k[X, U]$ w.r.t $<$ and let $\alpha \in V(G \cap k[U])$. If $\sigma_{\alpha}(\LC_{U}(g)) \neq 0$ for each $g \in G \setminus (G \cap k[U])$, then $\sigma_{\alpha}(G)$ is a Gröbner basis of $\langle \sigma_{\alpha}(F) \rangle$.
-% \end{lemma}
-% \begin{proof}
-%   Since $\alpha \in V(G \cap k[U])$ and $\LC_{U}(g) = g$ for any $g \in G \cap k[U]$, we have that $\sigma_{\alpha}(\LC_{U}(g)) = 0$ for all $g \in G \cap K[U]$. By assumption, $\sigma_{\alpha}(\LC_{U}(g)) \neq 0$ for any $g \notin G \cap k[U]$, thus $\sigma_{\alpha}(\LC_{U}(g)) = 0 \iff g \in G \cap k[U] \iff \sigma_{\alpha}(g) = 0$.
-
-%   Now, $G_{\alpha} = \{\sigma_{\alpha}(g) \mid \sigma_{\alpha}(\LC_{U}(g)) \neq 0\}$ and take any $g \in G$. If $\sigma_{\alpha}(g) \in G_{\alpha}$, then $\LT(\sigma_{\alpha}(g)) = \sigma_{\alpha}(\LC_{U}(g)) \cdot \LM_{U}(g)$ since $x > u$ for all $x \in X$ and $u \in U$. Thus, $\sigma_{\alpha}(g)$ is reducible to $0$ modulo $G_{\alpha}$, since it's leading term is divisible by its own leading term.  On the other hand, if $\sigma_{\alpha}(g) \notin G_{\alpha}$, then $\sigma_{\alpha}(g) = 0$, so is immediately reducible to zero.
-% \end{proof}
-
+We will use a consequence of this lemma, which uses a test that is much easier to check. We use the above lemma with $R = k[U]$.
 
 \begin{lemma}\label{lem:grb_if_nmap_to_z}
-  Let $G = \{g_{1}, g_{2}, \dots, g_{k}\}$ be a Gröbner basis of an ideal $\langle F \rangle$ in $k[X, U]$ w.r.t $<$ and let $\alpha \in k_{1}^{m}$. If $\sigma_{\alpha}(\LC_{U}(g)) \neq 0$ for each $g \in G \setminus (G \cap k[U])$, then $\sigma_{\alpha}(G)$ is a Gröbner basis of $\langle \sigma_{\alpha}(F) \rangle$.
+  Let $G = \{g_{1}, g_{2}, \dots, g_{k}\}$ be a Gröbner basis of an ideal $\langle F \rangle$ in $k[X, U]$ w.r.t $<$ and let $\alpha \in k_{1}^{m}$. If $\sigma_{\alpha}(\LC_{U}(g)) \neq 0$ for each $g \in G \setminus k[U]$, then $\sigma_{\alpha}(G)$ is a Gröbner basis of $\langle \sigma_{\alpha}(F) \rangle$.
 \end{lemma}
 \begin{proof}
-  Let $G_{\alpha} = \{\sigma_{\alpha}(g) \mid \sigma_{\alpha}(\LC_{U}(g)) \neq 0\}$. If there is any $g \in G$, such that $\sigma_{\alpha}(g) \in k_{1} \setminus \{0\}$, then $g \in G \cap k[U]$ since $\sigma_{\alpha}(\LC_{U}(g)) \neq 0$ for all $g \in G \setminus K[U]$. Furthermore, since $g \in \langle F \rangle$, we get that $\langle \sigma_{\alpha}(F) \rangle = k_{1}[X]$ and $\sigma_{\alpha}(G)$ is a Gröbner basis.
+  First note that since $X^{v_{1}} > U^{v_{2}}$, any Gröbner basis of $\langle F \rangle \subset k[X, U]$ is also a Gröbner basis of $\langle F \rangle \subset k[U][X]$. Let $G_{\alpha} = \{\sigma_{\alpha}(g) \mid \sigma_{\alpha}(\LC_{U}(g)) \neq 0\}$. If there is any $g \in G$, such that $\sigma_{\alpha}(g) \in k_{1} \setminus \{0\}$, then $g \in G \cap k[U]$ since $\sigma_{\alpha}(\LC_{U}(g)) \neq 0$ for all $g \in G \setminus K[U]$. Furthermore, since $g \in \langle F \rangle$, we get that $\langle \sigma_{\alpha}(F) \rangle = k_{1}[X]$ and $\sigma_{\alpha}(G)$ is a Gröbner basis.
 
   If there is no such $g$, then $\alpha \in V(G \cap k[U])$. Take any $g \in G$. If $\sigma_{\alpha}(g) \in G_{\alpha}$, then $\LT(\sigma_{\alpha}(g)) = a \cdot \LM_{U}(g)$ for some $a \in k_{1}$ since $X^{v_{1}} > U^{v_{2}}$. Thus the monomial of its leading term is preserved by $\sigma_{\alpha}$, so $\sigma_{\alpha}(g)$ is reducible to $0$ modulo $G_{\alpha}$, since it's leading term is divisible by its own leading term.
 
   On the other hand, if $\sigma_{\alpha}(g) \notin G_{\alpha}$, then we must have $g \in G \cap k[U]$. Since $\alpha \in V(G \cap k[U])$ then $\sigma_{\alpha}(g) = 0$, so is immediately reducible to zero. Thus $\sigma_{\alpha}(G)$ is a Gröbner basis of $\langle \sigma_{\alpha}(F) \rangle$ by lemma~\ref{lem:grb_iff_reduc_to_z}.
 \end{proof}
 
-With lemma~\ref{lem:grb_iff_reduc_to_z} in mind, we can start constructing Gröbner systems. Let $G$ be a reduced Gröbner basis of an ideal $\langle F \rangle \subset k[X, U]$, and let $H = \{\LC_{U}(g) \mid g \in G \setminus k[U]\}$. Then $\left(k_{1}^{m} \setminus \bigcup_{h \in H} V(h), G\right)$ is a segment of a Gröbner system. Thus, to make a Gröbner system, we need to find segments covering $\bigcup_{h \in H} V(h) = V(\lcm(H))$.
+With lemma~\ref{lem:grb_if_nmap_to_z} in mind, we can start constructing Gröbner systems. Let $G$ be a reduced Gröbner basis of an ideal $\langle F \rangle \subset k[X, U]$, and let $H = \{\LC_{U}(g) \mid g \in G \setminus k[U]\}$. Then $\left(k_{1}^{m} \setminus \bigcup_{h \in H} V(h), G\right)$ is a segment of a Gröbner system. Thus, to make a Gröbner system, we need to find segments covering $\bigcup_{h \in H} V(h) = V(\lcm(H))$.
 
 If we take $G$ to be a reduced Gröbner basis, then $h \notin \langle F \rangle$ for any $h \in H$ since then the corresponding leading term would be divisible by a leading term in $G$. This is not allowed when $G$ is reduced. Hence, we can find a Gröbner basis $G_{1}$ of $F \cup \{h\}$, which will then form a segment $(V(h) \setminus \bigcup_{h_{1} \in H_{1}} V(h_{1}), G_{1})$ where $H_{1} = \{\LC_{U}(g) \mid g \in G_{1}\}$. Since $k[X, U]$ is Noetherian, this will eventually stop, forming a Gröbner system.
 
-This gives us the ingredients for a simple algorithm for computing Gröbner systems, given below:
+This gives us the ingredients for a simple algorithm for computing Gröbner systems, Algorithm~\ref{alg:CGS_simple}.
 
-\begin{algorithm}
+\begin{algorithm}\label{alg:CGS_simple}
   \caption{$\mathtt{CGS_{simple}}$, an algorithm for computing comprehensive Gröbner systems on $V(S)$}
   \Input{Two finite sets $F \subset k[X, U]$, $S \subset k[U]$}
   \Output{A finite set of triples $(E, N, G)$, each forming a segment of a comprehensive Gröbner system on $V(S)$.}
   \eIf{$\exists g \in S \cap (k \setminus \{0\})$}  {
     \KwRet{\emptyset}\;
   } {
-    $G \gets \mathbf{groebner}(F)$\;
+    $G \gets \mathbf{groebner}(F \cup S)$\;
     $H \gets \{\LC_{U}(g) \mid g \in G \setminus k[U]\}$\;
     $h \gets \lcm(H)$\;
     % \eIf{$h = 1$} {
@@ -320,6 +336,27 @@ This gives us the ingredients for a simple algorithm for computing Gröbner syst
     % }
   }
 \end{algorithm}
+
+\begin{theorem}
+  Let $F \subset k[X, U]$ and $S \subset k[U]$ be finite sets of polynomials. Then $\mathbf{CGS_{simple}(F, S)}$ terminates and the output $\mathcal H$ is a comprehensive Gröbner system on $V(S)$.
+\end{theorem}
+\begin{proof}
+  First, we prove termination. Let $F$ and $S$ be inputs to $\mathbf{CGS_{simple}}$, let $G$ be the reduced Gröbner basis of $F \cup S$ and let $H = \{\LC_{U}(g) \mid g \in G \setminus k[U]\}$. Take any $h \in H$. Since $G$ is reduced, $h \notin \langle F \cup S \rangle$, since then its leading term would be divisible by an element in $G$, but that cannot be the case. Indeed, since $h \in k[U]$, it cannot be reduced by any $g \in G \setminus k[U]$ (as $X^{v_{1}} > U^{_{2}}$, so the leading terms of $G \setminus k[U]$ must contain a variable from $X$), and if it was reducible by a $p \in G \cap k[U]$, then that $p$ would also reduce one of the elements of $G \setminus k[U]$, which is not allowed when $G$ is reduced. Thus $\langle F \cup S \rangle \subsetneq \langle F \cup S \cup \{h\} \rangle$. Since this is the case at every recursive call, each successive call to $\mathbf{CGS_{simple}}$ will have a strictly greater ideal $\langle F \cup S \rangle$. Since $k[X, U]$ is Noetherian, this must stop eventually. Note also, that since $F$ stays constant, this means that $\langle S \rangle \subsetneq \langle S \cup \{h\} \rangle$.
+
+  Next, we prove that if $(E, N, G) \in \mathcal H$, then $(V(E) \setminus V(N), G)$ is a segment of a Gröbner system. By the algorithm, $N = \lcm(H)$, where $H = \{\LC_{U}(g) \mid g \in G \setminus k[U]\}$ as before, for $G$ being the reduced Gröbner basis of $\langle F \cup S \rangle$. Hence, for any $\alpha \in V(E) \setminus V(N)$, we have that $\sigma_{\alpha}(\LC_{U}(g)) \neq 0$ for every $g \in G \setminus k[U]$. Thus $\sigma_{\alpha}(G)$ is a Gröbner basis of $\langle \sigma_{\alpha}(F \cup S) \rangle$ by lemma~\ref{lem:grb_if_nmap_to_z}. Also, $E = S$, so $\sigma_{\alpha}(S) = 0$. Hence $\langle \sigma_{\alpha}(F \cup S) \rangle = \langle \sigma_{\alpha}(F) \rangle$, so $\sigma_{\alpha}(G)$ is a Gröbner basis of $\langle \sigma_{\alpha}(F) \rangle$.
+
+  Finally, we need to prove that \[\bigcup_{(E, N, G) \in \mathcal H} V(E) \setminus V(N) = V(S).\]
+  Note, that since $V(\lcm(H)) = \bigcup_{h \in H} V(H)$, we have the following:
+  \begin{align*}
+    V(S) &= (V(S) \setminus V(\lcm(H))) \cup \bigcup_{h \in H} V(h) \\
+    &= (V(S) \setminus V(\lcm(H))) \cup \bigcup_{h \in H} V(S \cup \{h\})
+  \end{align*}
+
+  Inductively, the recursive calls to $\mathbf{CGS_{simple}}$ will compute Gröbner systems covering $\bigcup_{h \in H} V(S \cup \{h\})$. The base case is when $\langle S \rangle = k[U]$. In that case, $V(S) = \emptyset$, so $\emptyset$ is a comprehensive Gröbner system on $V(S)$.
+\end{proof}
+
+Note that in the implementation, we use $G \setminus (k[U] \setminus k)$ for the Gröbner segments. This has no impact on the validity of the segments, it just removes elements, which would specialize to 0 on that segment anyway.
+
 
 However, this algorithm has a crucial flaw: if $(E, N, G)$ is a triple returned by $\mathtt{CGS_{simple}}$, then we don't necesarily have $G \subset \langle F \rangle$. This may or may not be a problem depending on the application. For some of the applications of this project, this is indeed a flaw.
 To fix this, we present an alternative algorithm, which will be extended to produce Gröbner segments, which are properly contained in $\langle F \rangle$. This algorithm depends on the following proposition.
@@ -408,7 +445,7 @@ The path to computing parametric Gröbner bases seem clear. We simply need to mo
 
 \subsection{Computing faithful segments}
 
-We follow the path laid out by \cite{ss_algo}, and introduce a new variable $t$ and extend the monomial order such that $t^{n} > X^{v_{1}} > U^{v_{2}}$ for all $n \in \N$ and vectors $v_{1}, v_{2}$. In the $\mathtt{CGS}$ algorithm we added leading coefficients $h$ to a set $S \subset k[U]$, and computed reduced Gröbner bases of $\langle F \cup S \rangle$ to produce the segments. However, this ``mixes up'' the original ideal with the added leading coefficients. We need a way to seperate them. We do this by replacing $F \cup S$ with $t\cdot F \cup (1-t)\cdot S$. Here we use the convention, that for a polynomial $a$ and a set of polynomials $F$, $a\cdot F := \{a \cdot f \mid f \in F\}$. Note, that this need not be an ideal.
+We follow the path laid out by \cite{ss_algo}, and introduce a new variable $t$ and extend the monomial order such that $t^{n} > X^{v_{1}} > U^{v_{2}}$ for all $n \in \N$ and vectors $v_{1}, v_{2}$. In the $\mathtt{CGS}$ algorithm we added leading coefficients $h$ to a set $S \subset k[U]$, and computed reduced Gröbner bases of $\langle F \cup S \rangle$ to produce the segments. However, this ``mixes up'' the original ideal with the added leading coefficients. We need a way to seperate them. We do this by replacing $F \cup S$ with $t\cdot F \cup (1-t)\cdot S$, where $t$ is a new auxilliary variable that does not occur in $F$ or $S$. Here we use the convention, that for a polynomial $a$ and a set of polynomials $F$, $a\cdot F := \{a \cdot f \mid f \in F\}$. Note, that this need not be an ideal.
 
 In this way we can seperate the original ideal from the added polynomials by specializing away $t$. That is the content of this first lemma.
 
@@ -438,7 +475,7 @@ We're going to need these two specializations a lot, so we'll give them names. L
 
   Now we only need to show, that $\sigma_{\alpha}(\sigma^{1}(G'))$ is a Gröbner basis in $k_{1}[X]$. For any $g \in G'$ we have that $\sigma_{\alpha}(g) = \sigma_{\alpha}(t\cdot g^{t}) + \sigma_{\alpha}(g_{t})$. Since $g_{t} = \sigma^{0}(g) \in \langle S \rangle$ by lemma~\ref{lem:seperation} and $\alpha \in V(S)$, we have that $\sigma_{\alpha}(g_{t}) = 0$, thus $\sigma_{\alpha}(g) = \sigma_{\alpha}(t \cdot g^{t})$. This means that $\sigma_{\alpha}(G') = \sigma_{\alpha}(\{t \cdot g^{t} \mid g \in G'\})$. Since $t$ divides every polynomial, and thus term, in that ideal, divisibility of leading terms is independent of $t$. Thus $\sigma_{\alpha}(\sigma^{1}(G'))$ is a Gröbner basis.
 
-  To finish the proof, we need to prove the assertion that if $g \in G \setminus G'$ then $\sigma_{\alpha}(g) = 0$. If $g \in G \setminus G'$, then either $\LT(g) \in k[X, U]$ or $\LC_{X, U}(g) \in k[U]$. In the first case, since $t$ dominates the other variables, $g$ cannot contain $t$ as a variable. Thus $g = \sigma^{0}(g) \in \langle S \rangle_{k[X, U]}$ by lemma~\ref{lem:seperation}. Since $\alpha \in V(S)$, $\sigma_{\alpha}(g) = 0$. On the other hand, if $\LT(g) \notin k[X, U]$ but $\LC_{X, U}(g) \in k[U]$, we note that $g^{t} = \LC_{X, U}(g)$. Since $g^{t} = \sigma^{1}(g) - \sigma^{0}(g)$, we get from lemma~\ref{lem:seperation} that $g^{t} \in \langle F \rangle + \langle S \rangle = \langle F \cup S \rangle$. Since we also had $g^{t} \in k[U]$, we have $g^{t} \in \langle F \cup S \rangle \cap k[U]$. But by assumption $V(S) \subset V(\langle F \rangle \cap k[U])$, thus $\alpha \in V(S) \cup V(\langle F \rangle \cap k[U]) = V(\langle F \cup S \rangle \cap k[U])$. Hence, $\sigma_{\alpha}(g^{t}) = 0$. But we proved earlier that for any $g \in G$ we have $\sigma_{\alpha}(g_{t}) = 0$, so as $\sigma_{\alpha}(g) = t\cdot \sigma_{\alpha}(g^{t}) + \sigma_{\alpha}(g_{t}) = 0$, we are done.
+  To finish the proof, we need to prove the assertion that if $g \in G \setminus G'$ then $\sigma_{\alpha}(g) = 0$. If $g \in G \setminus G'$, then either $\LT(g) \in k[X, U]$ or $\LC_{X, U}(g) \in k[U]$. In the first case, since $t$ dominates the other variables, $g$ cannot contain $t$ as a variable. Thus $g = \sigma^{0}(g) \in \langle S \rangle_{k[X, U]}$ by lemma~\ref{lem:seperation}. Since $\alpha \in V(S)$, $\sigma_{\alpha}(g) = 0$. On the other hand, if $\LT(g) \notin k[X, U]$ but $\LC_{X, U}(g) \in k[U]$, we note that $g^{t} = \LC_{X, U}(g)$. Since $g^{t} = \sigma^{1}(g) - \sigma^{0}(g)$, we get from lemma~\ref{lem:seperation} that $g^{t} \in \langle F \rangle + \langle S \rangle = \langle F \cup S \rangle$. Since we also had $g^{t} \in k[U]$, we have $g^{t} \in \langle F \cup S \rangle \cap k[U]$. But by assumption $V(S) \subset V(\langle F \rangle \cap k[U])$, thus $\alpha \in V(S) \cap V(\langle F \rangle \cap k[U]) = V(\langle F \cup S \rangle \cap k[U])$. Hence, $\sigma_{\alpha}(g^{t}) = 0$. But we proved earlier that for any $g \in G$ we have $\sigma_{\alpha}(g_{t}) = 0$, so as $\sigma_{\alpha}(g) = t\cdot \sigma_{\alpha}(g^{t}) + \sigma_{\alpha}(g_{t}) = 0$, we are done.
 \end{proof}
 
 This lemma is a generalization of lemma~\ref{lem:grb_if_nmap_to_z}, and as such, it leads us to an algorithm for computing comprehensive, faithful Gröbner systems, at least on the vanishing set of some $S \subset k[U]$. We compute the reduced Gröbner basis of $\langle t\cdot F \cup (1-t)\cdot S \rangle$, which gives a faithful Gröbner segment on $V(S) \setminus V(\lcm(H))$, where $H = \{\LC_{U}(g) \mid g \in G,\; \LT(g) \notin k[X, U],\; \LC_{X, U}(g) \notin k[U]\}$. Then, we recursively compute faithful Gröbner segments on each $V(h)$ for $h \in H$, by adding $h$ to $S$.
@@ -489,6 +526,50 @@ The only thing left is to figure out what to do with that $V(S)$. With the $\mat
 \end{theorem}
 \begin{proof}
   $\mathbf{CGB}$ doesn't loop, and every subroutine it calls terminates, so it terminates. Since $S$ is a set of generator of the ideal $\langle F \rangle \cap k[U]$, we have that $V(S) = V(\langle F \rangle \cap k[U])$, so by theorem~\ref{thm:CGB_aux}, $\mathcal H$ is a faithful, comprehensive Gröbner system on $V(S)$. Since $\langle \sigma_{\alpha}(S) \rangle$ is either 0 or $k_{1}[X]$, $(k^{|U|} \setminus V(S), S)$ is a segment of a faithful, comprehensive Gröbner system. Hence \[\{(V(\emptyset) \setminus V(S), S)\} \cup \mathcal H\] is a faithful, comprehensive Gröbner system for $\langle F \rangle$. By corollary~\ref{cor:faithful_cgs_to_cgb} we get that $S \cup \bigcup_{(E, N, G) \in \mathcal H} G$ is a parametric Gröbner basis for $\langle F \rangle$.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+\section{Applications}
+
+\subsection{Quantifier elimination}
+One of the first applications of parametric Gröbner bases was presented by its inventor Weispfenning \cite{Weispfenning} in the original article. It concerns the problem of computing a system of polynomial equations, whose solutions are equivalent to solutions to a set of logical expressions involving polynomial equations, con- and disjunctions, negations and existential quantifiers.
+
+Sepcifically, we're given a formula $\exists x_{1}, \dots, x_{n} : \phi(U, x_{1}, \dots, x_{n})$ where $\phi$ is a combination using $\land$ and $\lor$ of polynomial equalities and inequalities in $k[U, X]$. If $k_{1}$ is an extension field of $k$, then that formula determines a partioning of $k_{1}^{|U|}$, namely those values of $U$ where the formula is true and those where it isn't. Our goal is to find a system of polynomial equations in $k[U]$ that is satisfied in exactly the same points.
+
+First, we need to normalize the logical expressions, to fit a format we can work with.
+
+\begin{definition}[Positive, primitive formula]
+  A logical formula $\varphi$ is called \textit{positive and primitive} if it only involves polynomial equalities in $k[X]$, conjunctions and existential quantifiers.
+\end{definition}
+
+\begin{lemma}\label{lem:logical_positive}
+  Let $\phi$ be a logical formula involving polynomial equalities, conjunctions, disjunctions, negations and existential quantifiers. Then there exists a finite set of positive, primitive formula $\varphi_{1}, \varphi_{2}, \dots, \varphi_{r}$ such that $\phi \iff (\varphi_{1} \lor \dots \lor \varphi_{r})$.
+\end{lemma}
+\begin{proof}
+  Using standard logical rules, we can find $\phi_{1}, \dots, \phi_{r}$ containing only polynomial equalities, conjunction, negation and existential quantifiers such that \[\phi \iff \bigvee_{i=1}^{r} \phi_{r}.\] Using De Morgans law and distributivity we can assume that negations are at the lowest level of the formulas. Thus, we can see the $\phi_{i}$'s as existstential formulas containing conjunctions of polynomial equations and inequations.
+
+  Now, to eliminate the inequalities, we use the following trick: \[f(X) \neq 0 \iff \exists\, t : f(X) \cdot t - 1 = 0.\]
+\end{proof}
+
+Thus we can solve each of the positive, primitive formulas independently, and see if any of them are satifiable.
+
+\begin{theorem}
+  Let $F \subset k[U, X]$ be a finite set of polynomials over an algebraically closed field and let $G$ be a parametric Gröbner basis of $F$. For a polynomial $f \in k[U][X]$, let $C(f) \subset k[U]$ denote the set of coefficients of non-constant terms in $f$. Then \[ \left(\exists x_{1}, \dots, x_{n} : \bigwedge_{f \in F} f(U, x_{1}, \dots, x_{n}) = 0 \right) \iff \bigwedge_{g \in G} \left( g(U, 0, \dots, 0) = 0 \lor \bigvee_{c \in C(g)} c(U) \neq 0 \right)\] in any extension field $k_{1} \supset k$.
+\end{theorem}
+\begin{proof}
+  Let $\alpha \in k_{1}^{|U|}$. Then the question of whether $\exists x_{1}, \dots, x_{n} : \bigwedge_{f \in F} f(U, x_{1}, \dots, x_{n}) = 0$ is satisfied in $U = \alpha$ is equivalent to whether $\langle \sigma_{\alpha}(F) \rangle$ has a common zero, i.e. if $V(\langle \sigma_{\alpha}(F) \rangle) \neq \emptyset$.
+
+  For the first implication, assume $\exists x_{1}, \dots, x_{n} : \bigwedge_{f \in F} f(U, x_{1}, \dots, x_{n}) = 0$ is satisfied at some $\alpha \in k_{1}^{|U|}$. Let $\beta \in k_{1}^{|X|}$ be a vector of $(x_{1}, \dots, x_{n})$ such that $f(\alpha, \beta) = 0$ for all $f \in F$. Then, since all $g \in G$ are also in $\langle F \rangle$, we get $g(\alpha, \beta) = 0 \; \forall g \in G$. Hence, if $g(\alpha, 0, \dots, 0) \neq 0$, then there has to be some non-constant term in $g$, which is also non-zero at $\alpha$.
+
+  For the other implication, assume every $g \in G$ has zero constant term or some non-zero non-constant term, when viewed as a polynomial in $k[U][X]$. Assume for a contradiction that $V(\langle \sigma_{\alpha}(F) \rangle) = \emptyset$. By the weak Nullstellensatz we get that $1 \in \langle \sigma_{\alpha}(F) \rangle$. Since $G$ is a parametric Gröbner basis, there is some $g \in G$ such that $\LT(\sigma_{\alpha}(g)) \mid 1$. Thus $\sigma_{\alpha}(g)$ is a constant polynomial with non-zero constant term, contradicting the assumption.
 \end{proof}
 
 
