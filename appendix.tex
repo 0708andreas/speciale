@@ -1,0 +1,44 @@
+\section{Miscellaneous results}
+In this section, we prove results that we need in the main text, but don't fit in the flow if the text. These are well-known results, which nevertheless aren't usually covered in introductionary algebra courses. Hence, we present them here.
+
+\subsection{Reduced Gröbner bases}
+
+
+\subsection{The nilradical}
+The nilradical is the ideal of all nilpotent elements of a ring. It is widely used in the study of general rings. In our case, where the base ring is assumed to have no nilpotents, it is zero, but we still need a different characterization of it.
+
+\begin{definition}[Nilradical]
+  Let $A$ be a commutative ring. Then the ideal \[\sqrt{\langle 0 \rangle} = \{a \in A \mid \exists n \in \N : A^{n} = 0\}\] is called the \textit{nilradical}.
+\end{definition}
+
+\begin{theorem}\label{thm:nil_rad_is_cap_primes}
+  Let $A$ be a commutative ring, and let $\Spec(A)$ be the set of prime ideals of $A$. Then
+  \[\sqrt{\langle 0 \rangle} = \bigcap_{\p \in \Spec(A)} \p\]
+\end{theorem}
+\begin{proof}
+  First, a quick induction proof gives that every nilpotent element is in every $\p \in \Spec(A)$. Indeed, $0 \in \p$ and if $a^{n} = 0 \in \p$, then either $a$ or $a^{n-1}$ is in $p$, since $\p$ is prime. By induction, $a \in \p$.
+
+  For the converse inclusion,
+\end{proof}
+
+
+
+
+\subsection{Homogenous ideals}
+
+Here, we present a basic lemma about homogenous ideals.
+
+\begin{lemma}\label{lem:homo_components}
+  Let $I \subset A[X]$ be a homogenous ideal and let $f \in I$. Writing
+  \[f = \sum_{i} f_{i}\]
+  where each $f_{i}$ is homogenous, each $f_{i} \in I$.
+\end{lemma}
+\begin{proof}
+  Let $\{g_{1}, \dots, g_{n}\} \subset I$ be a finite set of homogenous generators of $I$, and let $f \in I$. Then we can write
+  \[f = \sum_{i=0}^{n} h_{i} g_{i}\]
+  for some $h_{i} \in A[X]$. Consider a single term of this sum, which we can write as
+  \[h_{i} g_{i} = \sum_{j} h_{i,j} g_{i}, \quad \text{where } h_{i} = \sum_{j} h_{i,j}.\]
+  Each term of this sum is homogenous and $h_{i,j} g_{i} \in I$. Since
+  \[f = \sum_{i,\,j} h_{i,j} g_{i}\]
+  is a sum of homogenous polynomials, and each term of the sum is homogenous and in $I$, each homogenous component of $f$ is in $I$.
+\end{proof}

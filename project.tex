@@ -43,7 +43,14 @@
 \DeclareMathOperator{\LT}{lt}
 \DeclareMathOperator{\LM}{lm}
 \DeclareMathOperator{\LC}{lc}
+\DeclareMathOperator{\coef}{coef}
 \DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\V}{\mathbf V}
+\DeclareMathOperator{\I}{\mathbf I}
+\DeclareMathOperator{\J}{\mathbf J}
+\newcommand{\p}{\mathfrak p}
+\newcommand{\fr}[1]{\mathfrak{#1}}
 \newcommand{\la}[1]{\lambda{#1}.\,}
 
 
@@ -52,6 +59,7 @@
 % \usepackage{kpfonts}
 % \usepackage{inconsolata}
 \linespread{1.06}
+
 
 % \usepackage{minted}
 % \usemintedstyle{tango}
@@ -205,7 +213,7 @@
 
 
 \section{Preliminaries}
-This project will assume familiarity with ring theory, multivariate polynomials over fields. A familiarity with Gröbner bases will be beneficial, but we will introduce the necesary notations and definitions. Let $R$ be a Noetherian, commutative ring and $X = (x_{1}, x_{2}, \dots, x_{n})$ be an ordered collection of symbols. We denote the ring of polynomials in these variables $R[X]$. Given two (disjoint) sets of variables $X$ and $Y$, we will use $R[X, Y]$ to mean $R[X \cup Y]$, which is isomorphic to $R[X][Y]$. A monomial is a product of variables and a term is a monomial times a coefficient. We denote a monomial as $X^{v}$ for some $v \in \N^{n}$.
+This project will assume familiarity with ring theory, multivariate polynomials over fields. A familiarity with Gröbner bases will be beneficial, but we will introduce the necesary notations and definitions. Let $R$ be a Noetherian, commutative ring and $X = (x_{1}, x_{2}, \dots, x_{n})$ be an ordered collection of symbols. We denote the ring of polynomials in these variables $R[X]$. Given two (disjoint) sets of variables $X$ and $Y$, we will use $R[X, Y]$ to mean $R[X \cup Y]$, which is isomorphic to $R[X][Y]$. A monomial is a product of variables and a term is a monomial times a coefficient. We denote a monomial as $X^{v}$ for some $v \in \N^{n}$. For a polynomial \[f = \sum_{v \in \N^{n}} a_{v}X^{v}\] we denote the coefficient of the term $t = a_{v}X^{v}$ by $\coef(f, X^{v})$.
 
 \begin{definition}[Monomial order, leading term]
   A \textit{monomial order} is a well-order\footnote{A total order, for which any chain $a > b > c > \dots$ must be finite.} $<$ on the set of monomials satisfying that $u < v \implies wu < wv$.
@@ -213,14 +221,14 @@ This project will assume familiarity with ring theory, multivariate polynomials 
   Given a monomial order $<$ and a polynomial $f \in R[X]$, the \textit{leading term} of $f$ is the term with the largest monomial w.r.t. $<$ and is denoted by $\LT_{<}(f)$. If $\LT_{<}(f) = a\cdot m$ for some monomial $m$ and $a \in R$, then we denote $\LM_{<}(f) = m$ and $\LC_{<}(f) = a$. If $<$ is clear from context, it will be omitted.
 \end{definition}
 
-These definitions naturally extend to sets of polynomials, so given a set of polynomials $F \subset k[X]$, we denote $\LM_{<}(F) := \{\LM_{<}(f) \mid f \in F\}$. The above definitions work over a general ring (and we will use that), but from here, we'll work over a field $k$. With this, we can give the definition of a Gröbner basis.
+These definitions naturally extend to sets of polynomials, so given a set of polynomials $F \subset k[X]$, we denote $\LM_{<}(F) := \{\LM_{<}(f) \mid f \in F\}$. With this, we can give the definition of a Gröbner basis.
 
 \begin{definition}[Gröbner basis]
-  Let $G \subset k[X]$ be a finite set of polynomials and $<$ be a monomial order. We say $G$ is a \textit{Gröbner basis} if
+  Let $G \subset R[X]$ be a finite set of polynomials and $<$ be a monomial order. We say $G$ is a \textit{Gröbner basis} if
   $\langle \LT_{<}(G) \rangle = \langle \LT_{<}(\langle G \rangle ) \rangle $.
 \end{definition}
 
-We say $G$ is a Gröbner basis for an ideal $I$ if $G$ is a Gröbner basis and $\langle G \rangle = I$. We will also have to use an alternative description of Gröbner bases.
+Note, that if $R$ is a field, then it is enough that $\langle \LM_{<}(G) \rangle = \langle \LM_{<}(\langle G \rangle) \rangle$. We say $G$ is a Gröbner basis for an ideal $I$ if $G$ is a Gröbner basis and $\langle G \rangle = I$. We will also have to use an alternative description of Gröbner bases.
 
 \begin{definition}[Reduction modulo]
   Let $f, g \in R[X]$ be polynomials and $<$ be a term order. We say $f$ \textit{reduces modulo} $g$ if $\LT(g) \mid \LT(f)$, since in that case $\LT(\LC(g)\cdot f - p\cdot \LC(f) \cdot g) < \LT(f)$ where $\LM(f) = p \cdot \LM(g)$. We say a polynomial reduces modulo a set of polynomials if it reduces modulo any polynomial in the set. We say a polynomial \textit{reduces to zero} if there is a chain of reductions that end in the zero polynomial.
@@ -232,6 +240,18 @@ We say $G$ is a Gröbner basis for an ideal $I$ if $G$ is a Gröbner basis and $
 \begin{proof}
   A good exercise.
 \end{proof}
+
+A Gröbner basis need not be unique. Indeed, given a Gröbner basis G, we can add any element of $\langle G \rangle$ to $G$ and it is still a Gröbner basis. However, reduced Gröbner bases are unique.
+
+\begin{definition}[Reduced Gröbner basis]
+  A Gröbner basis $G$ is called \textit{reduced} if, for all $g \in G$, $g$ is a monic polynomial (i.e. $\LC(g) = 1$) and the only term of $g$ in $\LT(I)$ is $\LT(g)$.
+\end{definition}
+\begin{theorem}
+  Let $I \subset k[X]$ be an ideal in a polynomial ring over a field. Then there is a unique reduced Gröbner basis of $I$.
+\end{theorem}
+
+It is worth noting, that the second condition of reduced Gröbner bases is equivalent to saying that every term of $g$ is irreducible modulo $G$, except for its leading coefficient.
+
 
 
 \section{Definitions and initial results}
@@ -246,16 +266,16 @@ We call such a $\sigma : k[U] \to k_{1}$ a \textit{specialization}. By the linea
 
 When we work with these parametric Gröbner bases, it will be more convenient to have a bit more information attached to them, namely which elements are required for which $\sigma$. Since $\sigma$ is described by an $\alpha \in k_{1}^{m}$, we can restrict them using subsets of $k_{1}^{m}$.
 
-\begin{definition}[Vanishing sets \& algebraic sets]
+\begin{definition}[Vanishing sets \& locally closed sets]
   Let $E \subset k[X]$. Then the \textit{vanishing set} of $E$ is $V(E) := \{v \in k^{n} \mid e(v) = 0 \;\; \forall e \in E\}$.
 
-  An \textit{algebraic set} is a set of the form $V(E) \setminus V(N)$ for two subsets $E$ and $N$ of $k[X]$.
+  A \textit{locally closed set} is a set of the form $V(E) \setminus V(N)$ for two subsets $E$ and $N$ of $k[X]$.
 \end{definition}
 
 \begin{definition}[Gröbner system]
-  Let $A$ be an algebraic set and $F, G \subset k[X, U]$ be finite sets. Then $(A, G)$ is called a \textit{segment of a Gröbner system for $F$} if $\sigma_{\alpha}(G)$ is a Gröbner basis of $\langle \sigma_{\alpha}(F) \rangle$ for all $\alpha \in A$. A set $\{(A_{1}, G_{1}), \dots, (A_{t}, G_{t})\}$ is called a \textit{Gröbner system} if each $(A_{i}, G_{i})$ is a segment of a Gröbner system.
+  Let $A$ be a locally closed set and $F, G \subset k[X, U]$ be finite sets. Then $(A, G)$ is called a \textit{segment of a Gröbner system for $F$} if $\sigma_{\alpha}(G)$ is a Gröbner basis of $\langle \sigma_{\alpha}(F) \rangle$ for all $\alpha \in A$. A set $\{(A_{1}, G_{1}), \dots, (A_{t}, G_{t})\}$ is called a \textit{Gröbner system} if each $(A_{i}, G_{i})$ is a segment of a Gröbner system.
 
-  We call the algebraic sets $A_{i}$ for the $\textit{conditions}$ on a segment.
+  We call the locally closed sets $A_{i}$ for the $\textit{conditions}$ on a segment.
 
   A Gröbner system $\{(A_{1}, G_{1}), \dots, (A_{t}, G_{t}))\}$ is called \textit{comprehensive}, if $\bigcup_{i=1}^{t}A_{i} = k_{1}^{|U|}$. We also say a Gröbner system is \textit{comprehensive on $L \subset k_{1}^{|U|}$} if $\bigcup_{i=1}^{t}A_{i} = L$.
 \end{definition}
@@ -313,6 +333,8 @@ We will use a consequence of this lemma, which uses a test that is much easier t
   On the other hand, if $\sigma_{\alpha}(g) \notin G_{\alpha}$, then we must have $g \in G \cap k[U]$. Since $\alpha \in V(G \cap k[U])$ then $\sigma_{\alpha}(g) = 0$, so is immediately reducible to zero. Thus $\sigma_{\alpha}(G)$ is a Gröbner basis of $\langle \sigma_{\alpha}(F) \rangle$ by lemma~\ref{lem:grb_iff_reduc_to_z}.
 \end{proof}
 
+\section{Computing Gröbner systems}
+
 With lemma~\ref{lem:grb_if_nmap_to_z} in mind, we can start constructing Gröbner systems. Let $G$ be a reduced Gröbner basis of an ideal $\langle F \rangle \subset k[X, U]$, and let $H = \{\LC_{U}(g) \mid g \in G \setminus k[U]\}$. Then $\left(k_{1}^{m} \setminus \bigcup_{h \in H} V(h), G\right)$ is a segment of a Gröbner system. Thus, to make a Gröbner system, we need to find segments covering $\bigcup_{h \in H} V(h) = V(\lcm(H))$.
 
 If we take $G$ to be a reduced Gröbner basis, then $h \notin \langle F \rangle$ for any $h \in H$ since then the corresponding leading term would be divisible by a leading term in $G$. This is not allowed when $G$ is reduced. Hence, we can find a Gröbner basis $G_{1}$ of $F \cup \{h\}$, which will then form a segment $(V(h) \setminus \bigcup_{h_{1} \in H_{1}} V(h_{1}), G_{1})$ where $H_{1} = \{\LC_{U}(g) \mid g \in G_{1}\}$. Since $k[X, U]$ is Noetherian, this will eventually stop, forming a Gröbner system.
@@ -355,7 +377,7 @@ This gives us the ingredients for a simple algorithm for computing Gröbner syst
   Inductively, the recursive calls to $\mathbf{CGS_{simple}}$ will compute Gröbner systems covering $\bigcup_{h \in H} V(S \cup \{h\})$. The base case is when $\langle S \rangle = k[U]$. In that case, $V(S) = \emptyset$, so $\emptyset$ is a comprehensive Gröbner system on $V(S)$.
 \end{proof}
 
-Note that in the implementation, we use $G \setminus (k[U] \setminus k)$ for the Gröbner segments. This has no impact on the validity of the segments, it just removes elements, which would specialize to 0 on that segment anyway.
+Note that in the implementation, we use $G \setminus (k[U] \setminus k)$ instead of $G$ for the Gröbner segments. This has no impact on the validity of the segments, it just removes elements, which would specialize to 0 on that segment anyway.
 
 
 However, this algorithm has a crucial flaw: if $(E, N, G)$ is a triple returned by $\mathtt{CGS_{simple}}$, then we don't necesarily have $G \subset \langle F \rangle$. This may or may not be a problem depending on the application. For some of the applications of this project, this is indeed a flaw.
@@ -438,7 +460,7 @@ We now move on to the problem of computing parametric Gröbner bases, which is t
   Let $\mathcal G = \{(A_{1}, G_{1}), \dots, (A_{t}, G_{t})\}$ be a faithful comprehensive Gröbner system of an ideal $\langle F \rangle$. Then $\bigcup_{(A, G) \in \mathcal G} G$ is a parametric Gröbner basis of $\langle F \rangle$.
 \end{corollary}
 \begin{proof}
-  Let $\sigma_{\alpha}$ be a specialization. Since $\mathcal G$ was comprehensive, there is some $l$ such that $\alpha \in A_{l}$. Then $\sigma_{\alpha}(G_{l})$ is a Gröbner basis of $\langle \sigma_{\alpha}(F) \rangle$, so $\langle \LT(\sigma_{\alpha}(G_{l})) \rangle = \langle \LT(\sigma_{\alpha}(\langle F \rangle)) \rangle$. Since for all $i$ we have that $\langle \sigma_{\alpha}(G_{i}) \rangle \subset \langle \sigma_{\alpha}(F) \rangle$, we have that $\langle \LT(\sigma_{\alpha}(G_{i})) \rangle = \langle \LT(\sigma_{\alpha}(\langle F \rangle)) \rangle$, so $\sum_{i=1}^{t} \langle \LT(\sigma_{\alpha}(G_{i})) \rangle = \langle \sigma_{\alpha}(F) \rangle$, thus $\sigma_{\alpha}\left(\bigcup_{(A, G) \in \mathcal G} G\right)$ is a Gröbner basis for $\langle \sigma_{\alpha}(F) \rangle$.
+  Let $\sigma_{\alpha}$ be a specialization. Since $\mathcal G$ was comprehensive, there is some $l$ such that $\alpha \in A_{l}$. Then $\sigma_{\alpha}(G_{l})$ is a Gröbner basis of $\langle \sigma_{\alpha}(F) \rangle$, so $\langle \LT(\sigma_{\alpha}(G_{l})) \rangle = \langle \LT(\sigma_{\alpha}(\langle F \rangle)) \rangle$. Since for all $i$ we have that $\langle \sigma_{\alpha}(G_{i}) \rangle \subset \langle \sigma_{\alpha}(F) \rangle$, we have that $\langle \LT(\sigma_{\alpha}(G_{i})) \rangle = \langle \LT(\sigma_{\alpha}(\langle F \rangle)) \rangle$, so $\sum_{i=1}^{t} \langle \LT(\sigma_{\alpha}(G_{i})) \rangle = \langle \LT(\sigma_{\alpha}(\langle F \rangle)) \rangle$, thus $\sigma_{\alpha}\left(\bigcup_{(A, G) \in \mathcal G} G\right)$ is a Gröbner basis for $\langle \sigma_{\alpha}(F) \rangle$.
 \end{proof}
 
 The path to computing parametric Gröbner bases seem clear. We simply need to modify the segments of a comprehensive Gröbner system to be faithful, then we're done. While this is surpisingly easy to implement, proving that the way we do it works is a little more cumbersome.
@@ -537,40 +559,40 @@ The only thing left is to figure out what to do with that $V(S)$. With the $\mat
 
 
 
-\section{Applications}
 
-\subsection{Quantifier elimination}
-One of the first applications of parametric Gröbner bases was presented by its inventor Weispfenning \cite{Weispfenning} in the original article. It concerns the problem of computing a system of polynomial equations, whose solutions are equivalent to solutions to a set of logical expressions involving polynomial equations, con- and disjunctions, negations and existential quantifiers.
 
-Sepcifically, we're given a formula $\exists x_{1}, \dots, x_{n} : \phi(U, x_{1}, \dots, x_{n})$ where $\phi$ is a combination using $\land$ and $\lor$ of polynomial equalities and inequalities in $k[U, X]$. If $k_{1}$ is an extension field of $k$, then that formula determines a partioning of $k_{1}^{|U|}$, namely those values of $U$ where the formula is true and those where it isn't. Our goal is to find a system of polynomial equations in $k[U]$ that is satisfied in exactly the same points.
 
-First, we need to normalize the logical expressions, to fit a format we can work with.
 
-\begin{definition}[Positive, primitive formula]
-  A logical formula $\varphi$ is called \textit{positive and primitive} if it only involves polynomial equalities in $k[X]$, conjunctions and existential quantifiers.
-\end{definition}
 
-\begin{lemma}\label{lem:logical_positive}
-  Let $\phi$ be a logical formula involving polynomial equalities, conjunctions, disjunctions, negations and existential quantifiers. Then there exists a finite set of positive, primitive formula $\varphi_{1}, \varphi_{2}, \dots, \varphi_{r}$ such that $\phi \iff (\varphi_{1} \lor \dots \lor \varphi_{r})$.
-\end{lemma}
-\begin{proof}
-  Using standard logical rules, we can find $\phi_{1}, \dots, \phi_{r}$ containing only polynomial equalities, conjunction, negation and existential quantifiers such that \[\phi \iff \bigvee_{i=1}^{r} \phi_{r}.\] Using De Morgans law and distributivity we can assume that negations are at the lowest level of the formulas. Thus, we can see the $\phi_{i}$'s as existstential formulas containing conjunctions of polynomial equations and inequations.
 
-  Now, to eliminate the inequalities, we use the following trick: \[f(X) \neq 0 \iff \exists\, t : f(X) \cdot t - 1 = 0.\]
-\end{proof}
 
-Thus we can solve each of the positive, primitive formulas independently, and see if any of them are satifiable.
+\input{geometry_and_covers}
 
-\begin{theorem}
-  Let $F \subset k[U, X]$ be a finite set of polynomials over an algebraically closed field and let $G$ be a parametric Gröbner basis of $F$. For a polynomial $f \in k[U][X]$, let $C(f) \subset k[U]$ denote the set of coefficients of non-constant terms in $f$. Then \[ \left(\exists x_{1}, \dots, x_{n} : \bigwedge_{f \in F} f(U, x_{1}, \dots, x_{n}) = 0 \right) \iff \bigwedge_{g \in G} \left( g(U, 0, \dots, 0) = 0 \lor \bigvee_{c \in C(g)} c(U) \neq 0 \right)\] in any extension field $k_{1} \supset k$.
-\end{theorem}
-\begin{proof}
-  Let $\alpha \in k_{1}^{|U|}$. Then the question of whether $\exists x_{1}, \dots, x_{n} : \bigwedge_{f \in F} f(U, x_{1}, \dots, x_{n}) = 0$ is satisfied in $U = \alpha$ is equivalent to whether $\langle \sigma_{\alpha}(F) \rangle$ has a common zero, i.e. if $V(\langle \sigma_{\alpha}(F) \rangle) \neq \emptyset$.
 
-  For the first implication, assume $\exists x_{1}, \dots, x_{n} : \bigwedge_{f \in F} f(U, x_{1}, \dots, x_{n}) = 0$ is satisfied at some $\alpha \in k_{1}^{|U|}$. Let $\beta \in k_{1}^{|X|}$ be a vector of $(x_{1}, \dots, x_{n})$ such that $f(\alpha, \beta) = 0$ for all $f \in F$. Then, since all $g \in G$ are also in $\langle F \rangle$, we get $g(\alpha, \beta) = 0 \; \forall g \in G$. Hence, if $g(\alpha, 0, \dots, 0) \neq 0$, then there has to be some non-constant term in $g$, which is also non-zero at $\alpha$.
 
-  For the other implication, assume every $g \in G$ has zero constant term or some non-zero non-constant term, when viewed as a polynomial in $k[U][X]$. Assume for a contradiction that $V(\langle \sigma_{\alpha}(F) \rangle) = \emptyset$. By the weak Nullstellensatz we get that $1 \in \langle \sigma_{\alpha}(F) \rangle$. Since $G$ is a parametric Gröbner basis, there is some $g \in G$ such that $\LT(\sigma_{\alpha}(g)) \mid 1$. Thus $\sigma_{\alpha}(g)$ is a constant polynomial with non-zero constant term, contradicting the assumption.
-\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\include{applications}
+
 
 
 
@@ -581,6 +603,7 @@ Thus we can solve each of the positive, primitive formulas independently, and se
 
 \appendix
 
+\include{appendix}
 
 \end{document}
 

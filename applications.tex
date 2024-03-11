@@ -1,0 +1,34 @@
+\section{Applications}
+
+\subsection{Quantifier elimination}
+One of the first applications of parametric Gröbner bases was presented by its inventor Weispfenning \cite{Weispfenning} in the original article. It concerns the problem of computing a system of polynomial equations, whose solutions are equivalent to solutions to a set of logical expressions involving polynomial equations, con- and disjunctions, negations and existential quantifiers.
+
+Sepcifically, we're given a formula $\exists x_{1}, \dots, x_{n} : \phi(U, x_{1}, \dots, x_{n})$ where $\phi$ is a combination using $\land$ and $\lor$ of polynomial equalities and inequalities in $k[U, X]$. If $k_{1}$ is an extension field of $k$, then that formula determines a partioning of $k_{1}^{|U|}$, namely those values of $U$ where the formula is true and those where it isn't. Our goal is to find a system of polynomial equations in $k[U]$ that is satisfied in exactly the same points.
+
+First, we need to normalize the logical expressions, to fit a format we can work with.
+
+\begin{definition}[Positive, primitive formula]
+  A logical formula $\varphi$ is called \textit{positive and primitive} if it only involves polynomial equalities in $k[X]$, conjunctions and existential quantifiers.
+\end{definition}
+
+\begin{lemma}\label{lem:logical_positive}
+  Let $\phi$ be a logical formula involving polynomial equalities, conjunctions, disjunctions, negations and existential quantifiers. Then there exists a finite set of positive, primitive formula $\varphi_{1}, \varphi_{2}, \dots, \varphi_{r}$ such that $\phi \iff (\varphi_{1} \lor \dots \lor \varphi_{r})$.
+\end{lemma}
+\begin{proof}
+  Using standard logical rules, we can find $\phi_{1}, \dots, \phi_{r}$ containing only polynomial equalities, conjunction, negation and existential quantifiers such that \[\phi \iff \bigvee_{i=1}^{r} \phi_{r}.\] Using De Morgans law and distributivity we can assume that negations are at the lowest level of the formulas. Thus, we can see the $\phi_{i}$'s as existstential formulas containing conjunctions of polynomial equations and inequations.
+
+  Now, to eliminate the inequalities, we use the following trick: \[f(X) \neq 0 \iff \exists\, t : f(X) \cdot t - 1 = 0.\]
+\end{proof}
+
+Thus we can solve each of the positive, primitive formulas independently, and see if any of them are satifiable.
+
+\begin{theorem}
+  Let $F \subset k[U, X]$ be a finite set of polynomials over an algebraically closed field and let $G$ be a parametric Gröbner basis of $F$. For a polynomial $f \in k[U][X]$, let $C(f) \subset k[U]$ denote the set of coefficients of non-constant terms in $f$. Then \[ \left(\exists x_{1}, \dots, x_{n} : \bigwedge_{f \in F} f(U, x_{1}, \dots, x_{n}) = 0 \right) \iff \bigwedge_{g \in G} \left( g(U, 0, \dots, 0) = 0 \lor \bigvee_{c \in C(g)} c(U) \neq 0 \right)\] in any extension field $k_{1} \supset k$.
+\end{theorem}
+\begin{proof}
+  Let $\alpha \in k_{1}^{|U|}$. Then the question of whether $\exists x_{1}, \dots, x_{n} : \bigwedge_{f \in F} f(U, x_{1}, \dots, x_{n}) = 0$ is satisfied in $U = \alpha$ is equivalent to whether $\langle \sigma_{\alpha}(F) \rangle$ has a common zero, i.e. if $V(\langle \sigma_{\alpha}(F) \rangle) \neq \emptyset$.
+
+  For the first implication, assume $\exists x_{1}, \dots, x_{n} : \bigwedge_{f \in F} f(U, x_{1}, \dots, x_{n}) = 0$ is satisfied at some $\alpha \in k_{1}^{|U|}$. Let $\beta \in k_{1}^{|X|}$ be a vector of $(x_{1}, \dots, x_{n})$ such that $f(\alpha, \beta) = 0$ for all $f \in F$. Then, since all $g \in G$ are also in $\langle F \rangle$, we get $g(\alpha, \beta) = 0 \; \forall g \in G$. Hence, if $g(\alpha, 0, \dots, 0) \neq 0$, then there has to be some non-constant term in $g$, which is also non-zero at $\alpha$.
+
+  For the other implication, assume every $g \in G$ has zero constant term or some non-zero non-constant term, when viewed as a polynomial in $k[U][X]$. Assume for a contradiction that $V(\langle \sigma_{\alpha}(F) \rangle) = \emptyset$. By the weak Nullstellensatz we get that $1 \in \langle \sigma_{\alpha}(F) \rangle$. Since $G$ is a parametric Gröbner basis, there is some $g \in G$ such that $\LT(\sigma_{\alpha}(g)) \mid 1$. Thus $\sigma_{\alpha}(g)$ is a constant polynomial with non-zero constant term, contradicting the assumption.
+\end{proof}
