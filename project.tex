@@ -282,11 +282,10 @@ When we work with these parametric Gröbner bases, it will be more convenient to
 
 We will sometimes call a triple $(E, N, G)$ for a segment of a Gröbner system. By this we mean that $(V(E) \setminus V(N), G)$ is a segment of a Gröbner system.
 
-\begin{example}
+\begin{example}\upshape
   Let $X = \{x, y\}$ and $U = \{u\}$ and consider the polynomials $f(x, y, u) = ux^{2} + x$ and $g(x, y, u) = xy + 1$. When $u \neq 0$, a Gröbner basis of $\langle f, g \rangle$ could be $(y-u, ux + 1)$, whatever $u$ may be. \colorbox{red}{TODO}
 \end{example}
 
-\colorbox{red}{Skriv om Kalkbrener}
 \begin{definition}[Leading coefficient w.r.t.\ variables]
   Let $f \in k[U][X]$. Then the leading term of $f$ is denoted $\LT_{U}(f)$, the leading coefficient is $\LC_{U}(f)$ and the leading monomial is $\LM_{U}(f)$. These notations are also used when $f \in k[X, U]$, just viewing $f$ as a polynomial in $k[U][X]$.
 \end{definition}
@@ -377,79 +376,79 @@ This gives us the ingredients for a simple algorithm for computing Gröbner syst
   Inductively, the recursive calls to $\mathbf{CGS_{simple}}$ will compute Gröbner systems covering $\bigcup_{h \in H} V(S \cup \{h\})$. The base case is when $\langle S \rangle = k[U]$. In that case, $V(S) = \emptyset$, so $\emptyset$ is a comprehensive Gröbner system on $V(S)$.
 \end{proof}
 
-Note that in the implementation, we use $G \setminus (k[U] \setminus k)$ instead of $G$ for the Gröbner segments. This has no impact on the validity of the segments, it just removes elements, which would specialize to 0 on that segment anyway.
+Note that in the implementation, we use $G \setminus S$ instead of $G$ for the Gröbner segments. This has no impact on the validity of the segments, it just removes elements, which would specialize to 0 on that segment anyway.
 
 
-However, this algorithm has a crucial flaw: if $(E, N, G)$ is a triple returned by $\mathtt{CGS_{simple}}$, then we don't necesarily have $G \subset \langle F \rangle$. This may or may not be a problem depending on the application. For some of the applications of this project, this is indeed a flaw.
-To fix this, we present an alternative algorithm, which will be extended to produce Gröbner segments, which are properly contained in $\langle F \rangle$. This algorithm depends on the following proposition.
+% However, this algorithm has a crucial flaw: if $(E, N, G)$ is a triple returned by $\mathtt{CGS_{simple}}$, then we don't necesarily have $G \subset \langle F \rangle$. This may or may not be a problem depending on the application. For some of the applications of this project, this is indeed a flaw.
+% To fix this, we present an alternative algorithm, which will be extended to produce Gröbner segments, which are properly contained in $\langle F \rangle$. This algorithm depends on the following proposition.
 
-\begin{proposition}\label{prop:segment}
-  Let $F \subset k[X, U]$ and $S \subset k[U]$ be finite sets of polynomials and let $G$ be the reduced Gröbner basis of $\langle F \cup S \rangle$. Then $(V(G \cap k[U]) \setminus V(h), G \setminus k[U])$ is a segment of a Gröbner system for both $\langle F \cup S \rangle$ and $\langle F \rangle$, where $h = \lcm\{\LC_{U}(g) \mid g \in G \setminus k[U]\}$.
-\end{proposition}
-\begin{proof}
-  Let $h = \lcm\{\LC_{U}(g) \mid g \in G \setminus k[U]\}$ and let $\alpha \in V(G \cap k[U]) \setminus V(h)$. Since $X^{v_{1}} > U^{v_{2}}$, we have that $\langle G \cap k[U] \rangle = \langle F \cup S \rangle \cap k[U]$. Thus we can assume w.l.o.g. that $S = G \cap k[U]$.
+% \begin{proposition}\label{prop:segment}
+%   Let $F \subset k[X, U]$ and $S \subset k[U]$ be finite sets of polynomials and let $G$ be the reduced Gröbner basis of $\langle F \cup S \rangle$. Then $(V(G \cap k[U]) \setminus V(h), G \setminus k[U])$ is a segment of a Gröbner system for both $\langle F \cup S \rangle$ and $\langle F \rangle$, where $h = \lcm\{\LC_{U}(g) \mid g \in G \setminus k[U]\}$.
+% \end{proposition}
+% \begin{proof}
+%   Let $h = \lcm\{\LC_{U}(g) \mid g \in G \setminus k[U]\}$ and let $\alpha \in V(G \cap k[U]) \setminus V(h)$. Since $X^{v_{1}} > U^{v_{2}}$, we have that $\langle G \cap k[U] \rangle = \langle F \cup S \rangle \cap k[U]$. Thus we can assume w.l.o.g. that $S = G \cap k[U]$.
 
-  Since $\alpha \notin V(h) = \bigcup_{g \in G \setminus k[U]} V(\LC_{U}(g))$, we have that $\sigma_{\alpha}(\LC_{U}(g)) \neq 0$ for each $g \in G \setminus k[U]$. Thus $\sigma_{\alpha}(G)$ is a Gröbner basis of $\langle \sigma_{\alpha}(F \cup S) \rangle$ by lemma~\ref{lem:grb_if_nmap_to_z}.
+%   Since $\alpha \notin V(h) = \bigcup_{g \in G \setminus k[U]} V(\LC_{U}(g))$, we have that $\sigma_{\alpha}(\LC_{U}(g)) \neq 0$ for each $g \in G \setminus k[U]$. Thus $\sigma_{\alpha}(G)$ is a Gröbner basis of $\langle \sigma_{\alpha}(F \cup S) \rangle$ by lemma~\ref{lem:grb_if_nmap_to_z}.
 
-  Finally, since $\alpha \in V(G \cap k[U])$, we have that $\sigma_{\alpha}(G) = \sigma_{\alpha}(G \setminus k[U]) \cup \{0\}$, and since $S = G \cap k[U]$, we have $\sigma_{\alpha}(F \cup S) = \sigma_{\alpha}(F) \cup \{0\}$. Thus $\sigma_{\alpha}(G) = \sigma_{\alpha}(G \setminus k[U]) \cup \{0\}$ is a Gröbner basis of both $\langle \sigma_{\alpha}(F) \rangle$ and $\langle \sigma_{\alpha}(F \cup S) \rangle$.
-\end{proof}
+%   Finally, since $\alpha \in V(G \cap k[U])$, we have that $\sigma_{\alpha}(G) = \sigma_{\alpha}(G \setminus k[U]) \cup \{0\}$, and since $S = G \cap k[U]$, we have $\sigma_{\alpha}(F \cup S) = \sigma_{\alpha}(F) \cup \{0\}$. Thus $\sigma_{\alpha}(G) = \sigma_{\alpha}(G \setminus k[U]) \cup \{0\}$ is a Gröbner basis of both $\langle \sigma_{\alpha}(F) \rangle$ and $\langle \sigma_{\alpha}(F \cup S) \rangle$.
+% \end{proof}
 
-Armed with this proposition, we can compute Gröbner segments like this: we simply add leading terms to $F$ until $\langle F \cup S \rangle = k[X, U]$ and compute the segment $(V(G \cup k[U]) \setminus V(h), G \setminus k[U])$ at every step along the way. This algorithm is a variation on the algorithm presented in \cite{ss_algo}.
+% Armed with this proposition, we can compute Gröbner segments like this: we simply add leading terms to $F$ until $\langle F \cup S \rangle = k[X, U]$ and compute the segment $(V(G \cup k[U]) \setminus V(h), G \setminus k[U])$ at every step along the way. This algorithm is a variation on the algorithm presented in \cite{ss_algo}.
 
-\begin{algorithm}
-  \caption{$\mathtt{CGS_{aux}}$, an auxiliary algorithm for computing Gröbner systems}
-  \Input{A finite set $F \subset k[X, U]$}
-  \Output{A finite set of tuples $(h, G)$}
-  $G \gets \mathbf{groebner}(F)$\;
-  $H \gets \{\LC_{U}(g) \mid g \in G \setminus k[U]\}$\;
-  $h \gets \lcm(H)$\;
-  \eIf{$h = 1$}{
-    \KwRet{$\{(h, G)\}$}\;
-  }{
-    \KwRet{$\{(h, G)\} \cup \bigcup_{h' \in H} \mathtt{CGS_{aux}}(G \cup \{h'\})$}\;
-  }
-\end{algorithm}
+% \begin{algorithm}
+%   \caption{$\mathtt{CGS_{aux}}$, an auxiliary algorithm for computing Gröbner systems}
+%   \Input{A finite set $F \subset k[X, U]$}
+%   \Output{A finite set of tuples $(h, G)$}
+%   $G \gets \mathbf{groebner}(F)$\;
+%   $H \gets \{\LC_{U}(g) \mid g \in G \setminus k[U]\}$\;
+%   $h \gets \lcm(H)$\;
+%   \eIf{$h = 1$}{
+%     \KwRet{$\{(h, G)\}$}\;
+%   }{
+%     \KwRet{$\{(h, G)\} \cup \bigcup_{h' \in H} \mathtt{CGS_{aux}}(G \cup \{h'\})$}\;
+%   }
+% \end{algorithm}
 
-\begin{lemma}
-  Assume that $F \subset k[X, U]$ is a Gröbner basis, and let $\mathcal H$ be the result of $\mathtt{CGS_{aux}}(F)$. If $(h, G) \in \mathcal H$, then $(V(G \cap k[U]) \setminus V(h), G \setminus k[U])$ is a Gröbner system. Furthermore,
-  \[\left\{(V(G \cap k[U]) \setminus V(h), G \setminus k[U]) \mid (h, G) \in \mathcal H\right\}\]
-  is a comprehensive Gröbner system on $V(\langle F \rangle \cap k[U])$.
-\end{lemma}
-\begin{proof}
-  We first prove that $\mathtt{CGS_{aux}}$ terminates on every input. Let $F$ be the input to $\mathtt{CGS_{aux}}$, let $G$ be the reduced Gröbner basis of $\langle F \rangle$, and let $H = \{\LC_{U}(g) \mid g \in G \setminus k[U]\}$. Since $G$ is reduced, $h \notin \langle F \rangle$ since then its leading term would be divisible by an element in $G$, but that is not the case. Indeed, since $h \in k[U]$, it cannot be reduced by any $g \in G \setminus k[U]$ (as $X^{v_{1}} > U^{v_{2}}$, so the leading terms of $G \setminus k[U]$ must contain a variable from $X$), and if it was reducible by a $p \in G \cap k[U]$, then that $p$ would also reduce one of the elements of $G \setminus k[U]$. Thus $\langle F \rangle \subsetneq \langle F \cup {h} \rangle$. Since this is the case at every recursive call, the each successive call to $\mathtt{CGS_{aux}}$ will have a strictly greater ideal. Since $k[X, U]$ is Noetherian, this must stop eventually.
+% \begin{lemma}
+%   Assume that $F \subset k[X, U]$ is a Gröbner basis, and let $\mathcal H$ be the result of $\mathtt{CGS_{aux}}(F)$. If $(h, G) \in \mathcal H$, then $(V(G \cap k[U]) \setminus V(h), G \setminus k[U])$ is a Gröbner system. Furthermore,
+%   \[\left\{(V(G \cap k[U]) \setminus V(h), G \setminus k[U]) \mid (h, G) \in \mathcal H\right\}\]
+%   is a comprehensive Gröbner system on $V(\langle F \rangle \cap k[U])$.
+% \end{lemma}
+% \begin{proof}
+%   We first prove that $\mathtt{CGS_{aux}}$ terminates on every input. Let $F$ be the input to $\mathtt{CGS_{aux}}$, let $G$ be the reduced Gröbner basis of $\langle F \rangle$, and let $H = \{\LC_{U}(g) \mid g \in G \setminus k[U]\}$. Since $G$ is reduced, $h \notin \langle F \rangle$ since then its leading term would be divisible by an element in $G$, but that is not the case. Indeed, since $h \in k[U]$, it cannot be reduced by any $g \in G \setminus k[U]$ (as $X^{v_{1}} > U^{v_{2}}$, so the leading terms of $G \setminus k[U]$ must contain a variable from $X$), and if it was reducible by a $p \in G \cap k[U]$, then that $p$ would also reduce one of the elements of $G \setminus k[U]$. Thus $\langle F \rangle \subsetneq \langle F \cup {h} \rangle$. Since this is the case at every recursive call, the each successive call to $\mathtt{CGS_{aux}}$ will have a strictly greater ideal. Since $k[X, U]$ is Noetherian, this must stop eventually.
 
-  Next, we prove that if $(h, G) \in \mathcal H$, then $(V(G \cap k[U]) \setminus V(h), G \setminus k[U])$ is a segment of a Gröbner system. If we let $F$ be the original input to $\mathtt{CGS_{aux}}$, then each such $G$ is the reduced Gröbner basis of $\langle F \cup S \rangle$ where $S \subset k[U]$ is the set of recursively added leading coefficients. By proposition~\ref{prop:segment} $(V(G \cap k[U]) \setminus V(h), G \setminus k[U])$ is a segment of a Gröbner system.
+%   Next, we prove that if $(h, G) \in \mathcal H$, then $(V(G \cap k[U]) \setminus V(h), G \setminus k[U])$ is a segment of a Gröbner system. If we let $F$ be the original input to $\mathtt{CGS_{aux}}$, then each such $G$ is the reduced Gröbner basis of $\langle F \cup S \rangle$ where $S \subset k[U]$ is the set of recursively added leading coefficients. By proposition~\ref{prop:segment} $(V(G \cap k[U]) \setminus V(h), G \setminus k[U])$ is a segment of a Gröbner system.
 
-  Finally, we prove that $\bigcup_{(h, G) \in \mathcal H} V(G \cap k[U]) \setminus V(h) = V(\langle F \rangle \cap k[U])$. Note, that since $V(\lcm(H)) = \bigcup_{h \in H} V(h)$, we have the following:
-  \begin{align*} V(\langle G \cap k[U] \rangle)
-    &= \left( V(\langle G \cap k[U] \rangle) \setminus V(\lcm(H)) \right) \cup \bigcup_{h \in H} V(h) \\
-    &= \left( V(\langle G \cap k[U] \rangle) \setminus V(\lcm(H)) \right) \cup \bigcup_{h \in H} V(\langle G \cup \{h\} \rangle \cap k[U]).
-  \end{align*}
+%   Finally, we prove that $\bigcup_{(h, G) \in \mathcal H} V(G \cap k[U]) \setminus V(h) = V(\langle F \rangle \cap k[U])$. Note, that since $V(\lcm(H)) = \bigcup_{h \in H} V(h)$, we have the following:
+%   \begin{align*} V(\langle G \cap k[U] \rangle)
+%     &= \left( V(\langle G \cap k[U] \rangle) \setminus V(\lcm(H)) \right) \cup \bigcup_{h \in H} V(h) \\
+%     &= \left( V(\langle G \cap k[U] \rangle) \setminus V(\lcm(H)) \right) \cup \bigcup_{h \in H} V(\langle G \cup \{h\} \rangle \cap k[U]).
+%   \end{align*}
 
-  By induction, the recursive calls to $\mathtt{CGS_{aux}}$ will compute Gröbner segments covering $\bigcup_{h \in H} V(\langle G \cup \{h\} \rangle \cap k[U])$. \colorbox{red}{Jeg skal finde ud af hvordan jeg vil håndtere base-casen. Mit bud lige nu er, at erstatte $G \setminus k[U]$ med $G$}
-  Eller måske skal man kun bruge $k[U]  \setminus k$, så konstanter bliver der. Der er nogle problemer med de der konstanter.
-\end{proof}
+%   By induction, the recursive calls to $\mathtt{CGS_{aux}}$ will compute Gröbner segments covering $\bigcup_{h \in H} V(\langle G \cup \{h\} \rangle \cap k[U])$. \colorbox{red}{Jeg skal finde ud af hvordan jeg vil håndtere base-casen. Mit bud lige nu er, at erstatte $G \setminus k[U]$ med $G$}
+%   Eller måske skal man kun bruge $k[U]  \setminus k$, så konstanter bliver der. Der er nogle problemer med de der konstanter.
+% \end{proof}
 
-Finally, we can use the result of this lemma to compute a comprehensive Gröbner system.
+% Finally, we can use the result of this lemma to compute a comprehensive Gröbner system.
 
-\begin{algorithm}
-  \caption{$\mathtt{CGS}$, an algorithm for computing a comprehensive Gröbner system}
-  \Input{$F \subset k[X, U]$ a finite set of polynomials}
-  \Output{A finite set of triples $(E, N, G)$ forming a comprehensive Gröbner system}
-  $\mathcal H \gets \mathtt{CGS_{aux}(F)}$\;
-  $G_{0} \gets \mathbf{groebner}(F)$\;
-  $GS \gets \emptyset$\;
-  \If{$\exists g \in G_{0} \cap k[U]$} {
-    $GS \gets \{(\emptyset, G_{0} \cap k[U], \{1\})\}$\;
-  }
-  \For{$(h, G) \in \mathcal H$} {
-    $GS \gets GS \cup \{(G \cap k[U], \{h\}, G \setminus k[U])\}$\;
-  }
-  \KwRet{GS}\;
-\end{algorithm}
-Note that if $G \cap k[U] \neq \emptyset$, then $\{1\}$ is a Gröbner basis on $k_{1}^{|U|} \setminus V(G \cap k[U])$. Thus the algorithm computes a comprehensive Gröbner system.
+% \begin{algorithm}
+%   \caption{$\mathtt{CGS}$, an algorithm for computing a comprehensive Gröbner system}
+%   \Input{$F \subset k[X, U]$ a finite set of polynomials}
+%   \Output{A finite set of triples $(E, N, G)$ forming a comprehensive Gröbner system}
+%   $\mathcal H \gets \mathtt{CGS_{aux}(F)}$\;
+%   $G_{0} \gets \mathbf{groebner}(F)$\;
+%   $GS \gets \emptyset$\;
+%   \If{$\exists g \in G_{0} \cap k[U]$} {
+%     $GS \gets \{(\emptyset, G_{0} \cap k[U], \{1\})\}$\;
+%   }
+%   \For{$(h, G) \in \mathcal H$} {
+%     $GS \gets GS \cup \{(G \cap k[U], \{h\}, G \setminus k[U])\}$\;
+%   }
+%   \KwRet{GS}\;
+% \end{algorithm}
+% Note that if $G \cap k[U] \neq \emptyset$, then $\{1\}$ is a Gröbner basis on $k_{1}^{|U|} \setminus V(G \cap k[U])$. Thus the algorithm computes a comprehensive Gröbner system.
 
-\section{Parametric Gröbner bases}
+\subsection{Parametric Gröbner bases}
 We now move on to the problem of computing parametric Gröbner bases, which is the problem which Weispfenning tackled in his original article \cite{Weispfenning}. Recall the definition of parametric Gröbner bases from definition~\ref{def:par_grb}
 
 \begin{definition}[Faithful Gröbner system]
