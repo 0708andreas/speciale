@@ -23,7 +23,7 @@ Similarly to this example, we will often work with regular functions on a locall
   Let $\fr a = \I(Y)$ and let $\rho_{\p} : \mathcal O_{Y}(U) \to (A/\fr a)_{\p}/(\p/\fr a)_{\p}$ be the map given by $\rho_{\p}(f) = f(\p) + (\p/\fr a)_{\p}$. Let $f \in \mathcal O_{Y}(U)$. It is enough to prove that $(\forall \p \in Y \cap U: \rho_{\p}(f) = 0) \implies f = 0$, so assume $f(\p) \in (\p/\fr a)_{\p}$ for any $\p \in Y \cap U$. Then $f \in \bigcap_{\p \in \Spec(A/\fr a)} \p = \sqrt{\langle 0 \rangle} \subset A/\fr a$, so if $A/\fr a$ has no nil-potent elements, then $\sqrt{\langle 0 \rangle} = \langle 0 \rangle$ and thus $f = 0$. Since $\fr a$ was radical, this follows from the assumption that $A$ has no nil-potent elements.
 \end{proof}
 
-Given a locally closed set $S \subset \Spec(A)$ take the radical ideal $\fr a = \I(\overline S)$, and consider the polynomial ring $(A/\fr a)[X]$. Let $I \subset A[X]$ be an ideal, and let $\overline I$ denote its image in $(A/\fr a)[X]$. Then we can consider the regular functions in $\overline I$ on $S$, which we denote by $\mathcal I_{S}$, and is given by functions $f$, which can be described locally as fractions $f(\p) = \frac p q$ where $p \in \overline I$ and $q \in (A/\fr a) \setminus \p$. In this light, we can also see $\mathcal I_{S}$ as an ideal in the polynomial ring $\mathcal O_{S}[X]$, which is how we'll use it most of the time.
+Given a locally closed set $S = Y \cap U \subset \Spec(A)$ take the radical ideal $\fr a = \I(\overline S)$, and consider the polynomial ring $(A/\fr a)[X]$. Let $I \subset A[X]$ be an ideal, and let $\overline I$ denote its image in $(A/\fr a)[X]$. Then we can consider the regular functions in $\overline I$ on $S$, which we denote by $\mathcal I_{S}$ or $\mathcal I_{Y}(U)$, and is given by functions $f$, which can be described locally as fractions $f(\p) = \frac p q$ where $p \in \overline I$ and $q \in (A/\fr a) \setminus \p$. In this light, we can also see $\mathcal I_{S}$ as an ideal in the polynomial ring $\mathcal O_{S}[X]$, which is how we'll use it most of the time.
 
 In an abuse of notation, for a $\p \in \Spec(A/\fr a)$, we denote the map $\mathcal I_{S} \to k(\p) = (A/\fr a)_{\p}/\p_{\p}$ given by mapping $\frac p q \in \mathcal I_{S}$ to $\frac{\sigma_{\p}(p)}{\sigma_{\p}(q)}$ by $\sigma_{\p}$. We can see $\mathcal O_{S}$ as a subring of $\mathcal O_{S}[X]$, so $\sigma_{\p}$ also denotes the evaluation of an element in $\mathcal O_{S}$ at $\p$.
 
@@ -53,7 +53,7 @@ Parametric Gröbner bases are nice for applications because we have a single obj
   Let $I \subset A[X]$ be an ideal and let $S \subset \Spec(A)$ be locally closed. We say $S$ is a \textit{parametric set for I} if there is a finite set $G \subset \mathcal I_{S}$ such that
   \begin{enumerate}
     \item $\sigma_{\p}(G)$ is the reduced Gröbner basis of $\langle \sigma_{\p}(I) \rangle$ for each $\p \in S$.
-    \item For any $g \in G$ and $\p, \p' \in Y$, we have $\langle \LT(\sigma_{\p}(g)) \rangle = \langle \LT(\sigma_{\p'}(g)) \rangle$.
+    \item For any $g \in G$ and $\p, \p' \in S$, we have $\langle \LT(\sigma_{\p}(g)) \rangle = \langle \LT(\sigma_{\p'}(g)) \rangle$.
   \end{enumerate}
 \end{definition}
 
@@ -77,7 +77,7 @@ Reduced Gröbner bases are supposed to be unique, and indeed that's also the cas
 
 In light of this theorem, for a parametric set $S$, we will call its uniquely determined set of polynomials for its reduced Gröbner basis. In certain ways, they are even more well-behaved than classical reduced Gröbner bases, which the following proposition will show.
 
-\begin{proposition}
+\begin{proposition}\label{prop:subs_of_para_is_para}
   Let $S \subset \Spec(A)$ be a parametric set for an ideal $I$ and let $S' \subset S$ be locally closed. Then $S'$ is also parametric, and there is a canonical map $\mathcal I_{S} \to \mathcal I_{S'}$ which maps the reduced Gröbner basis of $S$ to the reduced Gröbner basis of $S'$.
 \end{proposition}
 \begin{proof}
@@ -207,32 +207,60 @@ In the last section, we showed that a locally closed set $S$ is parametric for a
 We have the following connection between lucky primes and the singular ideal.
 
 \begin{lemma}\label{lem:lucky_iff_not_singular}
-  Let $I \subset A[X]$ be an ideal and let $M$ be the unique minimal set of generators of $\langle \LM(I) \rangle$. A prime $\p \in \Spec(A)$ is lucky is and only if $\,\J(I) \nsubset \p$.
+  Let $I \subset A[X]$ be an ideal, then a prime $\p \in \Spec(A)$ is lucky if and only if $\,\J(I) \nsubset \p$, i.e. $\p \notin \V(\J(I))$.
 \end{lemma}
 \begin{proof}
-  For the first implication, let $p \in \Spec(A)$ be lucky. For each $m \in M$, let $f_{m} \in I$ have $\LM(f) = m$. Since $\p$ is lucky, we can choose the $f_{m}$ such that $\LC(f_{m}) \notin \p$ for every $m \in M$. Since $\p$ is prime, we thus have $\prod_{m \in M} \LC(f_{m}) \notin \p$. Thus $\J(I) \nsubset \p$.
+  Let $M$ be the unique minimal set of generators of $\langle \LM(I) \rangle$. For the first implication, let $p \in \Spec(A)$ be lucky. For each $m \in M$, let $f_{m} \in I$ have $\LM(f) = m$. Since $\p$ is lucky, we can choose the $f_{m}$ such that $\LC(f_{m}) \notin \p$ for every $m \in M$. Since $\p$ is prime, we thus have $\prod_{m \in M} \LC(f_{m}) \notin \p$. Hence $\J(I) \nsubset \p$.
 
-  The reverse implication we prove by contraposition, so assume that $\p$ is unlucky. $\p$ begin unlucky means there is some $m \in \LM(I)$ with $\LC(I, m) \subset \p$. Now, there is some $m' \in m$ with $m' | m$. We have $\LC(I, m') \subset \LC(I, m)$, thus there is some $m' \in M$ with $\LC(I, m') \subset \p$. Since $\p$ is an ideal, this gives $\prod_{m \in M} \LC(I, m) \subset \p$ and we are done.
+  The reverse implication we prove by contraposition, so assume that $\p$ is unlucky. $\p$ being unlucky means there is some $m \in \LM(I)$ with $\LC(I, m) \subset \p$. Now, there is some $m' \in M$ with $m' | m$. We have $\LC(I, m') \subset \LC(I, m)$, thus there is some $m' \in M$ with $\LC(I, m') \subset \p$. Since $\p$ is an ideal, this gives $\prod_{m \in M} \LC(I, m) \subset \p$. Since $\p$ is prime, this gives that $\sqrt{\prod_{m \in M} \LC(I, m)} \subset \p$ and we are done.
 \end{proof}
 
 
 
-If we have the reduced Gröbner basis of $I$, then $\J(I)$ is particularly easy to compute.
+If we have a Gröbner basis of $I$, then $\J(I)$ is particularly easy to compute.
 
-\begin{theorem}
-  Let $I \subset A[X]$ be a monic ideal and let $G$ be its reduced Gröbner basis. Then
-  \[\J(I) = \sqrt{\left\langle \prod_{g \in G} \LC(g) \right\rangle}\]
-\end{theorem}
+\begin{proposition}\label{prop:singular_from_grb}
+  Let $I \subset A[X]$ be an ideal, let $G$ be a Gröbner basis for $I$ and let $M$ be the minimal set of generators of $\,\LM(I)$. Then
+  \[\J(I) = \sqrt{\prod_{m \in G} \langle \LC(g) \mid g \in G, \LM(g) = m \rangle }\]
+\end{proposition}
 \begin{proof}
-  We show that
-  \[\prod_{m \in M} \LC(I, m) = \left\langle \prod_{g \in G} \LC(g) \right\rangle\]
-  Let $f$ be a generator of the left side, i.e.\ an element of the form $c_{1}\dots c_{n}$ where each $c_{i}$ is the leading coefficient of a polynomial in $I$, say with leading monomial $m_{i}$. Since $G$ is a Gröbner basis, each $c_{i}m_{i}$ is divisible by a leading term in $G$. Let $\{g_{1}, \dots, g_{n}\} \subset G$ be a set of polynomials such that $g_{i} | c_{i}m_{i}$ for every $i$. Since $G$ is a reduced Gröbner basis, we have $\LM(G) = M$, so every $g \in G$ must occur somewhere in the $\{g_{1}, \dots, g_{n}\}$. Hence
-  \[\prod_{g \in G} \LC(g)\; \bigg|\, \prod_{i=1}^{n} c_{i}\]
+  This follows from the equality
+  \[\LC(I, m) = \langle \LC(g) \mid g \in G, \LM(g) = m \rangle \quad \text{for all $m \in M$} \]
+  A generator $c$ on the left side is the leading coefficient of a polynomial $f \in I$ with leading monomial $m$. Since $G$ is a Gröbner basis, there is some $g \in G$ with $\LT(g) \mid \LT(f)$. By the minimality of $M$, we have $\LM(g) = \LM(f) = m$, thus $\LC(g) \mid \LC(f) = c$, so $\LC(I, m) \subset \langle \LC(g) \mid g \in G, \LM(g) = m \rangle$.
 
-  On the other hand, $\prod_{g \in G} \LC(g)$ is by definition a generator of the left-side ideal, since $\LM(G) = M$.
+  On the other hand, each generator on the right side is by definition a generator on the left side.
 \end{proof}
 
-The singular ideal is the radical of the ideal of leading coefficients in $I$. Hence, if we specialize with some $\p \nsubset \J(I)$, then the leading monomial of any polynomial in $\mathcal I$ will remain unchanged. This will turn out to imply parametricity. Note, that it is not enough to have the function $\p \mapsto \LM(\sigma_{\p}(I))$ be constant on $\Spec(A)$. The leading monomials might stay the same, even though some leading coefficients of $I$ vanishes. Take for example the ideal $I = \langle ux - u, ux^{2} - x \rangle \subset \C[u][x]$. Here, we have $\LM(\sigma_{\p}(I)) = \{x\}$ for all $\p \in \Spec(\C[u])$, but $\Spec(\C[u])$ is not parametric. Indeed $\overline I_{\langle u \rangle}$ is not monic, since we can't divide by $u$ in $\C[u]_{\langle u \rangle}$, so $\Spec(\C[u])$ is not parametric for $I$ by theorem~\ref{thm:para_iff_I_p_monic}.
+\begin{example}\upshape
+  Consider again the ideal $I = \langle ax + cy, bx + dy \rangle \subset A = \C[a, b, c, d][x, y]$ with a term order such that $x > y$. A Gröbner basis of $I$ can be found by computing a reduced Gröbner basis of $I$ in $\C[x, y, a, b, c, d]$ and is given by
+  \[G = \{ax + cy, bx + dy, (ad - bc)y\}.\]
+  The minimal set of generators of $\LM(I)$ is $M = \{x, y\}$, so by proposition~\ref{prop:singular_from_grb} we find that
+  \[\J(I) = \sqrt{\langle a, b \rangle \langle ad - bc \rangle} = \langle ad - bc \rangle.\]
+  For any $\p \in A \setminus \V(ad - bc)$, we have $ad - bc \notin \p$, so $\frac{(ad - bc)y}{ad - bc} \in \mathcal I_{A}(\V(ad - bc))$. Hence, we get the reduced Gröbner basis $\{x, y\}$ for the ideal $\sigma_{\p}(I)$.
+\end{example}
+
+
+Clearly, the leading monomial ideal of $I$ will remain unchanged, if we specialize with a point away from the singular ideal, as illutrated above. However, it is not enough to have the function $\p \mapsto \LM(\sigma_{\p}(I))$ be constant on $\Spec(A)$. The leading monomials might stay the same, even though some leading coefficients of $I$ vanishes.
+
+\begin{example}\upshape
+  Consider the ideal $I = \langle u^{2}x - u, ux^{2} - x \rangle \subset \C[u][x]$. Here, we have $\LM(\sigma_{\p}(I)) = \{x\}$ for all $\p \in \Spec(\C[u])$, but $\Spec(\C[u])$ is not parametric for $I$. Indeed $I_{\langle u \rangle}$ is not monic, since we can't divide by $u$ in $\C[u]_{\langle u \rangle}$, so $\Spec(\C[u])$ is not parametric for $I$ by theorem~\ref{thm:para_iff_I_p_monic}.
+
+  The generators given above turns out to be a Gröbner basis of $I$:
+  \[G = \{u^{2}x - u, ux^{2} - x\}\]
+  which means that the minimal set of generators of $\LM(I)$ is $M = \{x\}$, hence
+  \[\J(I) = \sqrt{\langle u^{2} \rangle} = \langle u \rangle.\]
+
+  Considering the two cases, we see that
+  \[\langle \sigma_{\p}(I) \rangle =
+    \begin{cases}
+      \langle \sigma_{\p}(u)x - 1 \rangle & \sigma_{\p}(u) \neq 0 \\
+      \langle x \rangle & \sigma_{\p}(u) = 0
+    \end{cases}
+  \]
+  which should make it clear why there is no parametric Gröbner basis for $I$ on all of $\C[u]$.
+\end{example}
+
+As seen in this example, the singular ideal captures something more subtle than just the leading monomials staying unchanged. In fact, the singular ideal expresses exactly the points, that prevents a set from being parametric.
 
 \begin{theorem}\label{thm:Z_gen_para}
   Let $I \subset A[X]$ be an ideal, let $Z \subset \Spec(A)$ be closed and $\fr a = \I(Z)$ and let $\overline I$ be the image of $I$ in $(A/\fr a)[X]$. Then
@@ -242,7 +270,9 @@ The singular ideal is the radical of the ideal of leading coefficients in $I$. H
   \end{enumerate}
 \end{theorem}
 \begin{proof}
-  First, let's show that $Z_{gen}$ is parametric. It is locally closed, so we just need to show that $\mathcal I_{Z_{gen}}$ has a reduced Gröbner basis. Let $m \in \LM(\mathcal I_{Z_{gen}})$. Let $f \in \mathcal I_{Z_{gen}}$ and for each $\p \in Z_{gen}$ let $P_{\p} \in \overline I$ and $Q_{\p} \in (A/\fr a) \setminus \p$ such that $f(\p) = P_{\p}/Q_{\p} \in \overline I_{\p}$, with $\coef(f, m) = 0 \implies \coef(P, m) = 0$ for all monomials $m$. Then $\LM(f) = \LM(P)$. Since each $\p \notin \V(\J(\overline I))$, we can find $P'_{\p} \in \overline I$ such that $\LM(P_{\p}) = \LM(P'_{\p})$ and $\LC(P'_{\p}) \notin \p$.
+  First, let's show that $Z_{gen}$ is parametric. It is locally closed, so we just need to show that $\mathcal I_{Z_{gen}}$ has a reduced Gröbner basis. Let $m \in \LM(\mathcal I_{Z_{gen}})$. Let $f \in \mathcal I_{Z_{gen}}$ and for each $\p \in Z_{gen}$ let $P_{\p} \in \overline I$ and $Q_{\p} \in (A/\fr a) \setminus \p$ such that $f(\p) = P_{\p}/Q_{\p} \in \overline I_{\p}$, with $\coef(f, m) = 0 \implies \coef(P_{\p}, m) = 0$ for all monomials $m$. Then $\LM(f) = \LM(P_{\p})$, so $\LM(P_{\p}) = \LM(P_{\p'})$ for all $\p, \p' \in Z_{gen}$. By possibly multiplying with a generator of $\p$, we can assume $\LC(P_{\p}) \in \p$ for all $\p \in Z_{gen}$.
+
+  Now, we need to produce a monic polynomial $f'$ with the same leading monomial as $f$. Since for each $\p \in Z_{gen}$ we have $\p \notin \V(\J(\overline I))$, we can find some $P \in \overline I$
 
   Now, we need to produce a monic polynomial $f'$ with the same leading monomial as $f$. Take a finite cover $\{U_{\p} \mid \p \in \fr P\}$ of $Z_{gen}$ such that $f(\p') = \frac{P_{\p}}{Q_{\p}}$ for every $\p' \in U_{\p}$. Let $d = \prod_{\p \in \fr P} \LC(P'_{\p})$ and let $d_{\p} = d/\LC(P'_{\p})$. Since the $\p$ are prime, we have $d \notin \p$ for any $\p \in \fr P$. Thus $\LC(d_{\p} P'_{\p}) \notin \p$. Also
 
@@ -253,14 +283,14 @@ The singular ideal is the radical of the ideal of leading coefficients in $I$. H
   \[f'(\p) = \frac{P_{\p}}{\LC(P_{\p})\, Q_{\p}}\]
   is a monic polynomial in $\mathcal I_{Z_{gen}}$ with $\LM(f) = \LM(f')$. So $\mathcal I_{Z_{gen}}$ is a monic ideal in $\mathcal O_{Z_{gen}}[X]$, and so $Z_{gen}$ is parametric by theorem~\ref{thm:para_iff_I_S_monic}.
 
-  Now, to show that $Z_{gen}$ is maximal, let $Y \subset Z$ be parametric and assume $\LM(\mathcal I_{Y}) = \LM(\overline I)$. Let $\fr b = \I(\overline Y)$ and let $G \subset \mathcal I_{Y}$ be the reduced Gröbner basis of $\mathcal I_{Y}$. Fix a $\p \in Y$ and a $g \in G$. By lemma~\ref{lem:local_poly_rep} we find a $P/Q = g(\p)$ with $\LM(P) = \LM(g(\p))$. Since $\LM(P) = \LM(g(\p)) = \LM(g) = \LM(\sigma_{\p}(g))$, we have $\LC(P) \notin \p$. Since $Y \subset Z$, that $\p$ is also in $Z$. Furthermore, since $Y \subset Z$, we have $\fr a \subset \fr b$, so $P$ is the image of some $P' \in (A/\fr a)[X]$ in $(A/\fr b)[X]$. Thus $\LC(P)$ is the image of $\LC(P')$ in $A/\fr b$. This means $\LC(P') \notin \p$, hence $\J(\overline I) \nsubset \p$. Since $\p$ was arbitrary, $Y \cap \V(\J(\overline I)) = \emptyset$, so $Y \subset Z_{gen}$.
+  Now, to show that $Z_{gen}$ is maximal, let $Y \subset Z$ be parametric and assume $\LM(\mathcal I_{Y}) = \LM(\overline I)$. Let $\fr b = \I(\overline Y)$ and let $G \subset \mathcal I_{Y}$ be the reduced Gröbner basis of $\mathcal I_{Y}$. Fix a $\p \in Y$ and a $g \in G$. By lemma~\ref{lem:local_poly_rep} we find a $P/Q = g(\p)$ with $\LM(P) = \LM(g(\p))$. Since $\LM(P) = \LM(g(\p)) = \LM(g) = \LM(\sigma_{\p}(g))$, we have $\LC(P) \notin \p$. Since $Y \subset Z$, that $\p$ is also in $Z$. Furthermore, since $Y \subset Z$, we have $\fr a \subset \fr b$, so $P$ is the image of some $P' \in \overline I \subset (A/\fr a)[X]$ in $(A/\fr b)[X]$. Thus $\LC(P)$ is the image of $\LC(P')$ in $A/\fr b$. This means $\LC(P') \notin \p$, hence $\J(\overline I) \nsubset \p$. Since $\p$ was arbitrary, $Y \cap \V(\J(\overline I)) = \emptyset$, so $Y \subset Z_{gen}$.
 \end{proof}
 
 
 \subsection{The projective case}
 Let $I \subset A[X]$ be an ideal. In the affine case we've seen that, even though $\LM(\sigma_{\p}(I))$ is constant over all $\p$ in some locally closed set $S$, that does not mean that $S$ is parametric. Thus, it is quite difficult to give a ``canonical'' cover of $\Spec(A)$ with parametric sets. If $I$ is homogenous, we are in luck.
 
-\begin{theorem}
+\begin{theorem}\label{thm:homo_lucky_iff_lm}
   Let $I \subset A[X]$ be a homogenous ideal and $\p \in \Spec(A)$. Then $\p$ is lucky for $I$ if and only if $\,\LM(\sigma_{\p}(I)) = \LM(I)$.
 \end{theorem}
 \begin{proof}
@@ -271,9 +301,57 @@ Let $I \subset A[X]$ be an ideal. In the affine case we've seen that, even thoug
   which has $\LM(P') < \LM(P)$. However, see that $\coef(P, m') \in \p$ for every $m' > m$ and $\LC(P) \in \p$.Hence, we have $\coef(P', m') \in \p$ for every $m' > m$ since the corresponding terms on both sides of the subtraction has coefficients in $p$. Hence $\LM(\sigma_{\p}(P')) \leq m$. But $\LC(q) \notin \p$ and $\coef(P, m) \notin \p$, so $\LC(Q)\coef(P, m) \notin \p$ since $\p$ is prime. But $\LC(P) \in \p$, so $\coef(P', m) \notin \p$, thus $\LC(\sigma_{\p}(P')) = m$. However, this contradicts the minimality of $P$.
 \end{proof}
 
+We are now ready for the grand finale in the projective case, namely that partitioning $\Spec(A)$ with respect to $\LM(\sigma_{\p}(I))$ gives a canonical partition into (maximal) parametric sets. Specifically, if we partition $\Spec(A)$ be the equivalence relation $\p \sim \p'$ exactly when $\LM(\sigma_{\p}(I)) = \LM(\sigma_{\p'}(I))$, then the equivalence classes are parametric sets. Since the leading monomials of a parametric set must remain constant, these equivalence classes are maximal and disjoint, giving us the most natural and canonical Göbner cover.
+
+Before we can prove this theorem, we need a technical lemma.
+
+\begin{lemma}\label{lem:irred_has_opens}
+  Let $S_{1}, S_{2}, \dots, S_{n} \subset \Spec(A)$ be locally closed sets and let $C = \bigcup_{i=1}^{n} S_{i}$. Then the closure of $C$ can be written uniquely as a union of irreducible closed sets, where none is contained in another:
+  \[\overline C = Z_{1} \cup Z_{2} \cup \dots \cup Z_{m}.\]
+  Furthermore, for each $i \in \{1, 2, \dots, m\}$ there is a $j$ such that $Z_{i} \cap S_{j} \neq \emptyset$.
+\end{lemma}
+\begin{proof}
+  The unique decomposition is a standard theorem, see f.ex. proposition 3.6.15 in \cite{FOAG}.
+
+  For the second part, fix an $i \in \{1, 2, \dots, m\}$ and find a $j$ such that $Z_{i} \cap \overline{S_{j}} \neq \emptyset$. By applying proposition 3.6.15 in \cite{FOAG} again, we can split $\overline{S_{j}}$ into irreducible closed sets, and find one which intersects non-emptily with $Z_{i}$. Hence we can assume that $\overline{S_{j}}$ is irreducible.
+
+  Since $\overline{S_{j}}$ is irreducible, we must have $\overline{S_{j}} \subset Z_{i}$. If that was not the case, then \[\overline{S_{j}} = (\overline{S_{j}} \cap Z_{i}) \cup (\overline{S_{j}} \cap \bigcup_{i' \neq i} Z_{i'})\] and thus $\overline{S_{j}}$ would not be irreducible. Hence, $S_{j} \subset \overline{S_{j}} \subset Z_{i}$ as wanted.
+\end{proof}
+
+We're now ready to prove the main theorem.
+
+\begin{theorem}\label{thm:proj_equiv_are_para}
+  Let $I \subset A[X]$ be a homogenous ideal and let $S \subset \Spec(A)$ be locally closed. Then the equivalence classes of $S/\sim$ by the equivalence relation described above are parametric sets for $I$.
+\end{theorem}
+\begin{proof}
+  By proposition~\ref{prop:subs_of_para_is_para}, we can assume $S = \Spec(A)$. Indeed, if we prove that an equivalence class $Y \subset \Spec(A)$ is parametric, then $S \cap Y$ is a locally closed subset of $Y$. Thus $S \cap Y$ is parametric by Proposition~\ref{prop:subs_of_para_is_para}. Since every equivalence of $S/\!\sim$ is of the form $S \cap Y$ for some equivalence class $Y$ of $\Spec(A)/\!\sim$, this gives us what we want.
+
+  Let $Y \subset \Spec(A)$ be an equivalence class and let $M$ we the constant value of $\LM(\sigma_{\p}(I))$ for any $\p \in Y$. Let $Z = \overline Y$ be the closure of $Y$, let $\fr a = \I(Z)$ and let $\overline I$ be the image of $I$ in $(A/\fr a)[X]$. The goal is to show that $Y = \overline Y \setminus \V(\J(\overline I))$, which is parametric by theorem~\ref{thm:Z_gen_para}. Note that for any $f \in I$ and $\p \in Y$, we have $\sigma_{\p}(f) = \sigma_{\p}(f + \fr a)$, hence $M = \LM(\sigma_{\p}(I)) = \LM(\sigma_{\p}(\overline I))$. Since $\overline I$ is also homogenous, by theorem~\ref{thm:homo_lucky_iff_lm} (applied to $\overline I$) and lemma~\ref{lem:lucky_iff_not_singular}, we have for all $\p \in \overline Y$ that if $\LM(\overline I) = \LM(\sigma_{\p}(I))$ then $\p \notin \V(\J(\overline I))$. Since $Y$ is exactly those $\p$, where $\LM(\sigma_{\p}(I)) = M$, we just need to show that $\LM(\overline I) = M$.
+
+  By lemma~\ref{lem:irred_has_opens}, we can write $Z$ as a union of irreducible, closed sets: \[Z = Z_{1} \cup Z_{2} \cup \dots \cup Z_{n}.\]
+  For each $i$, let $\overline I_{i}$ denote the image of $I$ in $(A/\I(Z_{i}))[X]$ and let $S_{i} = Z_{i} \setminus \V(\J(\overline I_{i}))$. Notice that since $\I(Z) \subset \I(Z_{i})$, we have that $\sigma_{\p}(\overline I_{i}) = \sigma_{\p}(\overline I)$ for all $\p \in Z_{i} \subset \overline Y$. Also, by theorem~\ref{thm:Z_gen_para} we have that $S_{i}$ is parametric with $\LM(\mathcal I_{S_{i}}) = \LM(\overline I_{i})$ and by theorem~\ref{thm:red_grb_uniq_and_monic_and_stable} $\LM(\mathcal I_{S_{i}}) = \LM(\sigma_{\p}(\overline I_{i}))$ for all $\p \in S_{i}$. By the second part of lemma~\ref{lem:irred_has_opens}, there is some $\p \in S_{i} \cap Y$, so $\LM(\sigma_{\p}(\overline I_{i})) = M$ for all $\p \in S_{i}$. Hence,
+  \[M = \LM(\sigma_{\p}(\overline I)) = \LM(\sigma_{\p}(\overline I_{i})) = \LM(\mathcal I_{S_{i}}) = \LM(\overline I_{i}) \quad \text{for all $\p \in S_{i}$}.\]
+
+  Now, we use this to show that $\LM(\overline I) = M$. Let $P \in \overline I$, and let $\overline{P_{i}}$ denote the image of $P$ in $\overline I_{i}$. If there is an $i$ such that $\LM(P) = \LM(\overline{P_{i}})$, then $\LM(P) \in \LM(\overline I_{i}) = M$. On the other hand, if $\LM(P) > \LM(\overline{P_{i}})$ for all $i$, then $\LC(P) \in \I(Z_{1}) \cap \dots \cap \I(Z_{n}) = \fr a$. Thus, $\LC(P) = 0$, which is not allowed. This gives $\LM(\overline I) \subset M$.
+
+  For the reverse inclusion, take an $m \in M$. Since $M = \LM(\overline I_{1})$, we can find some $P \in \overline I$ such that $\LM(\overline{P_{1}}) = m$ ($\overline{P_{1}}$ being the image of $P$ in $\I(Z_{1})$ as before). This means $\coef(P, m) \notin \I(Z_{1})$ but $\coef(P, m') \in \I(Z_{1})$ for all $m' > m$. If $n = 1$, then $Z = Z_{1}$ and we are done, so assume $n > 1$ and find some $c \in \bigcap_{i=2}^{n} \I(Z_{i}) \setminus \I(Z_{1})$. Such an element exist, because the $\I(Z_{i})$'s are a minimal primary decomposition of $\I(Z)$, so by minimality $\I(Z_{1}) \nsupset \bigcap_{i=2}^{n} \I(Z_{i})$. Consider now the polynomial $cP$, which has the property that $\coef(cP, m') \in \I(Z)$ for all $m' > m$. Furthermore, since $\I(Z_{1})$ is a radical, primary ideal, it is prime, so $\coef(cP, m) \notin \I(Z_{1})$. This gives $\coef(cP, m) \notin \I(Z)$. Thus every term in $cP$ larger than $m$ is zero, so $\LM(cP) = m$. Thus $M \subset \LM(\overline I)$, which completes the proof.
+\end{proof}
+
+
+
 
 
 
 
 
 \subsection{Relation to the $\mathbf{CGS}$ algorithm} \label{ss_covers}
+The $\mathbf{CGS}$ algorithm can be seen as an algorithm that computes Gröbner covers. Indeed, by inspecting the construction, we see that if $(E, \{h\}, G)$ is a segment in the output of $\mathbf{CGS}(F, S)$, then $V(E)  \setminus V(\{h\})$ is a parametric set.
+
+\begin{theorem}\label{thm:segs_are_para}
+  Let $F \subset k[X, U]$ and $S \subset k[U]$ be finite sets of polynomials and let $\mathcal H = \mathbf{CGS}(F, S)$. If $(E, \{h\}, G) \in \mathcal H$, then $V(E) \setminus V(\{h\})$ is a parametric set and
+  \[\{\frac g {\LC_{U}(g)} \mid g \in G\} \subset \mathcal O_{k[U]}[X]\]
+  is its reduced Gröbner basis.
+\end{theorem}
+\begin{proof}
+  Since $h = \lcm(\{\LC_{U}(g) \mid g \in G \setminus k[U] \})$,
+\end{proof}
