@@ -32,3 +32,64 @@ Thus we can solve each of the positive, primitive formulas independently, and se
 
   For the other implication, assume every $g \in G$ has zero constant term or some non-zero non-constant term, when viewed as a polynomial in $k[U][X]$. Assume for a contradiction that $V(\langle \sigma_{\alpha}(F) \rangle) = \emptyset$. By the weak Nullstellensatz we get that $1 \in \langle \sigma_{\alpha}(F) \rangle$. Since $G$ is a parametric Gröbner basis, there is some $g \in G$ such that $\LT(\sigma_{\alpha}(g)) \mid 1$. Thus $\sigma_{\alpha}(g)$ is a constant polynomial with non-zero constant term, contradicting the assumption.
 \end{proof}
+
+
+
+
+
+
+
+
+
+
+\subsection[Bernds conjecture]{Bernds conjecture\footnote{Named such by Bernd Sturmfels in a private communication to the supervisor of this project.}}
+In the article \cite{sturmfels}, Bernd Sturmfels states the following theorem without proof.
+
+\begin{theorem}
+  Let $K$ be an algebraically closed field and $F = \{f_{1}, \dots, f_{k}\} \subset K[x_{1}, \dots, x_{n}]$ a finite set of polynomials. Assume that $\V(F) = \emptyset$ and consider the ideal $\langle y_{1} - f_{1}, \dots, y_{k} - f_{k} \rangle \subset K[x_{1}, \dots, x_{n}, y_{1}, \dots, y_{k}]$. Let $G$ be a Gröbner basis of $I$ with respect to the lexicographic order with $x_{1} > \dots > x_{n} > y_{1} > \dots > y_{k}$. Then $G$ contains a polynomial $p$ (called a final polynomial) such that
+  \begin{enumerate}
+    \item $p(x_{1}, \dots, x_{n}, 0, 0, \dots, 0) \in K$
+    \item $p(x_{1}, \dots, x_{n}, f_{1}, \dots, f_{k}) = 0$.
+  \end{enumerate}
+\end{theorem}
+
+He writes that the proof is ``straightforward but fairly technical''. Here is a relatively clean proof, using the theory of parametric Gröbner bases.
+
+\indent \begin{proof}
+  We will only prove the existence of a polynomial satisfying the first property, and will refer to any polynomial satisfying that property as a final polynomial. Let $I = \langle y_{1} - f_{1}, \dots, y_{k} - f_{k} \rangle \subset K[y_{1}, \dots, y_{k}][x_{1}, \dots, x_{n}]$ and let $\mathcal G$ be a parametric Gröbner basis of $I$. Let $\sigma : K[y_{1}, \dots, y_{k}] \to K$ be the specialization setting every $y_{i}$ to 0. Then $\mathcal G$ contains a final polynomial. To see this, notice that $\sigma(\mathcal G)$ is a Gröbner basis of $\langle \sigma(I) \rangle$ which, by the Nullstellensatz, is equal to $\langle 1 \rangle$. Hence there is some $g \in \mathcal G$ such that $\LM(\sigma(g)) \mid 1$, implying that $\sigma(g) \in K \setminus \{0\}$.
+
+  Now, we let $\mathcal G' = \{g \in \mathcal G \mid \sigma(g) \notin K\} = \{g_{1}, \dots, g_{t}\}$. Assume that $\mathcal G'$ is still a Gröbner basis for $I$ w.r.t. the lexicographic order. Since $I$ contains a final polynomial, say $p$, we can apply the division algorithm to write
+  \[p = \sum_{i=1}^{t} g_{i}h_{i}\]
+  which in particular is a pseudo-division. Since pseudo-divisions are stable under specializations by lemma~\ref{lem:ps_div_to_div}, we get that
+  \[1 = \sigma(p) = \sum_{i=1}^{t} \sigma(g_{i} h_{i})\]
+  and $\LM(\sigma(g_{i}h_{i})) \leq 1$. Hence, every $g_{i}$ where $h_{i} \neq 0$ satisfies $\sigma(g) \in K$, but that is a contradiction. Thus $\mathcal G'$ is not a Gröbner basis of $I$.
+
+  To drive it home, let $G$ be a Gröbner basis of $I \subset K[x_{1}, \dots, x_{n}, y_{1}, \dots, y_{k}]$ w.r.t. the lexicographic order and assume $G$ doesn't contain a final polynomial. Since any product of $y$'s is smaller than any product of $x$'s, we can see $G$ as a Gröbner basis of $I \subset K[y_{1}, \dots, y_{k}][x_{1}, \dots, x_{n}]$. Then, there is a parametric Gröbner basis $\mathcal G$ containing $G$. Let $\mathcal G' = \{g \in \mathcal G \mid \sigma(g) \notin K\}$. Then $G \subset \mathcal G'$, but $\mathcal G'$ is not a Gröbner basis by the above. Thus $G$ cannot be a Gröbner basis.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% First, we need a lemma.
+
+% \begin{lemma}\label{lem:LT_is_uncontaminated}
+%   Let $\{f_{1}, \dots, f_{k}\} \subset K[x_{1}, \dots, x_{n}]$ and let $G$ be the reduced Gröbner basis of the ideal $\langle y_{1} - f_{1}, \dots, y_{k} - f_{k} \rangle \subset K[x_{1}, \dots, x_{n}, y_{1}, \dots, y_{k}]$ w.r.t. the lexicographic order with $x_{1} > \dots > x_{n} > y_{1} > \dots > y_{k}$. Then for all $g \in G$, either $g \in K[y_{1}, \dots, y_{k}]$ or $\LT(g) \in K[x_{1}, \dots, x_{n}]$.
+% \end{lemma}
+% \begin{proof}
+%   Note that the given generators of $I$ have the property, that if we write the terms of any generator in order (by the term order), then there is a term, only containing $y$'s, such that every term before it only contains $x$'s and every term after it only contains $y$'s. We wish to keep this invariant.
+
+%   We use Buchbergers algorithm to compute a Gröbner basis. Assume that at the beginning of a certain step in the algorithm, the above invariant is satisfied. Suppose we want to reduce some S-polynomial
+%   \[S(f_{i}, f_{j}) = \frac{\lcm(\LM(f_{i}), \LM(f_{j}))}{\LT(f_{i})} f_{i} - \frac{\lcm(\LM(f_{i}), \LM(f_{j}))}{\LT(f_{j})} f_{j}\]
+%   If both of
+% \end{proof}

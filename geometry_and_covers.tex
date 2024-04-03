@@ -34,7 +34,7 @@ The idea is to describe segments og Gröbner systems, not as point-sets in $k^{|
   \[bx + dy - b\left(x + \frac c a y\right) = \left(d - \frac{bc}{a}\right)y = 0\]
   Hence the reduced Gröbner basis is $\{x + \frac c a y\}$. Similarly, if $\,b \neq 0$, then $\{x + \frac d b y\}$ is the reduced Gröbner basis. Let's see how we can describe this using regular functions. The star of the show will be the regular function $f \in \mathcal O_{Y}(U)$ from example~\ref{ex:reg_fun} given by $f(\p) = \frac c a$ if $\p \nsupset \langle a \rangle$ and $f(\p) = \frac d b$ if $\p \nsupset \langle b \rangle$.
 
-  Consider now the polynomial $P = x + f \cdot y \subset \O_{Y}(U)[x, y]$, and let $\mathfrak m \in \Spec(\C[a, b, c, d]/\V(ad - bc))$ be a maximal ideal, which doesn't contain $\langle a, b \rangle$. This is equivalent to $\mathfrak m$ being a maximal ideal in $\C[a, b, c, d]$ of the form $\langle a - m_{1}, b - m_{2}, c - m_{3}, d - m_{3} \rangle$ with the condition that $m_{1} m_{4} - m_{2} m_{3} = 0$ and $m_{1}$ and $m_{2}$ not both being zero. Then $f(\mathfrak m) = x + \frac c a y$ if $m_{1} \neq 0$ and $f(\mathfrak m) = x + \frac d b x$ if $m_{2} \neq 0$.
+  Consider now the polynomial $P = x + f \cdot y \subset \mathcal O_{Y}(U)[x, y]$, and let $\mathfrak m \in \Spec(\C[a, b, c, d]/\V(ad - bc))$ be a maximal ideal which doesn't contain $\langle a, b \rangle$. This is equivalent to $\mathfrak m$ being a maximal ideal in $\C[a, b, c, d]$ of the form $\langle a - m_{1}, b - m_{2}, c - m_{3}, d - m_{3} \rangle$ with the condition that $m_{1} m_{4} - m_{2} m_{3} = 0$ and $m_{1}$ and $m_{2}$ not both being zero. Then $f(\mathfrak m) = x + \frac c a y$ if $m_{1} \neq 0$ and $f(\mathfrak m) = x + \frac d b x$ if $m_{2} \neq 0$.
 
   Hence \[\sigma_{\mathfrak m}(P) =
     \begin{cases}
@@ -88,7 +88,11 @@ In light of this theorem, for a parametric set $S$, we will call its uniquely de
   Since $\phi_{p}$ was just the localization of an inclusion, we get that $\sigma_{\p}(\phi_{\p}(g)) = \sigma_{\p}(g)$ for any $g$ in $\overline I_{\p}$. Thus we also have $\sigma_{\p}(\Phi(g)) = \sigma_{\p}(g)$ for any $g \in \mathcal I_{S}$. Thus, by lemma~\ref{lem:parametric_grb_unique} $\Phi(G) = G'$ where $G$ and $G'$ are the reduced Gröbner bases for $S$ and $S'$ respectively.
 \end{proof}
 
+We can see parametric sets as segments of a Gröbner system, only a bit more constrained because we want to describe the reduced Gröbner basis parametrically, not just any Gröbner basis. The object corresponding to a Gröbner system is called a Gröbner cover.
 
+\begin{definition}[Gröbner cover]\label{def:grb_cover}
+  Let $I \subset A[X]$ be an ideal. A finite set of pairs $\mathcal G = \{(S_{1}, G_{1}), (S_{2}, g_{2}), \dots, (S_{n}, G_{n})\}$ is called a \textit{Gröbner cover} if each $S_{i}$ is parametric, $G_{i} \subset \mathcal O_{S_{i}}[X]$ is the reduced Gröbner basis of $S_{i}$ and $\Spec(A) = \bigcup_{(S, G) \in \mathcal G} S$.
+\end{definition}
 
 
 \subsection{Monic ideals and the reduced Gröbner basis of $\mathcal I_{S}$}
@@ -348,10 +352,13 @@ We're now ready to prove the main theorem.
 The $\mathbf{CGS}$ algorithm can be seen as an algorithm that computes Gröbner covers. Indeed, by inspecting the construction, we see that if $(E, \{h\}, G)$ is a segment in the output of $\mathbf{CGS}(F, S)$, then $V(E)  \setminus V(\{h\})$ is a parametric set.
 
 \begin{theorem}\label{thm:segs_are_para}
-  Let $F \subset k[X, U]$ and $S \subset k[U]$ be finite sets of polynomials and let $\mathcal H = \mathbf{CGS}(F, S)$. If $(E, \{h\}, G) \in \mathcal H$, then $V(E) \setminus V(\{h\})$ is a parametric set and
-  \[\{\frac g {\LC_{U}(g)} \mid g \in G\} \subset \mathcal O_{k[U]}[X]\]
+  Let $F \subset k[X, U]$ and $S \subset k[U]$ be finite sets of polynomials and let $\mathcal H = \mathbf{CGS}(F, S)$. If $(S, \{h\}, G) \in \mathcal H$, then $V(S) \setminus V(\{h\})$ is a parametric set. Furthermore, if $M$ is the minimal generating set of $\langle \LM(G) \rangle$, then
+  \[\left\{\frac g {\LC_{U}(g)} \mid g \in G, \LM_{U}(g) \in M \right\} \subset \mathcal O_{V(S)}[X]\]
   is its reduced Gröbner basis.
 \end{theorem}
 \begin{proof}
-  Since $h = \lcm(\{\LC_{U}(g) \mid g \in G \setminus k[U] \})$,
+  By the algorithm, $G$ is the reduced Gröbner basis of $\langle F \cup S \rangle$ w.r.t. a term order where $X^{v_{1}} > U^{v_{2}}$ and $h = \lcm(\{\LC_{U}(g) \mid g \in G \setminus k[U]\})$. Let $I = \langle F \rangle$, let $\overline I$ denote the image of $I$ in $(k[U]/\langle S \rangle)[X]$ and for a polynomial $f \in k[U][X]$ let $\overline f$ denote the image of $f$ in $(k[U]/\langle S \rangle)$. $G \setminus S$ is a set of polynomials with the property that there is a Gröbner basis $G'$ of $\langle F \rangle$, such that for each $g' \in G'$ there is a unique $g \in G$ such that $\overline{g'} = \overline g$. Furthermore, $\coef(g, m) = 0 \iff \coef(\overline g, m) = 0$. Thus $\{\overline g \mid g \in G\}$ is a Gröbner basis of $\overline I$.
+
+  From proposition~\ref{prop:singular_from_grb} we get that $\langle h \rangle \subset \J(\overline I)$. Hence $V(S) \setminus V(h)$ is parametric by theorem~\ref{thm:Z_gen_para}. Finally, we need to show that
+  \[G_{red} = \left\{ \frac g {\LC_{U}(g)} \mid g \in G, \LM_{U}(g) \in M \right\}\] is the reduced Gröbner basis of $\V(S) \setminus \V(h)$. First, note that each $g \in G_{red}$ is monic and an element of $k[U]_{\p}(X)$ for each prime ideal $\p \subset \langle S \rangle$. Hence, $G_{red} \subset \mathcal I_{\V(S)}$ by the reasoning above, that $G$ maps to a Gröbner basis of $\overline I$. Let $\p$ be a maximal ideal in $V(S) \setminus V(h)$ and take any $f \in \sigma_{\p}(I)$, then there is some $g \in G$ such that $\LM(\sigma_{\p}) \mid f$. Since $M$ generates $\LM(G)$, there is some $g' \in G_{red}$ such that $\LM(\sigma_{\p}(g')) \mid \LM(\sigma_{\p}(g)) \mid \LM(f)$
 \end{proof}

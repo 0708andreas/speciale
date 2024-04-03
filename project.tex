@@ -5,7 +5,7 @@
 % \usepackage{fouriernc}
 \usepackage[T1]{fontenc}
 \usepackage[margin=3cm]{geometry}
-\usepackage{babel}
+\usepackage[english]{babel}
 
 \usepackage{biblatex}
 \addbibresource{refs.bib}
@@ -213,29 +213,29 @@
 
 
 \section{Preliminaries}
-This project will assume familiarity with ring theory, multivariate polynomials over fields. A familiarity with Gröbner bases will be beneficial, but we will introduce the necesary notations and definitions. Let $R$ be a Noetherian, commutative ring and $X = (x_{1}, x_{2}, \dots, x_{n})$ be an ordered collection of symbols. We denote the ring of polynomials in these variables $R[X]$. Given two (disjoint) sets of variables $X$ and $Y$, we will use $R[X, Y]$ to mean $R[X \cup Y]$, which is isomorphic to $R[X][Y]$. A monomial is a product of variables and a term is a monomial times a coefficient. We denote a monomial as $X^{v}$ for some $v \in \N^{n}$. For a polynomial \[f = \sum_{v \in \N^{n}} a_{v}X^{v}\] we denote the coefficient of the term $t = a_{v}X^{v}$ by $\coef(f, X^{v})$.
+This project will assume familiarity with commutative ring theory and multivariate polynomials over fields. A familiarity with Gröbner bases will be beneficial, but we will introduce the necessary notations and definitions. Let $A$ be a Noetherian, commutative ring and $X = (x_{1}, x_{2}, \dots, x_{n})$ be an ordered collection of symbols. We denote the ring of polynomials in these variables $A[X]$. Given two (disjoint) sets of variables $X$ and $Y$, we will use $A[X, Y]$ to mean $R[X \cup Y]$, which is isomorphic to $A[X][Y]$. A monomial is a product of variables and a term is a monomial times a coefficient. We denote a monomial as $X^{v}$ for some $v \in \N^{n}$. For a polynomial \[f = \sum_{v \in \N^{n}} a_{v}X^{v}\] we denote the coefficient of the term $t = a_{v}X^{v}$ by $\coef(f, X^{v})$.
 
 \begin{definition}[Monomial order, leading term]
   A \textit{monomial order} is a well-order\footnote{A total order, for which any chain $a > b > c > \dots$ must be finite.} $<$ on the set of monomials satisfying that $u < v \implies wu < wv$.
 
-  Given a monomial order $<$ and a polynomial $f \in R[X]$, the \textit{leading term} of $f$ is the term with the largest monomial w.r.t. $<$ and is denoted by $\LT_{<}(f)$. If $\LT_{<}(f) = a\cdot m$ for some monomial $m$ and $a \in R$, then we denote $\LM_{<}(f) = m$ and $\LC_{<}(f) = a$. If $<$ is clear from context, it will be omitted.
+  Given a monomial order $<$ and a polynomial $f \in A[X]$, the \textit{leading term} of $f$ is the term with the largest monomial w.r.t. $<$ and is denoted by $\LT_{<}(f)$. If $\LT_{<}(f) = a\cdot m$ for some monomial $m$ and $a \in A$, then we denote $\LM_{<}(f) = m$ and $\LC_{<}(f) = a$. If $<$ is clear from context, it will be omitted.
 \end{definition}
 
-These definitions naturally extend to sets of polynomials, so given a set of polynomials $F \subset k[X]$, we denote $\LM_{<}(F) := \{\LM_{<}(f) \mid f \in F\}$. With this, we can give the definition of a Gröbner basis.
+These definitions naturally extend to sets of polynomials, so given a set of polynomials $F \subset A[X]$, we denote $\LM_{<}(F) := \{\LM_{<}(f) \mid f \in F\}$. When $I \subset A[X]$ is an ideal, we use $\LM_{<}(I)$ to denote $\langle \LM_{<}(I) \rangle$ to ease notation, and similarly for $\LT_{<}(I)$. With this, we can give the definition of a Gröbner basis.
 
 \begin{definition}[Gröbner basis]
-  Let $G \subset R[X]$ be a finite set of polynomials and $<$ be a monomial order. We say $G$ is a \textit{Gröbner basis} if
-  $\langle \LT_{<}(G) \rangle = \langle \LT_{<}(\langle G \rangle ) \rangle $.
+  Let $G \subset A[X]$ be a finite set of polynomials and $<$ be a monomial order. We say $G$ is a \textit{Gröbner basis} if
+  $\LT_{<}(G) = \LT_{<}(\langle G \rangle )$.
 \end{definition}
 
-Note, that if $R$ is a field, then it is enough that $\langle \LM_{<}(G) \rangle = \langle \LM_{<}(\langle G \rangle) \rangle$. We say $G$ is a Gröbner basis for an ideal $I$ if $G$ is a Gröbner basis and $\langle G \rangle = I$. We will also have to use an alternative description of Gröbner bases.
+Note, that if $A$ is a field, then it is enough that $\LM_{<}(G) = \LM_{<}(\langle G \rangle)$. We say $G$ is a Gröbner basis for an ideal $I$ if $G$ is a Gröbner basis and $\langle G \rangle = I$. We will also have to use an alternative description of Gröbner bases.
 
 \begin{definition}[Reduction modulo]
-  Let $f, g \in R[X]$ be polynomials and $<$ be a term order. We say $f$ \textit{reduces modulo} $g$ if $\LT(g) \mid \LT(f)$, since in that case $\LT(\LC(g)\cdot f - p\cdot \LC(f) \cdot g) < \LT(f)$ where $\LM(f) = p \cdot \LM(g)$. We say a polynomial reduces modulo a set of polynomials if it reduces modulo any polynomial in the set. We say a polynomial \textit{reduces to zero} if there is a chain of reductions that end in the zero polynomial.
+  Let $f, g \in A[X]$ be polynomials and $<$ be a term order. We say $f$ \textit{reduces modulo} $g$ if $\LT(g) \mid \LT(f)$, since in that case $\LT(\LC(g)\cdot f - p\cdot \LC(f) \cdot g) < \LT(f)$ where $\LM(f) = p \cdot \LM(g)$. We say a polynomial reduces modulo a set of polynomials if it reduces modulo any polynomial in the set. We say a polynomial \textit{reduces to zero} if there is a chain of reductions that end in the zero polynomial.
 \end{definition}
 
 \begin{theorem}\label{thm:grb}
-  Let $G \subset R[X]$. Then $G$ is a Gröbner basis if and only if every polynomial in $\langle G \rangle$ reduces to 0 modulo $G$.
+  Let $G \subset A[X]$. Then $G$ is a Gröbner basis if and only if every polynomial in $\langle G \rangle$ reduces to 0 modulo $G$.
 \end{theorem}
 \begin{proof}
   A good exercise.
@@ -244,7 +244,7 @@ Note, that if $R$ is a field, then it is enough that $\langle \LM_{<}(G) \rangle
 A Gröbner basis need not be unique. Indeed, given a Gröbner basis G, we can add any element of $\langle G \rangle$ to $G$ and it is still a Gröbner basis. However, reduced Gröbner bases are unique.
 
 \begin{definition}[Reduced Gröbner basis]
-  A Gröbner basis $G$ is called \textit{reduced} if, for all $g \in G$, $g$ is a monic polynomial (i.e. $\LC(g) = 1$) and the only term of $g$ in $\LT(I)$ is $\LT(g)$.
+  A Gröbner basis $G$ is called \textit{reduced} if, for all $g \in G$, $g$ is a monic polynomial (i.e. $\LC(g) = 1$) and the only term of $g$ in $\LT(\langle G \rangle)$ is $\LT(g)$.
 \end{definition}
 \begin{theorem}
   Let $I \subset k[X]$ be an ideal in a polynomial ring over a field. Then there is a unique reduced Gröbner basis of $I$.
@@ -258,13 +258,31 @@ It is worth noting, that the second condition of reduced Gröbner bases is equiv
 The purpose of this project is to study parametric Gröbner bases, so let's introduce those. The bare concept is rather simple.
 
 \begin{definition}[Parametric Gröbner basis]\label{def:par_grb}
-  Let $k$ and $k_{1}$ be fields, $U$ and $X$ be sets of variables and $F \subset k[X, U]$ be a finite set of polynomials. A \textit{parametric Gröbner basis} is a finite set of polynomials $G \subset k[X, U]$ such that $\sigma(G)$ is a Gröbner basis of $\langle \sigma(F) \rangle$ for any ring homomorphism $\sigma : k[U] \to k_{1}$.
+  Let $A$ be a commutative ring, $k_{1}$ be a field, $X$ be a set of variables and let $F \subset A[X]$ be a finite set of polynomials. A \textit{parametric Gröbner basis} is a finite set of polynomials $G \subset A[X]$ such that $\sigma(G)$ is a Gröbner basis of $\langle \sigma(F) \rangle$ for any ring homomorphism $\sigma : A \to k_{1}$. Here $\sigma(f)$ for an $f \in A[X]$ denotes the coefficient-wise application of $\sigma$ on $f$.
+
+  Most of this text will focus on the special case when $k$ is another field, $U$ is another set of variables with $U \cap X = \emptyset$ and $A = k[U]$. Then $\sigma : k[U] \to k_{1}$ corresponds to a choice of value for each variable in $U$.
 \end{definition}
 
 We call such a $\sigma : k[U] \to k_{1}$ a \textit{specialization}. By the linearity of $\sigma$, all such ring homomorphisms can be characterized by their image of $U$. Thus, we can identify $\{\sigma : k[U] \to k_{1} \mid \sigma \text{ is a ring hom.}\}$ with the affine space $k_{1}^{m}$ when $U$ has $m$ elements. For $\alpha \in k_{1}^{m}$ we'll denote the corresponding map
 \[\sigma_{\alpha}(u_{i}) = \alpha_{i} \quad \text{for $u_{i} \in U$}\] extended linearly.
 
-When we work with these parametric Gröbner bases, it will be more convenient to have a bit more information attached to them, namely which elements are required for which $\sigma$. Since $\sigma$ is described by an $\alpha \in k_{1}^{m}$, we can restrict them using subsets of $k_{1}^{m}$.
+\begin{example}\upshape
+  Consider the ideal $I = \langle ux - 1, vx - 1 \rangle \subset \C[u, v][x, y]$ and a specialization $\sigma : \C[u, v] \to \C$. To analyze the behaviour of $I$ under different specializations, let's split into cases.
+
+  \begin{enumerate}
+    \item If either $\sigma(u) = 0$ or $\sigma(v) = 0$, then $\langle \sigma(I) \rangle = \langle 1 \rangle \subset \C[x, y]$. If $\sigma(u) = 0$, then $\sigma(ux - 1) = -1$, hence the generators above form a Gröbner basis of $\langle I \rangle$. The other polynomial becomes redundant, so we don't have a reduced Gröbner basis.
+
+    \item If $\sigma(u) = \sigma(v)$, then $\langle \sigma(I) \rangle = \langle \sigma(u)x - 1 \rangle$. In this case the generators also form a Gröbner basis.
+
+    \item If $\sigma(u) \neq \sigma(v)$ and neither of them are 0, then $\sigma(v)(\sigma(u)x - 1) - \sigma(u)(\sigma(v)x - 1) = \sigma(v) - \sigma(u) \in \langle \sigma(I) \rangle$, hence $\langle \sigma(I) \rangle = \langle 1 \rangle$. In this case the generators do not form a Gröbner basis of $\langle \sigma(I) \rangle$.
+  \end{enumerate}
+
+  The reduced Gröbner basis of $I$ is $\{u - v, ux - 1\}$, which always specializes to a Gröbner basis, as can be seen above. However, it is not always enough to compute a reduced Gröbner basis.
+
+  Consider the ideal $J = \langle ux^{2} + y, y^{2} + 1 \rangle$, where the generators form the reduced Gröbner basis of $J$. And indeed, whenever $\sigma(u) \neq 0$, it specializes to the reduced Gröbner basis of $\langle \sigma(J) \rangle$. However, when $\sigma(u) = 0$, we get $\langle \sigma(J) \rangle = \langle 1 \rangle$, but $\sigma(\{ux^{2} + y, y^{2} + 1\}) = \{y, y^{2} + 1\}$, which is not a Gröbner basis.
+\end{example}
+
+As can be seen from the above example, a set of generators can form a parametric Gröbner basis for a restricted set of specializations. Sometimes we are only interested in a subset of specializations. Since a specializartion is uniquely determined by its image of the parameters, we use subsets of $k_{1}^{|U|}$ to describe these restrictions. Since the end goal of this is to compute parametric Gröbner bases, we want to work with subsets that be described in a computatinoally feasible way. We use the Zariski topolgy, where closed sets (and hence open sets) can be described by a finite set of polynomials.
 
 \begin{definition}[Vanishing sets \& locally closed sets]
   Let $E \subset k[X]$. Then the \textit{vanishing set} of $E$ is $V(E) := \{v \in k^{n} \mid e(v) = 0 \;\; \forall e \in E\}$.
@@ -277,13 +295,17 @@ When we work with these parametric Gröbner bases, it will be more convenient to
 
   We call the locally closed sets $A_{i}$ for the $\textit{conditions}$ on a segment.
 
-  A Gröbner system $\{(A_{1}, G_{1}), \dots, (A_{t}, G_{t}))\}$ is called \textit{comprehensive}, if $\bigcup_{i=1}^{t}A_{i} = k_{1}^{|U|}$. We also say a Gröbner system is \textit{comprehensive on $L \subset k_{1}^{|U|}$} if $\bigcup_{i=1}^{t}A_{i} = L$.
+  A Gröbner system $\{(A_{1}, G_{1}), \dots, (A_{t}, G_{t}))\}$ is called \textit{comprehensive}, if $\bigcup_{i=1}^{\,t}A_{i} = k_{1}^{|U|}$. We also say a Gröbner system is \textit{comprehensive on $L \subset k_{1}^{|U|}$} if $\bigcup_{i=1}^{t}A_{i} = L$.
 \end{definition}
 
 We will sometimes call a triple $(E, N, G)$ for a segment of a Gröbner system. By this we mean that $(V(E) \setminus V(N), G)$ is a segment of a Gröbner system.
 
 \begin{example}\upshape
-  Let $X = \{x, y\}$ and $U = \{u\}$ and consider the polynomials $f(x, y, u) = ux^{2} + x$ and $g(x, y, u) = xy + 1$. When $u \neq 0$, a Gröbner basis of $\langle f, g \rangle$ could be $(y-u, ux + 1)$, whatever $u$ may be. \colorbox{red}{TODO}
+  Consider again the ideal $J = \langle ux^{2} + y, y^{2} + 1 \rangle \subset \C[u][x, y]$. We saw in the last example that the given generators form a Gröbner basis under any specialization where $\sigma(u) \neq 0$. Hence, we have the following Gröbner system:
+  \[\{(\V(0) \setminus \V(u), \{ux^{2} + y, y^{2} + 1\}), \quad (\V(u) \setminus \V(1), \{1\})\}\]
+
+  Note, that $-y(ux^{2} + y) + (y^{2} + 1) = -ux^{2}y + 1 \in J$ specializes to $1$ when $\sigma(u) = 0$. Hence we also have the following Gröbner system, which is also a parametric Gröbner basis:
+  \[\{(\V(0) \setminus \V(1), \{ux^{2} + y, y^{2} + 1, -ux^{2}y + 1\})\}\]
 \end{example}
 
 \begin{definition}[Leading coefficient w.r.t.\ variables]
@@ -294,11 +316,11 @@ Note that $\LC_{U}(f) \in k[U]$, i.e.\ the leading term is a polynomial in $k[U]
 
 From this point, we assume that the monomial order on $k[X, U]$ satisfies $X^{v_{1}} > U^{v_{2}}$ for all $v_{1} \in \N^{|X|}$ and $v_{2} \in \N^{|U|}$. This monomial order restricts to a monomial order on $k[X]$, denoted by $<_{X}$. Note that this assumption is not too restrictive, as we're usually only interested in a certain monomial order on the variables, since the parameters will be specialized away anyway. Thus for a given monomial order $<_{X}$, we can construct a suitable monomial order on $k[X, U]$, by using $<_{X}$ and breaking ties with any monomial order on $k[U]$.
 
-\subsection{A useful criterion}
+\subsection{A criterion on stability}
 In this section we will prove a criterion to decide when a Gröbner basis $G$ of an ideal $\langle F \rangle$ maps to a Gröbner basis $\sigma(G)$ if the ideal $\langle \sigma(F) \rangle$. This is theorem 3.1 in \cite{Kalkbrener}.
 
 \begin{lemma}\label{lem:grb_iff_reduc_to_z}
-  Let $G$ be a Gröbner basis of an ideal $\langle F \rangle \subset R[X]$ w.r.t. $<$, let $\sigma : R \to K$ be a ring homomorphism to a field $K$ and set $G_{\sigma} = \{g \in G \mid \sigma(\LC(g)) \neq 0\} = \{g_{1}, g_{2}, \dots, g_{l}\} \subset R[X]$. Then $\sigma(G_{\sigma})$ is a Gröbner basis of the ideal $\langle \sigma(F) \rangle$ w.r.t. $<_{X}$ if and only if $\sigma(g)$ is reducible to 0 modulo $\sigma(G_{\sigma})$ for every $g \in G$.
+  Let $G$ be a Gröbner basis of an ideal $\langle F \rangle \subset A[X]$ w.r.t. $<$, let $\sigma : A \to K$ be a ring homomorphism to a field $K$ and set $G_{\sigma} = \{g \in G \mid \sigma(\LC(g)) \neq 0\} = \{g_{1}, g_{2}, \dots, g_{l}\} \subset A[X]$. Then $\sigma(G_{\sigma})$ is a Gröbner basis of the ideal $\langle \sigma(F) \rangle$ w.r.t. $<_{X}$ if and only if $\sigma(g)$ is reducible to 0 modulo $\sigma(G_{\sigma})$ for every $g \in G$.
 \end{lemma}
 \begin{proof}
   First, we prove ``$\Longrightarrow$'': Suppose $\sigma(G_{\sigma})$ is a Gröbner basis of $\langle \sigma(F) \rangle$. Since $\sigma(g) \in \langle \sigma(F) \rangle$, we get that $\sigma(g)$ reduces to zero modulo any Gröbner basis of $\langle \sigma(F) \rangle$ by theorem~\ref{thm:grb}, in particular $\sigma(G_{\sigma})$.
@@ -307,19 +329,19 @@ In this section we will prove a criterion to decide when a Gröbner basis $G$ of
   \[\exists\, h \in \langle F \rangle : \sigma(\LC(h)) \neq 0 \land \LM(h) \mid \LM(\sigma(f)).\]
   Indeed, since $G$ is a Gröbner basis of $\langle F \rangle$, that implies there is some $g \in G$ such that $\LM(g) \mid \LM(h)$ and $\LM(h) = \LM(\sigma(h)) \mid \LM(\sigma(f))$. Furthermore, since $\LC(g) \mid \LC(h)$, we have that $\sigma(\LC(g)) \neq 0$, hence $\LT(\sigma(g)) \mid \LT(\sigma(f))$. Thus, if the above holds for any $f$, then $\sigma(G)$ is a Gröbner basis of $\langle \sigma(F) \rangle$. We prove this claim by induction on $<_{X}$.
 
-  The base case is when $\LM(f) = 1$, which means $f \in R$. Since we assumed $\sigma(f) \neq 0$, we have $\LM(\sigma(f)) = \LM(f)$ and $\sigma(\LC(f)) \neq 0$.
+  The base case is when $\LM(f) = 1$, which means $f \in A$. Since we assumed $\sigma(f) \neq 0$, we have $\LM(\sigma(f)) = \LM(f)$ and $\sigma(\LC(f)) \neq 0$.
 
   Now, the induction step. Let $f \in \langle F \rangle$ with $\sigma(\LC(f)) \neq 0$ and assume that every $f' \in \langle F \rangle$ with $\LM(f') < \LM(f)$ we have $\exists\, h \in \langle F \rangle : \sigma(\LC(h)) \neq 0 \land \LM(h) \mid \LM(\sigma(f'))$. If $\sigma(\LC(f)) \neq 0$, we can simply use $h = f$, so consider the case when $\sigma(\LC(f)) = 0$. If there is some $\sigma(g) \in G_{\sigma}$ such that $\LM(g) \mid \LM(f)$, then we can reduce $f$ by $g$ to get $f' = \LC(g) \cdot f - \LC(f) \cdot \frac{\LM(f)}{\LM(g)}g$. Then $\LM(\sigma(f')) = \LM(\sigma(f))$ since $\sigma(\LC(f)) = 0$ and $\LM(f') < \LM(f)$, so the assertion holds by the induction hypothesis.
 
   On the other hand, if there is no such $\sigma(g) \in G_{\sigma}$, then we must have some $g \in G \setminus G_{\sigma}$ such that $\LM(g) \mid \LM(f)$. However, we can't simply reduce by $g$, since the factor $\LC(g)$ is zero under $\sigma$. Instead, we can find a subset $\{g_{j_{1}}, \dots, g_{j_{r}}\} \subset G \setminus G_{\alpha}$ such that \[\LM(f) = \sum_{i = 1}^{r} c_{i} \frac{\LM(f)}{\LM(g_{j_{i}})} \LM(g_{j_{i}}).\]
-  Since each of the $\sigma(g_{j_{i}})$ are reducible to 0 modulo $G_{\sigma}$, we can find some $h_{i} \in \langle F \rangle$ and $b_{i} \in R \setminus \ker(\sigma)$ such that $\sigma(b_{i} g_{j_{i}}) = \sigma(h_{i})$ and $\LM(\sigma(h_{i})) = \LM(\sigma(g_{j_{i}})) > \LM(g_{j_{i}})$ for each $i \in \{1, \dots, r\}$. Let $b = \prod_{i = 1}^{r} b_{i}$, which is non-zero, then
+  Since each of the $\sigma(g_{j_{i}})$ are reducible to 0 modulo $G_{\sigma}$, we can find some $h_{i} \in \langle F \rangle$ and $b_{i} \in A \setminus \ker(\sigma)$ such that $\sigma(b_{i} g_{j_{i}}) = \sigma(h_{i})$ and $\LM(\sigma(h_{i})) = \LM(\sigma(g_{j_{i}})) > \LM(g_{j_{i}})$ for each $i \in \{1, \dots, r\}$. Let $b = \prod_{i = 1}^{r} b_{i}$, which is non-zero, then
   \[f' = b f - \sum_{i = 1}^{r} c_{i} \frac{b}{b_{i}} \frac{\LM(f)}{\LM(g_{j_{i}})}(b_{i}g_{j_{i}} - h_{i})\]
   is a new polynomial with
   \[\sigma(f') = \sigma(b f) - \sum_{i = 1}^{r} \sigma\left(c_{i} \frac{b}{b_{i}} \frac{\LM(f)}{\LM(g_{j_{i}})}\right) (\sigma(b_{i} g_{j_{i}}) - \sigma(h_{i})) = \sigma(b f)\]
   hence $\LM(\sigma(f')) = \LM(\sigma(f))$ but also $\LM(f') < \LM(f)$ since $\LM(g_{j_{i}}) > \LM(h_{i})$. Thus the conclusion follows from the induction hypothesis.
 \end{proof}
 
-We will use a consequence of this lemma, which uses a test that is much easier to check. We use the above lemma with $R = k[U]$.
+We will use a consequence of this lemma, which uses a test that is much easier to check. We use the above lemma with $A = k[U]$.
 
 \begin{lemma}\label{lem:grb_if_nmap_to_z}
   Let $G = \{g_{1}, g_{2}, \dots, g_{k}\}$ be a Gröbner basis of an ideal $\langle F \rangle$ in $k[X, U]$ w.r.t $<$ and let $\alpha \in k_{1}^{m}$. If $\sigma_{\alpha}(\LC_{U}(g)) \neq 0$ for each $g \in G \setminus k[U]$, then $\sigma_{\alpha}(G)$ is a Gröbner basis of $\langle \sigma_{\alpha}(F) \rangle$.
@@ -331,6 +353,74 @@ We will use a consequence of this lemma, which uses a test that is much easier t
 
   On the other hand, if $\sigma_{\alpha}(g) \notin G_{\alpha}$, then we must have $g \in G \cap k[U]$. Since $\alpha \in V(G \cap k[U])$ then $\sigma_{\alpha}(g) = 0$, so is immediately reducible to zero. Thus $\sigma_{\alpha}(G)$ is a Gröbner basis of $\langle \sigma_{\alpha}(F) \rangle$ by lemma~\ref{lem:grb_iff_reduc_to_z}.
 \end{proof}
+
+Let's see how this can be used to produce a Gröbner system. The idea is to compute a Gröbner basis and find the leading coefficients. Then that Gröbner basis gives a segment of a Gröbner system where none of the leading coefficients specialize to zero. Then, we walk through the leading coefficients, and specialize each one away. Then we compute a Gröbner basis for that case, and see what the leading coefficients are. We do this iteratively, until there are no more leading coefficients.
+
+\begin{example}\upshape
+  Consider the ideal $I = \langle ax + cy, bx + dy \rangle \subset \C[a, b, c, d][x, y]$. The reduced Gröbner basis for $I$ w.r.t. the lexicographic order with $x > y$ is $G = \{ax + cy, bx + dy, (ad - bc)y\}$. The leading coefficients are $\{a, b, ad - bc\}$, so for any specialization with $\sigma(a), \sigma(b), \sigma(ad - bc) \neq 0$, this specializes to a Gröbner basis. This is equivalent to requiring that $\sigma(ab(ad-bc)) \neq 0$.
+
+  Now, we need to produce Gröbner systems covering the rest. If $\sigma(a) = 0$, then the ideal becomes $\langle cy, bx + dy, bcy \rangle$ with leading coefficients $\{c, b, bc\}$. Since $\sigma(bc) \neq 0 \iff \sigma(b) \neq 0 \land \sigma(c) \neq 0$ and we can reduce $bcy$ using $cy$, we have that $\{cy, bx + dy\}$ is a Gröbner basis of the segment $\V(a) \setminus \V(bc)$.
+
+  Moving on to the segment where $\sigma(a) = \sigma(b) = 0$, we're left with the generating set $\{cy, dy\}$, which is a Gröbner basis as long as $\sigma(c), \sigma(d) \neq 0$. It remains unchanged if only one of them vanishes, but when we add $\sigma(c) = \sigma(d) = 0$, we're left with the zero ideal.
+
+  Backtracking, we consider the case when $\sigma(a) = \sigma(c) = 0$. In this case the generating set is $\{bx + dy\}$ with leading coefficient $b$. Hence $\{bx + dy\}$ is a Gröbner basis when $\sigma(b) \neq 0$. Setting $\sigma(a) = \sigma(b) = \sigma(c) = 0$, we get a segment we have already computed. Hence, we have found the following partial Gröbner system. The indentations are meant to represent the recursive nature of the computation.
+  \begin{align*}
+    \{&(\V(0) \setminus \V(ab(ad-bc)),& &\{ax + cy, bx + dy, (ad-bc)y\}) \\
+      &\;\; (\V(a) \setminus \V(bc),& &\{cy, bx + dy\}) \\
+      &\;\; \;\;(\V(a, b) \setminus \V(c, d),& &\{cy, dy\}) \\
+      &\;\; \;\; \;\;(\V(a, b, c) \setminus \V(d),& &\{dy\}) \\
+      &\;\; \;\; \;\; \;\;(\V(a, b, c, d) \setminus \V(1),& &\{0\}) \\
+      &\;\; \;\; \;\;(\V(a, b, d) \setminus \V(c),& &\{cy\})\}\\
+      &\;\; \;\;(\V(a, c) \setminus \V(b), &&\{bc + dy\})
+  \end{align*}
+
+  A similar pattern emerges when we start by setting $\sigma(b) = 0$, which the reader is invited to work out themselves. When we set $\sigma(ad - bc) = 0$, we're left with the leading coefficients $\{a, b\}$, and when they do not vanish, we get the Gröbner basis $\{ax + cy, bx + dy\}$.
+
+  Setting $\sigma(ad - bc) = \sigma(a) = 0$,
+
+\end{example}
+
+
+\subsection{Pseudo-division}
+In the classical setting when we have acquired a Gröbner basis, we can use the multivariate division algorithm\footnote{The multivariate division algorithm simply reduces a polynomial $f$ modulo a set of polynomials. If $f$ is irreducible, record $\LT(f)$ in a remainder and reduce $f - \LT(f)$.}. However, in the parametric case, this is more tricky. Consider for example the set $\{ux - 1, vx - 1\}$. Each polynomial is irreducible modulo the other, but for any specialization where $u \neq 0 \neq v$, we can reduce both polynomials modulo the other. To handle this in the parametric setting, we introduce pseudo-division.
+
+\begin{definition}[Pseudo-division]
+  Let $f, f_{1}, f_{2}, \dots, f_{n}, g_{1}, g_{2}, \dots, g_{n}, r \in A[X]$ be polynomials and let $c \in A$. A \textit{pseudo-division of $f$ modulo $g_{1}, \dots, g_{n}$} is a relation
+  \[cf = r + \sum_{i=1}^{n} f_{i}g_{i}\]
+  where the following is satisfied:
+  \begin{enumerate}
+    \item $c = \prod_{j=J} \LC(g_{j})$ for some subset $J \subset \{1, 2, \dots, n\}$.
+    \item $\LM(f_{i})\LM(g_{i}) \leq \LM(f)$ for all $i \in \{1, 2, \dots, n\}$.
+    \item No term of $r$ is divisible by $\LT(g_{i})$ for any $i$.
+    \item $\coef(f_{i}, m) \in \langle \coef(f, m') \mid m' \geq \LM(g_{i}m) \rangle$ for all $i \in \{1, 2, \dots, n\}$ monomials $m$.
+  \end{enumerate}
+  We call $r$ a \textit{pseudo-remainder} and the $f_{i}$'s are called \textit{pseudo-quotients}.
+\end{definition}
+
+
+\begin{theorem}\label{thm:exi_pseudo}
+  Let $f, g_{1}, g_{2}, \dots, g_{n} \in A[X]$ be polynomials. Then there exists a pseudo-division of $f$ modulo $g_{1}, \dots, g_{n}$.
+\end{theorem}
+\begin{proof}
+  See the appendix, section \ref{app:pseudo}
+\end{proof}
+
+Pseudo-division turns out to be ``the right kind of division'' when working with parameterized ideals. The reason is that, after specialization, a pseudo-division turns into a regular multivariate division. Hence, parametric Gröbner bases and pseudo-division inherit all the nice properties Gröbner bases has under regular division.
+
+\begin{lemma}\label{lem:ps_div_to_div}
+  Let $f \in A[X]$, let $\{g_{1}, \dots, g_{n}\} \subset A[X]$ be a parametric Gröbner basis, let $\sigma : A \to k_{1}$ be a ring homomorphism and let
+  \[cf = r + \sum_{i=1}^{n}f_{i}g_{i}\]
+  be a pseudo-division. Then
+  \[\sigma(cf) = \sigma(r) + \sum_{i=1}^{n} \sigma(f_{i})\sigma(g_{i})\]
+  satisfies $\LM(\sigma(f_{i} g_{i})) \leq \LM(\sigma(f))$. Furthermore, if $\sigma(\LC(g_{i})) \neq 0$ for all $i$, then either $\sigma(r) = 0$ or none of the terms of $\sigma(r)$ is divisible by any leading term of the $\sigma(g_{i})$'s.
+\end{lemma}
+\begin{proof}
+  The first equality follows directly from linearity of $\sigma$. For the inequality $\LM(\sigma(f_{i} g_{i})) \leq \LM(\sigma(f))$, we have the fourth condition from pseudo-divisions: $\coef(f_{i}, m) \in \langle \coef(f, m') \mid m' \geq m \LM(g_{i}) \rangle$. Hence for any monomial $m$ with $m\LM(g_{i}) \geq \LM(\sigma(f))$, we have $\sigma(\coef(f_{i}, m)) = 0$.
+
+  For the remainder, we have from pseudo-division that no term of $r$ is divisible by any $\LT(g_{i})$. Assuming $\sigma(\LC(g_{i})) \neq 0$ for all $i$, we have $\LM(g_{i}) = \LM(\sigma(g_{i}))$ for all $i$. Hence, no term of $\sigma(r)$ is divisible by any $\LM(\sigma(g_{i}))$, and since we work over a field, no term of $\sigma(r)$ is divisible by any $\LT(\sigma(g_{i}))$.
+\end{proof}
+
+
 
 \section{Computing Gröbner systems}
 
@@ -459,10 +549,10 @@ We now move on to the problem of computing parametric Gröbner bases, which is t
   Let $\mathcal G = \{(A_{1}, G_{1}), \dots, (A_{t}, G_{t})\}$ be a faithful comprehensive Gröbner system of an ideal $\langle F \rangle$. Then $\bigcup_{(A, G) \in \mathcal G} G$ is a parametric Gröbner basis of $\langle F \rangle$.
 \end{corollary}
 \begin{proof}
-  Let $\sigma_{\alpha}$ be a specialization. Since $\mathcal G$ was comprehensive, there is some $l$ such that $\alpha \in A_{l}$. Then $\sigma_{\alpha}(G_{l})$ is a Gröbner basis of $\langle \sigma_{\alpha}(F) \rangle$, so $\langle \LT(\sigma_{\alpha}(G_{l})) \rangle = \langle \LT(\sigma_{\alpha}(\langle F \rangle)) \rangle$. Since for all $i$ we have that $\langle \sigma_{\alpha}(G_{i}) \rangle \subset \langle \sigma_{\alpha}(F) \rangle$, we have that $\langle \LT(\sigma_{\alpha}(G_{i})) \rangle = \langle \LT(\sigma_{\alpha}(\langle F \rangle)) \rangle$, so $\sum_{i=1}^{t} \langle \LT(\sigma_{\alpha}(G_{i})) \rangle = \langle \LT(\sigma_{\alpha}(\langle F \rangle)) \rangle$, thus $\sigma_{\alpha}\left(\bigcup_{(A, G) \in \mathcal G} G\right)$ is a Gröbner basis for $\langle \sigma_{\alpha}(F) \rangle$.
+  Let $\sigma_{\alpha}$ be a specialization. Since $\mathcal G$ was comprehensive, there is some $l$ such that $\alpha \in A_{l}$. Then $\sigma_{\alpha}(G_{l})$ is a Gröbner basis of $\langle \sigma_{\alpha}(F) \rangle$, so $\LT( \langle \sigma_{\alpha}(G_{l}) \rangle) = \LT( \langle \sigma_{\alpha}(\langle F \rangle) \rangle)$. Since for all $i$ we have that $\langle \sigma_{\alpha}(G_{i}) \rangle \subset \langle \sigma_{\alpha}(F) \rangle$, we have that $\LT( \langle \sigma_{\alpha}(G_{i}) \rangle ) \subset \LT( \langle \sigma_{\alpha}(\langle F \rangle) \rangle)$, so $\sum_{i=1}^{t} \LT( \langle \sigma_{\alpha}(G_{i}) \rangle) = \LT(\langle \sigma_{\alpha}(\langle F \rangle) \rangle )$, thus $\sigma_{\alpha}\left(\bigcup_{(A, G) \in \mathcal G} G\right)$ is a Gröbner basis for $\langle \sigma_{\alpha}(F) \rangle$.
 \end{proof}
 
-The path to computing parametric Gröbner bases seem clear. We simply need to modify the segments of a comprehensive Gröbner system to be faithful, then we're done. While this is surpisingly easy to implement, proving that the way we do it works is a little more cumbersome.
+The path to computing parametric Gröbner bases seem clear. We simply need to modify the segments of a comprehensive Gröbner system to be faithful, then we're done. While this is surprisingly easy to implement, proving that the way we do it works is a little more cumbersome.
 
 \subsection{Computing faithful segments}
 
