@@ -1,8 +1,6 @@
 \section{Miscellaneous results}
 In this section, we prove results that we need in the main text, but don't fit in the flow of the text. These are well-known results, which nevertheless aren't usually covered in introductionary algebra courses. Hence, we present them here.
 
-\subsection{Reduced Gröbner bases}
-
 \subsection{Pseudo-division}\label{app:pseudo}
 
 
@@ -39,8 +37,8 @@ Here, we present a basic lemma about homogenous ideals.
   Let $\{g_{1}, \dots, g_{n}\} \subset I$ be a finite set of homogenous generators of $I$, and let $f \in I$. Then we can write
   \[f = \sum_{i=0}^{n} h_{i} g_{i}\]
   for some $h_{i} \in A[X]$. Consider a single term of this sum, which we can write as
-  \[h_{i} g_{i} = \sum_{j} h_{i,j} g_{i}, \quad \text{where } h_{i} = \sum_{j} h_{i,j}.\]
-  Each term of this sum is homogenous and $h_{i,j} g_{i} \in I$. Since
-  \[f = \sum_{i,\,j} h_{i,j} g_{i}\]
+  \[h_{i} g_{i} = \sum_{j} a_{i,j}X^{v_{i,j}} g_{i}, \quad \text{where } h_{i} = \sum_{j} a_{i.j}X^{v_{i,j}}.\]
+  Each term of this sum is homogenous and $a_{i,j} X^{v_{i,j}} g_{i} \in I$. Since
+  \[f = \sum_{i,\,j} a_{i,j} X^{v_{i, j}} g_{i}\]
   is a sum of homogenous polynomials, and each term of the sum is homogenous and in $I$, each homogenous component of $f$ is in $I$.
 \end{proof}
