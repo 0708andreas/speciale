@@ -1,7 +1,38 @@
 \section{Miscellaneous results}
 In this section, we prove results that we need in the main text, but don't fit in the flow of the text. These are well-known results, which nevertheless aren't usually covered in introductionary algebra courses. Hence, we present them here.
 
-\subsection{Pseudo-division}\label{app:pseudo}
+\subsection{The generalized division algorithm}\label{app:pseudo}
+Ususally, the theory of Gröbner bases is developed for polynomial rings over a field. However, lots of the usual results hold in polynomial rings over a general commutative, Noetherian ring $A$ as well. Here, we give some of the results we need.
+
+\begin{theorem}
+  Let $f \in A[X]$ and $G = \{g_{1}, \dots, g_{n}\} \subset A[X]$. Then there exists $\{h_{1}, \dots, h_{n}\} \subset A[X]$ and $r \in A[X]$ such that
+  \[f = r + \sum_{i=1}^{n} h_{i} g_{i}\]
+  and the following properties are satisfied:
+  \begin{enumerate}
+    \item $\LM(h_{i} g_{i}) \leq \LM(f)$ for all $i \in \{1, \dots, n\}$.
+    \item No term of $r$ is divisible by $\LT(g_{i})$ for any $i$,
+    \item $\coef(h_{i} g_{i}, m) \in \langle \coef(f, m') \mid m' \geq m \rangle$ for all $i \in \{1, \dots, n\}$ and all monomials $m$.
+  \end{enumerate}
+\end{theorem}
+\begin{proof}
+  First, we present the division algorithm to compute such a representation. To start, let $f^{0} = f$, $r^{0} = 0$ and $h_{1}^{0} = h_{2}^{0} = \dots = h_{n}^{0} = 0$. Then we iteratively define the state at step $i$ in terms of the state at step $i-1$:
+  \begin{itemize}
+    \item If $f^{i-1} = 0$, we are done. Set $r = r^{i-1}$ and set $h_{j} = h_{j}^{i-1}$ for all $j \in \{1, \dots, n\}$.
+    \item If there is some $g_{j} \in G$ such that $\LT(g_{j}) \mid \LT(f^{i-1})$, then find a $\gamma$ such that $\LT(g_{j})\gamma = \LT(f^{i-1})$ and set $h_{j}^{i} = h_{j}^{i-1} + \gamma$, set $f^{i} = f^{i-1} - \gamma g_{j}$, set $r^{i} = r^{i-1}$, and set $h_{l}^{i} = h_{l}^{i-1}$ for $l \neq j$.
+    \item If no $g \in G$ satisfies $\LT(g) \mid \LT(f^{i-1})$, then set $r^{i} = r^{i-1} + \LT(f)$, set $f^{i} = f^{i-1} - \LT(f^{i-1})$ and set $h_{j}^{i} = h_{j}^{i-1}$ for $j \in \{1, \dots, n\}$.
+  \end{itemize}
+
+  Since for all $i$, we have $\LM(f^{i}) < \LM(f^{i-1})$ and $<$ is a well-order, this procedure must terminate eventually. The equality
+  \[f = r + \sum_{j=1}^{n} h_{j} g_{j}\] follows from the fact that
+  \[f - f^{i} = r^{i} + \sum_{j=1}^{n} h^{i}_{j} g_{j}\]
+  at every step $i$ of the algorithm, and when the algorithm terminates $f^{i} = 0$.
+
+  The two first properties of the division are invariants for the algoritm. Since we have $\LM(f^{i}) \leq \LM(f)$ for all $i$, property (1) follows from the construction of the $h_{j}$'s. Property (2) is an invariant of $r^{i}$.
+
+  The final property follows from the invariant, that at every step $i$, we have that $\coef(f^{i}, m) \in \langle \coef(f, m') \mid m' \geq m \rangle$. Indeed, it is true at step $i=0$. At step $i$, note that when $\LT(g_{j}) \gamma = \LT(f^{i})$, then $\coef(g_{j} \gamma, m) \in \langle \LC(f^{i}) \rangle$. Since $\LM(g_{j} \gamma) \geq m$ for every monomial $m$, that occurs in a term of $f^{i}$, we get that $\coef(f^{i} - g_{j} \gamma) \in \langle \coef(f^{i}, m') \mid m' \geq m \rangle$.
+\end{proof}
+
+
 
 
 \subsection{The nilradical}
