@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2023.9.5)  25 MAY 2024 23:48
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2023.9.5)  26 MAY 2024 00:26
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -3209,64 +3209,42 @@ inusSerif-Italic.otf
 Package hyperref Info: bookmark level for unknown lemma defaults to 0 on input 
 line 85.
  [7] [8]
-Package hyperref Info: bookmark level for unknown corollary defaults to 0 on in
-put line 130.
- [9]
-Package mdframed Info: Box was splittet wrong
- starting loop to iterate the splitting point
-(mdframed)              on input line 180.
- [10]
-Overfull \hbox (6.26546pt too wide) in paragraph at lines 189--190
-[]\TU/LibertinusSerif(0)/m/n/12 Let $[][] [][][] [][][] [] [] [][][] [][][] [][
-][] [] [] [][][] [] [] [][][][]$ be poly-
- []
+Package mdframed Info: Not enough space on this page on input line 127.
 
-[11]
-Overfull \hbox (13.45781pt too wide) in paragraph at lines 219--220
+Overfull \hbox (13.45781pt too wide) in paragraph at lines 142--143
 []\TU/LibertinusSerif(0)/m/n/12 The first equality follows directly from linear
 ity of $[]$. For the inequality $[][][][][][][][][][] []
  []
 
 
-Overfull \hbox (2.38771pt too wide) in paragraph at lines 219--220
+Overfull \hbox (2.38771pt too wide) in paragraph at lines 142--143
 [][][][][][][]$\TU/LibertinusSerif(0)/m/n/12 , we have the fourth condition fro
 m pseudo-divisions: $[][][][][] [][] [] [][][][][] [][][] []
  []
 
 
-Overfull \hbox (28.22673pt too wide) in paragraph at lines 219--220
+Overfull \hbox (28.22673pt too wide) in paragraph at lines 142--143
 [][] [] [] [][][][][][]$\TU/LibertinusSerif(0)/m/n/12 . Hence for any monomial 
 $[]$ with $[] [][][][][] [] [][][][][][][]$, we have $[][][][][][][] [][][] []
  []
 
 
-Overfull \hbox (11.48409pt too wide) in paragraph at lines 227--228
+Overfull \hbox (11.48409pt too wide) in paragraph at lines 150--151
 []\TU/LibertinusSerif(0)/m/it/12 Let $[][][] [][]$ be a segment of a parametric
  Gröbner basis with $[] [] [][][][] [] [] [][][] []
  []
 
-Package mdframed Info: Not enough space on this page on input line 232.
-[12]
-Package mdframed Info: Not enough space on this page on input line 232.
-
-Overfull \hbox (29.82481pt too wide) detected at line 249
+[9]
+Overfull \hbox (29.82481pt too wide) detected at line 172
 []
  []
 
-
-Package mdframed Warning: You got a bad break
-(mdframed)                because the last box will be empty
-(mdframed)                you have to change it manually
-(mdframed)                by changing the text, the space
-(mdframed)                or something else on input line 259.
-
-Package mdframed Info: Box was splittet wrong
- starting loop to iterate the splitting point
-(mdframed)              on input line 259.
-Package mdframed Info: You first box width is to small
- mdframed fixed it
-(mdframed)              on input line 259.
-[13]) [14] (./grb_systems.tex
+[10]
+Package mdframed Info: Not enough space on this page on input line 188.
+ [11] [12]
+Package hyperref Info: bookmark level for unknown corollary defaults to 0 on in
+put line 251.
+ [13]) [14] (./grb_systems.tex
 LaTeX Font Info:    Font shape `TU/LibertinusMono(0)/m/n' will be
 (Font)              scaled to size 10.40002pt on input line 2.
 Requested font "[LibertinusMono-Regular.otf]/OT:script=latn;language=dflt;exten
@@ -3280,8 +3258,6 @@ m;+lnum;+smcp;mapping=tex-text;" at 12.0pt
  -> /usr/share/texlive/texmf-dist/fonts/opentype/public/libertinus-fonts/Libert
 inusSerif-Regular.otf
  [15] [16]
-Package mdframed Info: Not enough space on this page on input line 54.
-
 Overfull \hbox (10.40756pt too wide) in paragraph at lines 64--66
 \TU/LibertinusSerif(0)/m/it/12 where $ [][][][] [][]$ computes a pseudo-remaind
 er of $[]$ mod $ []$. Then $[][] [] [][][][][][][] [][][][][][][][] []
@@ -3536,7 +3512,7 @@ that at every step $[]$, we have that $[][][][][] [][] []
 
  [52] (./project.aux)
 Package rerunfilecheck Info: File `project.out' has not changed.
-(rerunfilecheck)             Checksum: CF244EEF0116F020AD510351C116E5F3;4611.
+(rerunfilecheck)             Checksum: 398B6D4730EE5FA6A014CF4099D42038;4611.
 Package logreq Info: Writing requests to 'project.run.xml'.
 \openout1 = `project.run.xml'.
 
@@ -3544,7 +3520,7 @@ Package logreq Info: Writing requests to 'project.run.xml'.
 Here is how much of TeX's memory you used:
  44898 strings out of 476191
  923072 string characters out of 5812073
- 1848331 words of memory out of 5000000
+ 1848333 words of memory out of 5000000
  64871 multiletter control sequences out of 15000+600000
  483634 words of font info for 190 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
