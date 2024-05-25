@@ -70,64 +70,21 @@ Thus we can solve each of the positive, primitive formulas independently, and se
 
 We can use this theorem to discover geometric theorems in the complex plane. Let us look at an example from \cite{MONTES20101391}.
 
+\begin{example}
+  Consider a triangle with vertices $A = (-1, 0)$, $B = (1, 0)$ and $C = (a, b)$. Now, draw the three altitudes of the triangle $ABC$, and label their basepoints $P_{1} = (x_{1}, y_{1})$, $P_{2} = (x_{2}, y_{2})$ and $P_{3} = (x_{3}, y_{3})$. We wish to determine when the triangle $P_{1}P_{2}P_{3}$ is isosceles with $|P_{1}P_{2}| = |P_{1}P_{3}|$.
 
-\begin{figure}[t]
-  \centering
-  \begin{subfigure}{0.4\textwidth}
-    \centering
-    \includegraphics[width=0.9\textwidth]{geogebra_setup.png}
-    \caption{A triangle with its orthic triangle drawn.}\label{fig:orthic_setup}
-  \end{subfigure}%
-  \begin{subfigure}{0.6\textwidth}
-    \centering
-    \includegraphics[width=0.9\textwidth]{geogebra_orthic.png}
-    \caption{A triangle with a non-obvious isosceles orthic triangle.}\label{fig:orthic_solution}
-  \end{subfigure}
-  \caption{Orthic triangles}\label{fig:orthic}
-\end{figure}
-
-\begin{example} \upshape
-  Consider a triangle with vertices $A = (-1, 0)$, $B = (1, 0)$ and $C = (a, b)$. Now, draw the three altitudes of the triangle $ABC$, and label their basepoints $P_{1} = (x_{1}, y_{1})$, $P_{2} = (x_{2}, y_{2})$ and $P_{3} = (x_{3}, y_{3})$, see figure~\ref{fig:orthic_setup}. The triangle $P_{1}P_{2}P_{3}$ is called the \textit{orthic} triangle of $ABC$. We wish to determine when the orthic triangle is isosceles with $|P_{1}P_{2}| = |P_{1}P_{3}|$.
-
-  To solve this problem, we produce a parametric ideal that describes the setup. First, observe that $x_{1} = a$ and $y1 = 0$. Hence, we make that substitution immediately. This also ensures that $P_{1}C$ is orthogonal to $AB$. Next, we need that the line $AP_{2}$ is orthogonal to the line $BC$. This means $0 = AP_{2} \cdot BC = (a - 1)(x_{2} + 1) + b y_{2}$. Similarly, to ensure that $BP_{3}$ is orthogonal to $AC$, we have $0 = (a + 1)(x_{3} - 1) + b y_{3}$. We also need to ensure that the points $P_{2}$ and $P_{3}$ lies on the edges of the triangle. This is done by forcing $0 = b(x_{2} - 1) - (a - 1)y_{2}$ and similarly $0 = b(x_{3} + 1) - (a + 1)y_{3}$. Hence, the following ideal describes the setup:
+  To solve this problem, we produce a parametric ideal that describes the setup. First, observe that $x_{1} = a$ and $y1 = 0$. Hence, we make that substitution immediately. This also ensures that $P_{1}C$ is orthogonal to $AB$. Next, we need that the line $AP_{2}$ is orthogonal to the line $BC$. This means $0 = AP_{2} \cdot BC = b(x_{2} + 1) - (a - 1)y_{2}$. Similarly, to ensure that $BP_{3}$ is orthogonal to $AC$, we have $0 = b(x_{3} - 1) - (a + 1)y_{3}$. We also need to ensure that the points $P_{2}$ and $P_{3}$ lies on the edges of the triangle. This is done by forcing $0 = b(x_{2} - a) + (1 - a)(y_{2} - b)$ and $0 = (y_{3} - b)(a + 1) - b(x3 - a)$. Hence, the following ideal describes the setup:
   \begin{align*}
-    I = \langle\; &(a - 1)(x_{2} + 1) + b y_{2}, \quad  b(x_{2} - 1) - (a - 1)y_{2}, \\
-                  &(a + 1)(x_{3} - 1) + b y_{3}, \quad  b(x_{3} + 1) - (a + 1)y_{3} \; \rangle
+    I = \langle\; &b(x_{2} + 1) - (a - 1)y_{2}, \quad  (1 - a)(y_{2} - b) + b(x_{2} - a), \\
+                &b(x_{3} - 1) - (a + 1)y_{3}, \quad  (1 + a)(y_{3} - b) - b(x_{3} - a) \; \rangle
   \end{align*}
 
   We want to determine for which values of $a$ and $b$ we have that $\,|P_{1} P_{2}| = |P_{1} P_{3}|$, i.e.\ that $\,0 = (x_{3} - a)^{2} + y_{3}^{2} - (x_{2} - a)^{2} + y_{2}^{2}$. This is equivalent to asking whether $\sigma(f) \in \langle \sigma(I) \rangle$ for some specialization $\sigma : \C[a, b] \to \C$.
 
-  To answer this question, we can use the output of $\mathbf{CGS}(I)$. It returns several segments, but most of them has the condition $b = 0$, leading to a degenerate triangle. There is only one case, which is interesting:
 
-  \[V(0) \setminus \V((a^{2} + 2a + b^{2} + 1)(a^{2} - 2a + b^{2} + 1)b)\;, \; G\] where
-  \begin{align*}
- G = \{\; &(a^2 + 2a + b^2 + 1)y_3 - 2ab - 2b \\
-          &(a^2 - 2a + b^2 + 1)y_2 + 2ab - 2b \\
-          &(a^2 + 2a + b^2 + 1)x_3 - a^2 - 2a + b^2 - 1 \\
-          &(a^2 - 2a + b^2 + 1)x_2 + a^2 - 2a - b^2 + 1 \; \}
-  \end{align*}
 
-  To determine whether $f$ lies in this segment, we compute a pseudo-remainder of $f$ modulo $G$, which gives
-  \begin{align*}
-    r = &-4 a^{17} - 24 a^{15} b^2 + 32 a^{15} - 56 a^{13} b^4 + 120*a^{13} b^2 - 112 a^{13} - 56 a^{11} b^6 + \\
-        &144 a^{11} b^4 - 216 a^{11} b^2 + 224 a^{11} + 40 a^9 b^6 - 72 a^9 b^4 + 120 a^9 b^2 - 280 a^9 + 56 a^7 b^{10} + \\
-        &16 a^7 b^6 - 32 a^7 b^4 + 120*a^7 b^2 + 224 a^7 + 56 a^5 b^{12} + 72 a^5 b^{10} + 16 a^5 b^6 - 72 a^5 b^4 -  \\
-        &216 a^5 b^2 - 112 a^5 + 24 a^3 b^{14} + 80 a^3 b^{12} + 72 a^3 b^{10} + 40 a^3 b^6 + 144 a^3 b^4 + 120 a^3 b^2 + \\
-        &32 a^3 + 4 a b^{16} + 24 a b^{14} + 56 a b^{12} + 56 a b^{10} - 56 a b^6 - 56 a b^4 - 24 a b^2 - 4 a \\
-    = &-4(a^{2} + 2a + b^{2} + 1)^{3} \cdot (a^{2} - 2a + b^{2} + 1) \cdot a \cdot (a^{2} - b^{2} - 1) \cdot (a^{2} + b^{2} - 1)
-  \end{align*}
 
-  Since, $\sigma(f) \in \langle \sigma(I) \rangle$ if and only if $\sigma(r) = 0$, we just need to find values of $a$ and $b$, that set $r$ to zero. By considering the factorization, we have five factors, we can make 0, in order to get $r$ to be 0. However, both $a^{2} + 2a + b^{2} + 1$ and $a^{2} - 2a + b^{2} + 1$ cannot be $0$ by the constraints on the segment. So, we're left with three options.
-  \begin{enumerate}
-    \item $a = 0$ means that the triangle $ABC$ is isosceles. This immediately gives that $x_{3} = -x_{2}$ and $y_{2} = y_{3}$, which indeed gives us that $|P_{1}P_{2}| = |P_{1}P_{3}|$.
-    \item $a^{2} + b^{2} - 1 = 0$ In this case, the triangle has a right angle in vertex $C$, which implies that $P_{2} = P_{3} = C$. Hence, $|P_{1}P_{2}| = |P_{1}P_{3}|$.
-          \item $a^{2} - b^{2} - 1 = 0$. This equation traces out a hyperbola, and gives a surprising solution to the problem. Here, the orthic triangle does not sit inside the triangle $ABC$, and the points $P_{1}, P_{2}$ and $P_{3}$ might not be between the vertices. Instead, they lie on the infinite lines described by the vertices. See figure~\ref{fig:orthic_solution}.
-  \end{enumerate}
-
-  We also get that for every other value of $a$ and $b$, we have $\sigma(r) \neq 0$ since $\C$ is an integral domain. Hence $\sigma(f) \notin \langle \sigma(I) \rangle$, meaning that the triangle does not have an isosceles orthic triangle. In this way, we have found nescessary and sufficient conditions for the geometric theorem.
 \end{example}
-
-It should be noted, that even though the example of finding an isosceles orthic triangle has been worked through in \cite{MONTES20101391}, the method is completely different. In that paper, they computed a Gröbner cover of $I + \langle f \rangle$. While their output is arguably simpler, the method described above has the benefit of being indifferent to the conclusion. In other words, if instead we wanted to ask whether a side of the orthic triangle was parallel to a side of $ABC$, we can do that immediately from $G$ using pseudo-divisions\footnote{The answer is rather boring: it never happens for a non-degenerate triangle.}. In the other approach, we would need to recompute the Gröbner system, which may well take a long time for more complex applications.
 
 
 
@@ -141,7 +98,7 @@ It should be noted, that even though the example of finding an isosceles orthic 
 
 
 \subsection[Bernds conjecture]{Bernds conjecture\footnote{Named such by Bernd Sturmfels in a private communication to the supervisor of this project.}}
-In the article~\cite{sturmfels}, Bernd Sturmfels states the following theorem without proof.
+In the article \cite{sturmfels}, Bernd Sturmfels states the following theorem without proof.
 
 \begin{theorem}
   Let $K$ be an algebraically closed field and $F = \{f_{1}, \dots, f_{k}\} \subset K[x_{1}, \dots, x_{n}]$ a finite set of polynomials. Assume that $\V(F) = \emptyset$ and consider the ideal $I = \langle y_{1} - f_{1}, \dots, y_{k} - f_{k} \rangle \subset K[x_{1}, \dots, x_{n}, y_{1}, \dots, y_{k}]$. Let $G$ be a Gröbner basis of $I$ with respect to the lexicographic order with $x_{1} > \dots > x_{n} > y_{1} > \dots > y_{k}$. Then $G$ contains a polynomial $p$ (called a final polynomial) such that
@@ -151,7 +108,7 @@ In the article~\cite{sturmfels}, Bernd Sturmfels states the following theorem wi
   \end{enumerate}
 \end{theorem}
 
-He writes that the proof is ``straightforward but fairly technical''. In a private communication\cite{NL_to_BS} with Sturmfels, he encourages us to write a proof or find a counterexample. He also writes, that the gist of the argument he had in mind was, was using specializations of Gröbner bases. Since since $\{x_{1}, \dots, x_{n}\} \gg \{y_{1}, \dots, y_{k}\}$, the Gröbner basis of $I$ should behave nicely when we specialize the $y_{i}$'s to zero. However, as we have seen, Gröbner bases can be most unstable under specializations. Indeed, the following counterexample disproves the theorem.
+He writes that the proof is ``straightforward but fairly technical''. In a private communication\cite{NL_to_BS} with Sturmfels, he encourages us to write a proof or find a counterexample. He also writes, that the gist of the argument he had in mind was, that since $\{x_{1}, \dots, x_{n}\} \gg \{y_{1}, \dots, y_{k}\}$, the Gröbner basis of $I$ will specialize to a Gröbner basis of $\langle F \rangle$, when we specialize the $y_{i}$'s to zero. However, this does not always hold. Indeed, the following counterexample disproves the theorem.
 
 \begin{example}\upshape
   Let $F = \{f_{1}, f_{2}\}$ where $f_{1} = x_{1} x_{2} + 1$ and $f_{2} = x_{2}$. Then, the corresponding ideal
@@ -191,9 +148,9 @@ However, parametric Gröbner bases can be quite expensive to compute since we ne
   $\sigma^{1}(G)$ contains a final polynomial.
 \end{theorem}
 \begin{proof}
-  As before, we only need to show that $\sigma^{1}(G)$ contains a polynomial satisfying the first property of final polynomials. Let $\sigma : K[X, Y] \to K[X]$ be the specialization setting $\sigma(y_{i}) = 0$ for every $i$ and let $H = \{\LC_{Y}(g) \mid g \in G, \LT(g) \notin K[X, Y], \LC_{X, Y}(g) \notin \langle Y \rangle\}$. If we have $0 \in \V(Y) \setminus \V(\lcm(H))$, then lemma~\ref{lem:grb_if_nmap_to_z_t}, gives us that $\sigma(\sigma^{1}(G))$ is a Gröbner basis of $\langle \sigma(I) \rangle = \langle F \rangle$. By the Nullstellensatz, $\langle F \rangle = \langle 1 \rangle$, so $\sigma(\sigma^{1}(G))$ has to contain a constant. This implies, that $\sigma^{1}(G)$ contains a polynomial $g$, satisfying the first condition of a final polynomial.
+  Let $\sigma : K[X, Y] \to K[X]$ be the specialization setting $y_{i} = 0$ for every $i$ and let $H = \{\LC_{Y}(g) \mid g \in G, \LT(g) \notin K[X, Y], \LC_{X, Y}(g) \notin \langle Y \rangle\}$. If we have $0 \in \V(Y) \setminus \V(\lcm(H))$, then lemma~\ref{lem:grb_if_nmap_to_z_t}, gives us that $\sigma(\sigma^{1}(G))$ is a Gröbner basis of $\langle \sigma(I) \rangle = \langle F \rangle$. By the Nullstellensatz, $\langle F \rangle = \langle 1 \rangle$, so $\sigma(\sigma^{1}(G))$ has to contain a constant. This implies, that $\sigma^{1}(G)$ contains a polynomial $g$, satisfying the first condition of a final polynomial. Since $\sigma^{1}(g) \in \langle \hat F \rangle$ by lemma~\ref{lem:seperation}, it also satisfies the second condition. Indeed, every generator of $\langle \hat F \rangle$ satisfies it, and the evaluation map is linear, so every element of $\langle \hat F \rangle$ satisfies it.
 
   Now, we just need that $0 \in \V(Y) \setminus \V(\lcm(H))$. Note that $\V(Y) = \{0\}$, so we just need that $0 \notin \V(\lcm(H))$. By lemma~\ref{lem:LC_U_notin_S} we have that $h \notin \langle Y \rangle$ for each $h \in H$. Since $\langle Y \rangle$ is a prime ideal, this implies that $\lcm(H) \notin \langle S \rangle$. Thus $0 \notin \V(\lcm(H))$.
 \end{proof}
 
-This counterexample and theorem was developed in colaboration with Peter Lundgaard, and resulted in an article\cite{Lundgaard_Poulsen}. In that article, it is also proven that it is enough to compute a Gröbner basis of $\langle y_{1} - z f_{1}, \dots, y_{k} - z f_{k} \rangle$. However, that proof requires a little more care, whereas this proof follows directly from the theory of parametric Gröbner bases.
+This counterexample and theorem was developed in colaboration with Peter Lundgaard, and resulted in an article\cite{Lundgaard_Poulsen}.

@@ -1,2 +1,2 @@
 project:
-	/usr/bin/xelatex -shell-escape project.tex
+	/usr/bin/xelatex -halt-on-error -shell-escape project.tex

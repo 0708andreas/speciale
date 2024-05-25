@@ -19,31 +19,559 @@
 
 \refsection{0}
   \datalist[entry]{nty/global//global/global}
-    \entry{rijke2022introduction}{misc}{}
-      \name{author}{1}{}{%
-        {{hash=b1bb80d57e903f657e4b411a28823e28}{%
-           family={Rijke},
-           familyi={R\bibinitperiod},
-           given={Egbert},
-           giveni={E\bibinitperiod}}}%
+    \entry{IVA}{book}{}
+      \name{author}{3}{}{%
+        {{hash=f491ad1431e56daa11842f8c7ad8aa73}{%
+           family={Cox},
+           familyi={C\bibinitperiod},
+           given={David\bibnamedelima A.},
+           giveni={D\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=8a72cf3903e931ba6c47c32f8d97825d}{%
+           family={Little},
+           familyi={L\bibinitperiod},
+           given={John},
+           giveni={J\bibinitperiod}}}%
+        {{hash=7b115c829c11f9161b7d7d62ffa17444}{%
+           family={O'Shea},
+           familyi={O\bibinitperiod},
+           given={Donal},
+           giveni={D\bibinitperiod}}}%
       }
-      \strng{namehash}{b1bb80d57e903f657e4b411a28823e28}
-      \strng{fullhash}{b1bb80d57e903f657e4b411a28823e28}
-      \strng{bibnamehash}{b1bb80d57e903f657e4b411a28823e28}
-      \strng{authorbibnamehash}{b1bb80d57e903f657e4b411a28823e28}
-      \strng{authornamehash}{b1bb80d57e903f657e4b411a28823e28}
-      \strng{authorfullhash}{b1bb80d57e903f657e4b411a28823e28}
-      \field{sortinit}{R}
-      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{4895c50bc6d55cb37ab32c7db167b82b}
+      \strng{fullhash}{4895c50bc6d55cb37ab32c7db167b82b}
+      \strng{bibnamehash}{4895c50bc6d55cb37ab32c7db167b82b}
+      \strng{authorbibnamehash}{4895c50bc6d55cb37ab32c7db167b82b}
+      \strng{authornamehash}{4895c50bc6d55cb37ab32c7db167b82b}
+      \strng{authorfullhash}{4895c50bc6d55cb37ab32c7db167b82b}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{eprintclass}{math.LO}
-      \field{eprinttype}{arXiv}
-      \field{title}{Introduction to Homotopy Type Theory}
-      \field{year}{2022}
-      \verb{eprint}
-      \verb 2212.11082
+      \field{title}{Ideals, Varieties, and Algorithms}
+      \field{year}{2015}
+    \endentry
+    \entry{Kalkbrener}{article}{}
+      \name{author}{1}{}{%
+        {{hash=d163df32cc310b537643232789dc8f3f}{%
+           family={Kalkbrener},
+           familyi={K\bibinitperiod},
+           given={Michael},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{d163df32cc310b537643232789dc8f3f}
+      \strng{fullhash}{d163df32cc310b537643232789dc8f3f}
+      \strng{bibnamehash}{d163df32cc310b537643232789dc8f3f}
+      \strng{authorbibnamehash}{d163df32cc310b537643232789dc8f3f}
+      \strng{authornamehash}{d163df32cc310b537643232789dc8f3f}
+      \strng{authorfullhash}{d163df32cc310b537643232789dc8f3f}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0747-7171}
+      \field{journaltitle}{Journal of Symbolic Computation}
+      \field{number}{1}
+      \field{title}{On the Stability of Gröbner Bases Under Specializations}
+      \field{volume}{24}
+      \field{year}{1997}
+      \field{pages}{51\bibrangedash 58}
+      \range{pages}{8}
+      \verb{doi}
+      \verb https://doi.org/10.1006/jsco.1997.0113
       \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S0747717197901139
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S0747717197901139
+      \endverb
+    \endentry
+    \entry{10.1145/1837934.1837946}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=79ae193c185dc98fb2b7f4ece0ec1fb4}{%
+           family={Kapur},
+           familyi={K\bibinitperiod},
+           given={Deepak},
+           giveni={D\bibinitperiod}}}%
+        {{hash=0702e48f8f70258a4cd2ef2ff0d9ddd8}{%
+           family={Sun},
+           familyi={S\bibinitperiod},
+           given={Yao},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=6febfd7fda62e1c77a555b50c9af4748}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Dingkang},
+           giveni={D\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Association for Computing Machinery}%
+      }
+      \strng{namehash}{78a01cd2d88f25ffacc0b660ec6543a9}
+      \strng{fullhash}{78a01cd2d88f25ffacc0b660ec6543a9}
+      \strng{bibnamehash}{78a01cd2d88f25ffacc0b660ec6543a9}
+      \strng{authorbibnamehash}{78a01cd2d88f25ffacc0b660ec6543a9}
+      \strng{authornamehash}{78a01cd2d88f25ffacc0b660ec6543a9}
+      \strng{authorfullhash}{78a01cd2d88f25ffacc0b660ec6543a9}
+      \field{extraname}{1}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 2010 International Symposium on Symbolic and Algebraic Computation}
+      \field{isbn}{9781450301503}
+      \field{series}{ISSAC '10}
+      \field{title}{A new algorithm for computing comprehensive Gröbner systems}
+      \field{year}{2010}
+      \field{pages}{29\bibrangedash 36}
+      \range{pages}{8}
+      \verb{doi}
+      \verb 10.1145/1837934.1837946
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1145/1837934.1837946
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1145/1837934.1837946
+      \endverb
+    \endentry
+    \entry{KAPUR201327}{article}{}
+      \name{author}{3}{}{%
+        {{hash=79ae193c185dc98fb2b7f4ece0ec1fb4}{%
+           family={Kapur},
+           familyi={K\bibinitperiod},
+           given={Deepak},
+           giveni={D\bibinitperiod}}}%
+        {{hash=0702e48f8f70258a4cd2ef2ff0d9ddd8}{%
+           family={Sun},
+           familyi={S\bibinitperiod},
+           given={Yao},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=6febfd7fda62e1c77a555b50c9af4748}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Dingkang},
+           giveni={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{78a01cd2d88f25ffacc0b660ec6543a9}
+      \strng{fullhash}{78a01cd2d88f25ffacc0b660ec6543a9}
+      \strng{bibnamehash}{78a01cd2d88f25ffacc0b660ec6543a9}
+      \strng{authorbibnamehash}{78a01cd2d88f25ffacc0b660ec6543a9}
+      \strng{authornamehash}{78a01cd2d88f25ffacc0b660ec6543a9}
+      \strng{authorfullhash}{78a01cd2d88f25ffacc0b660ec6543a9}
+      \field{extraname}{2}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0747-7171}
+      \field{journaltitle}{Journal of Symbolic Computation}
+      \field{note}{The International Symposium on Symbolic and Algebraic Computation}
+      \field{title}{An efficient algorithm for computing a comprehensive Gröbner system of a parametric polynomial system}
+      \field{volume}{49}
+      \field{year}{2013}
+      \field{pages}{27\bibrangedash 44}
+      \range{pages}{18}
+      \verb{doi}
+      \verb https://doi.org/10.1016/j.jsc.2011.12.015
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S0747717111002082
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S0747717111002082
+      \endverb
+    \endentry
+    \entry{10.1145/1993886.1993918}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=79ae193c185dc98fb2b7f4ece0ec1fb4}{%
+           family={Kapur},
+           familyi={K\bibinitperiod},
+           given={Deepak},
+           giveni={D\bibinitperiod}}}%
+        {{hash=0702e48f8f70258a4cd2ef2ff0d9ddd8}{%
+           family={Sun},
+           familyi={S\bibinitperiod},
+           given={Yao},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=6febfd7fda62e1c77a555b50c9af4748}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Dingkang},
+           giveni={D\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {San Jose, California, USA}%
+      }
+      \list{publisher}{1}{%
+        {Association for Computing Machinery}%
+      }
+      \strng{namehash}{78a01cd2d88f25ffacc0b660ec6543a9}
+      \strng{fullhash}{78a01cd2d88f25ffacc0b660ec6543a9}
+      \strng{bibnamehash}{78a01cd2d88f25ffacc0b660ec6543a9}
+      \strng{authorbibnamehash}{78a01cd2d88f25ffacc0b660ec6543a9}
+      \strng{authornamehash}{78a01cd2d88f25ffacc0b660ec6543a9}
+      \strng{authorfullhash}{78a01cd2d88f25ffacc0b660ec6543a9}
+      \field{extraname}{3}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 36th International Symposium on Symbolic and Algebraic Computation}
+      \field{isbn}{9781450306751}
+      \field{series}{ISSAC '11}
+      \field{title}{Computing comprehensive Gröbner systems and comprehensive Gröbner bases simultaneously}
+      \field{year}{2011}
+      \field{pages}{193\bibrangedash 200}
+      \range{pages}{8}
+      \verb{doi}
+      \verb 10.1145/1993886.1993918
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1145/1993886.1993918
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1145/1993886.1993918
+      \endverb
+      \keyw{Grobner basis,comprehensive grobner basis,comprehensive grobner system}
+    \endentry
+    \entry{NL_to_BS}{misc}{}
+      \name{author}{2}{}{%
+        {{hash=9aaa56ba46994e767e1d49bdeaf467ff}{%
+           family={Lauritzen},
+           familyi={L\bibinitperiod},
+           given={Niels},
+           giveni={N\bibinitperiod}}}%
+        {{hash=1146827b08c62c2c18700dd73b1dc482}{%
+           family={Sturmfels},
+           familyi={S\bibinitperiod},
+           given={Bernd},
+           giveni={B\bibinitperiod}}}%
+      }
+      \strng{namehash}{0d54d8d3d257019c9e74d8bdf1858db3}
+      \strng{fullhash}{0d54d8d3d257019c9e74d8bdf1858db3}
+      \strng{bibnamehash}{0d54d8d3d257019c9e74d8bdf1858db3}
+      \strng{authorbibnamehash}{0d54d8d3d257019c9e74d8bdf1858db3}
+      \strng{authornamehash}{0d54d8d3d257019c9e74d8bdf1858db3}
+      \strng{authorfullhash}{0d54d8d3d257019c9e74d8bdf1858db3}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{day}{6}
+      \field{howpublished}{Personal communication}
+      \field{month}{5}
+      \field{year}{2024}
+      \field{dateera}{ce}
+    \endentry
+    \entry{loustaunau1994introduction}{book}{}
+      \name{author}{1}{}{%
+        {{hash=4932ebf47ac2985864b661e123c85cdc}{%
+           family={Loustaunau},
+           familyi={L\bibinitperiod},
+           given={W.W.A.P.},
+           giveni={W\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {American Mathematical Soc.}%
+      }
+      \strng{namehash}{4932ebf47ac2985864b661e123c85cdc}
+      \strng{fullhash}{4932ebf47ac2985864b661e123c85cdc}
+      \strng{bibnamehash}{4932ebf47ac2985864b661e123c85cdc}
+      \strng{authorbibnamehash}{4932ebf47ac2985864b661e123c85cdc}
+      \strng{authornamehash}{4932ebf47ac2985864b661e123c85cdc}
+      \strng{authorfullhash}{4932ebf47ac2985864b661e123c85cdc}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{9780821872161}
+      \field{title}{An Introduction to Grobner Bases}
+      \field{year}{1994}
+      \verb{urlraw}
+      \verb https://books.google.dk/books?id=Caoxi78WaIAC
+      \endverb
+      \verb{url}
+      \verb https://books.google.dk/books?id=Caoxi78WaIAC
+      \endverb
+    \endentry
+    \entry{Lundgaard_Poulsen}{unpublished}{}
+      \name{author}{2}{}{%
+        {{hash=621cce43fffbc3a5e4f11cc61bc7a001}{%
+           family={Lundgaard},
+           familyi={L\bibinitperiod},
+           given={Peter},
+           giveni={P\bibinitperiod}}}%
+        {{hash=196863723c3bd11ad9475165e67a2254}{%
+           family={Poulsen},
+           familyi={P\bibinitperiod},
+           given={Andreas\bibnamedelima Bøgh},
+           giveni={A\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+      }
+      \strng{namehash}{f2a5dcab6349986aad6731d9b9069342}
+      \strng{fullhash}{f2a5dcab6349986aad6731d9b9069342}
+      \strng{bibnamehash}{f2a5dcab6349986aad6731d9b9069342}
+      \strng{authorbibnamehash}{f2a5dcab6349986aad6731d9b9069342}
+      \strng{authornamehash}{f2a5dcab6349986aad6731d9b9069342}
+      \strng{authorfullhash}{f2a5dcab6349986aad6731d9b9069342}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{unpublished}
+      \field{title}{Gröbner bases and Hilberts Nullstellensatz}
+      \field{year}{2024}
+    \endentry
+    \entry{MONTES20101391}{article}{}
+      \name{author}{2}{}{%
+        {{hash=2b1374fedecb2b20eaa91ef3125122e8}{%
+           family={Montes},
+           familyi={M\bibinitperiod},
+           given={Antonio},
+           giveni={A\bibinitperiod}}}%
+        {{hash=82617a3c1734f7fc499d2631ae09c0b2}{%
+           family={Wibmer},
+           familyi={W\bibinitperiod},
+           given={Michael},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{8a22c1d331d9cc5cd31e4c4044caf445}
+      \strng{fullhash}{8a22c1d331d9cc5cd31e4c4044caf445}
+      \strng{bibnamehash}{8a22c1d331d9cc5cd31e4c4044caf445}
+      \strng{authorbibnamehash}{8a22c1d331d9cc5cd31e4c4044caf445}
+      \strng{authornamehash}{8a22c1d331d9cc5cd31e4c4044caf445}
+      \strng{authorfullhash}{8a22c1d331d9cc5cd31e4c4044caf445}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0747-7171}
+      \field{journaltitle}{Journal of Symbolic Computation}
+      \field{note}{MEGA’2009}
+      \field{number}{12}
+      \field{title}{Gröbner bases for polynomial systems with parameters}
+      \field{volume}{45}
+      \field{year}{2010}
+      \field{pages}{1391\bibrangedash 1425}
+      \range{pages}{35}
+      \verb{doi}
+      \verb https://doi.org/10.1016/j.jsc.2010.06.017
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S0747717110000970
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S0747717110000970
+      \endverb
+    \endentry
+    \entry{sturmfels}{article}{}
+      \name{author}{1}{}{%
+        {{hash=1146827b08c62c2c18700dd73b1dc482}{%
+           family={Sturmfels},
+           familyi={S\bibinitperiod},
+           given={Bernd},
+           giveni={B\bibinitperiod}}}%
+      }
+      \strng{namehash}{1146827b08c62c2c18700dd73b1dc482}
+      \strng{fullhash}{1146827b08c62c2c18700dd73b1dc482}
+      \strng{bibnamehash}{1146827b08c62c2c18700dd73b1dc482}
+      \strng{authorbibnamehash}{1146827b08c62c2c18700dd73b1dc482}
+      \strng{authornamehash}{1146827b08c62c2c18700dd73b1dc482}
+      \strng{authorfullhash}{1146827b08c62c2c18700dd73b1dc482}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0747-7171}
+      \field{journaltitle}{Journal of Symbolic Computation}
+      \field{number}{5}
+      \field{title}{Computational algebraic geometry of projective configurations}
+      \field{volume}{11}
+      \field{year}{1991}
+      \field{pages}{595\bibrangedash 618}
+      \range{pages}{24}
+      \verb{doi}
+      \verb https://doi.org/10.1016/S0747-7171(08)80121-6
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S0747717108801216
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S0747717108801216
+      \endverb
+    \endentry
+    \entry{ss_algo}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=45d3f50815d9d329b4b695e8c237297d}{%
+           family={Suzuki},
+           familyi={S\bibinitperiod},
+           given={Akira},
+           giveni={A\bibinitperiod}}}%
+        {{hash=3a93264f1d2bdf130293983220f865ee}{%
+           family={Sato},
+           familyi={S\bibinitperiod},
+           given={Yosuke},
+           giveni={Y\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Association for Computing Machinery (ACM)}%
+      }
+      \strng{namehash}{dc0dae83cdbcbd0343db0066df6fe5e8}
+      \strng{fullhash}{dc0dae83cdbcbd0343db0066df6fe5e8}
+      \strng{bibnamehash}{dc0dae83cdbcbd0343db0066df6fe5e8}
+      \strng{authorbibnamehash}{dc0dae83cdbcbd0343db0066df6fe5e8}
+      \strng{authornamehash}{dc0dae83cdbcbd0343db0066df6fe5e8}
+      \strng{authorfullhash}{dc0dae83cdbcbd0343db0066df6fe5e8}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{We introduce a simple algorithm to compute comprehensive Gröbner bases. It requires only computations of reduced Gröbner bases in polynomial rings over ground fields. It is so simple that we can easily implement it on any computer algebra system that has a routine to compute reduced Gröbner bases. Our implementations on several computer algebra systems show that it is also sufficiently fast comparing with other existing algorithms.}
+      \field{isbn}{1595932763}
+      \field{series}{Proceedings of the International Symposium on Symbolic and Algebraic Computation, ISSAC}
+      \field{title}{A simple algorithm to compute comprehensive Gröbner bases using Gröbner bases}
+      \field{year}{2006}
+      \field{pages}{326\bibrangedash 331}
+      \range{pages}{6}
+      \verb{doi}
+      \verb 10.1145/1145768.1145821
+      \endverb
+      \keyw{Comprehensive Gröbner basis,Gröbner basis,Gröbner system}
+    \endentry
+    \entry{FOAG}{book}{}
+      \name{author}{1}{}{%
+        {{hash=fd27b54a95453be8ed6a0951d5bc5075}{%
+           family={Vakil},
+           familyi={V\bibinitperiod},
+           given={Ravi},
+           giveni={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{fd27b54a95453be8ed6a0951d5bc5075}
+      \strng{fullhash}{fd27b54a95453be8ed6a0951d5bc5075}
+      \strng{bibnamehash}{fd27b54a95453be8ed6a0951d5bc5075}
+      \strng{authorbibnamehash}{fd27b54a95453be8ed6a0951d5bc5075}
+      \strng{authornamehash}{fd27b54a95453be8ed6a0951d5bc5075}
+      \strng{authorfullhash}{fd27b54a95453be8ed6a0951d5bc5075}
+      \field{sortinit}{V}
+      \field{sortinithash}{afb52128e5b4dc4b843768c0113d673b}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{{\sc The Rising Sea} -- Foundations of Algebraic Geometry}
+    \endentry
+    \entry{WEISPFENNING2003669}{article}{}
+      \name{author}{1}{}{%
+        {{hash=0a89b4f0e501743a91771783bbfeb6e1}{%
+           family={Weispfenning},
+           familyi={W\bibinitperiod},
+           given={Volker},
+           giveni={V\bibinitperiod}}}%
+      }
+      \strng{namehash}{0a89b4f0e501743a91771783bbfeb6e1}
+      \strng{fullhash}{0a89b4f0e501743a91771783bbfeb6e1}
+      \strng{bibnamehash}{0a89b4f0e501743a91771783bbfeb6e1}
+      \strng{authorbibnamehash}{0a89b4f0e501743a91771783bbfeb6e1}
+      \strng{authornamehash}{0a89b4f0e501743a91771783bbfeb6e1}
+      \strng{authorfullhash}{0a89b4f0e501743a91771783bbfeb6e1}
+      \field{extraname}{1}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0747-7171}
+      \field{journaltitle}{Journal of Symbolic Computation}
+      \field{note}{ISSAC 2002}
+      \field{number}{3}
+      \field{title}{Canonical comprehensive Gröbner bases}
+      \field{volume}{36}
+      \field{year}{2003}
+      \field{pages}{669\bibrangedash 683}
+      \range{pages}{15}
+      \verb{doi}
+      \verb https://doi.org/10.1016/S0747-7171(03)00099-3
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S0747717103000993
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S0747717103000993
+      \endverb
+    \endentry
+    \entry{Weispfenning}{article}{}
+      \name{author}{1}{}{%
+        {{hash=0a89b4f0e501743a91771783bbfeb6e1}{%
+           family={Weispfenning},
+           familyi={W\bibinitperiod},
+           given={Volker},
+           giveni={V\bibinitperiod}}}%
+      }
+      \strng{namehash}{0a89b4f0e501743a91771783bbfeb6e1}
+      \strng{fullhash}{0a89b4f0e501743a91771783bbfeb6e1}
+      \strng{bibnamehash}{0a89b4f0e501743a91771783bbfeb6e1}
+      \strng{authorbibnamehash}{0a89b4f0e501743a91771783bbfeb6e1}
+      \strng{authornamehash}{0a89b4f0e501743a91771783bbfeb6e1}
+      \strng{authorfullhash}{0a89b4f0e501743a91771783bbfeb6e1}
+      \field{extraname}{2}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Let K be an integral domain and let S be the polynomial ring K[U1,.., Um; X1,.., Xn]. For any finite F ⊆ S, we construct a comprehensive Gröbner basis of the ideal Id(F), i.e. a finite ideal basis of Id(F) that is a Gröbner basis of Id(F) in K′[X1, …, Xn] for every specialization of the parameters U1, …, Um in an arbitrary field K1. We show that this construction can be performed with the same worst case degree bounds in the main variables Xi, as for ordinary Gröbner bases; moreover, examples computed in an ALDES/SAC-2 implementation show that the construction is of practical value. Comprehensive Gröbner bases admit numerous applications to parametric problems in algebraic geometry; in particular, they yield a fast elimination of quantifier-blocks in algebraically closed fields.}
+      \field{issn}{0747-7171}
+      \field{journaltitle}{Journal of Symbolic Computation}
+      \field{number}{1}
+      \field{title}{Comprehensive Gröbner bases}
+      \field{volume}{14}
+      \field{year}{1992}
+      \field{pages}{1\bibrangedash 29}
+      \range{pages}{29}
+      \verb{doi}
+      \verb https://doi.org/10.1016/0747-7171(92)90023-W
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/074771719290023W
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/074771719290023W
+      \endverb
+    \endentry
+    \entry{grb_covers}{article}{}
+      \name{author}{1}{}{%
+        {{hash=82617a3c1734f7fc499d2631ae09c0b2}{%
+           family={Wibmer},
+           familyi={W\bibinitperiod},
+           given={Michael},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{82617a3c1734f7fc499d2631ae09c0b2}
+      \strng{fullhash}{82617a3c1734f7fc499d2631ae09c0b2}
+      \strng{bibnamehash}{82617a3c1734f7fc499d2631ae09c0b2}
+      \strng{authorbibnamehash}{82617a3c1734f7fc499d2631ae09c0b2}
+      \strng{authornamehash}{82617a3c1734f7fc499d2631ae09c0b2}
+      \strng{authorfullhash}{82617a3c1734f7fc499d2631ae09c0b2}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0747-7171}
+      \field{journaltitle}{Journal of Symbolic Computation}
+      \field{number}{8}
+      \field{title}{Gröbner bases for families of affine or projective schemes}
+      \field{volume}{42}
+      \field{year}{2007}
+      \field{pages}{803\bibrangedash 834}
+      \range{pages}{32}
+      \verb{doi}
+      \verb https://doi.org/10.1016/j.jsc.2007.05.001
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S0747717107000624
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S0747717107000624
+      \endverb
+      \keyw{Comprehensive Gröbner basis,Gröbner cover,Canonical decomposition,Parametric polynomial system}
     \endentry
   \enddatalist
 \endrefsection

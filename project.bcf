@@ -159,7 +159,7 @@
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>sortlocale</bcf:key>
-      <bcf:value>nil</bcf:value>
+      <bcf:value>english</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>sortingtemplatename</bcf:key>
@@ -2344,8 +2344,53 @@
     <bcf:datasource type="file" datatype="bibtex" glob="false">refs.bib</bcf:datasource>
   </bcf:bibdata>
   <bcf:section number="0">
-    <bcf:citekey order="1">rijke2022introduction</bcf:citekey>
-    <bcf:citekey order="2">rijke2022introduction</bcf:citekey>
+    <bcf:citekey order="1">IVA</bcf:citekey>
+    <bcf:citekey order="2">Weispfenning</bcf:citekey>
+    <bcf:citekey order="3">KAPUR201327</bcf:citekey>
+    <bcf:citekey order="4">10.1145/1837934.1837946</bcf:citekey>
+    <bcf:citekey order="5">WEISPFENNING2003669</bcf:citekey>
+    <bcf:citekey order="6">grb_covers</bcf:citekey>
+    <bcf:citekey order="7">MONTES20101391</bcf:citekey>
+    <bcf:citekey order="8">Kalkbrener</bcf:citekey>
+    <bcf:citekey order="9">MONTES20101391</bcf:citekey>
+    <bcf:citekey order="10">ss_algo</bcf:citekey>
+    <bcf:citekey order="11">sturmfels</bcf:citekey>
+    <bcf:citekey order="12">loustaunau1994introduction</bcf:citekey>
+    <bcf:citekey order="13">IVA</bcf:citekey>
+    <bcf:citekey order="14">Weispfenning</bcf:citekey>
+    <bcf:citekey order="15">Kalkbrener</bcf:citekey>
+    <bcf:citekey order="16">IVA</bcf:citekey>
+    <bcf:citekey order="17">grb_covers</bcf:citekey>
+    <bcf:citekey order="18">MONTES20101391</bcf:citekey>
+    <bcf:citekey order="19">ss_algo</bcf:citekey>
+    <bcf:citekey order="20">Weispfenning</bcf:citekey>
+    <bcf:citekey order="21">ss_algo</bcf:citekey>
+    <bcf:citekey order="22">10.1145/1993886.1993918</bcf:citekey>
+    <bcf:citekey order="23">grb_covers</bcf:citekey>
+    <bcf:citekey order="24">grb_covers</bcf:citekey>
+    <bcf:citekey order="25">FOAG</bcf:citekey>
+    <bcf:citekey order="26">FOAG</bcf:citekey>
+    <bcf:citekey order="27">Weispfenning</bcf:citekey>
+    <bcf:citekey order="28">MONTES20101391</bcf:citekey>
+    <bcf:citekey order="29">MONTES20101391</bcf:citekey>
+    <bcf:citekey order="30">sturmfels</bcf:citekey>
+    <bcf:citekey order="31">NL_to_BS</bcf:citekey>
+    <bcf:citekey order="32">Lundgaard_Poulsen</bcf:citekey>
+    <bcf:citekey order="33">IVA</bcf:citekey>
+    <bcf:citekey order="34">Weispfenning</bcf:citekey>
+    <bcf:citekey order="35">KAPUR201327</bcf:citekey>
+    <bcf:citekey order="36">10.1145/1837934.1837946</bcf:citekey>
+    <bcf:citekey order="37">WEISPFENNING2003669</bcf:citekey>
+    <bcf:citekey order="38">grb_covers</bcf:citekey>
+    <bcf:citekey order="39">MONTES20101391</bcf:citekey>
+    <bcf:citekey order="40">Kalkbrener</bcf:citekey>
+    <bcf:citekey order="41">ss_algo</bcf:citekey>
+    <bcf:citekey order="42">sturmfels</bcf:citekey>
+    <bcf:citekey order="43">loustaunau1994introduction</bcf:citekey>
+    <bcf:citekey order="44">10.1145/1993886.1993918</bcf:citekey>
+    <bcf:citekey order="45">FOAG</bcf:citekey>
+    <bcf:citekey order="46">NL_to_BS</bcf:citekey>
+    <bcf:citekey order="47">Lundgaard_Poulsen</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nty">

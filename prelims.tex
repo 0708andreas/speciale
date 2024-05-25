@@ -1,0 +1,39 @@
+\section{Preliminaries}
+This project will assume familiarity with commutative ring theory and multivariate polynomials over fields. A familiarity with Gröbner bases will be beneficial, but we will introduce the necessary notations and definitions. Let $A$ be a Noetherian, commutative ring and $X = (x_{1}, x_{2}, \dots, x_{n})$ be an ordered collection of symbols. We denote the ring of polynomials in these variables $A[X]$. Given two (disjoint) sets of variables $X$ and $Y$, we will use $A[X, Y]$ to mean $A[X \cup Y]$, which is isomorphic to $A[X][Y]$. A monomial is a product of variables and a term is a monomial times a coefficient. We denote a monomial as $X^{v}$ for some $v \in \N^{n}$. For a polynomial \[f = \sum_{v \in \N^{n}} a_{v}X^{v}\] we denote the coefficient of the term $t = a_{v}X^{v}$ by $\coef(f, X^{v})$.
+
+\begin{definition}[Monomial order, leading term]
+  A \textit{monomial order} is a well-order\footnote{A total order, for which any chain $a > b > c > \dots$ must be finite.} $<$ on the set of monomials satisfying that $u < v \implies wu < wv$.
+
+  Given a monomial order $<$ and a polynomial $f \in A[X]$, the \textit{leading term} of $f$ is the term with the largest monomial w.r.t. $<$ and is denoted by $\LT_{<}(f)$. If $\LT_{<}(f) = a\cdot m$ for some monomial $m$ and $a \in A$, then we denote $\LM_{<}(f) = m$ and $\LC_{<}(f) = a$. If $<$ is clear from context, it will be omitted.
+\end{definition}
+
+These definitions naturally extend to sets of polynomials, so given a set of polynomials $F \subset A[X]$, we denote $\LM_{<}(F) := \{\LM_{<}(f) \mid f \in F\}$. When $I \subset A[X]$ is an ideal, we use $\LM_{<}(I)$ to denote $\langle \LM_{<}(I) \rangle$ to ease notation, and similarly for $\LT_{<}(I)$. With this, we can give the definition of a Gröbner basis. Usually, this is done over a field, for a reference on Gröbner bases over rings, see \cite{loustaunau1994introduction}. The standard reference on Gröbner bases is \cite{IVA}.
+
+\begin{definition}[Gröbner basis]
+  Let $G \subset A[X]$ be a finite set of polynomials and $<$ be a monomial order. We say $G$ is a \textit{Gröbner basis} if
+  $\langle \LT_{<}(G) \rangle = \LT_{<}(\langle G \rangle )$.
+\end{definition}
+
+Note, that if $A$ is a field, then it is enough that $\langle \LM_{<}(G) \rangle = \LM_{<}(\langle G \rangle)$. We say $G$ is a Gröbner basis for an ideal $I$ if $G$ is a Gröbner basis and $\langle G \rangle = I$. We will also have to use an alternative description of Gröbner bases.
+
+\begin{definition}[Reduction modulo]
+  Let $f, g \in A[X]$ be polynomials and $<$ be a term order. We say $f$ \textit{reduces modulo} $g$ if $\LT_{<}(g) \mid \LT_{<}(f)$, since in that case $\LT_{<}(\LC_{<}(g)\cdot f - p\cdot \LC_{<}(f) \cdot g) < \LT_{<}(f)$ where $\LM_{<}(f) = p \cdot \LM_{<}(g)$. We say a polynomial reduces modulo a set of polynomials if it reduces modulo any polynomial in the set. We say a polynomial \textit{reduces to zero} if there is a chain of reductions that end in the zero polynomial.
+\end{definition}
+
+\begin{theorem}\label{thm:grb}
+  Let $G \subset A[X]$. Then $G$ is a Gröbner basis if and only if every polynomial in $\langle G \rangle$ reduces to 0 modulo $G$.
+\end{theorem}
+\begin{proof}
+  A good exercise.
+\end{proof}
+
+A Gröbner basis need not be unique. Indeed, given a Gröbner basis G, we can add any element of $\langle G \rangle$ to $G$ and it is still a Gröbner basis. However, reduced Gröbner bases are unique.
+
+\begin{definition}[Reduced Gröbner basis]
+  A Gröbner basis $G$ is called \textit{reduced} if, for all $g \in G$, $g$ is a monic polynomial (i.e. $\LC_{<}(g) = 1$) and the only term of $g$ in $\LT_{<}(\langle G \rangle)$ is $\LT_{<}(g)$.
+\end{definition}
+\begin{theorem}
+  Let $I \subset k[X]$ be an ideal in a polynomial ring over a field. Then there is a unique reduced Gröbner basis of $I$.
+\end{theorem}
+
+It is worth noting, that the second condition of reduced Gröbner bases is equivalent to saying that every term of $g$ is irreducible modulo $G$, except for its leading term.
