@@ -50,7 +50,7 @@ Thus we can solve each of the positive, primitive formulas independently, and se
 
 
 
-\subsection{Parametric ideal membership}
+\subsection{Parametric ideal membership}\label{sec:ps_div_app}
 
 
 \begin{theorem}
@@ -89,35 +89,36 @@ We can use this theorem to discover geometric theorems in the complex plane. Let
 \begin{example} \upshape
   Consider a triangle with vertices $A = (-1, 0)$, $B = (1, 0)$ and $C = (a, b)$. Now, draw the three altitudes of the triangle $ABC$, and label their basepoints $P_{1} = (x_{1}, y_{1})$, $P_{2} = (x_{2}, y_{2})$ and $P_{3} = (x_{3}, y_{3})$, see figure~\ref{fig:orthic_setup}. The triangle $P_{1}P_{2}P_{3}$ is called the \textit{orthic} triangle of $ABC$. We wish to determine when the orthic triangle is isosceles with $|P_{1}P_{2}| = |P_{1}P_{3}|$.
 
-  To solve this problem, we produce a parametric ideal that describes the setup. First, observe that $x_{1} = a$ and $y1 = 0$. Hence, we make that substitution immediately. This also ensures that $P_{1}C$ is orthogonal to $AB$. Next, we need that the line $AP_{2}$ is orthogonal to the line $BC$. This means $0 = AP_{2} \cdot BC = (a - 1)(x_{2} + 1) + b y_{2}$. Similarly, to ensure that $BP_{3}$ is orthogonal to $AC$, we have $0 = (a + 1)(x_{3} - 1) + b y_{3}$. We also need to ensure that the points $P_{2}$ and $P_{3}$ lies on the edges of the triangle. This is done by forcing $0 = b(x_{2} - 1) - (a - 1)y_{2}$ and similarly $0 = b(x_{3} + 1) - (a + 1)y_{3}$. Hence, the following ideal describes the setup:
+  To solve this problem, we produce a parametric ideal that describes the setup. First, observe that $x_{1} = a$ and $y1 = 0$, so we make that substitution immediately. This also ensures that the line $P_{1}C$ is orthogonal to the line $AB$. Next, we need that the line $BP_{2}$ is orthogonal to the line $AC$. This means $0 = BP_{2} \cdot AC = (a + 1)(x_{2} - 1) + b y_{2}$. Similarly, to ensure that $AP_{3}$ is orthogonal to $BC$, we have $0 = (a - 1)(x_{3} + 1) + b y_{3}$. We also need to ensure that the points $P_{2}$ and $P_{3}$ lies on the edges of the triangle. This is done by forcing $0 = b(x_{2} + 1) - (a + 1)y_{2}$ and similarly $0 = b(x_{3} - 1) - (a - 1)y_{3}$. Hence, the following ideal describes the setup:
   \begin{align*}
-    I = \langle\; &(a - 1)(x_{2} + 1) + b y_{2}, \quad  b(x_{2} - 1) - (a - 1)y_{2}, \\
-                  &(a + 1)(x_{3} - 1) + b y_{3}, \quad  b(x_{3} + 1) - (a + 1)y_{3} \; \rangle
+    I = \langle\; &(a + 1)(x_{2} - 1) + b y_{2}, \quad  b(x_{2} + 1) - (a + 1)y_{2}, \\
+                  &(a - 1)(x_{3} + 1) + b y_{3}, \quad  b(x_{3} - 1) - (a - 1)y_{3} \; \rangle
   \end{align*}
 
-  We want to determine for which values of $a$ and $b$ we have that $\,|P_{1} P_{2}| = |P_{1} P_{3}|$, i.e.\ that $\,0 = (x_{3} - a)^{2} + y_{3}^{2} - (x_{2} - a)^{2} + y_{2}^{2}$. This is equivalent to asking whether $\sigma(f) \in \langle \sigma(I) \rangle$ for some specialization $\sigma : \C[a, b] \to \C$.
+  We want to determine for which values of $a$ and $b$ we have that $\,|P_{1} P_{2}| = |P_{1} P_{3}|$, i.e.\ that $\,0 = f = (x_{3} - a)^{2} + y_{3}^{2} - (x_{2} - a)^{2} + y_{2}^{2}$. This is equivalent to asking whether $\sigma(f) \in \langle \sigma(I) \rangle$ for some specialization $\sigma : \C[a, b] \to \C$.
 
   To answer this question, we can use the output of $\mathbf{CGS}(I)$. It returns several segments, but most of them has the condition $b = 0$, leading to a degenerate triangle. There is only one case, which is interesting:
 
   \[V(0) \setminus \V((a^{2} + 2a + b^{2} + 1)(a^{2} - 2a + b^{2} + 1)b)\;, \; G\] where
   \begin{align*}
- G = \{\; &(a^2 + 2a + b^2 + 1)y_3 - 2ab - 2b \\
-          &(a^2 - 2a + b^2 + 1)y_2 + 2ab - 2b \\
-          &(a^2 + 2a + b^2 + 1)x_3 - a^2 - 2a + b^2 - 1 \\
-          &(a^2 - 2a + b^2 + 1)x_2 + a^2 - 2a - b^2 + 1 \; \}
+ G = \{\; &(a^2 - 2a + b^2 + 1)y_3 + 2ab - 2b \\
+          &(a^2 + 2a + b^2 + 1)y_2 - 2ab - 2b \\
+          &(a^2b - 2ab + b^3 + b)x_3 + a^2b - 2ab - b^3 + b \\
+          &(a^2b + 2ab + b^3 + b)x_2 - a^2b - 2ab + b^3 - b \; \}
   \end{align*}
 
   To determine whether $f$ lies in this segment, we compute a pseudo-remainder of $f$ modulo $G$, which gives
   \begin{align*}
-    r = &-4 a^{17} - 24 a^{15} b^2 + 32 a^{15} - 56 a^{13} b^4 + 120*a^{13} b^2 - 112 a^{13} - 56 a^{11} b^6 + \\
-        &144 a^{11} b^4 - 216 a^{11} b^2 + 224 a^{11} + 40 a^9 b^6 - 72 a^9 b^4 + 120 a^9 b^2 - 280 a^9 + 56 a^7 b^{10} + \\
-        &16 a^7 b^6 - 32 a^7 b^4 + 120*a^7 b^2 + 224 a^7 + 56 a^5 b^{12} + 72 a^5 b^{10} + 16 a^5 b^6 - 72 a^5 b^4 -  \\
-        &216 a^5 b^2 - 112 a^5 + 24 a^3 b^{14} + 80 a^3 b^{12} + 72 a^3 b^{10} + 40 a^3 b^6 + 144 a^3 b^4 + 120 a^3 b^2 + \\
-        &32 a^3 + 4 a b^{16} + 24 a b^{14} + 56 a b^{12} + 56 a b^{10} - 56 a b^6 - 56 a b^4 - 24 a b^2 - 4 a \\
-    = &-4(a^{2} + 2a + b^{2} + 1)^{3} \cdot (a^{2} - 2a + b^{2} + 1) \cdot a \cdot (a^{2} - b^{2} - 1) \cdot (a^{2} + b^{2} - 1)
+    r = &4 a^{17} b^4 + 24 a^{15} b^6 - 32 a^{15} b^4 + 56 a^{13} b^8 - 120 a^{13} b^6 + 112 a^{13} b^4 + 56 a^{11} b^{10} - \\
+        &144 a^{11} b^8 + 216 a^{11} b^6 - 224 a^{11} b^4 - 40 a^9 b^{10} + 72 a^9 b^8 - 120 a^9 b^6 + 280 a^9 b^4 - \\
+        &56 a^7 b^{14} - 16 a^7 b^{10} + 32 a^7 b^8 - 120 a^7 b^6 - 224 a^7 b^4 - 56 a^5 b^{16} - 72 a^5 b^{14} - \\
+        &16 a^5 b^{10} + 72 a^5 b^8 + 216 a^5 b^6 + 112 a^5 b^4 - 24 a^3 b^{18} - 80 a^3 b^{16} - 72 a^3 b^{14} - \\
+        &40 a^3 b^{10} - 144 a^3 b^8 - 120 a^3 b^6 - 32 a^3 b^4 - 4 a b^{20} - 24 a b^{18} - 56 a b^{16} - 56 a b^{14} + \\
+        &56 a b^{10} + 56 a b^8 + 24 a b^6 + 4 a b^4 \\
+    = &4 b^{4}\cdot (a^{2} + 2a + b^{2} + 1)^{3} \cdot (a^{2} - 2a + b^{2} + 1)^{3} \cdot a \cdot (a^{2} - b^{2} - 1) \cdot (a^{2} + b^{2} - 1)
   \end{align*}
 
-  Since, $\sigma(f) \in \langle \sigma(I) \rangle$ if and only if $\sigma(r) = 0$, we just need to find values of $a$ and $b$, that set $r$ to zero. By considering the factorization, we have five factors, we can make 0, in order to get $r$ to be 0. However, both $a^{2} + 2a + b^{2} + 1$ and $a^{2} - 2a + b^{2} + 1$ cannot be $0$ by the constraints on the segment. So, we're left with three options.
+  Since, $\sigma(f) \in \langle \sigma(I) \rangle$ if and only if $\sigma(r) = 0$, we just need to find values of $a$ and $b$, that set $r$ to zero. By considering the factorization, we have five factors, we can make 0, in order to get $r$ to be 0. However, both $a^{2} + 2a + b^{2} + 1$ and $a^{2} - 2a + b^{2} + 1$ cannot be $0$ by the conditions on the segment. So, we're left with three options.
   \begin{enumerate}
     \item $a = 0$ means that the triangle $ABC$ is isosceles. This immediately gives that $x_{3} = -x_{2}$ and $y_{2} = y_{3}$, which indeed gives us that $|P_{1}P_{2}| = |P_{1}P_{3}|$.
     \item $a^{2} + b^{2} - 1 = 0$ In this case, the triangle has a right angle in vertex $C$, which implies that $P_{2} = P_{3} = C$. Hence, $|P_{1}P_{2}| = |P_{1}P_{3}|$.
@@ -140,7 +141,7 @@ It should be noted, that even though the example of finding an isosceles orthic 
 
 
 
-\subsection[Bernds conjecture]{Bernds conjecture\footnote{Named such by Bernd Sturmfels in a private communication to the supervisor of this project.}}
+\subsection[Bernds conjecture]{Bernds conjecture\footnote{Named such by Bernd Sturmfels in a private communication to the supervisor of this project.}}\label{sec:bernd}
 In the article~\cite{sturmfels}, Bernd Sturmfels states the following theorem without proof.
 
 \begin{theorem}
