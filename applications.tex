@@ -95,7 +95,20 @@ We can use this theorem to discover geometric theorems in the complex plane. Let
                   &(a - 1)(x_{3} + 1) + b y_{3}, \quad  b(x_{3} - 1) - (a - 1)y_{3} \; \rangle
   \end{align*}
 
+  If you're following along with the code, you here is the setup:
+  \begin{minted}{julia}
+    using AbstractAlgebra
+    R, (a, b) = QQ[:a, :b]
+    S, (x2, x3, y2, y3) = R[:x2, :x3, :y2, :y3]
+    I = [(a + 1)*(x2 - 1) + b*y2, b*(x2 + 1) - (a + 1)*y2, (a - 1)*(x3 + 1) + b*y3, b*(x3 - 1) - (a - 1)*y3]
+  \end{minted}
+
   We want to determine for which values of $a$ and $b$ we have that $\,|P_{1} P_{2}| = |P_{1} P_{3}|$, i.e.\ that $\,0 = f = (x_{3} - a)^{2} + y_{3}^{2} - (x_{2} - a)^{2} + y_{2}^{2}$. This is equivalent to asking whether $\sigma(f) \in \langle \sigma(I) \rangle$ for some specialization $\sigma : \C[a, b] \to \C$.
+
+  \begin{minted}{julia}
+    f = (x3 - a)^2 + y3^2 - (x2 - a)^2 - y2^2
+  \end{minted}
+
 
   To answer this question, we can use the output of $\mathbf{CGS}(I)$. It returns several segments, but most of them has the condition $b = 0$, leading to a degenerate triangle. There is only one case, which is interesting:
 
@@ -107,7 +120,13 @@ We can use this theorem to discover geometric theorems in the complex plane. Let
           &(a^2b + 2ab + b^3 + b)x_2 - a^2b - 2ab + b^3 - b \; \}
   \end{align*}
 
-  To determine whether $f$ lies in this segment, we compute a pseudo-remainder of $f$ modulo $G$, which gives
+  To determine whether $f$ lies in this segment, we compute a pseudo-remainder of $f$ modulo $G$. Like this in Julia:
+
+  \begin{minted}{julia}
+    G = CGS(I)[1][3]
+    r = pseudo_reduce(f, G)[2]
+  \end{minted}
+  This gives
   \begin{align*}
     r = &4 a^{17} b^4 + 24 a^{15} b^6 - 32 a^{15} b^4 + 56 a^{13} b^8 - 120 a^{13} b^6 + 112 a^{13} b^4 + 56 a^{11} b^{10} - \\
         &144 a^{11} b^8 + 216 a^{11} b^6 - 224 a^{11} b^4 - 40 a^9 b^{10} + 72 a^9 b^8 - 120 a^9 b^6 + 280 a^9 b^4 - \\
@@ -117,6 +136,7 @@ We can use this theorem to discover geometric theorems in the complex plane. Let
         &56 a b^{10} + 56 a b^8 + 24 a b^6 + 4 a b^4 \\
     = &4 b^{4}\cdot (a^{2} + 2a + b^{2} + 1)^{3} \cdot (a^{2} - 2a + b^{2} + 1)^{3} \cdot a \cdot (a^{2} - b^{2} - 1) \cdot (a^{2} + b^{2} - 1)
   \end{align*}
+  Factorizing multivariate polynomials isn't in Julia yet, unfortunately. It can be done in Macaulay2 or WolframAlpha.
 
   Since, $\sigma(f) \in \langle \sigma(I) \rangle$ if and only if $\sigma(r) = 0$, we just need to find values of $a$ and $b$, that set $r$ to zero. By considering the factorization, we have five factors, we can make 0, in order to get $r$ to be 0. However, neither $a^{2} + 2a + b^{2} + 1$, $a^{2} - 2a + b^{2} + 1$ nor $b$ can be $0$ by the conditions on the segment. So, we're left with three options.
   \begin{enumerate}
@@ -152,6 +172,13 @@ It should be noted, that even though the example of finding an isosceles orthic 
   This shows us, that when $a$ lies between $-0.51$ and $0.51$, the polynomial above has a solution in the real plane. By looking at the other branches of the solution, we see that there is also an isolated solution in $a = 1$, $b = 0$ corresponding to the degenerate triangle. For other values of $a$ there is no solution over the reals.
 
   We're lucky in this case, as the quartic is solvable in radicals. Had the pseudo-remainder been of fifth degree, we might not be able to say much about the real case. Hence this method of discovering geomtric theorems may not always work in the real plane. It could, however, be a useful first step, as we do get nescesary and sufficient conditions for the theorem to be true. Those conditions just might be difficult to analyse, but more sophisticated tools could use this as a first step.
+
+  By doing a bit of manual analysis and plotting parts of the graph seperately, this what the complete set of solutions in the real plane looks like:
+
+  \begin{center}
+    \includegraphics[width=0.8\textwidth]{geogebra_orthic_wow.png}
+  \end{center}
+
 \end{example}
 
 
