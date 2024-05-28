@@ -98,6 +98,7 @@ We can use this theorem to discover geometric theorems in the complex plane. Let
   If you're following along with the code, you here is the setup:
   \begin{minted}{julia}
     using AbstractAlgebra
+    using ParametricGrobnerBases
     R, (a, b) = QQ[:a, :b]
     S, (x2, x3, y2, y3) = R[:x2, :x3, :y2, :y3]
     I = [(a + 1)*(x2 - 1) + b*y2, b*(x2 + 1) - (a + 1)*y2, (a - 1)*(x3 + 1) + b*y3, b*(x3 - 1) - (a - 1)*y3]
@@ -176,7 +177,7 @@ It should be noted, that even though the example of finding an isosceles orthic 
   By doing a bit of manual analysis and plotting parts of the graph seperately, this what the complete set of solutions in the real plane looks like:
 
   \begin{center}
-    \includegraphics[width=0.8\textwidth]{geogebra_orthic_wow.png}
+    \includegraphics[width=0.7\textwidth]{geogebra_orthic_wow.png}
   \end{center}
 
 \end{example}

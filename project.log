@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2023.9.5)  28 MAY 2024 18:07
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2023.9.5)  28 MAY 2024 18:08
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -3724,7 +3724,7 @@ File: geogebra_orthic.png Graphic file (type bmp)
 \openout5 = `project.pyg'.
 
  (./_minted-project/default.pygstyle)
-(./_minted-project/97F7A2621DA99B7D80DEDBA5571E8A0FB628A47E597F7E7F4F45EB4227F7
+(./_minted-project/B53065993218D4AC09C5839312812EA6B628A47E597F7E7F4F45EB4227F7
 5598.pygtex
 LaTeX Font Info:    Font shape `TU/LibertinusMono(0)/b/n' will be
 (Font)              scaled to size 10.40002pt on input line 2.
@@ -3739,7 +3739,7 @@ Package microtype Info: Character `\guilsinglright ' is missing
 (microtype)             in font `\TU/LibertinusMono(0)/b/n/12'.
 (microtype)             Ignoring protrusion settings for this character.
 LaTeX Font Info:    Font shape `TU/LibertinusMono(0)/m/n' will be
-(Font)              scaled to size 5.20001pt on input line 5.
+(Font)              scaled to size 5.20001pt on input line 6.
 Requested font "[LibertinusMono-Regular.otf]/OT:script=latn;language=dflt;exten
 d=0.9;+tnum; +lnum;" at 5.20001pt
  -> /usr/share/texlive/texmf-dist/fonts/opentype/public/libertinus-fonts/Libert
@@ -3757,7 +3757,7 @@ e=dflt;;+ssty=1;'.
  -> /usr/share/texlive/texmf-dist/fonts/opentype/public/libertinus-fonts/Libert
 inusMath-Regular.otf
 LaTeX Font Info:    Font shape `TU/LibertinusSerif(1)/m/n' will be
-(Font)              scaled to size 6.0pt on input line 5.
+(Font)              scaled to size 6.0pt on input line 6.
 Requested font "[LibertinusSerif-Regular.otf]/OT:script=latn;language=dflt;+tnu
 m;+lnum;" at 6.0pt
  -> /usr/share/texlive/texmf-dist/fonts/opentype/public/libertinus-fonts/Libert
@@ -3765,7 +3765,7 @@ inusSerif-Regular.otf
 Requested font "cmmi6" at 6.0pt
  -> /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmmi6.tfm
 LaTeX Font Info:    Font shape `TU/LibertinusMath-Regular.otf(2)/m/n' will be
-(Font)              scaled to size 6.00064pt on input line 5.
+(Font)              scaled to size 6.00064pt on input line 6.
 Requested font "[LibertinusMath-Regular.otf]/OT:script=math;language=dflt;;+sst
 y=1;" at 6.00064pt
 Unknown feature `' in font `[LibertinusMath-Regular.otf]/OT:script=math;languag
@@ -3773,7 +3773,7 @@ e=dflt;;+ssty=1;'.
  -> /usr/share/texlive/texmf-dist/fonts/opentype/public/libertinus-fonts/Libert
 inusMath-Regular.otf
 LaTeX Font Info:    Font shape `TU/LibertinusMath-Regular.otf(3)/m/n' will be
-(Font)              scaled to size 5.99936pt on input line 5.
+(Font)              scaled to size 5.99936pt on input line 6.
 Requested font "[LibertinusMath-Regular.otf]/OT:script=math;language=dflt;;+sst
 y=1;" at 5.99936pt
 Unknown feature `' in font `[LibertinusMath-Regular.otf]/OT:script=math;languag
@@ -3781,13 +3781,13 @@ e=dflt;;+ssty=1;'.
  -> /usr/share/texlive/texmf-dist/fonts/opentype/public/libertinus-fonts/Libert
 inusMath-Regular.otf
 LaTeX Font Info:    Font shape `TU/LibertinusSerif(1)/b/n' will be
-(Font)              scaled to size 6.0pt on input line 5.
+(Font)              scaled to size 6.0pt on input line 6.
 Requested font "[LibertinusSerif-Bold.otf]/OT:script=latn;language=dflt;+tnum;+
 lnum;" at 6.0pt
  -> /usr/share/texlive/texmf-dist/fonts/opentype/public/libertinus-fonts/Libert
 inusSerif-Bold.otf
 LaTeX Font Info:    Font shape `TU/LibertinusMono(1)/m/n' will be
-(Font)              scaled to size 5.20001pt on input line 5.
+(Font)              scaled to size 5.20001pt on input line 6.
 Package microtype Info: Character `\guilsinglleft ' is missing
 (microtype)             in font `\TU/LibertinusMono(1)/m/n/6'.
 (microtype)             Ignoring protrusion settings for this character.
@@ -3795,7 +3795,7 @@ Package microtype Info: Character `\guilsinglright ' is missing
 (microtype)             in font `\TU/LibertinusMono(1)/m/n/6'.
 (microtype)             Ignoring protrusion settings for this character.
 LaTeX Font Info:    Font shape `TU/LibertinusMono(1)/m/n' will be
-(Font)              scaled to size 4.33334pt on input line 5.
+(Font)              scaled to size 4.33334pt on input line 6.
 Requested font "[LibertinusMono-Regular.otf]/OT:script=latn;language=dflt;exten
 d=0.9;+tnum; +lnum;" at 4.33334pt
  -> /usr/share/texlive/texmf-dist/fonts/opentype/public/libertinus-fonts/Libert
@@ -3811,7 +3811,7 @@ Requested font "msam7" at 6.0pt
 Requested font "msbm7" at 6.0pt
  -> /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
 LaTeX Font Info:    Font shape `TU/LibertinusSerif(0)/m/n' will be
-(Font)              scaled to size 6.0pt on input line 5.
+(Font)              scaled to size 6.0pt on input line 6.
 Requested font "[LibertinusSerif-Regular.otf]/OT:script=latn;language=dflt;+tnu
 m;+lnum;mapping=tex-text;" at 6.0pt
  -> /usr/share/texlive/texmf-dist/fonts/opentype/public/libertinus-fonts/Libert
@@ -3826,10 +3826,14 @@ inusSerif-Regular.otf
 
 
 (./_minted-project/FF107B69B75A55C7BBBD39FEBF76E43FB628A47E597F7E7F4F45EB4227F7
-5598.pygtex) [45]
+5598.pygtex)
 Package mdframed Info: Box was splittet wrong
  starting loop to iterate the splitting point
-(mdframed)              on input line 149.
+(mdframed)              on input line 150.
+ [45]
+Package mdframed Info: Box was splittet wrong
+ starting loop to iterate the splitting point
+(mdframed)              on input line 150.
  [46]
 File: geogebra_sqrt.png Graphic file (type bmp)
 <geogebra_sqrt.png>
@@ -3838,7 +3842,7 @@ File: geogebra_orthic_wow.png Graphic file (type bmp)
  [47] [48]
 Package mdframed Info: Box was splittet wrong
  starting loop to iterate the splitting point
-(mdframed)              on input line 226.
+(mdframed)              on input line 227.
  [49]) [50] [51]
 Overfull \hbox (1.25064pt too wide) in paragraph at lines 255--255
 []\TU/LibertinusSerif(0)/m/n/12 Bernd Sturmfels. “  Computational algebraic geo
@@ -3873,7 +3877,7 @@ Package logreq Info: Writing requests to 'project.run.xml'.
 Here is how much of TeX's memory you used:
  49326 strings out of 476191
  1020636 string characters out of 5812073
- 2003281 words of memory out of 5000000
+ 2014281 words of memory out of 5000000
  69190 multiletter control sequences out of 15000+600000
  484683 words of font info for 206 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
