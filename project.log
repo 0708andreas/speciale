@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2023.9.5)  28 MAY 2024 18:08
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2023.9.5)  29 MAY 2024 21:08
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -3837,13 +3837,10 @@ Package mdframed Info: Box was splittet wrong
  [46]
 File: geogebra_sqrt.png Graphic file (type bmp)
 <geogebra_sqrt.png>
+ [47]
 File: geogebra_orthic_wow.png Graphic file (type bmp)
 <geogebra_orthic_wow.png>
- [47] [48]
-Package mdframed Info: Box was splittet wrong
- starting loop to iterate the splitting point
-(mdframed)              on input line 227.
- [49]) [50] [51]
+ [48] [49] [50]) [51]
 Overfull \hbox (1.25064pt too wide) in paragraph at lines 255--255
 []\TU/LibertinusSerif(0)/m/n/12 Bernd Sturmfels. “  Computational algebraic geo
 metry of projective configurations”.
@@ -3875,10 +3872,10 @@ Package logreq Info: Writing requests to 'project.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 49326 strings out of 476191
- 1020636 string characters out of 5812073
- 2014281 words of memory out of 5000000
- 69190 multiletter control sequences out of 15000+600000
+ 49328 strings out of 476191
+ 1020673 string characters out of 5812073
+ 2014460 words of memory out of 5000000
+ 69192 multiletter control sequences out of 15000+600000
  484683 words of font info for 206 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  129i,13n,151p,1534b,5064s stack positions out of 5000i,500n,10000p,200000b,80000s

@@ -152,38 +152,34 @@ We can use this theorem to discover geometric theorems in the complex plane. Let
 It should be noted, that even though the example of finding an isosceles orthic triangle has been worked through in \cite{MONTES20101391}, the method is completely different. In that paper, they computed a Gröbner cover of $I + \langle f \rangle$. While their output is arguably simpler, the method described above has the benefit of being indifferent to the conclusion. In other words, if instead we wanted to ask whether a side of the orthic triangle was parallel to a side of $ABC$, we can do that immediately from $G$ using pseudo-divisions\footnote{The answer is rather boring: it never happens for a non-degenerate triangle.}. In the other approach, we would need to recompute the Gröbner system, which may well take a long time for more complex applications. Let us take one more example, to illustrate why this approach works better in the complex plane than the real plane.
 
 \begin{example}\upshape
-  Let $I$ and $G$ be given as before. We want to answer when the area of the orthic triangle is one fifth of the area of the whole triangle. The area of the triangle $ABC$ is $A_{ABC} = b$, and by using Herons formula we find that the area of the orthic triangle is $A_{o} = \frac{1}{2}(a(y_{2} - y_{3}) + x_{2} y_{3} - x_{3} y_{2})$. By pseudo-reducing $f = 5 A_{o} - A_{ABC}$, we get a pseudo-remainder
+  Let $I$ and $G$ be given as before. We want to answer when the area of the orthic triangle is one fifth of the area of the whole triangle. The area of the triangle $ABC$ is $A_{ABC} = b$, and by using the shoelace formula we find that the area of the orthic triangle is $A_{o} = \frac{1}{2}(a(y_{2} - y_{3}) + x_{2} y_{3} - x_{3} y_{2})$. However, those are signed areas, so if the triangle is five times as large as its orthic triangle, we can either have $A_{ABC} = 5 A_{o}$ or $A_{ABC} = -5 A_{o}$. Hence, the polynomial representing the conclusion is $f = (A_{ABC} - 5 A_{o})(A_{ABC} + 5 A_{o})$, since $\sigma(f) = 0$ if either $A_{ABC} = 5 A_{o}$ or $A_{ABC} = -5 A_{o}$. After pseudo-reducing $f$ by $G$, we get a pseudo-remainder that is too large to reproduce, but its factorization is
   \begin{align*}
-    r = &11 a^{12} b^3 + 56 a^{10} b^5 - 66 a^{10} b^3 + 115 a^8 b^7 - 188 a^8 b^5 + 165 a^8 b^3 + 120 a^6 b^9 -\\
-        &172 a^6 b^7 + 192 a^6 b^5 - 220 a^6 b^3 + 65 a^4 b^{11} - 48 a^4 b^9 + 34 a^4 b^7 - 8 a^4 b^5 + 165 a^4 b^3 + \\
-        &16 a^2 b^{13} - 2 a^2 b^{11} - 8 a^2 b^9 - 12 a^2 b^7 - 88 a^2 b^5 - 66 a^2 b^3 + b^{15} - 4 b^{13} - 15 b^{11} +\\
-        &35 b^7 + 36 b^5 + 11 b^3 \\
-    = &b^{3}(a^{2} + b^{2} - 2a + 1)^{2} (a^{2} + b^{2} + 2a + 1)^{2} (11a^{4} + 12a^{2}b^{2} + b^{4} - 22a^{2} - 8b^{2} + 11)
+    r = &-b^{7} \cdot (a^{2} + b^{2} - 2a + 1)^{11} \cdot (a^{2} + b^{2} + 2a + 1)^{8} \cdot \\
+        &(11a^{4} + 12a^{2}b^{2} + b^{4} - 22a^{2} - 8b^{2} + 11) \cdot (9a^{4} + 8a^{2}b^{2} - b^{4} - 18a^{2} - 12b^{2} + 9)
   \end{align*}
 
-  We see that $\sigma(f) \in \langle \sigma(I) \rangle$ is and only if $\sigma(11a^{4} + 12a^{2}b^{2} + b^{4} - 22a^{2} - 8b^{2} + 11) = 0$. In the complex plane, this is fine. The polynomial is quartic in both $a$ and $b$, so for every fixed $a$-value, we get four solutions for $b$, counted with multiplicity. The real case, however, is not as simple.
+  We see that $\sigma(f) \in \langle \sigma(I) \rangle$ is and only if $\sigma(11a^{4} + 12a^{2}b^{2} + b^{4} - 22a^{2} - 8b^{2} + 11) = 0$ or $\sigma(9a^{4} + 8a^{2}b^{2} - b^{4} - 18a^{2} - 12b^{2} + 9) = 0$. We'll focus on the first condition. In the complex plane, this is fine. The polynomial is quartic in both $a$ and $b$, so for every fixed $a$-value, we get four solutions for $b$, counted with multiplicity. The real case, however, is not as simple.
 
   Using a CAS system we get the following roots of the polynomial:
   \[b = \pm \sqrt{4 - 6 a^2 \pm \sqrt{5 - 26 a^2 + 25 a^4}}\]
-  We can plot the inner function:
+  We can plot one of the inner functions:
 
   \begin{center}
     \includegraphics[width=0.7\textwidth]{geogebra_sqrt.png}
   \end{center}
-  This shows us, that when $a$ lies between $-0.51$ and $0.51$, the polynomial above has a solution in the real plane. By looking at the other branches of the solution, we see that there is also an isolated solution in $a = 1$, $b = 0$ corresponding to the degenerate triangle. For other values of $a$ there is no solution over the reals.
+  This shows us, that when $a$ lies between $-0.51$ and $0.51$, the polynomial above has a solution in the real plane. By looking at the other branches of the solution, we see that there is also an isolated solution in $a = 1$, $b = 0$ corresponding to the degenerate triangle. However, this solution is excluded by the conditions on the segment. For other values of $a$ there is no solution over the reals.
 
-  We're lucky in this case, as the quartic is solvable in radicals. Had the pseudo-remainder been of fifth degree, we might not be able to say much about the real case. Hence this method of discovering geomtric theorems may not always work in the real plane. It could, however, be a useful first step, as we do get nescesary and sufficient conditions for the theorem to be true. Those conditions just might be difficult to analyse, but more sophisticated tools could use this as a first step.
+  We're lucky in this case, as the quartic is solvable in radicals. Had the pseudo-remainder been of fifth degree (ignoring the factors from the conditions on the segment), we might not be able to say much about the real case. Hence this method of discovering geometric theorems may not always work in the real plane. It could, however, be a useful first step, as we do get nescesary and sufficient conditions for the theorem to be true. Those conditions just might be difficult to analyse, but more sophisticated tools could use this as a first step.
 
-  By doing a bit of manual analysis and plotting parts of the graph seperately, this what the complete set of solutions in the real plane looks like:
+  By doing a bit of manual analysis and plotting parts of the graph seperately, the complete set of solutions in the real plane can be found on figure~\ref{fig:orthic_wow}. The two blobs are solutions for acute triangles, whereas the the two unbounded curves correspond to solutions for obtuse triangles. Further experimentation reveals, that for acute triangles, the the area of the orthic triangle can reach a maximum of one fourth of $A_{ABC}$. For obtuse triangles, it seems like the orthic triangle can get almost twice as big as $ABC$, but not quite. This also highlights another limitation of this approach, that we're only able to answer questions, which can be encoded as a polynomial. Determining which triangles has be largest ratio between the areas of the triangle and its orthic triangle is not possible with this technique. Although, using numeric optimization techniques, one could get reasonable answer.
+\end{example}
 
+\begin{figure}[t]
   \begin{center}
     \includegraphics[width=0.7\textwidth]{geogebra_orthic_wow.png}
   \end{center}
-
-\end{example}
-
-
-
+  \caption{The set of real points, where the area of the orthic triangle is exactly one fifth of the area of the triangle $ABC$} \label{fig:orthic_wow}
+\end{figure}
 
 
 
