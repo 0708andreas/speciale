@@ -3,7 +3,7 @@
 \subsection{Quantifier elimination}
 One of the first applications of parametric Gröbner bases was presented by its inventor Weispfenning \cite{Weispfenning} in the original article. It concerns the problem of computing a system of polynomial equations, whose solutions are equivalent to solutions to a set of logical expressions involving polynomial equations, con- and disjunctions, negations and existential quantifiers.
 
-Sepcifically, we're given a formula $\exists x_{1}, \dots, x_{n} : \phi(U, x_{1}, \dots, x_{n})$ where $\phi$ is a combination using $\land$ and $\lor$ of polynomial equalities and inequalities in $k[U, X]$. If $k_{1}$ is an extension field of $k$, then that formula determines a partioning of $k_{1}^{|U|}$, namely those values of $U$ where the formula is true and those where it isn't. Our goal is to find a system of polynomial equations in $k[U]$ that is satisfied in exactly the same points.
+Specifically, we're given a formula $\exists x_{1}, \dots, x_{n} : \phi(U, x_{1}, \dots, x_{n})$ where $\phi$ is a logical formula, which is a combination using $\land$ and $\lor$ of polynomial equalities and inequalities in $k[U, X]$. If $k_{1}$ is an extension field of $k$, then that formula determines a partioning of $k_{1}^{|U|}$, namely those values of $U$ where the formula is true and those where it isn't. Our goal is to find a system of polynomial equations in $k[U]$ that is satisfied in exactly the same points.
 
 First, we need to normalize the logical expressions, to fit a format we can work with.
 
@@ -20,7 +20,7 @@ First, we need to normalize the logical expressions, to fit a format we can work
   Now, to eliminate the inequalities, we use the following trick: \[f(X) \neq 0 \iff \exists\, t : f(X) \cdot t - 1 = 0.\]
 \end{proof}
 
-Thus we can solve each of the positive, primitive formulas independently, and see if any of them are satifiable.
+Thus we can solve each of the positive, primitive formulas independently, and see if any of them are satisfiable.
 
 \begin{theorem}
   Let $F \subset k[U, X]$ be a finite set of polynomials over an algebraically closed field and let $G$ be a parametric Gröbner basis of $F$. For a polynomial $f \in k[U][X]$, let $C(f) \subset k[U]$ denote the set of coefficients of non-constant terms in $f$. Then \[ \left(\exists x_{1}, \dots, x_{n} : \bigwedge_{f \in F} f(U, x_{1}, \dots, x_{n}) = 0 \right) \iff \bigwedge_{g \in G} \left( g(U, 0, \dots, 0) = 0 \lor \bigvee_{c \in C(g)} c(U) \neq 0 \right)\] in any extension field $k_{1} \supset k$.
@@ -50,22 +50,40 @@ Thus we can solve each of the positive, primitive formulas independently, and se
 
 
 
-\subsection{Parametric ideal membership}\label{sec:ps_div_app}
-
+\subsection{Parametric ideal membership \& theorem discovery}\label{sec:ps_div_app}
+We can exploit lemma~\ref{lem:ps_rem_unique} to decide membership problems for parametric ideals.
 
 \begin{theorem}
-  Let $(Y, G)$ be a segment of a parametric Gröbner basis where $G = \{g_{1}, \dots, g_{n}\} \subset A[X]$, and let $f \in A[X]$ and assume that $\sigma_{\alpha}(\LC(g)) \neq 0$ for all $g \in G$ and $\alpha \in Y$. Then $\sigma_{\alpha}(f) \in \langle \sigma(G) \rangle$ for all $\alpha \in Y$ if and only if any pseudo-remainders $r$ of $f$ under pseudo-division modulo $G$ satisfies $\sigma_{\alpha}(r) = 0$ for all $\alpha \in Y$.
+  Let $k_{1} \supset k$ be field, let $I \subset k[U][X]$ be an ideal, and let $\mathcal G = \{(Y_{1}, G_{1}, \dots, (Y_{n}, G_{n}))\}$ be a comprehensive, reduced Gröbner system for $I$. Let $f \in k[U][X]$ and $\alpha \in k_{1}^{|U|}$, then $\sigma_{\alpha}(f) \in \langle \sigma_{\alpha}(I) \rangle$ if and only if there is an $i$ such that $\alpha \in Y_{i}$ and $\sigma_{\alpha}(r) = 0$, where $r$ is a pseudo-remainder of $f$ modulo $G_{i}$.
 \end{theorem}
 \begin{proof}
-  If any pseudo-remainder of $f$ under pseudo-division modulo $G$ is zero, then
-  \[cf = \sum_{i=1}^{n} f_{i} g_{i}\]
-  for some $f_{i} \in A[X]$ and $c \in A$, where $c$ is a product of leading coefficients of $G$. Since none of those leading coefficients vanish under $\sigma_{\alpha}$, we have $\sigma_{\alpha}(c) \neq 0$. Hence
-  \[\sigma_{\alpha}(f) = \frac 1 {\sigma_{\alpha}(c)}\sum_{i=1}^{n} \sigma_{\alpha}(f_{i} g_{i})\]
-  so $\sigma_{\alpha}(f) \in \langle \sigma_{\alpha}(G) \rangle$.
+  Fix an $\alpha \in k^{|U|}$, and find some $i$ such that $\alpha \in Y_{i}$. This exists since $\mathcal G$ is comprehensive. Let $G_{i} = \{g_{1}, \dots, g_{m}\}$ and let
+  \[c f = r + \sum_{j=1}^{m} h_{j} g_{j}\]
+  be a pseudo-reduction. Then $\sigma_{\alpha}(f) \in \langle \sigma_{\alpha}(G_{i}) \rangle = \langle \sigma_{\alpha}(I) \rangle$ if and only if $\sigma_{\alpha}(r) = 0$, by lemma~\ref{lem:ps_rem_unique}.
+\end{proof}
 
-  On the other hand, assume $\sigma_{\alpha}(f) \in \langle \sigma_{\alpha}(G) \rangle$ for all $\alpha \in Y$. Fix a specialization $\sigma_{\alpha}$, and note that if
-  \[cf = r + \sum_{i=1}^{n} f_{i} g_{i}\]
-  is a pseudo-division, then $\sigma_{\alpha}(f) \in \langle \sigma_{\alpha}(G) \rangle$ if and only if $\sigma_{\alpha}(r) = 0$. Thus $\sigma_{\alpha}(r) = 0$ for all $\alpha \in Y$, since $\sigma_{\alpha}(f) \in \langle \sigma_{\alpha}(G) \rangle$ for all $\alpha$.
+In this manner, we can determine conditions on when $\sigma_{\alpha}(f) \in \langle \sigma_{\alpha}(I) \rangle$. We simply require $\sigma_{\alpha}(r) = 0$, i.e. $\alpha \in Y_{i} \cap \V(r)$. Do note, that we might need to repeat this for each $Y$ with $\alpha \in Y$.
+
+It is well-known, that standard geometric constructions can be expressed as polynomial ideals. For example, consider a triangle with vertices $A = (0, 0)$, $B = (x_{1}, y_{1})$ and $C = (x_{2}, y_{2})$. Then expressing that the triangle $ABC$ has a right angle in $A$ corresponds to $x_{1} x_{2} + y_{1} y_{2} = 0$. Then the pythagorean theorem $a^{2} + b^{2} = c^{2}$ corresponds to $x_{1}^{2} + y_{1}^{2} + x_{2}^{2} + y_{2}^{2} = (x_{1} - x_{2})^{2} + (y_{1} - y_{2})^{2}$. In algebraic terms, the fact that the pythagorean theorem holds for right triangles, is the statement that
+\[x_{1}^{2} + y_{1}^{2} + x_{2}^{2} + y_{2}^{2} - \left((x_{1} - x_{2})^{2} + (y_{1} - y_{2})^{2}\right) \in \sqrt{\langle x_{1} x_{2} + y_{1} y_{2} \rangle} \]
+In general, a geometric conclusion $f \in k[X]$ follows from a set of assumptions generating the ideal $I$ if and only if $f \in \sqrt{I}$. Thankfully, $\sqrt{ \langle x_{1} x_{2} + y_{1} y_{2} \rangle } = \langle x_{1} x_{2} + y_{1} y_{2} \rangle$. However, in general, computing the radical of an ideal is quite difficult. We do however have the following theorem.
+
+\begin{theorem}
+  Let $I \subset k[X]$ be an ideal, and let $f \in k[X]$. Then $f \in \sqrt{I}$ if and only if $1 \in I + \langle 1 - yf \rangle \in k[X, y]$, where we have added a new variable. This can be checked using Gröbner bases.
+\end{theorem}
+\begin{proof}
+  See chapter 3,  proposition 8 in~\cite{IVA}.
+\end{proof}
+
+Hence, if we can compute Gröbner bases, we can automatically prove geometric theorem, which is already pretty cool. But parametric Gröbner bases opens the door for even more: automatic theorem discovery. Most conclusions will not be true, given a set of assumptions. However, using reduced Gröbner systems, we can automatically discover sufficient and necessary assumptions that make the conclusion true.
+
+\begin{theorem}
+  Let $I \subset K[U][X]$ be an ideal, let $(Y, G)$ be a segment of a reduced Gröbner system for $I$ and let $f \in k[U][X]$. Assume that $r$ is a pseudo-remainder of $f$ modulo $G$ and that $r \in k[U]$. Then $\sigma_{\alpha}(f) \in \sqrt{\langle \sigma_{\alpha}(I) \rangle}$ if and only if $\sigma_{\alpha}(r) = 0$
+\end{theorem}
+\begin{proof}
+  If $\langle \sigma_{\alpha}(I) \rangle = \langle 1 \rangle$, then the conclusion follows immediately. Hence, we assume that $\langle \sigma_{\alpha}(I) \rangle \neq \langle 1 \rangle$.
+
+  Let $r$ be a pseudo-remainder of $f$ modulo $G$. If $\sigma_{\alpha}(r) = 0$, then $\sigma_{\alpha}(f) \in \langle \sigma_{\alpha}(I) \rangle \subset \sqrt{\langle \sigma_{\alpha}(I) \rangle}$. On the other hand, if $\sigma_{\alpha}(f) \in \sqrt{\langle \sigma_{\alpha}(I) \rangle}$, then $r \in \sqrt{\langle \sigma_{\alpha}(I) \rangle} $. Hence $1 \in I + \langle 1 - y \sigma_{\alpha}(r) \rangle$. Since $r \in k[U]$, $\sigma_{\alpha}(r) \in k$. Since $I \neq \langle 1 \rangle$ and $\LM(1 - y \sigma_{\alpha}(r)) = y$ when $\sigma_{\alpha}(r) \neq 0$, which is relatively prime with every leading monomial in $I$, $\sigma_{\alpha}(G) \cup \{1 - y \sigma_{\alpha}(r)\}$ is a Gröbner basis of $I + \langle 1 - y \sigma_{\alpha}(r) \rangle$. Hence, $1 \in I + \langle 1 - y \sigma_{\alpha}(r) \rangle$ if and only if $\sigma_{\alpha}(r) = 0$.
 \end{proof}
 
 We can use this theorem to discover geometric theorems in the complex plane. Let us look at an example from \cite{MONTES20101391}.
@@ -89,13 +107,13 @@ We can use this theorem to discover geometric theorems in the complex plane. Let
 \begin{example} \upshape
   Consider a triangle with vertices $A = (-1, 0)$, $B = (1, 0)$ and $C = (a, b)$. Now, draw the three altitudes of the triangle $ABC$, and label their basepoints $P_{1} = (x_{1}, y_{1})$, $P_{2} = (x_{2}, y_{2})$ and $P_{3} = (x_{3}, y_{3})$, see figure~\ref{fig:orthic_setup}. The triangle $P_{1}P_{2}P_{3}$ is called the \textit{orthic} triangle of $ABC$. We wish to determine when the orthic triangle is isosceles with $|P_{1}P_{2}| = |P_{1}P_{3}|$.
 
-  To solve this problem, we produce a parametric ideal that describes the setup. First, observe that $x_{1} = a$ and $y1 = 0$, so we make that substitution immediately. This also ensures that the line $P_{1}C$ is orthogonal to the line $AB$. Next, we need that the line $BP_{2}$ is orthogonal to the line $AC$. This means $0 = BP_{2} \cdot AC = (a + 1)(x_{2} - 1) + b y_{2}$. Similarly, to ensure that $AP_{3}$ is orthogonal to $BC$, we have $0 = (a - 1)(x_{3} + 1) + b y_{3}$. We also need to ensure that the points $P_{2}$ and $P_{3}$ lies on the edges of the triangle. This is done by forcing $0 = b(x_{2} + 1) - (a + 1)y_{2}$ and similarly $0 = b(x_{3} - 1) - (a - 1)y_{3}$. Hence, the following ideal describes the setup:
+  To solve this problem, we produce a parametric ideal that describes the setup. First, observe that $x_{1} = a$ and $y_{1} = 0$, so we make that substitution immediately. This also ensures that the line $P_{1}C$ is orthogonal to the line $AB$. Next, we need that the line $BP_{2}$ is orthogonal to the line $AC$. This means $0 = BP_{2} \cdot AC = (a + 1)(x_{2} - 1) + b y_{2}$. Similarly, to ensure that $AP_{3}$ is orthogonal to $BC$, we have $0 = (a - 1)(x_{3} + 1) + b y_{3}$. We also need to ensure that the points $P_{2}$ and $P_{3}$ lies on the edges of the triangle. This is done by forcing $0 = b(x_{2} + 1) - (a + 1)y_{2}$ and similarly $0 = b(x_{3} - 1) - (a - 1)y_{3}$. Hence, the following ideal describes the setup:
   \begin{align*}
     I = \langle\; &(a + 1)(x_{2} - 1) + b y_{2}, \quad  b(x_{2} + 1) - (a + 1)y_{2}, \\
                   &(a - 1)(x_{3} + 1) + b y_{3}, \quad  b(x_{3} - 1) - (a - 1)y_{3} \; \rangle
   \end{align*}
 
-  If you're following along with the code, you here is the setup:
+  If you want to follow along with the code, here is the setup:
   \begin{minted}{julia}
     using AbstractAlgebra
     using ParametricGrobnerBases
@@ -120,6 +138,8 @@ We can use this theorem to discover geometric theorems in the complex plane. Let
           &(a^2b - 2ab + b^3 + b)x_3 + a^2b - 2ab - b^3 + b \\
           &(a^2b + 2ab + b^3 + b)x_2 - a^2b - 2ab + b^3 - b \; \}
   \end{align*}
+
+  The condition states that $\sigma(b) \neq 0$. The polynomials $a^{2} + 2a + b^{2} + 1$ and $a^{2} - 2a + b^{2} + 1$ has only the real roots $(a, b) = (-1, 0)$ and $(a, b) = (1, 0)$ respectively. Hence, on the real plane, the condition only states that $\sigma(b) \neq 0$.
 
   To determine whether $f$ lies in this segment, we compute a pseudo-remainder of $f$ modulo $G$. Like this in Julia:
 
@@ -169,9 +189,11 @@ It should be noted, that even though the example of finding an isosceles orthic 
   \end{center}
   This shows us, that when $a$ lies between $-0.51$ and $0.51$, the polynomial above has a solution in the real plane. By looking at the other branches of the solution, we see that there is also an isolated solution in $a = 1$, $b = 0$ corresponding to the degenerate triangle. However, this solution is excluded by the conditions on the segment. For other values of $a$ there is no solution over the reals.
 
-  We're lucky in this case, as the quartic is solvable in radicals. Had the pseudo-remainder been of fifth degree (ignoring the factors from the conditions on the segment), we might not be able to say much about the real case. Hence this method of discovering geometric theorems may not always work in the real plane. It could, however, be a useful first step, as we do get nescesary and sufficient conditions for the theorem to be true. Those conditions just might be difficult to analyse, but more sophisticated tools could use this as a first step.
+  By doing a bit of manual analysis and plotting parts of the graph seperately, the complete set of solutions in the real plane can be found on figure~\ref{fig:orthic_wow}. The two blobs are solutions for acute triangles, whereas the the two unbounded curves correspond to solutions for obtuse triangles.
 
-  By doing a bit of manual analysis and plotting parts of the graph seperately, the complete set of solutions in the real plane can be found on figure~\ref{fig:orthic_wow}. The two blobs are solutions for acute triangles, whereas the the two unbounded curves correspond to solutions for obtuse triangles. Further experimentation reveals, that for acute triangles, the the area of the orthic triangle can reach a maximum of one fourth of $A_{ABC}$. For obtuse triangles, it seems like the orthic triangle can get almost twice as big as $ABC$, but not quite. This also highlights another limitation of this approach, that we're only able to answer questions, which can be encoded as a polynomial. Determining which triangles has be largest ratio between the areas of the triangle and its orthic triangle is not possible with this technique. Although, using numeric optimization techniques, one could get reasonable answer.
+  We're lucky in this case, as the quartic is solvable in radicals. Had the pseudo-remainder been of fifth degree (ignoring the factors from the conditions on the segment), we might not be able to say much about the real case. Hence this method of discovering geometric theorems may not always work in the real plane. It could, however, be a useful first step, as we do get nescesary and sufficient conditions for the theorem to be true. Those conditions just might be difficult to analyse, but more sophisticated tools can use this as a first step, see \cite{10.1145/2755996.2756646}.
+
+  % Further experimentation reveals, that for acute triangles, the the area of the orthic triangle can reach a maximum of one fourth of $A_{ABC}$. For obtuse triangles, it seems like the orthic triangle can get almost twice as big as $ABC$, but not quite. This also highlights another limitation of this approach, that we're only able to answer questions, which can be encoded as a polynomial. Determining which triangles has be largest ratio between the areas of the triangle and its orthic triangle is not possible with this technique. Although, using numeric optimization techniques, one could get reasonable answer.
 \end{example}
 
 \begin{figure}[t]
@@ -201,7 +223,7 @@ In the article~\cite{sturmfels}, Bernd Sturmfels states the following theorem wi
   \end{enumerate}
 \end{theorem}
 
-He writes that the proof is ``straightforward but fairly technical''. In a private communication\cite{NL_to_BS} with Sturmfels, he encourages us to write a proof or find a counterexample. He also writes, that the gist of the argument he had in mind was, was using specializations of Gröbner bases. Since since $\{x_{1}, \dots, x_{n}\} \gg \{y_{1}, \dots, y_{k}\}$, the Gröbner basis of $I$ should behave nicely when we specialize the $y_{i}$'s to zero. However, as we have seen, Gröbner bases can be most unstable under specializations. Indeed, the following counterexample disproves the theorem.
+He writes that the proof is ``straightforward but fairly technical''. In a private communication\cite{NL_to_BS} with Sturmfels, he encourages us to write a proof or find a counterexample. He also writes, that the gist of the argument he had in mind was, was using specializations of Gröbner bases. Since since $\{x_{1}, \dots, x_{n}\} \gg \{y_{1}, \dots, y_{k}\}$, the Gröbner basis of $I$ would specialize to a Gröbner basis of $\langle F \rangle$ when we specialize the $y_{i}$'s to zero. However, as we have seen, Gröbner bases can be most unstable under specializations. Indeed, the following counterexample disproves this line of reasoning and the theorem.
 
 \begin{example}\upshape
   Let $F = \{f_{1}, f_{2}\}$ where $f_{1} = x_{1} x_{2} + 1$ and $f_{2} = x_{2}$. Then, the corresponding ideal
@@ -210,7 +232,7 @@ He writes that the proof is ``straightforward but fairly technical''. In a priva
   which is not a Gröbner basis. Furthermore, we see that $G'$ does not contain a final polynomial.
 \end{example}
 
-While this example is admittedly a bit contrived, the theorem if false, even if we require the reduced Gröbner basis.
+While this example is admittedly a bit contrived, the theorem if false, even if we require the Gröbner basis to be reduced.
 
 \begin{example}\upshape
     Let $F = \{f_1, f_2, f_3\}$ where $f_1 = x_2 + x_3$, $f_2 = x_2 x_3$ and $f_3 = x_1 x_3 + 1$. The reduced Gröbner basis of $\langle F \rangle$ is $\{1\}$, so $F$ has no common zeros. The graph ideal of $F$, $I = \langle y_1 - f_1, y_2 - f_2, y_3 - f_3 \rangle$ has the reduced Gröbner basis
@@ -226,7 +248,7 @@ While this example is admittedly a bit contrived, the theorem if false, even if 
 To fix the theorem, we can turn to parametric Gröbner bases. To shorten notation, let $X = \{x_{1}, \dots, x_{n}\}$ and $Y = \{y_{1}, \dots, y_{k}\}$.
 
 \begin{theorem}
-  Let $K$ be an algebraically closed field and $F = \{f_{1}, \dots, f_{k}\} \subset K[X]$ a finite set of polynomials. Assume that $\V(F) = \emptyset$ and consider the ideal $I = \langle y_{1} - f_{1}, \dots, y_{k} - f_{k} \rangle \subset K[X, Y]$. Let $G$ be a parametric Gröbner basis of $I$ with respect to the lexicographic order with $x_{1} > \dots > x_{n} > y_{1} > \dots > y_{k}$. Then $G$ contains a final polynomial.
+  Let $K$ be an algebraically closed field and $F = \{f_{1}, \dots, f_{k}\} \subset K[X]$ a finite set of polynomials. Assume that $\V(F) = \emptyset$ and consider the ideal $I = \langle y_{1} - f_{1}, \dots, y_{k} - f_{k} \rangle \subset K[X, Y]$. Let $G$ be a comprehensive parametric Gröbner basis of $I$ with respect to the lexicographic order with $x_{1} > \dots > x_{n} > y_{1} > \dots > y_{k}$. Then $G$ contains a final polynomial.
 \end{theorem}
 \begin{proof}
   First, notice that every polynomial in $I$ satisfies the second property of final polynomials, since the generators does, and the evaluation map is linear. Thus, we only need to prove that a parametric Gröbner basis contains an element satisfying the first property.
@@ -237,13 +259,12 @@ To fix the theorem, we can turn to parametric Gröbner bases. To shorten notatio
 However, parametric Gröbner bases can be quite expensive to compute since we need to repeatedly compute Gröbner bases, and furthermore we don't have nice bounds on the degrees. But we only care about one single specialization. This means we don't need a parametric Gröbner basis, we just need a faithful segment of a Gröbner system covering the origin. Here, we can use lemma~\ref{lem:grb_if_nmap_to_z_t}. Let $\sigma^{1} : K[t, X, Y] \to K[X, Y]$ be the map evaluating $t$ to 1, and let $\sigma^{0} : K[t, X, Y] \to K[X, Y]$ be the map evaluating $t$ to 0.
 
 \begin{theorem}
-  Let $K$ be an algebraically closed field and $F = \{f_{1}, \dots, f_{k}\} \subset K[X]$ a finite set of polynomials. Assume that $\V(F) = \emptyset$ and consider the ideal $I = \langle \hat F \rangle$ where $\hat F = \{y_{1} - f_{1}, \dots, y_{k} - f_{k}\}$. Now, let $\,G$ be the reduced Gröbner basis of the ideal $\langle t \cdot \hat F \cup (1 - t) \cdot Y \rangle \subset K[t, X, Y]$ w.r.t.\ the lexicographic order with $t > X > Y$. Then
-  $\sigma^{1}(G)$ contains a final polynomial.
+  Let $K$ be an algebraically closed field and $F = \{f_{1}, \dots, f_{k}\} \subset K[X]$ a finite set of polynomials. Assume that $\V(F) = \emptyset$ and consider the ideal $I = \langle \hat F \rangle$ where $\hat F = \{y_{1} - f_{1}, \dots, y_{k} - f_{k}\}$. Now, let $\,G$ be the reduced Gröbner basis of the ideal $\langle t \cdot \hat F \cup (1 - t) \cdot Y \rangle \subset K[t, X, Y]$ w.r.t.\ any monomial order with $t \gg X \gg Y$. Then $\sigma^{1}(G)$ contains a final polynomial.
 \end{theorem}
 \begin{proof}
-  As before, we only need to show that $\sigma^{1}(G)$ contains a polynomial satisfying the first property of final polynomials. Let $\sigma : K[X, Y] \to K[X]$ be the specialization setting $\sigma(y_{i}) = 0$ for every $i$ and let $H = \{\LC_{Y}(g) \mid g \in G, \LT(g) \notin K[X, Y], \LC_{X, Y}(g) \notin \langle Y \rangle\}$. If we have $0 \in \V(Y) \setminus \V(\lcm(H))$, then lemma~\ref{lem:grb_if_nmap_to_z_t}, gives us that $\sigma(\sigma^{1}(G))$ is a Gröbner basis of $\langle \sigma(I) \rangle = \langle F \rangle$. By the Nullstellensatz, $\langle F \rangle = \langle 1 \rangle$, so $\sigma(\sigma^{1}(G))$ has to contain a constant. This implies, that $\sigma^{1}(G)$ contains a polynomial $g$, satisfying the first condition of a final polynomial.
+  As before, we only need to show that $\sigma^{1}(G)$ contains a polynomial satisfying the first property of final polynomials. Let $\sigma : K[X, Y] \to K[X]$ be the specialization setting $\sigma(y_{i}) = 0$ for every $i$ and let $H = \{\LC_{Y}(g) \mid g \in G, \LT(g) \notin K[X, Y], \LC_{X, Y}(g) \notin \langle Y \rangle\}$. If we have $0 \in \V(Y) \setminus \V(\lcm(H))$, then lemma~\ref{lem:grb_if_nmap_to_z_t}, gives us that $\sigma(\sigma^{1}(G))$ is a Gröbner basis of $\langle \sigma(I) \rangle = \langle F \rangle$. By the Nullstellensatz, $\langle F \rangle = \langle 1 \rangle$, so $\sigma(\sigma^{1}(G))$ has to contain a constant. This implies, that $\sigma^{1}(G)$ contains a final polynomial $g$.
 
-  Now, we just need that $0 \in \V(Y) \setminus \V(\lcm(H))$. Note that $\V(Y) = \{0\}$, so we just need that $0 \notin \V(\lcm(H))$. By lemma~\ref{lem:LC_U_notin_S} we have that $h \notin \langle Y \rangle$ for each $h \in H$. Since $\langle Y \rangle$ is a prime ideal, this implies that $\lcm(H) \notin \langle S \rangle$. Thus $0 \notin \V(\lcm(H))$.
+  Now, we just need that $0 \in \V(Y) \setminus \V(\lcm(H))$. Since $\V(Y) = \{0\}$, we just need that $\V(Y) \nsubset \V(\lcm(H))$. By lemma~\ref{lem:LC_U_notin_S} we have that $h \notin \langle Y \rangle$ for each $h \in H$. Since $\langle Y \rangle$ is a prime ideal, this implies that $\lcm(H) \notin \langle S \rangle$. Thus $\V(Y) \nsubset \V(\lcm(H))$.
 \end{proof}
 
 This counterexample and theorem was developed in colaboration with Peter Lundgaard, and resulted in an article\cite{Lundgaard_Poulsen}. In that article, it is also proven that it is enough to compute a Gröbner basis of $\langle y_{1} - z f_{1}, \dots, y_{k} - z f_{k} \rangle$. However, that proof requires a little more care, whereas this proof follows directly from the theory of parametric Gröbner bases.

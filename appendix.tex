@@ -74,3 +74,85 @@ Here, we present a basic lemma about homogenous ideals.
   \[f = \sum_{i,\,j} a_{i,j} X^{v_{i, j}} g_{i}\]
   is a sum of homogenous polynomials, and each term of the sum is homogenous and in $I$, each homogenous component of $f$ is in $I$.
 \end{proof}
+
+\section{Julia code documentation}
+The julia code at \url{https://github.com/0708andreas/ParametricGrobnerBases.jl} contain an implementation of the algorithms described in this thesis. To get started, start a Julia REPL, and define a ground polynomial ring in the parameters. We also define a polynomial ring over the parameter ring.
+
+\begin{minted}{julia}
+  using AbstractAlgebra
+  using ParametricGrobnerBases
+
+  R, (a, b, c, d) = QQ[:a, :b, :c, :d]
+  S, (x, y) = R[:x, :y]
+\end{minted}
+
+Next, we can define an ideal
+
+\begin{minted}{julia}
+  I = [a*x + c*y, b*x + d*y]
+\end{minted}
+
+The code can compute three different objects: Gröbner systems, faithful Gröbner systems and copmrehensive parametric Gröbner bases. The corresponding functions are
+
+\begin{minted}{julia}
+  > CGS(I)
+ ([], [-a*b*d + b^2*c], [(-a*d + b*c)*y, (-a*b*d + b^2*c)*x])
+ ([a*d - b*c], [b], [b*x + d*y])
+ ([b, a*d], [a*d], [d*y, a*d*x])
+ ([d, b], [a], [a*x + c*y])
+ ([d, b, a], [c], [c*y])
+ ([d, c, b, a], [1], [0])
+ ([b, a], [d], [d*y])
+ ([b], [a*d], [d*y, a*d*x])
+
+ > CGS_faithful(I)
+ ([], [-a*b*d + b^2*c], [(-a*d + b*c)*y, (-a*b*d + b^2*c)*x])
+ ([a*d - b*c], [b], [b*x + d*y])
+ ([b, a*d], [a*d], [b*x + d*y, (a*d - b*c)*x])
+ ([d, b], [a], [a*x + c*y])
+ ([d, b, a], [c], [a*x + c*y])
+ ([d, c, b, a], [1], [])
+ ([b, a], [d], [b*x + d*y])
+ ([b], [a*d], [b*x + d*y, (a*d - b*c)*x]
+
+ > CGB(I)
+ (-a*d + b*c)*y
+ (-a*b*d + b^2*c)*x
+ b*x + d*y
+ (a*d - b*c)*x
+ a*x + c*y
+ (a*d - b*c)*x
+\end{minted}
+Notice that the output of both \begin{mintinline}{julia} CGS \end{mintinline} and \begin{mintinline}{julia} CGS_faithful \end{mintinline} returns a vector of triples, each of which is a segment of the Gröbner system. Hence, the basis of each segment is the third entry of each triple, so to get the basis of the first segment, write \begin{mintinline}{julia} CGS(I)[1][3] \end{mintinline}.
+
+All three of those methods take an optional argument, that indicted whether to reduce the segments or not. This flag also enables some optimizations, which reduce the number of segments. To get an unoptimized, unreduced output, use
+\begin{minted}{julia}
+  > CGS(I, false)
+ ([], [-a^2*b*d + a*b^2*c], [(-a*d + b*c)*y, b*x + d*y, a*x + c*y])
+ ([a*d - b*c], [a*b], [b*x + d*y, a*x + c*y])
+ ([b, a*d], [a*d], [d*y, a*x + c*y])
+ ([d, b], [a], [a*x + c*y])
+ ([d, b, a], [c], [c*y])
+ ([d, c, b, a], [1], [0])
+ ([b, a], [c*d], [d*y, c*y])
+ ([c, b, a], [d], [d*y])
+ ([b*c, a], [b*c], [c*y, b*x + d*y])
+ ([c, a], [b], [b*x + d*y])
+ ([b], [a*d], [d*y, a*x + c*y])
+ ([a], [b*c], [c*y, b*x + d*y])
+\end{minted}
+
+Finally, pseudo-reduction is implemented.
+\begin{minted}{julia}
+  > f = a*x + b
+  > pseudo_reduce(f, CGS(I)[1][3])
+  (-a*b*d + b^2*c, -a*b^2*d + b^3*c)
+\end{minted}
+The first entry of the result is $c$ and the second is the pseudo-remainder $r$, such that
+\[c f = r + \sum_{i=1}^{n} g_{i} h_{i}\]
+for $G = \{g_{1}, \dots, g_{n}\}$ and appropriate $h_{i}$. If we don't want the factors coming from the leading coefficients of $G$, there is an optional argument to divide the remainder by them first.
+\begin{minted}{julia}
+  > pseudo_reduce(f, CGS(I)[1][3], true)
+  (-a*b*d + b^2*c, b^2)
+\end{minted}
+and indeed $-a b^2 d + b^3 c = b^{2}(-ad + bc)$. Formally, if $(Y, G)$ is a reduced segment of a Gröbner system, \begin{mintinline}{julia} (c, r) = pseudo\_reduce(f, G) \end{mintinline} and \begin{mintinline}{julia} (c, r') = pseudo\_reduce(f, G, true) \end{mintinline}, then $\sigma_{\alpha}(r) \neq 0$ if and only if $\sigma_{\alpha}(r')$ for all $\alpha \in Y$ and $\LC(g) \nmid r'$ for all $g \in G$.

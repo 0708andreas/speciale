@@ -13,12 +13,13 @@
 \contentsline {subsection}{\numberline {4.2}Monic ideals and the reduced Gröbner basis of $\symcal I_{S}$}{31}{subsection.4.2}%
 \contentsline {subsection}{\numberline {4.3}The singular ideal}{33}{subsection.4.3}%
 \contentsline {subsection}{\numberline {4.4}The projective case}{38}{subsection.4.4}%
-\contentsline {subsection}{\numberline {4.5}Relation to the $\mathbf {CGS}$ algorithm}{40}{subsection.4.5}%
+\contentsline {subsection}{\numberline {4.5}Relation to the $\mathbf {CGS}$ algorithm}{41}{subsection.4.5}%
 \contentsline {section}{\numberline {5}Applications}{43}{section.5}%
 \contentsline {subsection}{\numberline {5.1}Quantifier elimination}{43}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5.2}Parametric ideal membership}{44}{subsection.5.2}%
-\contentsline {subsection}{\numberline {5.3}Bernds conjecture}{49}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.2}Parametric ideal membership \& theorem discovery}{44}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Bernds conjecture}{50}{subsection.5.3}%
 \contentsline {section}{\numberline {A}Miscellaneous results}{54}{appendix.A}%
 \contentsline {subsection}{\numberline {A.1}The pseudo-division algorithm}{54}{subsection.A.1}%
 \contentsline {subsection}{\numberline {A.2}The nilradical}{55}{subsection.A.2}%
 \contentsline {subsection}{\numberline {A.3}Homogenous ideals}{56}{subsection.A.3}%
+\contentsline {section}{\numberline {B}Julia code documentation}{56}{appendix.B}%

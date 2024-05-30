@@ -53,6 +53,58 @@
       \field{title}{Ideals, Varieties, and Algorithms}
       \field{year}{2015}
     \endentry
+    \entry{10.1145/2755996.2756646}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=bcb7a74903e8764a4248612ae2f296bc}{%
+           family={Fukasaku},
+           familyi={F\bibinitperiod},
+           given={Ryoya},
+           giveni={R\bibinitperiod}}}%
+        {{hash=9f8e13a1377dc10e3cf93d724bd56c99}{%
+           family={Iwane},
+           familyi={I\bibinitperiod},
+           given={Hidenao},
+           giveni={H\bibinitperiod}}}%
+        {{hash=3a93264f1d2bdf130293983220f865ee}{%
+           family={Sato},
+           familyi={S\bibinitperiod},
+           given={Yosuke},
+           giveni={Y\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Bath, United Kingdom}%
+      }
+      \list{publisher}{1}{%
+        {Association for Computing Machinery}%
+      }
+      \strng{namehash}{b721c7330a8c7240b76713c5e5429967}
+      \strng{fullhash}{b721c7330a8c7240b76713c5e5429967}
+      \strng{bibnamehash}{b721c7330a8c7240b76713c5e5429967}
+      \strng{authorbibnamehash}{b721c7330a8c7240b76713c5e5429967}
+      \strng{authornamehash}{b721c7330a8c7240b76713c5e5429967}
+      \strng{authorfullhash}{b721c7330a8c7240b76713c5e5429967}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 2015 ACM on International Symposium on Symbolic and Algebraic Computation}
+      \field{isbn}{9781450334358}
+      \field{series}{ISSAC '15}
+      \field{title}{Real Quantifier Elimination by Computation of Comprehensive Gröbner Systems}
+      \field{year}{2015}
+      \field{pages}{173\bibrangedash 180}
+      \range{pages}{8}
+      \verb{doi}
+      \verb 10.1145/2755996.2756646
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1145/2755996.2756646
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1145/2755996.2756646
+      \endverb
+      \keyw{comprehensive gröbner system,real quantifier elimination}
+    \endentry
     \entry{Kalkbrener}{article}{}
       \name{author}{1}{}{%
         {{hash=d163df32cc310b537643232789dc8f3f}{%
@@ -297,7 +349,7 @@
       \verb https://books.google.dk/books?id=Caoxi78WaIAC
       \endverb
     \endentry
-    \entry{Lundgaard_Poulsen}{unpublished}{}
+    \entry{Lundgaard_Poulsen}{misc}{}
       \name{author}{2}{}{%
         {{hash=621cce43fffbc3a5e4f11cc61bc7a001}{%
            family={Lundgaard},
@@ -320,9 +372,13 @@
       \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{note}{unpublished}
-      \field{title}{Gröbner bases and Hilberts Nullstellensatz}
+      \field{eprintclass}{math.AC}
+      \field{eprinttype}{arXiv}
+      \field{title}{Gröbner bases and final polynomials}
       \field{year}{2024}
+      \verb{eprint}
+      \verb 2405.16217
+      \endverb
     \endentry
     \entry{MONTES20101391}{article}{}
       \name{author}{2}{}{%

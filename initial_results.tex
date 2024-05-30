@@ -151,7 +151,51 @@ Pseudo-division allows us to overcome the problem, that our ground ring isn't a 
   For the remainder, we have from pseudo-division that no term of $r$ is divisible by any $\LT(g_{i})$. Assuming $\sigma(\LC(g_{i})) \neq 0$ for all $i$, we have $\LM(g_{i}) = \LM(\sigma(g_{i}))$ for all $i$. Hence, no term of $\sigma(r)$ is divisible by any $\LM(\sigma(g_{i}))$, and since we work over a field, no term of $\sigma(r)$ is divisible by any $\LT(\sigma(g_{i}))$.
 \end{proof}
 
-If we have a Gröbner basis after specialization, then that division ``lifts'' to a pseudo-division before specialization. That is the content of this rather technical lemma.
+
+Since remainders modulo a Gröbner basis $G$ are unique, we have that $f \in \langle G \rangle$ if and only if $f$ leaves a remainder of $0$ under division modulo $G$. We have the following analogous statement for parametric Gröbner bases and pseudo-division.
+
+\begin{lemma}\label{lem:ps_rem_unique}
+  Let $(Y, G)$ be a segment of a parametric Gröbner basis with $G = \{g_{1}, \dots, g_{n}\} \subset A[X]$, let $f \in A[X]$ and let
+  \[cf = r + \sum_{i=1}^{n} f_{i} g_{i}, \quad c'f = r' + \sum_{i=1}^{n} f'_{i} g_{i}\]
+  be pseudo-divisions. If $\,\sigma_{\alpha}(\LC(g)) \neq 0$ for all $\alpha \in Y$ and $g \in G$, then
+  \[\sigma_{\alpha}(r'c) = \sigma_{\alpha}(rc')\]
+  for all specializations $\sigma_{\alpha}$ with $\alpha \in Y$, and $\sigma_{\alpha}(f) \in \langle \sigma_{\alpha}(G) \rangle$ if and only if $\sigma_{\alpha}(r) = 0$.
+\end{lemma}
+\begin{proof}
+  Consider
+  \begin{align*}
+    0 &= \sigma_{\alpha}(c' c f) - \sigma_{\alpha}(c' c f) \\
+      &= \sigma_{\alpha}(cr') - \sigma_{\alpha}(c'r) + \sum_{i=1}^{n}\left(\sigma_{\alpha}(c f_{i}') - \sigma_{\alpha}(c' f_{i})\right)\sigma_{\alpha}(g_{i}).
+  \end{align*}
+  Since $\sum_{i=1}^{n}(\sigma_{\alpha}(c f_{i}') - \sigma_{\alpha}(c' f_{i}))\sigma_{\alpha}(g_{i}) \in \langle \sigma_{\alpha}(G) \rangle$, we must have $\sigma_{\alpha}(c' r) - \sigma_{\alpha}(c r') \in \langle \sigma_{\alpha}(G) \rangle$. If $\sigma_{\alpha}(c't) - \sigma_{\alpha}(cr') \neq 0$ then, since $\sigma_{\alpha}(G)$ is a Gröbner basis, that would imply that the leading term of $\sigma_{\alpha}(c' r) - \sigma_{\alpha}(c r')$ is divisible by some $\LM(\sigma_{\alpha}(g_{i}))$. But that would imply some term of either $\sigma_{\alpha}(c' r)$ or $\sigma_{\alpha}(c r')$ is divisible by that $\LM(\sigma_{\alpha}(g_{i}))$. Since $\LM(\sigma_{\alpha}(g_{i})) = \LM(g_{i})$ and no term of $r$ is divisible by any $\LM(g_{i})$ (by the properties of pseudo-division), this cannot happen. Hence $\sigma_{\alpha}(c' r) - \sigma_{\alpha}(c r') = 0$.
+
+  For the last assertion, if $\sigma_{\alpha}(r) = 0$, then clearly $\sigma_{\alpha}(f) \in \langle \sigma_{\alpha}(G) \rangle$. On the other hand, if $\sigma_{\alpha}(f) \in \langle \sigma_{\alpha}(G) \rangle$, find a pseudo-reduction
+  \[c f = r + \sum_{i=1}^{n} g_{i} f_{i}\]
+  Then, since $\sigma_{\alpha}(c) \neq 0$ for any $\alpha \in Y$, by lemma~\ref{lem:ps_div_to_div} we get that
+  \[\sigma_{\alpha}(c)\sigma_{\alpha}(f) = \sigma_{\alpha}(r) + \sum_{i=1}^{n} g_{i} f_{i}\]
+  where no term of $\sigma_{\alpha}(r)$ is divisible by any leading term of $\sigma_{\alpha}(G)$. Since $\sigma_{\alpha}(G)$ is a Gröbner basis, and $\sigma_{\alpha}(c) \sigma_{\alpha}(f) \in \langle \sigma_{\alpha}(G) \rangle$, this implies $\sigma_{\alpha}(r) = 0$.
+\end{proof}
+
+\begin{example}\upshape
+  Consider the comprehensive parametric Gröbner basis $G = \{ ax + y, bx + y, (a - b)y \} \subset \C[a, b, c][x, y]$ and the element $f = cxy + 1 \in \C[a, b, c][x, y]$. On the segment $\V(0) \setminus \V(ab(a-b))$, we can find a pseudo-reduction. First, reduce the term $cxy$ using $ax + y$:
+  \[ (a)(cxy + 1) = (cy)(ax + y) - cy^{2} + a \]
+  leaving a remainder of $\,-cy^{2} + a$. This remainder can be reduced using $(a - b)y$:
+  \[(a-b)(a)(cxy + 1) = (a-b)(cy)(ax + y) - (cy)((a - b)y) + a^{2} - ab \]
+  giving us the multiplier $c = a(a - b)$ and remainder $r = a^{2} - ab$.
+
+  We could also have reduced the term $cxy$ using $(a - b)y$:
+  \[(a-b)(cxy + 1) = (cx)((a-b)y) + a - b \]
+  giving us a mulitplier $c' = (a - b)$ and remainder $a - b$. We see that $c r' = (a-b)(a^{2} - ab) = (a - b)((a-b)a) = c' r$ in accordance with the theorem above.
+
+  If the segment induces relations between leading coefficients, this might show up in the pseudo-remainders. Consider the segment $(\V(a - b), \{ax + 1, bx + 1\})$ and the polynomial $abx$. Here, we find two different pseudo-remainders:
+  \begin{align*}
+    abx = (b)(ax + 1) - b \\
+    abx = (a)(bx + 1) - a
+  \end{align*}
+  In accordance with the theorem, we have that $\sigma_{\alpha}(a) = \sigma_{\alpha}(b)$ for all $\alpha \in \V(a - b)$. Do note, that for $\alpha \notin \V(a - b)$, $\sigma_{\alpha}(\{ax + 1, bx + 1\})$ is not a Gröbner basis, hence the theorem does not apply here.
+\end{example}
+
+Finally, to fully establish the correspondance between pseudo-division before specialization and division after specialization, we have the following: if we have a Gröbner basis $\sigma(G)$ after specialization, then any division modulo $G$ ``lifts'' to a pseudo-division before specialization. That is the content of this rather technical lemma.
 
 \begin{lemma}\label{lem:div_to_ps_div}
   Let $G = \{g_{1}, \dots, g_{n}\} \subset A[X]$, let $f \in \langle G \rangle$ and let $\sigma : A \to K_{1}$ be a specialization such that $\sigma(\LC(g_{i})) \neq 0$ for all $i$. If $\,\sigma(f)$ reduces to zero mod $\sigma(g_{1}), \dots, \sigma(g_{n})$, then there is some $h \in \langle G \rangle$ and $\,b \in A \setminus \ker(\sigma)$ such that $\sigma(bf) = \sigma(h)$ and $\,\LM(h) = \LM(\sigma(f))$.
@@ -176,46 +220,6 @@ If we have a Gröbner basis after specialization, then that division ``lifts'' t
   \end{align*}
   and $\LM(h) = \LM(g_{i}) = \LM(\sigma(g_{i})) = \LM(\sigma(f))$. Finally, since $b', \LC(g_{i}) \notin \ker(\sigma)$, we have $b \notin \ker(\sigma)$. This uses that $\ker(\sigma)$ is a prime ideal, which is true since its codomain is a field.
 \end{proof}
-
-Since remainders modulo a Gröbner basis $G$ are unique, we have that $f \in \langle G \rangle$ if and only if $f$ leaves a remainder of $0$ under division modulo $G$. We have the following analogous statement for parametric Gröbner bases and pseudo-division.
-
-\begin{lemma}\label{lem:ps_rem_unique}
-  Let $(Y, G)$ be a segment of a parametric Gröbner basis with $G = \{g_{1}, \dots, g_{n}\} \subset A[X]$, let $f \in A[X]$ and let
-  \[cf = r + \sum_{i=1}^{n} f_{i} g_{i}, \quad c'f = r' + \sum_{i=1}^{n} f'_{i} g_{i}\]
-  be pseudo-divisions. If $\,\sigma_{\alpha}(\LC(g)) \neq 0$ for all $\alpha \in Y$ and $g \in G$, then
-  \[\sigma_{\alpha}(r'c) = \sigma_{\alpha}(rc')\]
-  for all specializations $\sigma_{\alpha}$ with $\alpha \in Y$, and $\sigma_{\alpha}(f) \in \langle \sigma_{\alpha}(G) \rangle$ if and only if $\sigma_{\alpha}(r) = 0$.
-\end{lemma}
-\begin{proof}
-  Consider
-  \begin{align*}
-    0 &= \sigma_{\alpha}(c' c f) - \sigma_{\alpha}(c' c f) \\
-      &= \sigma_{\alpha}(cr') - \sigma_{\alpha}(c'r) + \sum_{i=1}^{n}\left(\sigma_{\alpha}(c f_{i}') - \sigma_{\alpha}(c' f_{i})\right)\sigma_{\alpha}(g_{i}).
-  \end{align*}
-  Since $\sum_{i=1}^{n}(\sigma_{\alpha}(c f_{i}') - \sigma_{\alpha}(c' f_{i}))\sigma_{\alpha}(g_{i}) \in \langle \sigma_{\alpha}(G) \rangle$, we must have $\sigma_{\alpha}(c' r) - \sigma_{\alpha}(c r') \in \langle \sigma_{\alpha}(G) \rangle$. If $\sigma_{\alpha}(c't) - \sigma_{\alpha}(cr') \neq 0$ then, since $\sigma_{\alpha}(G)$ is a Gröbner basis, that would imply that the leading term of $\sigma_{\alpha}(c' r) - \sigma_{\alpha}(c r')$ is divisible by some $\LM(\sigma_{\alpha}(g_{i}))$. But that would imply some term of either $\sigma_{\alpha}(c' r)$ or $\sigma_{\alpha}(c r')$ is divisible by that $\LM(\sigma_{\alpha}(g_{i}))$. Since $\LM(\sigma_{\alpha}(g_{i})) = \LM(g_{i})$ and no term of $r$ is divisible by any $\LM(g_{i})$ (by the properties of pseudo-division), this cannot happen. Hence $\sigma_{\alpha}(c' r) - \sigma_{\alpha}(c r') = 0$.
-
-  For the last assertion, if $\sigma_{\alpha}(r) = 0$, then clearly $\sigma_{\alpha}(f) \in \langle \sigma_{\alpha}(G) \rangle$. On the other hand, if $\sigma_{\alpha}(f) \in \langle \sigma_{\alpha}(G) \rangle$, then $\sigma_{\alpha}(f)$ reduces to 0 mod $\sigma_{\alpha}(G)$ since $\sigma_{\alpha}(G)$ is a Gröbner basis. Hence, by lemma~\ref{lem:div_to_ps_div}, there is a $h \in \langle G \rangle$ and $b \in A \setminus \ker(\sigma_{\alpha})$ such that $\sigma_{\alpha}(h) = \sigma_{\alpha}(bf)$. Hence, we can find a pseudo-reduction $h = \sum h_{i} g_{i}$ and hence $b f = r + h = r + \sum h_{i} g_{i}$ for some $r \in \ker(\sigma_{\alpha})$ is a pseudo-reduction with $\sigma_{\alpha}(r) = 0$.
-\end{proof}
-
-\begin{example}\upshape
-  Consider the comprehensive parametric Gröbner basis $G = \{ ax + y, bx + y, (a - b)y \} \subset \C[a, b, c][x, y]$ and the element $f = cxy + 1 \in \C[a, b, c][x, y]$. On the segment $\V(0) \setminus \V(ab(a-b))$, we can find a pseudo-reduction. First, reduce the term $cxy$ using $ax + y$:
-  \[ (a)(cxy + 1) = (cy)(ax + y) - cy^{2} + a \]
-  leaving a remainder of $\,-cy^{2} + a$. This remainder can be reduced using $(a - b)y$:
-  \[(a-b)(a)(cxy + 1) = (a-b)(cy)(ax + y) - (cy)((a - b)y) + a^{2} - ab \]
-  giving us the multiplier $c = a(a - b)$ and remainder $r = a^{2} - ab$.
-
-  We could also have reduced the term $cxy$ using $(a - b)y$:
-  \[(a-b)(cxy + 1) = (cx)((a-b)y) + a - b \]
-  giving us a mulitplier $c' = (a - b)$ and remainder $a - b$. We see that $c r' = (a-b)(a^{2} - ab) = (a - b)((a-b)a) = c' r$ in accordance with the theorem above.
-
-  If the segment induces relations between leading coefficients, this might show up in the pseudo-remainders. Consider the segment $(\V(a - b), \{ax + 1, bx + 1\})$ and the polynomial $abx$. Here, we find two different pseudo-remainders:
-  \begin{align*}
-    abx = (b)(ax + 1) - b \\
-    abx = (a)(bx + 1) - a
-  \end{align*}
-  In accordance with the theorem, we have that $\sigma_{\alpha}(a) = \sigma_{\alpha}(b)$ for all $\alpha \in \V(a - b)$. Do note, that for $\alpha \notin \V(a - b)$, $\sigma_{\alpha}(\{ax + 1, bx + 1\})$ is not a Gröbner basis, hence the theorem does not apply here.
-\end{example}
-
 
 
 

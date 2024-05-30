@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2023.9.5)  29 MAY 2024 21:08
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2023.9.5)  30 MAY 2024 18:24
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -3432,20 +3432,19 @@ line 92.
  [8]
 Package mdframed Info: Not enough space on this page on input line 129.
  [9]
-Overfull \hbox (11.48409pt too wide) in paragraph at lines 183--184
+Overfull \hbox (11.48409pt too wide) in paragraph at lines 158--159
 []\TU/LibertinusSerif(0)/m/it/12 Let $[][][] [][]$ be a segment of a parametric
  Gröbner basis with $[] [] [][][][] [] [] [][][] []
  []
 
+Package mdframed Info: Not enough space on this page on input line 196.
 [10]
-Package mdframed Info: Not enough space on this page on input line 188.
+Package mdframed Info: Not enough space on this page on input line 196.
  [11] [12]
 Package hyperref Info: bookmark level for unknown corollary defaults to 0 on in
-put line 259.
+put line 263.
  [13]
-Package mdframed Info: Box was splittet wrong
- starting loop to iterate the splitting point
-(mdframed)              on input line 309.
+Package mdframed Info: Not enough space on this page on input line 275.
  [14]) [15] (./grb_systems.tex
 LaTeX Font Info:    Font shape `TU/LibertinusMono(0)/m/n' will be
 (Font)              scaled to size 10.40002pt on input line 2.
@@ -3694,27 +3693,35 @@ Package mdframed Info: Box was splittet wrong
  [37] [38] [39]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 421.
+(hyperref)                removing `math shift' on input line 433.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\mathbf' on input line 421.
+(hyperref)                removing `\mathbf' on input line 433.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 421.
+(hyperref)                removing `math shift' on input line 433.
 
-[40] [41]) [42] (./applications.tex [43]
-Overfull \hbox (21.1321pt too wide) in paragraph at lines 57--58
-[]\TU/LibertinusSerif(0)/m/it/12 Let $[][][] [][]$ be a segment of a parametric
- Gröbner basis where $[] [] [][][][] [] [] [][][] []
+[40]
+Overfull \hbox (16.94633pt too wide) in paragraph at lines 456--457
+\TU/LibertinusSerif(0)/m/n/12 map $[][] [] [][][][] [] [][][][]$. Denoting $[] 
+[] [][][][] [][][] [] [] [][][]$, we take $[] [] [][][][][][][][] [][][][][][][
+] [] [] [][][][][][][]$.
+ []
+
+[41]) [42] (./applications.tex [43]
+Overfull \hbox (32.31892pt too wide) in paragraph at lines 57--58
+[]\TU/LibertinusSerif(0)/m/it/12 Let $[][] [] []$ be field, let $[] [] [][][][]
+[][][]$ be an ideal, and let $[] [] [][][][][] [][][] [] [] [][][][] [][][][][]
+$
  []
 
 [44]
 File: geogebra_setup.png Graphic file (type bmp)
 <geogebra_setup.png>
 LaTeX Font Info:    Font shape `TU/LibertinusSerif(0)/m/n' will be
-(Font)              scaled to size 10.95pt on input line 79.
+(Font)              scaled to size 10.95pt on input line 97.
 Requested font "[LibertinusSerif-Regular.otf]/OT:script=latn;language=dflt;+tnu
 m;+lnum;mapping=tex-text;" at 10.95pt
  -> /usr/share/texlive/texmf-dist/fonts/opentype/public/libertinus-fonts/Libert
@@ -3826,21 +3833,21 @@ inusSerif-Regular.otf
 
 
 (./_minted-project/FF107B69B75A55C7BBBD39FEBF76E43FB628A47E597F7E7F4F45EB4227F7
-5598.pygtex)
+5598.pygtex) [45] [46]
 Package mdframed Info: Box was splittet wrong
  starting loop to iterate the splitting point
-(mdframed)              on input line 150.
- [45]
-Package mdframed Info: Box was splittet wrong
- starting loop to iterate the splitting point
-(mdframed)              on input line 150.
- [46]
+(mdframed)              on input line 170.
+ [47]
 File: geogebra_sqrt.png Graphic file (type bmp)
 <geogebra_sqrt.png>
- [47]
+ [48]
 File: geogebra_orthic_wow.png Graphic file (type bmp)
 <geogebra_orthic_wow.png>
- [48] [49] [50]) [51]
+ [49]
+Package mdframed Info: Box was splittet wrong
+ starting loop to iterate the splitting point
+(mdframed)              on input line 245.
+ [50]) [51]
 Overfull \hbox (1.25064pt too wide) in paragraph at lines 255--255
 []\TU/LibertinusSerif(0)/m/n/12 Bernd Sturmfels. “  Computational algebraic geo
 metry of projective configurations”.
@@ -3858,13 +3865,74 @@ Overfull \hbox (8.78094pt too wide) in paragraph at lines 33--34
 that at every step $[]$, we have that $[][][][][] [][] []
  []
 
-[55])
+[55]
+Overfull \hbox (8.58658pt too wide) in paragraph at lines 79--80
+\TU/LibertinusSerif(0)/m/n/12 The julia code at [][]$[][][][][] [] [] [] [][][]
+[][][] [] [][][] [] [][][][][][][][][][][] [] [][][][][][][][][][][][][][][][][
+][][][][][] []
+ []
+
+\openout5 = `project.pyg'.
+
+
+(./_minted-project/76926AF7E06315BBF97CFAE8FC34213BB628A47E597F7E7F4F45EB4227F7
+5598.pygtex)
+\openout5 = `project.pyg'.
+
+
+(./_minted-project/5A1050D8F893D9FB4E1883182425EEE1B628A47E597F7E7F4F45EB4227F7
+5598.pygtex)
+\openout5 = `project.pyg'.
+
+
+(./_minted-project/422AD88ADFFE20298CD19535F55668D2B628A47E597F7E7F4F45EB4227F7
+5598.pygtex [56])
+\openout6 = `project.pyg'.
+
+
+(./_minted-project/E9EC06316CE1657DCE08B8221830F3D5B628A47E597F7E7F4F45EB4227F7
+5598.pygtex)
+\openout6 = `project.pyg'.
+
+
+(./_minted-project/F2F1E4FA4389475E0E1CAF0935E43456B628A47E597F7E7F4F45EB4227F7
+5598.pygtex)
+\openout6 = `project.pyg'.
+
+
+(./_minted-project/63888BAD9F5648D954BE1F9D45537A6FB628A47E597F7E7F4F45EB4227F7
+5598.pygtex)
+\openout5 = `project.pyg'.
+
+
+(./_minted-project/A25FAEF898BB76E4F7FE9F2309795944B628A47E597F7E7F4F45EB4227F7
+5598.pygtex [57])
+\openout5 = `project.pyg'.
+
+
+(./_minted-project/CEDB9955F3B25CDF8A1E38F7926D4198B628A47E597F7E7F4F45EB4227F7
+5598.pygtex)
+\openout5 = `project.pyg'.
+
+
+(./_minted-project/56145EFA04238E1EEFF91873C3BA1B40B628A47E597F7E7F4F45EB4227F7
+5598.pygtex)
+\openout6 = `project.pyg'.
+
+
+(./_minted-project/596BAE3E6BA3C04EBBB98939BAF96CE7B628A47E597F7E7F4F45EB4227F7
+5598.pygtex)
+\openout6 = `project.pyg'.
+
+
+(./_minted-project/596BAE3E6BA3C04EBBB98939BAF96CE7B628A47E597F7E7F4F45EB4227F7
+5598.pygtex))
 \tf@thm=\write9
 \openout9 = `project.thm'.
 
- [56] (./project.aux)
+ [58] (./project.aux)
 Package rerunfilecheck Info: File `project.out' has not changed.
-(rerunfilecheck)             Checksum: 398B6D4730EE5FA6A014CF4099D42038;4611.
+(rerunfilecheck)             Checksum: B85EEA22494E6CB4F3BE1945F0A67EB3;4907.
 runsystem(rm project.pyg)...executed.
 
 Package logreq Info: Writing requests to 'project.run.xml'.
@@ -3872,12 +3940,12 @@ Package logreq Info: Writing requests to 'project.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 49328 strings out of 476191
- 1020673 string characters out of 5812073
- 2014460 words of memory out of 5000000
- 69192 multiletter control sequences out of 15000+600000
+ 49397 strings out of 476191
+ 1026214 string characters out of 5812073
+ 2016447 words of memory out of 5000000
+ 69229 multiletter control sequences out of 15000+600000
  484683 words of font info for 206 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  129i,13n,151p,1534b,5064s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on project.pdf (58 pages).
+Output written on project.pdf (60 pages).

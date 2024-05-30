@@ -1,15 +1,15 @@
 [0] Config.pm:307> INFO - This is Biber 2.17
 [0] Config.pm:310> INFO - Logfile is 'project.blg'
-[109] biber:340> INFO - === Sat May 25, 2024, 23:48:35
-[127] Biber.pm:418> INFO - Reading 'project.bcf'
-[223] Biber.pm:972> INFO - Found 15 citekeys in bib section 0
-[241] Biber.pm:4383> INFO - Processing section 0
-[255] Biber.pm:4574> INFO - Looking for bibtex file 'refs.bib' for section 0
-[257] bibtex.pm:1713> INFO - LaTeX decoding ...
-[293] bibtex.pm:1518> INFO - Found BibTeX data source 'refs.bib'
-[1325] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[1325] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[1325] Biber.pm:4203> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-US'
-[1325] Biber.pm:4209> INFO - No sort tailoring available for locale 'en-US'
-[1353] bbl.pm:654> INFO - Writing 'project.bbl' with encoding 'UTF-8'
-[1361] bbl.pm:757> INFO - Output to project.bbl
+[110] biber:340> INFO - === Thu May 30, 2024, 17:55:28
+[126] Biber.pm:418> INFO - Reading 'project.bcf'
+[206] Biber.pm:972> INFO - Found 16 citekeys in bib section 0
+[227] Biber.pm:4383> INFO - Processing section 0
+[240] Biber.pm:4574> INFO - Looking for bibtex file 'refs.bib' for section 0
+[241] bibtex.pm:1713> INFO - LaTeX decoding ...
+[271] bibtex.pm:1518> INFO - Found BibTeX data source 'refs.bib'
+[1147] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[1147] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[1148] Biber.pm:4203> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-US'
+[1148] Biber.pm:4209> INFO - No sort tailoring available for locale 'en-US'
+[1198] bbl.pm:654> INFO - Writing 'project.bbl' with encoding 'UTF-8'
+[1211] bbl.pm:757> INFO - Output to project.bbl

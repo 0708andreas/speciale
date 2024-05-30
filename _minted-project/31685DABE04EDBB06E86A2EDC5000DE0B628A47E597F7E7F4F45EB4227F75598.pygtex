@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+  \PYG{n}{f} \PYG{o}{=} \PYG{n}{a}\PYG{o}{*}\PYG{n}{x} \PYG{o}{+} \PYG{n}{a}\PYG{o}{*}\PYG{n}{y}
+  \PYG{n}{pseudo\PYGZus{}reduce}\PYG{p}{(}\PYG{n}{f}\PYG{p}{,} \PYG{n}{CGS}\PYG{p}{(}\PYG{n}{I}\PYG{p}{)[])}
+\end{Verbatim}
