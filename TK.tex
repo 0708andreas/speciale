@@ -1,0 +1,66 @@
+\makeatletter
+\newlength\@rbll
+\def\rbl#1#2{%
+  \settowidth{\@rbll}{\hbox{#2}}%
+  #2\kern-#1\@rbll#2}
+\newcommand\@TK{\mbox{\ttfamily
+    \raisebox{-0.4pt}{T}%
+    \rbl{.95}{\AA}G%
+    \rotatebox{-8}{E}%
+    \raisebox{-0.6pt}{K}%
+    $\,\!$%
+    \raisebox{0.2pt}{\rbl{.94}{A}}%
+    $\,\!$%
+    \raisebox{-0.6pt}{M}%
+    \rotatebox{8}{\rbl{.94}{M}}%
+    ER\hspace{1pt}}}%
+\newcommand\@TKET{\mbox{\@TK%
+\kern-2pt\rotatebox{-8}{\ttfamily E}%
+\kern-1pt\raisebox{-.4pt}{\ttfamily T}\kern1pt%
+}}
+\newcommand\TKET{\@TKET}
+\makeatother
+
+% \makeatletter
+% % RV, 2010-11-03: The following comes from the "ancient" tket.sty. It
+% % is, apparently, a home-made poor-man's bold. I have no idea what
+% % 'rbl' stands for (but rbll is probably for "rbl length").
+% \newlength\tket@rbll
+% \def\tket@rbl#1#2{%
+%   \settowidth{\tket@rbll}{\hbox{#2}}%
+%   #2\kern-#1\tket@rbll#2}
+
+% % Building blocks. The first two are identical except that one uses Å,
+% % the other AA
+% \newcommand*{\tket@block@TK}{\ttfamily
+%   \raisebox{-0.4pt}{T}%
+%   \tket@rbl{.95}{\AA}G%
+%   \rotatebox{-8}{E}%
+%   \raisebox{-0.6pt}{K}%
+%   $\,\!$%
+%   \raisebox{0.2pt}{\tket@rbl{.94}{A}}%
+%   $\,\!$%
+%   \raisebox{-0.6pt}{M}%
+%   \rotatebox{8}{\tket@rbl{.94}{M}}%
+%   ER\hspace{1pt}}
+
+% \newcommand*{\tket@block@TKAA}{\ttfamily
+%   \raisebox{-0.4pt}{T}%
+%   \tket@rbl{.95}{A}\raisebox{0.1pt}{A}G%
+%   \rotatebox{-8}{E}%
+%   \raisebox{-0.6pt}{K}%
+%   $\,\!$%
+%   \raisebox{0.2pt}{\tket@rbl{.94}{A}}%
+%   $\,\!$%
+%   \raisebox{-0.6pt}{M}%
+%   \rotatebox{8}{\tket@rbl{.94}{M}}%
+%   ER\hspace{1pt}}
+
+% \newcommand*{\tket@block@ET}{\kern-1pt\raisebox{.6pt}{\ttfamily ET}\kern1pt}
+% \newcommand*{\tket@block@S}{\kern-2pt\raisebox{-0.5pt}{\ttfamily S}}
+% \newcommand*{\tket@block@s}{\kern-2pt\raisebox{-0.5pt}{\ttfamily s}}
+
+% \newcommand*{\TK}   {\mbox{\tket@block@TK}\xspace}
+% \newcommand*{\TKET} {\mbox{\tket@block@TK\tket@block@ET}\xspace}
+
+% \makeatother

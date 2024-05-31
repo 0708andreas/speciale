@@ -1,17 +1,17 @@
 \section{Miscellaneous results}
-In this section, we prove results that we need in the main text, but don't fit in the flow of the text. These are well-known results, which nevertheless aren't usually covered in introductionary algebra courses. Hence, we present them here.
+In this section, we prove results that we need in the main text, but don't fit in the flow of the text. The last two are well-known results, which nevertheless aren't usually covered in introductionary algebra courses. Hence, we present them here.
 
 \subsection{The pseudo-division algorithm}\label{app:pseudo}
 The pseudo-division algorithm is a slight modification of the normal division algorithm.
 
 \begin{theorem}
-  Let $f \in A[X]$ and $G = \{g_{1}, \dots, g_{n}\} \subset A[X]$. Then there exists $\{h_{1}, \dots, h_{n}\} \subset A[X]$, $r \in A[X]$ and $c \in A$ such that
+  Let $f \in A[X]$ and $\,G = \{g_{1}, \dots, g_{n}\} \subset A[X]$. Then there exists $\,\{h_{1}, \dots, h_{n}\} \subset A[X]$, $r \in A[X]$ and $c \in A$ such that
   \[c f = r + \sum_{i=1}^{n} h_{i} g_{i}\]
   and the following properties are satisfied:
   \begin{enumerate}
-          \item $c = \prod_{j \in J} \LC(g_{j})^{p_{j}}$ for some subset $J \subset \{1, 2, \dots, n\}$ and powers $p_{j}$.
+    \item $c = \prod_{i=1}^{n} \LC(g_{i})^{p_{i}}$ for some powers $p_{i} \geq 0$.
     \item $\LM(h_{i} g_{i}) \leq \LM(f)$ for all $i \in \{1, \dots, n\}$.
-    \item No term of $r$ is divisible by $\LM(g_{i})$ for any $i$,
+    \item No term of $\,r$ is divisible by $\LM(g_{i})$ for any $i$,
     \item $\coef(h_{i} g_{i}, m) \in \langle \coef(f, m') \mid m' \geq m \rangle$ for all $i \in \{1, \dots, n\}$ and all monomials $m$.
   \end{enumerate}
 \end{theorem}
@@ -19,38 +19,46 @@ The pseudo-division algorithm is a slight modification of the normal division al
   First, we present the division algorithm to compute such a representation. To start, let $f^{0} = f$, $r^{0} = 0$, $c^{0} = 1$ and $h_{1}^{0} = h_{2}^{0} = \dots = h_{n}^{0} = 0$. Then we iteratively define the state at step $i$ in terms of the state at step $i-1$:
   \begin{itemize}
     \item If $f^{i-1} = 0$, we are done. Set $r = r^{i-1}$, set $c = c^{i-1}$ and set $h_{j} = h_{j}^{i-1}$ for all $j \in \{1, \dots, n\}$.
-    \item If there is some $g_{j} \in G$ such that $\LM(g_{j}) \mid \LM(f^{i-1})$, then find a $\gamma$ such that $\LM(g_{j})\gamma = \LM(f^{i-1})$ and set $h_{j}^{i} = \LC(g_{j}) h_{j}^{i-1} + \LC(f^{i-1}) \gamma$, set $f^{i} = \LC(g_{j}) f^{i-1} - \LC(f^{i-1}) \gamma g_{j}$, set $r^{i} = \LC(g_{j}) r^{i-1}$, and set $h_{l}^{i} = \LC(g_{j}) h_{l}^{i-1}$ for $l \neq j$.
-    \item If no $g \in G$ satisfies $\LT(g) \mid \LT(f^{i-1})$, then set $r^{i} = r^{i-1} + \LT(f)$, set $f^{i} = f^{i-1} - \LT(f^{i-1})$ and set $h_{j}^{i} = h_{j}^{i-1}$ for $j \in \{1, \dots, n\}$.
+    \item If there is some $g_{j} \in G$ such that $\LM(g_{j}) \mid \LM(f^{i-1})$, then find a monomial $\gamma$ such that $\LM(g_{j})\gamma = \LM(f^{i-1})$ and set $h_{j}^{i} = \LC(g_{j}) h_{j}^{i-1} + \LC(f^{i-1}) \gamma$, set $f^{i} = \LC(g_{j}) f^{i-1} - \LC(f^{i-1}) \gamma g_{j}$, set $r^{i} = \LC(g_{j}) r^{i-1}$, set $c^{i} = \LC(g_{j}) c^{i-1}$, and set $h_{l}^{i} = \LC(g_{j}) h_{l}^{i-1}$ for all $l \neq j$.
+    \item If no $g \in G$ satisfies $\LM(g) \mid \LM(f^{i-1})$, then set $r^{i} = r^{i-1} + \LT(f)$, set $f^{i} = f^{i-1} - \LT(f^{i-1})$ and set $h_{j}^{i} = h_{j}^{i-1}$ for $j \in \{1, \dots, n\}$.
   \end{itemize}
 
   Since for all $i$, we have $\LM(f^{i}) < \LM(f^{i-1})$ and $<$ is a well-order, this procedure must terminate eventually. The equality
   \[c f = r + \sum_{j=1}^{n} h_{j} g_{j}\] follows from the fact that
   \[c^{i} f - f^{i} = r^{i} + \sum_{j=1}^{n} h^{i}_{j} g_{j}\]
-  at every step $i$ of the algorithm, and when the algorithm terminates $f^{i} = 0$.
+  at every step $i$ of the algorithm, and when the algorithm terminates $f^{i} = 0$. Indeed, it holds for $i=0$, and if it holds for $i-1$, then we have two cases. If no $g \in G$ satisfies $\LM(g) \mid \LM(f^{i-1})$, then the calculation is easy. If there is some $g_{l} \in G$ such that $\LM(g_{j}) \mid \LM(f^{i-1})$, write $\LM(f^{i-1}) = \gamma \LM(g_{l})$, then
+  \begin{align*}
+    c^{i-1} f - f^{i-1} &= r^{i-1} + \sum_{j=1}^{n} h^{i-1}_{j} g_{j} \quad \text{implies} \\
+    c^{i} f - f^{i} &= \LC(g_{l}) c^{i-1} f - \LC(g_{l}) f^{i-1} + \LC(f^{i-1})\gamma g_{l} \\
+                        &= \LC(g_{l}) r^{i - 1} + \sum_{j=1}^{n} \LC(g_{l}) h^{i-1}_{j}g_{j} + \LC(f^{i-1})\gamma g_{l} \\
+                        &= r^{i} + \sum_{j \neq l} h^{i}_{j} g_{i} + (\LC(g_{l})h^{i - 1}_{l} + \LC(f^{i-1})\gamma g_{l})g_{l} \\
+                        &= r^{i} + \sum_{j=1}^{n} h^{i}_{j} g_{j}
+  \end{align*}
 
-  The two first properties of the division are invariants for the algoritm. Since we have $\LM(f^{i}) \leq \LM(f)$ for all $i$, property (1) follows from the construction of the $h_{j}$'s. Property (2) is an invariant of $r^{i}$.
 
-  The final property follows from the invariant, that at every step $i$, we have that $\coef(f^{i}, m) \in \langle \coef(f, m') \mid m' \geq m \rangle$. Indeed, it is true at step $i=0$. At step $i$, note that when $\LT(g_{j}) \gamma = \LT(f^{i})$, then $\coef(g_{j} \gamma, m) \in \langle \LC(f^{i}) \rangle$. Since $\LM(g_{j} \gamma) \geq m$ for every monomial $m$, that occurs in a term of $f^{i}$, we get that $\coef(f^{i} - g_{j} \gamma) \in \langle \coef(f^{i}, m') \mid m' \geq m \rangle$.
+  The first three properties of the division are invariants for the algoritm. Since we have $\LM(f^{i}) \leq \LM(f)$ for all $i$, property (2) follows from the construction of the $h_{j}$'s. Property (3) is an invariant of $r^{i}$.
+
+  The final property follows from the invariant, that at every step $i$, we have that $\coef(f^{i}, m) \in \langle \coef(f, m') \mid m' \geq m \rangle$. Indeed, it is true at step $i=0$. At step $i$, note that when $\LM(g_{j}) \gamma = \LM(f^{i})$, then $\coef(\LC(f^{i})g_{j} \gamma, m) \in \langle \LC(f^{i}) \rangle$. Since $\LM(g_{j} \gamma) \geq m$ for every monomial $m$, that occurs in a term of $f^{i}$, we get that $\coef(f^{i} - g_{j} \gamma, m) \in \langle \coef(f^{i}, m') \mid m' \geq m \rangle$.
 \end{proof}
 
 
 
 
 \subsection{The nilradical}
-The nilradical is the ideal of all nilpotent elements of a ring. It is widely used in the study of general rings. In our case, where the base ring is assumed to have no nilpotents, it is zero, but we still need a different characterization of it.
+An element $a \in A$ is called nilpotent if there is an $n \in N$ such that $a^{n} = 0$. In our case, where the base ring is assumed to have no nilpotents, it is the zero ideal, but we still need a different characterization of it.
 
 \begin{definition}[Nilradical]
   Let $A$ be a commutative ring. Then the ideal \[\sqrt{\langle 0 \rangle} = \{a \in A \mid \exists n \in \N : a^{n} = 0\}\] is called the \textit{nilradical}.
 \end{definition}
 
 \begin{theorem}\label{thm:nil_rad_is_cap_primes}
-  Let $A$ be a commutative, Neotherian ring, and let $\Spec(A)$ be the set of prime ideals of $A$. Then
+  Let $A$ be a commutative, Noetherian ring, and let $\Spec(A)$ be the set of prime ideals of $A$. Then
   \[\sqrt{\langle 0 \rangle} = \bigcap_{\p \in \Spec(A)} \p\]
 \end{theorem}
 \begin{proof}
   First, a quick induction proof gives that every nilpotent element is in every $\p \in \Spec(A)$. Indeed, $0 \in \p$ and if $a^{n} = 0 \in \p$, then either $a$ or $a^{n-1}$ is in $p$, since $\p$ is prime. By induction, $a \in \p$.
 
-  For the converse inclusion, we apply Zorns lemma. Let $f \in A \setminus \sqrt{\langle 0 \rangle}$, then we need to find a prime ideal that does not contain $f$. Let $S$ be the set of ideals in $A$ not containing any power of $f$. $S$ is non-empty, since $\langle 0 \rangle \in S$, and each chain of ideals in $S$ stabilizes since $A$ is Noetherian. Hence, Zorns lemma applies, and gives us a maximal element $\fr m \in S$. To finish the proof, we just need that $\fr m$ is a prime ideal. Let $g, h \notin \fr m$, then we show that $g h \notin \fr m$. Since $\fr m$ is maximal, we must have $\fr m + \langle g \rangle \notin S$ and $\fr m + \langle h \rangle \notin S$. Hence, we can find $m, n$ such that $f^{n} \in \fr m + \langle g \rangle$ and $f^{m} \in \fr m + \langle h \rangle$. Now, if $g h \in \fr m$, then $\fr m + \langle g h \rangle = \fr m$, and hence $f^{n + m} = f^{n} f^{m} \in (\fr m + \langle g \rangle)(\fr m + \langle h \rangle) = \fr m + \langle g h \rangle = \fr m$, meaning $m \notin S$. This is a contradiction, so $g h \notin \fr m$.
+  For the converse inclusion, we apply Zorns lemma. Let $f \in A \setminus \sqrt{\langle 0 \rangle}$, then we need to find a prime ideal that does not contain $f$. Let $S$ be the set of ideals in $A$ not containing any power of $f$. $S$ is non-empty, since $\langle 0 \rangle \in S$, and each chain of ideals in $S$ stabilizes since $A$ is Noetherian. Hence, Zorns lemma applies, and gives us a maximal element $\fr m \in S$. To finish the proof, we just need that $\fr m$ is a prime ideal. Let $g, h \notin \fr m$, then we show that $g h \notin \fr m$. Since $\fr m$ is maximal, we must have $\fr m : \langle g \rangle \notin S$ and $\fr m : \langle h \rangle \notin S$. Hence, we can find $m, n$ such that $f^{n} \in \fr m : \langle g \rangle$ and $f^{m} \in \fr m : \langle h \rangle$. Now, if $g h \in \fr m$, then $\fr m : \langle g h \rangle = \fr m$, and hence $f^{n + m} = f^{n} f^{m} \in (\fr m + \langle g \rangle)(\fr m + \langle h \rangle) \subset \fr m + \langle g h \rangle = \fr m$, meaning $m \notin S$. This is a contradiction, so $g h \notin \fr m$.
 \end{proof}
 
 
@@ -58,7 +66,7 @@ The nilradical is the ideal of all nilpotent elements of a ring. It is widely us
 
 \subsection{Homogenous ideals}
 
-Here, we present a basic lemma about homogenous ideals.
+A homogenous ideal is an ideal, that can be generated by a finite set of homogenous polynomials. Here, we present a basic lemma about homogenous ideals.
 
 \begin{lemma}\label{lem:homo_components}
   Let $I \subset A[X]$ be a homogenous ideal and let $f \in I$. Writing
@@ -67,9 +75,9 @@ Here, we present a basic lemma about homogenous ideals.
 \end{lemma}
 \begin{proof}
   Let $\{g_{1}, \dots, g_{n}\} \subset I$ be a finite set of homogenous generators of $I$, and let $f \in I$. Then we can write
-  \[f = \sum_{i=0}^{n} h_{i} g_{i}\]
+  \[f = \sum_{i=1}^{n} h_{i} g_{i}\]
   for some $h_{i} \in A[X]$. Consider a single term of this sum, which we can write as
-  \[h_{i} g_{i} = \sum_{j} a_{i,j}X^{v_{i,j}} g_{i}, \quad \text{where } h_{i} = \sum_{j} a_{i.j}X^{v_{i,j}}.\]
+  \[h_{i} g_{i} = \sum_{j} a_{i, j}X^{v_{i,j}} g_{i}, \quad \text{where } h_{i} = \sum_{j} a_{i, j}X^{v_{i,j}}.\]
   Each term of this sum is homogenous and $a_{i,j} X^{v_{i,j}} g_{i} \in I$. Since
   \[f = \sum_{i,\,j} a_{i,j} X^{v_{i, j}} g_{i}\]
   is a sum of homogenous polynomials, and each term of the sum is homogenous and in $I$, each homogenous component of $f$ is in $I$.

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2023.9.5)  30 MAY 2024 18:24
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2023.9.5)  31 MAY 2024 18:53
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -2427,8 +2427,8 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip99
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 97.
-Package hyperref Info: Option `bookmarksnumbered' set `true' on input line 97.
+Package hyperref Info: Option `colorlinks' set `true' on input line 98.
+Package hyperref Info: Option `bookmarksnumbered' set `true' on input line 98.
 
 (/usr/share/texlive/texmf-dist/tex/latex/mdframed/mdframed.sty
 Package: mdframed 2013/07/01 1.9b: mdframed
@@ -2620,6 +2620,9 @@ Package cleveref Info: always capitalise cross-reference names on input line 78
 \c@currproofctr=\count537
 \c@endproofctr=\count538
 \c@proof=\count539
+ (./TK.tex
+\@rbll=\skip176
+)
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
 runsystem(which pygmentize && touch project.aex)...executed.
@@ -2630,26 +2633,26 @@ runsystem(rm project.aex)...executed.
 (./project.aux)
 \openout1 = `project.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 218.
-LaTeX Font Info:    ... okay on input line 218.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 218.
-LaTeX Font Info:    ... okay on input line 218.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 218.
-LaTeX Font Info:    ... okay on input line 218.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 218.
-LaTeX Font Info:    ... okay on input line 218.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 218.
-LaTeX Font Info:    ... okay on input line 218.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 218.
-LaTeX Font Info:    ... okay on input line 218.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 218.
-LaTeX Font Info:    ... okay on input line 218.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 218.
-LaTeX Font Info:    ... okay on input line 218.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 218.
-LaTeX Font Info:    ... okay on input line 218.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 218.
-LaTeX Font Info:    ... okay on input line 218.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 220.
+LaTeX Font Info:    ... okay on input line 220.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 220.
+LaTeX Font Info:    ... okay on input line 220.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 220.
+LaTeX Font Info:    ... okay on input line 220.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 220.
+LaTeX Font Info:    ... okay on input line 220.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 220.
+LaTeX Font Info:    ... okay on input line 220.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 220.
+LaTeX Font Info:    ... okay on input line 220.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 220.
+LaTeX Font Info:    ... okay on input line 220.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 220.
+LaTeX Font Info:    ... okay on input line 220.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 220.
+LaTeX Font Info:    ... okay on input line 220.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 220.
+LaTeX Font Info:    ... okay on input line 220.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
@@ -2685,13 +2688,13 @@ LaTeX Font Info:    ... okay on input line 218.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Info: Redefining \microtypecontext on input line 218.
-Package microtype Info: Applying patch `item' on input line 218.
-Package microtype Info: Applying patch `toc' on input line 218.
+LaTeX Info: Redefining \microtypecontext on input line 220.
+Package microtype Info: Applying patch `item' on input line 220.
+Package microtype Info: Applying patch `toc' on input line 220.
 
-Package microtype Warning: Unable to apply patch `eqnum' on input line 218.
+Package microtype Warning: Unable to apply patch `eqnum' on input line 220.
 
-Package microtype Info: Applying patch `footnote' on input line 218.
+Package microtype Info: Applying patch `footnote' on input line 220.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: No adjustment of tracking.
@@ -2716,15 +2719,15 @@ Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'project.bbl' found.
 
 (./project.bbl)
-Package biblatex Info: Reference section=0 on input line 218.
-Package biblatex Info: Reference segment=0 on input line 218.
+Package biblatex Info: Reference section=0 on input line 220.
+Package biblatex Info: Reference segment=0 on input line 220.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
 \c@lstlisting=\count540
-Package hyperref Info: Link coloring ON on input line 218.
+Package hyperref Info: Link coloring ON on input line 220.
  (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
 
@@ -2736,46 +2739,46 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count541
 )
-LaTeX Info: Redefining \ref on input line 218.
-LaTeX Info: Redefining \pageref on input line 218.
-LaTeX Info: Redefining \nameref on input line 218.
+LaTeX Info: Redefining \ref on input line 220.
+LaTeX Info: Redefining \pageref on input line 220.
+LaTeX Info: Redefining \nameref on input line 220.
 
 (./project.out) (./project.out)
 \@outlinefile=\write7
 \openout7 = `project.out'.
 
 LaTeX Font Info:    Font shape `TU/LibertinusSerif(0)/m/n' will be
-(Font)              scaled to size 24.88pt on input line 221.
+(Font)              scaled to size 24.88pt on input line 223.
 Requested font "[LibertinusSerif-Regular.otf]/OT:script=latn;language=dflt;+tnu
 m;+lnum;mapping=tex-text;" at 24.88pt
  -> /usr/share/texlive/texmf-dist/fonts/opentype/public/libertinus-fonts/Libert
 inusSerif-Regular.otf
 LaTeX Font Info:    Font shape `TU/LibertinusSerif(0)/b/n' will be
-(Font)              scaled to size 24.88pt on input line 221.
+(Font)              scaled to size 24.88pt on input line 223.
 Requested font "[LibertinusSerif-Bold.otf]/OT:script=latn;language=dflt;+tnum;+
 lnum;mapping=tex-text;" at 24.88pt
  -> /usr/share/texlive/texmf-dist/fonts/opentype/public/libertinus-fonts/Libert
 inusSerif-Bold.otf
 LaTeX Font Info:    Font shape `TU/LibertinusSerif(0)/b/n' will be
-(Font)              scaled to size 14.4pt on input line 221.
+(Font)              scaled to size 14.4pt on input line 223.
 Requested font "[LibertinusSerif-Bold.otf]/OT:script=latn;language=dflt;+tnum;+
 lnum;mapping=tex-text;" at 14.4pt
  -> /usr/share/texlive/texmf-dist/fonts/opentype/public/libertinus-fonts/Libert
 inusSerif-Bold.otf
 LaTeX Font Info:    Font shape `TU/LibertinusSerif(0)/b/sc' will be
-(Font)              scaled to size 14.4pt on input line 221.
+(Font)              scaled to size 14.4pt on input line 223.
 Requested font "[LibertinusSerif-Bold.otf]/OT:script=latn;language=dflt;+tnum;+
 lnum;+smcp;mapping=tex-text;" at 14.4pt
  -> /usr/share/texlive/texmf-dist/fonts/opentype/public/libertinus-fonts/Libert
 inusSerif-Bold.otf
 LaTeX Font Info:    Font shape `TU/LibertinusSerif(0)/m/n' will be
-(Font)              scaled to size 14.4pt on input line 221.
+(Font)              scaled to size 14.4pt on input line 223.
 Requested font "[LibertinusSerif-Regular.otf]/OT:script=latn;language=dflt;+tnu
 m;+lnum;mapping=tex-text;" at 14.4pt
  -> /usr/share/texlive/texmf-dist/fonts/opentype/public/libertinus-fonts/Libert
 inusSerif-Regular.otf
 LaTeX Font Info:    Font shape `TU/LibertinusSerif(0)/m/it' will be
-(Font)              scaled to size 14.4pt on input line 221.
+(Font)              scaled to size 14.4pt on input line 223.
 Requested font "[LibertinusSerif-Italic.otf]/OT:script=latn;language=dflt;+tnum
 ;+lnum;mapping=tex-text;" at 14.4pt
  -> /usr/share/texlive/texmf-dist/fonts/opentype/public/libertinus-fonts/Libert
@@ -2791,7 +2794,7 @@ Requested font "[LibertinusSerif-Regular.otf]/OT:script=latn;language=dflt;" at
  -> /usr/share/texlive/texmf-dist/fonts/opentype/public/libertinus-fonts/Libert
 inusSerif-Regular.otf
 LaTeX Font Info:    Font shape `TU/LibertinusSerif(0)/m/it' will be
-(Font)              scaled to size 12.0pt on input line 221.
+(Font)              scaled to size 12.0pt on input line 223.
 Requested font "[LibertinusSerif-Italic.otf]/OT:script=latn;language=dflt;+tnum
 ;+lnum;mapping=tex-text;" at 12.0pt
  -> /usr/share/texlive/texmf-dist/fonts/opentype/public/libertinus-fonts/Libert
@@ -2867,7 +2870,7 @@ age=dflt;slant=0.2;+tnum;+onum;mapping=tex-text;"
 age=dflt;slant=0.2;+tnum;+onum;+smcp;mapping=tex-text;"
 
 LaTeX Font Info:    Font shape `TU/LibertinusSerif(5)/m/it' will be
-(Font)              scaled to size 14.4pt on input line 221.
+(Font)              scaled to size 14.4pt on input line 223.
 Requested font "[LibertinusSerif-Italic.otf]/OT:script=latn;language=dflt;+tnum
 ;+onum;mapping=tex-text;" at 14.4pt
  -> /usr/share/texlive/texmf-dist/fonts/opentype/public/libertinus-fonts/Libert
@@ -2875,24 +2878,24 @@ inusSerif-Italic.otf
 File: ausegl_sort.png Graphic file (type bmp)
 <ausegl_sort.png>
 
-Overfull \hbox (56.9055pt too wide) in paragraph at lines 221--221
+Overfull \hbox (56.9055pt too wide) in paragraph at lines 223--223
 [] []
  []
 
 File: AU_logo.png Graphic file (type bmp)
 <AU_logo.png>
 
-Overfull \hbox (299.0145pt too wide) in paragraph at lines 221--221
+Overfull \hbox (299.0145pt too wide) in paragraph at lines 223--223
 \TU/LibertinusSerif(0)/m/n/12 Supervisor: Niels Lauritzen   [] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 221--221
+Underfull \hbox (badness 10000) in paragraph at lines 223--223
 
  []
 
 
-Overfull \hbox (6.99998pt too wide) in paragraph at lines 221--226
+Overfull \hbox (6.99998pt too wide) in paragraph at lines 223--228
 []|  [] |  [] 
  []
 
@@ -2900,13 +2903,13 @@ Overfull \hbox (6.99998pt too wide) in paragraph at lines 221--226
 
 ]
 LaTeX Font Info:    Font shape `TU/LibertinusSerif(0)/m/n' will be
-(Font)              scaled to size 17.28pt on input line 227.
+(Font)              scaled to size 17.28pt on input line 229.
 Requested font "[LibertinusSerif-Regular.otf]/OT:script=latn;language=dflt;+tnu
 m;+lnum;mapping=tex-text;" at 17.28pt
  -> /usr/share/texlive/texmf-dist/fonts/opentype/public/libertinus-fonts/Libert
 inusSerif-Regular.otf
 LaTeX Font Info:    Font shape `TU/LibertinusSerif(0)/b/n' will be
-(Font)              scaled to size 17.28pt on input line 227.
+(Font)              scaled to size 17.28pt on input line 229.
 Requested font "[LibertinusSerif-Bold.otf]/OT:script=latn;language=dflt;+tnum;+
 lnum;mapping=tex-text;" at 17.28pt
  -> /usr/share/texlive/texmf-dist/fonts/opentype/public/libertinus-fonts/Libert
@@ -3040,7 +3043,26 @@ inusSerif-Bold.otf
 \openout8 = `project.toc'.
 
  [2]
-(./intro.tex
+(./thanks.tex
+File: madsfoek.png Graphic file (type bmp)
+<madsfoek.png>
+LaTeX Font Info:    Font shape `TU/LibertinusMono(0)/m/n' will be
+(Font)              scaled to size 10.40002pt on input line 6.
+Requested font "[LibertinusMono-Regular.otf]/OT:script=latn;language=dflt;exten
+d=0.9;+tnum; +lnum;" at 10.40002pt
+ -> /usr/share/texlive/texmf-dist/fonts/opentype/public/libertinus-fonts/Libert
+inusMono-Regular.otf
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `LibertinusMono' (encoding: TU).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+Package microtype Info: Character `\guilsinglleft ' is missing
+(microtype)             in font `\TU/LibertinusMono(0)/m/n/12'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `\guilsinglright ' is missing
+(microtype)             in font `\TU/LibertinusMono(0)/m/n/12'.
+(microtype)             Ignoring protrusion settings for this character.
+) [3] (./intro.tex
 LaTeX Font Info:    Font shape `TU/LibertinusSerif(0)/m/n' will be
 (Font)              scaled to size 9.6pt on input line 6.
 Requested font "[LibertinusSerif-Regular.otf]/OT:script=latn;language=dflt;+tnu
@@ -3446,22 +3468,6 @@ put line 263.
  [13]
 Package mdframed Info: Not enough space on this page on input line 275.
  [14]) [15] (./grb_systems.tex
-LaTeX Font Info:    Font shape `TU/LibertinusMono(0)/m/n' will be
-(Font)              scaled to size 10.40002pt on input line 2.
-Requested font "[LibertinusMono-Regular.otf]/OT:script=latn;language=dflt;exten
-d=0.9;+tnum; +lnum;" at 10.40002pt
- -> /usr/share/texlive/texmf-dist/fonts/opentype/public/libertinus-fonts/Libert
-inusMono-Regular.otf
-Package microtype Info: Loading generic protrusion settings for font family
-(microtype)             `LibertinusMono' (encoding: TU).
-(microtype)             For optimal results, create family-specific settings.
-(microtype)             See the microtype manual for details.
-Package microtype Info: Character `\guilsinglleft ' is missing
-(microtype)             in font `\TU/LibertinusMono(0)/m/n/12'.
-(microtype)             Ignoring protrusion settings for this character.
-Package microtype Info: Character `\guilsinglright ' is missing
-(microtype)             in font `\TU/LibertinusMono(0)/m/n/12'.
-(microtype)             Ignoring protrusion settings for this character.
 LaTeX Font Info:    Font shape `TU/LibertinusSerif(0)/m/sc' will be
 (Font)              scaled to size 12.0pt on input line 13.
 Requested font "[LibertinusSerif-Regular.otf]/OT:script=latn;language=dflt;+tnu
@@ -3711,17 +3717,19 @@ Overfull \hbox (16.94633pt too wide) in paragraph at lines 456--457
  []
 
 [41]) [42] (./applications.tex [43]
-Overfull \hbox (32.31892pt too wide) in paragraph at lines 57--58
+Overfull \hbox (32.31892pt too wide) in paragraph at lines 86--87
 []\TU/LibertinusSerif(0)/m/it/12 Let $[][] [] []$ be field, let $[] [] [][][][]
 [][][]$ be an ideal, and let $[] [] [][][][][] [][][] [] [] [][][][] [][][][][]
 $
  []
 
 [44]
+Package mdframed Info: Not enough space on this page on input line 87.
+ [45]
 File: geogebra_setup.png Graphic file (type bmp)
 <geogebra_setup.png>
 LaTeX Font Info:    Font shape `TU/LibertinusSerif(0)/m/n' will be
-(Font)              scaled to size 10.95pt on input line 97.
+(Font)              scaled to size 10.95pt on input line 126.
 Requested font "[LibertinusSerif-Regular.otf]/OT:script=latn;language=dflt;+tnu
 m;+lnum;mapping=tex-text;" at 10.95pt
  -> /usr/share/texlive/texmf-dist/fonts/opentype/public/libertinus-fonts/Libert
@@ -3833,45 +3841,45 @@ inusSerif-Regular.otf
 
 
 (./_minted-project/FF107B69B75A55C7BBBD39FEBF76E43FB628A47E597F7E7F4F45EB4227F7
-5598.pygtex) [45] [46]
-Package mdframed Info: Box was splittet wrong
- starting loop to iterate the splitting point
-(mdframed)              on input line 170.
- [47]
+5598.pygtex) [46] [47]
 File: geogebra_sqrt.png Graphic file (type bmp)
 <geogebra_sqrt.png>
  [48]
-File: geogebra_orthic_wow.png Graphic file (type bmp)
-<geogebra_orthic_wow.png>
- [49]
+Package mdframed Info: Not enough space on this page on input line 226.
 Package mdframed Info: Box was splittet wrong
  starting loop to iterate the splitting point
-(mdframed)              on input line 245.
- [50]) [51]
-Overfull \hbox (1.25064pt too wide) in paragraph at lines 255--255
+(mdframed)              on input line 226.
+ [49]
+File: geogebra_orthic_wow.png Graphic file (type bmp)
+<geogebra_orthic_wow.png>
+ [50]
+Package mdframed Info: Not enough space on this page on input line 262.
+ [51]) [52]
+Overfull \hbox (1.25064pt too wide) in paragraph at lines 260--260
 []\TU/LibertinusSerif(0)/m/n/12 Bernd Sturmfels. “  Computational algebraic geo
 metry of projective configurations”.
  []
 
-[52] [53] (./appendix.tex
-Overfull \hbox (6.26344pt too wide) in paragraph at lines 8--9
-[]\TU/LibertinusSerif(0)/m/it/12 Let $[] [] [][][][]$ and $[] [] [][][][] [] []
- [][][] [] [][][][]$. Then there exists $[][][][] [] [] [][][] []
+[53] [54] (./appendix.tex
+Overfull \hbox (10.26384pt too wide) in paragraph at lines 8--9
+[]\TU/LibertinusSerif(0)/m/it/12 Let $[] [] [][][][]$ and $ [] [] [][][][] [] [
+] [][][] [] [][][][]$. Then there exists $ [][][][] [] [] [][][] []
  []
 
-[54]
-Overfull \hbox (8.78094pt too wide) in paragraph at lines 33--34
+[55]
+Overfull \hbox (8.78094pt too wide) in paragraph at lines 41--42
 []\TU/LibertinusSerif(0)/m/n/12 The final property follows from the invariant, 
 that at every step $[]$, we have that $[][][][][] [][] []
  []
 
-[55]
-Overfull \hbox (8.58658pt too wide) in paragraph at lines 79--80
+[56]
+Overfull \hbox (8.58658pt too wide) in paragraph at lines 87--88
 \TU/LibertinusSerif(0)/m/n/12 The julia code at [][]$[][][][][] [] [] [] [][][]
 [][][] [] [][][] [] [][][][][][][][][][][] [] [][][][][][][][][][][][][][][][][
 ][][][][][] []
  []
 
+[57]
 \openout5 = `project.pyg'.
 
 
@@ -3886,7 +3894,7 @@ Overfull \hbox (8.58658pt too wide) in paragraph at lines 79--80
 
 
 (./_minted-project/422AD88ADFFE20298CD19535F55668D2B628A47E597F7E7F4F45EB4227F7
-5598.pygtex [56])
+5598.pygtex [58])
 \openout6 = `project.pyg'.
 
 
@@ -3906,7 +3914,7 @@ Overfull \hbox (8.58658pt too wide) in paragraph at lines 79--80
 
 
 (./_minted-project/A25FAEF898BB76E4F7FE9F2309795944B628A47E597F7E7F4F45EB4227F7
-5598.pygtex [57])
+5598.pygtex)
 \openout5 = `project.pyg'.
 
 
@@ -3930,7 +3938,7 @@ Overfull \hbox (8.58658pt too wide) in paragraph at lines 79--80
 \tf@thm=\write9
 \openout9 = `project.thm'.
 
- [58] (./project.aux)
+ [59] (./project.aux)
 Package rerunfilecheck Info: File `project.out' has not changed.
 (rerunfilecheck)             Checksum: B85EEA22494E6CB4F3BE1945F0A67EB3;4907.
 runsystem(rm project.pyg)...executed.
@@ -3940,12 +3948,12 @@ Package logreq Info: Writing requests to 'project.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 49397 strings out of 476191
- 1026214 string characters out of 5812073
- 2016447 words of memory out of 5000000
- 69229 multiletter control sequences out of 15000+600000
+ 49424 strings out of 476191
+ 1026490 string characters out of 5812073
+ 2009736 words of memory out of 5000000
+ 69250 multiletter control sequences out of 15000+600000
  484683 words of font info for 206 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 129i,13n,151p,1534b,5064s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 129i,16n,151p,1534b,5064s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on project.pdf (60 pages).
+Output written on project.pdf (62 pages).

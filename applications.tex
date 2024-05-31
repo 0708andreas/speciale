@@ -12,12 +12,41 @@ First, we need to normalize the logical expressions, to fit a format we can work
 \end{definition}
 
 \begin{lemma}\label{lem:logical_positive}
-  Let $\phi$ be a logical formula involving polynomial equalities, conjunctions, disjunctions, negations and existential quantifiers. Then there exists a finite set of positive, primitive formula $\varphi_{1}, \varphi_{2}, \dots, \varphi_{r}$ such that $\phi \iff (\varphi_{1} \lor \dots \lor \varphi_{r})$.
+Let $\phi = \exists x_{1}, \dots, x_{n} : \phi'(U, x_{1}, \dots, x_{n})$ be a logical formula, where $\phi'$ only contains polynomial equalities and inequalities, conjunctions, disjunctions and negations. Then there exists a finite set of positive, primitive formula $\varphi_{1}, \varphi_{2}, \dots, \varphi_{r}$ such that $\phi \iff (\varphi_{1} \lor \dots \lor \varphi_{r})$.
 \end{lemma}
 \begin{proof}
-  Using standard logical rules, we can find $\phi_{1}, \dots, \phi_{r}$ containing only polynomial equalities, conjunction, negation and existential quantifiers such that \[\phi \iff \bigvee_{i=1}^{r} \phi_{r}.\] Using De Morgans law and distributivity we can assume that negations are at the lowest level of the formulas. Thus, we can see the $\phi_{i}$'s as existstential formulas containing conjunctions of polynomial equations and inequations.
+  First, the following recursive function transforms $\phi'$ into an equivalent logical formula without any negations or inequalities:
 
-  Now, to eliminate the inequalities, we use the following trick: \[f(X) \neq 0 \iff \exists\, t : f(X) \cdot t - 1 = 0.\]
+  \begin{align*}
+    P(f = 0) &\implies f = 0 \\
+    P(f \neq 0) &\implies \exists t : f \cdot t - 1 = 0 \\
+    P(\neg(f = 0)) &\implies P(f \neq 0) \\
+    P(\neg(\neg(\phi_{0}))) &\implies P(\phi_{0}) \\
+    P(\neg(\phi_{0} \land \phi_{1})) &\implies P(\neg \phi_{0}) \lor P(\neg \phi_{1}) \\
+    P(\neg(\phi_{0} \lor \phi_{1})) &\implies P(\neg \phi_{0}) \land P(\neg \phi_{1}) \\
+    P(\phi_{0} \land \phi_{1}) &\implies P(\phi_{0}) \land P(\phi_{1}) \\
+    P(\phi_{0} \lor \phi_{1}) &\implies P(\phi_{0}) \lor P(\phi_{1})
+  \end{align*}
+
+  The function terminates, since each recursive call is on a strictly smaller expression. Next, the following recursive function moves disjunctions and existential quantifiers to the top of the expression.
+
+  \begin{align*}
+    T(f = 0) &\implies f = 0 \\
+    T(\phi_{0} \lor \phi_{1}) &\implies T(\phi_{0}) \lor T(\phi_{1}) \\
+    T(\exists t : \phi_{0}) &\implies \begin{cases}
+                                        (\exists t : \phi_{0}^{0}) \lor \dots \lor (\exists t : \phi_{0}^{n}) & T(\phi_{0}) = \phi_{0}^{0} \lor \phi_{0}^{1} \lor \dots \lor \phi_{0}^{n} \\
+                                        \exists t : T(\phi_{0}) & \text{otherwise}
+                                      \end{cases} \\
+    T(\phi_{0} \land \phi_{1}) &= \implies \begin{cases}
+                                             T(\phi_{0}^{0} \land \phi_{1}) \lor T(\phi_{0}^{1} \land \phi_{1}) & T(\phi_{0}) = \phi_{0}^{0} \lor \phi_{0}^{1} \\
+                                             T(\phi_{0} \land \phi_{1}^{0}) \lor T(\phi_{0} \land \phi_{1}^{1}) & T(\phi_{1}) = \phi_{1}^{0} \lor \phi_{1}^{1} \\
+                                             \exists t : T(\phi_{0}' \land \phi_{1}) & T(\phi_{0}) = \exists t : \phi_{0}' \\
+                                             \exists t : T(\phi_{0} \land \phi_{1}') & T(\phi_{1}) = \exists t : \phi_{1}' \\
+                                             \phi_{0} \land \phi_{1} & \text{otherwise}
+                                           \end{cases}
+  \end{align*}
+
+  Again, this terminates since each recursive call is on a strictly smaller expression. The result is a disjunction of positive, primitive formulas.
 \end{proof}
 
 Thus we can solve each of the positive, primitive formulas independently, and see if any of them are satisfiable.
@@ -68,11 +97,11 @@ It is well-known, that standard geometric constructions can be expressed as poly
 \[x_{1}^{2} + y_{1}^{2} + x_{2}^{2} + y_{2}^{2} - \left((x_{1} - x_{2})^{2} + (y_{1} - y_{2})^{2}\right) \in \sqrt{\langle x_{1} x_{2} + y_{1} y_{2} \rangle} \]
 In general, a geometric conclusion $f \in k[X]$ follows from a set of assumptions generating the ideal $I$ if and only if $f \in \sqrt{I}$. Thankfully, $\sqrt{ \langle x_{1} x_{2} + y_{1} y_{2} \rangle } = \langle x_{1} x_{2} + y_{1} y_{2} \rangle$. However, in general, computing the radical of an ideal is quite difficult. We do however have the following theorem.
 
-\begin{theorem}
+\begin{theorem}\label{thm:rad}
   Let $I \subset k[X]$ be an ideal, and let $f \in k[X]$. Then $f \in \sqrt{I}$ if and only if $1 \in I + \langle 1 - yf \rangle \in k[X, y]$, where we have added a new variable. This can be checked using Gröbner bases.
 \end{theorem}
 \begin{proof}
-  See chapter 3,  proposition 8 in~\cite{IVA}.
+  See chapter 3,  proposition 8 in~\cite{IVA}. Checking whether $1 \in I + \langle 1 - yf \rangle$ can be done by computing a Gröbner basis $G$ of $I + \langle 1 - yf \rangle$, then $1 \in I + \langle 1 - yf \rangle$ if and only if $G$ contains a unit.
 \end{proof}
 
 Hence, if we can compute Gröbner bases, we can automatically prove geometric theorem, which is already pretty cool. But parametric Gröbner bases opens the door for even more: automatic theorem discovery. Most conclusions will not be true, given a set of assumptions. However, using reduced Gröbner systems, we can automatically discover sufficient and necessary assumptions that make the conclusion true.
@@ -83,7 +112,7 @@ Hence, if we can compute Gröbner bases, we can automatically prove geometric th
 \begin{proof}
   If $\langle \sigma_{\alpha}(I) \rangle = \langle 1 \rangle$, then the conclusion follows immediately. Hence, we assume that $\langle \sigma_{\alpha}(I) \rangle \neq \langle 1 \rangle$.
 
-  Let $r$ be a pseudo-remainder of $f$ modulo $G$. If $\sigma_{\alpha}(r) = 0$, then $\sigma_{\alpha}(f) \in \langle \sigma_{\alpha}(I) \rangle \subset \sqrt{\langle \sigma_{\alpha}(I) \rangle}$. On the other hand, if $\sigma_{\alpha}(f) \in \sqrt{\langle \sigma_{\alpha}(I) \rangle}$, then $r \in \sqrt{\langle \sigma_{\alpha}(I) \rangle} $. Hence $1 \in I + \langle 1 - y \sigma_{\alpha}(r) \rangle$. Since $r \in k[U]$, $\sigma_{\alpha}(r) \in k$. Since $I \neq \langle 1 \rangle$ and $\LM(1 - y \sigma_{\alpha}(r)) = y$ when $\sigma_{\alpha}(r) \neq 0$, which is relatively prime with every leading monomial in $I$, $\sigma_{\alpha}(G) \cup \{1 - y \sigma_{\alpha}(r)\}$ is a Gröbner basis of $I + \langle 1 - y \sigma_{\alpha}(r) \rangle$. Hence, $1 \in I + \langle 1 - y \sigma_{\alpha}(r) \rangle$ if and only if $\sigma_{\alpha}(r) = 0$.
+  Let $r$ be a pseudo-remainder of $f$ modulo $G$. If $\sigma_{\alpha}(r) = 0$, then $\sigma_{\alpha}(f) \in \langle \sigma_{\alpha}(I) \rangle \subset \sqrt{\langle \sigma_{\alpha}(I) \rangle}$. On the other hand, if $\sigma_{\alpha}(f) \in \sqrt{\langle \sigma_{\alpha}(I) \rangle}$, then $\sigma_{\alpha}(r) \in \sqrt{\langle \sigma_{\alpha}(I) \rangle} $. Hence $1 \in \langle \sigma_{\alpha}(I) \rangle + \langle 1 - y \sigma_{\alpha}(r) \rangle$ by theorem~\ref{thm:rad}. Since $r \in k[U]$, $\sigma_{\alpha}(r) \in k$. Since $\langle \sigma_{\alpha}(I) \rangle \neq \langle 1 \rangle$, meaning $\sigma_{\alpha}(G)$ does not contain a unit, and $\LM(1 - y \sigma_{\alpha}(r)) = y$ when $\sigma_{\alpha}(r) \neq 0$, which is relatively prime with every leading monomial in $\langle \sigma_{\alpha}(I) \rangle$, $\sigma_{\alpha}(G) \cup \{1 - y \sigma_{\alpha}(r)\}$ is a Gröbner basis of $\langle \sigma_{\alpha}(I) \rangle + \langle 1 - y \sigma_{\alpha}(r) \rangle$. Hence, $1 \in \langle \sigma_{\alpha}(I) \rangle + \langle 1 - y \sigma_{\alpha}(r) \rangle$ if and only if $\sigma_{\alpha}(r) = 0$.
 \end{proof}
 
 We can use this theorem to discover geometric theorems in the complex plane. Let us look at an example from \cite{MONTES20101391}.
@@ -216,14 +245,14 @@ It should be noted, that even though the example of finding an isosceles orthic 
 In the article~\cite{sturmfels}, Bernd Sturmfels states the following theorem without proof.
 
 \begin{theorem}
-  Let $K$ be an algebraically closed field and $F = \{f_{1}, \dots, f_{k}\} \subset K[x_{1}, \dots, x_{n}]$ a finite set of polynomials. Assume that $\V(F) = \emptyset$ and consider the ideal $I = \langle y_{1} - f_{1}, \dots, y_{k} - f_{k} \rangle \subset K[x_{1}, \dots, x_{n}, y_{1}, \dots, y_{k}]$. Let $G$ be a Gröbner basis of $I$ with respect to the lexicographic order with $x_{1} > \dots > x_{n} > y_{1} > \dots > y_{k}$. Then $G$ contains a polynomial $p$ (called a final polynomial) such that
+  Let $K$ be an algebraically closed field and $F = \{f_{1}, \dots, f_{k}\} \subset K[x_{1}, \dots, x_{n}]$ a finite set of polynomials. Assume that $\,\V(F) = \emptyset$ and consider the ideal $\,I = \langle y_{1} - f_{1}, \dots, y_{k} - f_{k} \rangle \subset K[x_{1}, \dots, x_{n}, y_{1}, \dots, y_{k}]$. Let $G$ be a Gröbner basis of $\,I$ with respect to the lexicographic order with $x_{1} > \dots > x_{n} > y_{1} > \dots > y_{k}$. Then $G$ contains a polynomial $p$ (called a final polynomial) such that
   \begin{enumerate}
     \item $p(x_{1}, \dots, x_{n}, 0, 0, \dots, 0) \in K \setminus \{0\}$
     \item $p(x_{1}, \dots, x_{n}, f_{1}, \dots, f_{k}) = 0$.
   \end{enumerate}
 \end{theorem}
 
-He writes that the proof is ``straightforward but fairly technical''. In a private communication\cite{NL_to_BS} with Sturmfels, he encourages us to write a proof or find a counterexample. He also writes, that the gist of the argument he had in mind was, was using specializations of Gröbner bases. Since since $\{x_{1}, \dots, x_{n}\} \gg \{y_{1}, \dots, y_{k}\}$, the Gröbner basis of $I$ would specialize to a Gröbner basis of $\langle F \rangle$ when we specialize the $y_{i}$'s to zero. However, as we have seen, Gröbner bases can be most unstable under specializations. Indeed, the following counterexample disproves this line of reasoning and the theorem.
+He writes that the proof is ``straightforward but fairly technical''. In a private communication\cite{NL_to_BS} with Sturmfels, he encourages us to write a proof or find a counterexample. He also writes, that the gist of the argument he had in mind was using specializations of Gröbner bases. Since since $\{x_{1}, \dots, x_{n}\} \gg \{y_{1}, \dots, y_{k}\}$, the Gröbner basis of $I$ would specialize to a Gröbner basis of $\langle F \rangle$ when we specialize the $y_{i}$'s to zero. However, as we have seen, Gröbner bases can be most unstable under specializations. Indeed, the following counterexample disproves this line of reasoning and the theorem.
 
 \begin{example}\upshape
   Let $F = \{f_{1}, f_{2}\}$ where $f_{1} = x_{1} x_{2} + 1$ and $f_{2} = x_{2}$. Then, the corresponding ideal
@@ -235,25 +264,24 @@ He writes that the proof is ``straightforward but fairly technical''. In a priva
 While this example is admittedly a bit contrived, the theorem if false, even if we require the Gröbner basis to be reduced.
 
 \begin{example}\upshape
-    Let $F = \{f_1, f_2, f_3\}$ where $f_1 = x_2 + x_3$, $f_2 = x_2 x_3$ and $f_3 = x_1 x_3 + 1$. The reduced Gröbner basis of $\langle F \rangle$ is $\{1\}$, so $F$ has no common zeros. The graph ideal of $F$, $I = \langle y_1 - f_1, y_2 - f_2, y_3 - f_3 \rangle$ has the reduced Gröbner basis
+    Let $F = \{f_1, f_2, f_3\}$ where $f_1 = x_2 + x_3$, $f_2 = x_2 x_3$ and $f_3 = x_1 x_3 + 1$. The reduced Gröbner basis of $\langle F \rangle$ is $\{1\}$, so $F$ has no common zeros. The corresponding ideal $I = \langle y_1 - f_1, y_2 - f_2, y_3 - f_3 \rangle$ has the reduced Gröbner basis
     \begin{gather*}
-    G = \{ x_1 y_2 + x_3 y_3 - x_3 - y_1 y_3 + y_1, x_3^2 - x_3 y_1 + y_2, x_2 + x_3 - y_1, x_1 x_3 - y_3 + 1\}.
+    G = \{ x_3^2 - x_3 y_1 + y_2, x_2 + x_3 - y_1, x_1 y_2 + x_3 y_3 - x_3 - y_1 y_3 + y_1, x_1 x_3 - y_3 + 1\}.
     \end{gather*}
     When specializing $y_1 = y_2 = y_3 = 0$, $G$ turns into
     \[\bar G = \{ x_3^2, x_2 + x_3, -x_3, x_1 x_3 + 1\}\]
     which is not a Gröbner basis, and does not contain a constant. Hence, $G$ does not contain a final polynomial.
 \end{example}
 
-
 To fix the theorem, we can turn to parametric Gröbner bases. To shorten notation, let $X = \{x_{1}, \dots, x_{n}\}$ and $Y = \{y_{1}, \dots, y_{k}\}$.
 
 \begin{theorem}
-  Let $K$ be an algebraically closed field and $F = \{f_{1}, \dots, f_{k}\} \subset K[X]$ a finite set of polynomials. Assume that $\V(F) = \emptyset$ and consider the ideal $I = \langle y_{1} - f_{1}, \dots, y_{k} - f_{k} \rangle \subset K[X, Y]$. Let $G$ be a comprehensive parametric Gröbner basis of $I$ with respect to the lexicographic order with $x_{1} > \dots > x_{n} > y_{1} > \dots > y_{k}$. Then $G$ contains a final polynomial.
+  Let $K$ be an algebraically closed field and let $F = \{f_{1}, \dots, f_{k}\} \subset K[X]$ be a finite set of polynomials. Assume that $\V(F) = \emptyset$ and consider the ideal $I = \langle y_{1} - f_{1}, \dots, y_{k} - f_{k} \rangle \subset K[X, Y]$. Let $G$ be a comprehensive parametric Gröbner basis of $\,I$ with respect to the lexicographic order with $x_{1} > \dots > x_{n} > y_{1} > \dots > y_{k}$. Then $G$ contains a final polynomial.
 \end{theorem}
 \begin{proof}
   First, notice that every polynomial in $I$ satisfies the second property of final polynomials, since the generators does, and the evaluation map is linear. Thus, we only need to prove that a parametric Gröbner basis contains an element satisfying the first property.
 
-  Let $G$ be a parametric Gröbner basis of $I$, and let $\sigma$ be the specialization setting $\sigma(y_{i}) = 0$ for every $i$. Since $\langle \sigma(I) \rangle = \langle F \rangle = \langle 1 \rangle$, there must be some element $g \in G$ where $\LM(G) \mid 1$, implying that $g$ is a final polynomial.
+  Let $G$ be a parametric Gröbner basis of $I$, and let $\sigma$ be the specialization setting $\sigma(y_{i}) = 0$ for every $i$. Since $\langle \sigma(I) \rangle = \langle F \rangle = \langle 1 \rangle$, there must be some element $g \in G$ where $\LM(\sigma(g)) \mid 1$, implying that $g$ is a final polynomial.
 \end{proof}
 
 However, parametric Gröbner bases can be quite expensive to compute since we need to repeatedly compute Gröbner bases, and furthermore we don't have nice bounds on the degrees. But we only care about one single specialization. This means we don't need a parametric Gröbner basis, we just need a faithful segment of a Gröbner system covering the origin. Here, we can use lemma~\ref{lem:grb_if_nmap_to_z_t}. Let $\sigma^{1} : K[t, X, Y] \to K[X, Y]$ be the map evaluating $t$ to 1, and let $\sigma^{0} : K[t, X, Y] \to K[X, Y]$ be the map evaluating $t$ to 0.
@@ -262,9 +290,9 @@ However, parametric Gröbner bases can be quite expensive to compute since we ne
   Let $K$ be an algebraically closed field and $F = \{f_{1}, \dots, f_{k}\} \subset K[X]$ a finite set of polynomials. Assume that $\V(F) = \emptyset$ and consider the ideal $I = \langle \hat F \rangle$ where $\hat F = \{y_{1} - f_{1}, \dots, y_{k} - f_{k}\}$. Now, let $\,G$ be the reduced Gröbner basis of the ideal $\langle t \cdot \hat F \cup (1 - t) \cdot Y \rangle \subset K[t, X, Y]$ w.r.t.\ any monomial order with $t \gg X \gg Y$. Then $\sigma^{1}(G)$ contains a final polynomial.
 \end{theorem}
 \begin{proof}
-  As before, we only need to show that $\sigma^{1}(G)$ contains a polynomial satisfying the first property of final polynomials. Let $\sigma : K[X, Y] \to K[X]$ be the specialization setting $\sigma(y_{i}) = 0$ for every $i$ and let $H = \{\LC_{Y}(g) \mid g \in G, \LT(g) \notin K[X, Y], \LC_{X, Y}(g) \notin \langle Y \rangle\}$. If we have $0 \in \V(Y) \setminus \V(\lcm(H))$, then lemma~\ref{lem:grb_if_nmap_to_z_t}, gives us that $\sigma(\sigma^{1}(G))$ is a Gröbner basis of $\langle \sigma(I) \rangle = \langle F \rangle$. By the Nullstellensatz, $\langle F \rangle = \langle 1 \rangle$, so $\sigma(\sigma^{1}(G))$ has to contain a constant. This implies, that $\sigma^{1}(G)$ contains a final polynomial $g$.
+  As before, we only need to show that $\sigma^{1}(G)$ contains a polynomial satisfying the first property of final polynomials. Let $\sigma : K[X, Y] \to K[X]$ be the specialization setting $\sigma(y_{i}) = 0$ for every $i$ and let $H = \{\LC_{Y}(g) \mid g \in G, \LT(g) \notin K[X, Y], \LC_{X, Y}(g) \notin \langle Y \rangle\}$. If we have $0 \in \V(Y) \setminus \V(\lcm(H))$, then lemma~\ref{lem:grb_if_nmap_to_z_t} gives us that $\sigma(\sigma^{1}(G))$ is a Gröbner basis of $\langle \sigma(I) \rangle = \langle F \rangle$. By the Nullstellensatz, $\langle F \rangle = \langle 1 \rangle$, so $\sigma(\sigma^{1}(G))$ has to contain a constant. This implies, that $\sigma^{1}(G)$ contains a final polynomial $g$.
 
   Now, we just need that $0 \in \V(Y) \setminus \V(\lcm(H))$. Since $\V(Y) = \{0\}$, we just need that $\V(Y) \nsubset \V(\lcm(H))$. By lemma~\ref{lem:LC_U_notin_S} we have that $h \notin \langle Y \rangle$ for each $h \in H$. Since $\langle Y \rangle$ is a prime ideal, this implies that $\lcm(H) \notin \langle S \rangle$. Thus $\V(Y) \nsubset \V(\lcm(H))$.
 \end{proof}
 
-This counterexample and theorem was developed in colaboration with Peter Lundgaard, and resulted in an article\cite{Lundgaard_Poulsen}. In that article, it is also proven that it is enough to compute a Gröbner basis of $\langle y_{1} - z f_{1}, \dots, y_{k} - z f_{k} \rangle$. However, that proof requires a little more care, whereas this proof follows directly from the theory of parametric Gröbner bases.
+This counterexample and theorem was developed in colaboration with Peter Lundgaard, and resulted in an article \cite{Lundgaard_Poulsen}. In that article, it is also proven that it is enough to compute a Gröbner basis of $\langle y_{1} - z f_{1}, \dots, y_{k} - z f_{k} \rangle$. However, that proof requires a little more care, whereas this proof follows directly from the theory of parametric Gröbner bases.
