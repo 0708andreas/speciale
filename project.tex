@@ -192,6 +192,7 @@
 \author{Andreas Bøgh Poulsen, student id: 201805425}
 
 \newcommand*{\titleGM}{%\begingroup % Create the command for including the title page in the document
+\thispagestyle{empty}%
 %\hbox{ % Horizontal box
 \hspace*{0.2\textwidth} % Whitespace to the left of the title page
 \rule{1pt}{\textheight} % Vertical line
@@ -202,7 +203,8 @@
 % {\large  } \\[4\baselineskip] % Tagline or further description
 {\large } % Author name
 \parbox[b][0pt]{0.5\textwidth}{
-  \hspace{2cm}\includegraphics[width=0.5\textwidth]{ausegl_sort.png}
+  % \hspace{2cm}\includegraphics[width=0.5\textwidth]{ausegl_sort.png}
+  \hspace{2cm}\includegraphics[width=0.5\textwidth]{front_logo.png}
   \vspace{-10cm}
 }
 
@@ -211,7 +213,9 @@
 % \end{centering}
 \vspace{0.5\textheight} % Whitespace between the title block and the publisher
 \vfill
-{\noindent Supervisor: Niels Lauritzen \hspace{2.5cm} \includegraphics{AU_logo.png}  }\\[\baselineskip] % Publisher and logo
+{\parbox[t]{5cm}{\noindent Supervisor: Niels Lauritzen \hspace{2.5cm}\newline
+  Master's thesis, 5. June, 2024 \\ Mathematics} \hspace{1.5cm} \raisebox{-1.5cm}{\includegraphics{AU_logo.png}}  }\\%\\[\baselineskip] % Publisher and logo
+%\hfill Master's thesis, 5. June, 2024
 }%}
 % \endgroup
 }

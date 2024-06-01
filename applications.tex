@@ -16,7 +16,6 @@ Let $\phi = \exists x_{1}, \dots, x_{n} : \phi'(U, x_{1}, \dots, x_{n})$ be a lo
 \end{lemma}
 \begin{proof}
   First, the following recursive function transforms $\phi'$ into an equivalent logical formula without any negations or inequalities:
-
   \begin{align*}
     P(f = 0) &\implies f = 0 \\
     P(f \neq 0) &\implies \exists t : f \cdot t - 1 = 0 \\
@@ -27,7 +26,6 @@ Let $\phi = \exists x_{1}, \dots, x_{n} : \phi'(U, x_{1}, \dots, x_{n})$ be a lo
     P(\phi_{0} \land \phi_{1}) &\implies P(\phi_{0}) \land P(\phi_{1}) \\
     P(\phi_{0} \lor \phi_{1}) &\implies P(\phi_{0}) \lor P(\phi_{1})
   \end{align*}
-
   The function terminates, since each recursive call is on a strictly smaller expression. Next, the following recursive function moves disjunctions and existential quantifiers to the top of the expression.
 
   \begin{align*}
@@ -37,7 +35,7 @@ Let $\phi = \exists x_{1}, \dots, x_{n} : \phi'(U, x_{1}, \dots, x_{n})$ be a lo
                                         (\exists t : \phi_{0}^{0}) \lor \dots \lor (\exists t : \phi_{0}^{n}) & T(\phi_{0}) = \phi_{0}^{0} \lor \phi_{0}^{1} \lor \dots \lor \phi_{0}^{n} \\
                                         \exists t : T(\phi_{0}) & \text{otherwise}
                                       \end{cases} \\
-    T(\phi_{0} \land \phi_{1}) &= \implies \begin{cases}
+    T(\phi_{0} \land \phi_{1}) &\implies \begin{cases}
                                              T(\phi_{0}^{0} \land \phi_{1}) \lor T(\phi_{0}^{1} \land \phi_{1}) & T(\phi_{0}) = \phi_{0}^{0} \lor \phi_{0}^{1} \\
                                              T(\phi_{0} \land \phi_{1}^{0}) \lor T(\phi_{0} \land \phi_{1}^{1}) & T(\phi_{1}) = \phi_{1}^{0} \lor \phi_{1}^{1} \\
                                              \exists t : T(\phi_{0}' \land \phi_{1}) & T(\phi_{0}) = \exists t : \phi_{0}' \\
@@ -45,21 +43,20 @@ Let $\phi = \exists x_{1}, \dots, x_{n} : \phi'(U, x_{1}, \dots, x_{n})$ be a lo
                                              \phi_{0} \land \phi_{1} & \text{otherwise}
                                            \end{cases}
   \end{align*}
-
   Again, this terminates since each recursive call is on a strictly smaller expression. The result is a disjunction of positive, primitive formulas.
 \end{proof}
 
 Thus we can solve each of the positive, primitive formulas independently, and see if any of them are satisfiable.
 
 \begin{theorem}
-  Let $F \subset k[U, X]$ be a finite set of polynomials over an algebraically closed field and let $G$ be a parametric Gröbner basis of $F$. For a polynomial $f \in k[U][X]$, let $C(f) \subset k[U]$ denote the set of coefficients of non-constant terms in $f$. Then \[ \left(\exists x_{1}, \dots, x_{n} : \bigwedge_{f \in F} f(U, x_{1}, \dots, x_{n}) = 0 \right) \iff \bigwedge_{g \in G} \left( g(U, 0, \dots, 0) = 0 \lor \bigvee_{c \in C(g)} c(U) \neq 0 \right)\] in any extension field $k_{1} \supset k$.
+  Let $F \subset k[X, U]$ be a finite set of polynomials over an algebraically closed field and let $G$ be a comprehensive parametric Gröbner basis of $F$. For a polynomial $f \in k[U][X]$, let $C(f) \subset k[U]$ denote the set of coefficients of non-constant terms in $f$. Then \[ \left(\exists x_{1}, \dots, x_{n} : \bigwedge_{f \in F} f(U, x_{1}, \dots, x_{n}) = 0 \right) \iff \bigwedge_{g \in G} \left( g(U, 0, \dots, 0) = 0 \lor \bigvee_{c \in C(g)} c(U) \neq 0 \right)\] in any extension field $k_{1} \supset k$.
 \end{theorem}
 \begin{proof}
-  Let $\alpha \in k_{1}^{|U|}$. Then the question of whether $\exists x_{1}, \dots, x_{n} : \bigwedge_{f \in F} f(U, x_{1}, \dots, x_{n}) = 0$ is satisfied in $U = \alpha$ is equivalent to whether $\langle \sigma_{\alpha}(F) \rangle$ has a common zero, i.e. if $V(\langle \sigma_{\alpha}(F) \rangle) \neq \emptyset$.
+  Let $\alpha \in k_{1}^{|U|}$. Then the question of whether $\exists x_{1}, \dots, x_{n} : \bigwedge_{f \in F} f(U, x_{1}, \dots, x_{n}) = 0$ is satisfied in $U = \alpha$ is equivalent to whether $\langle \sigma_{\alpha}(F) \rangle$ has a common zero, i.e.\ if $\,\V(\langle \sigma_{\alpha}(F) \rangle) \neq \emptyset$.
 
   For the first implication, assume $\exists x_{1}, \dots, x_{n} : \bigwedge_{f \in F} f(U, x_{1}, \dots, x_{n}) = 0$ is satisfied at some $\alpha \in k_{1}^{|U|}$. Let $\beta \in k_{1}^{|X|}$ be a vector of $(x_{1}, \dots, x_{n})$ such that $f(\alpha, \beta) = 0$ for all $f \in F$. Then, since all $g \in G$ are also in $\langle F \rangle$, we get $g(\alpha, \beta) = 0 \; \forall g \in G$. Hence, if $g(\alpha, 0, \dots, 0) \neq 0$, then there has to be some non-constant term in $g$, which is also non-zero at $\alpha$.
 
-  For the other implication, assume every $g \in G$ has zero constant term or some non-zero non-constant term, when viewed as a polynomial in $k[U][X]$. Assume for a contradiction that $V(\langle \sigma_{\alpha}(F) \rangle) = \emptyset$. By the weak Nullstellensatz we get that $1 \in \langle \sigma_{\alpha}(F) \rangle$. Since $G$ is a parametric Gröbner basis, there is some $g \in G$ such that $\LT(\sigma_{\alpha}(g)) \mid 1$. Thus $\sigma_{\alpha}(g)$ is a constant polynomial with non-zero constant term, contradicting the assumption.
+  For the other implication, assume every $g \in G$ has zero constant term or some non-zero non-constant term, when viewed as a polynomial in $k[U][X]$. Assume for a contradiction that $\V(\langle \sigma_{\alpha}(F) \rangle) = \emptyset$. By the weak Nullstellensatz we get that $1 \in \langle \sigma_{\alpha}(F) \rangle$. Since $G$ is a parametric Gröbner basis, there is some $g \in G$ such that $\LT(\sigma_{\alpha}(g)) \mid 1$. Thus $\sigma_{\alpha}(g)$ is a constant polynomial with non-zero constant term, contradicting the assumption.
 \end{proof}
 
 
@@ -83,17 +80,17 @@ Thus we can solve each of the positive, primitive formulas independently, and se
 We can exploit lemma~\ref{lem:ps_rem_unique} to decide membership problems for parametric ideals.
 
 \begin{theorem}
-  Let $k_{1} \supset k$ be field, let $I \subset k[U][X]$ be an ideal, and let $\mathcal G = \{(Y_{1}, G_{1}, \dots, (Y_{n}, G_{n}))\}$ be a comprehensive, reduced Gröbner system for $I$. Let $f \in k[U][X]$ and $\alpha \in k_{1}^{|U|}$, then $\sigma_{\alpha}(f) \in \langle \sigma_{\alpha}(I) \rangle$ if and only if there is an $i$ such that $\alpha \in Y_{i}$ and $\sigma_{\alpha}(r) = 0$, where $r$ is a pseudo-remainder of $f$ modulo $G_{i}$.
+  Let $\,k_{1} \supset k$ be a field extension, let $\,I \subset k[U][X]$ be an ideal, and let $\mathcal G = \{(Y_{1}, G_{1}, \dots, (Y_{n}, G_{n}))\}$ be a comprehensive, reduced Gröbner system for $I$. Let $f \in k[U][X]$ and $\alpha \in k_{1}^{|U|}$, then $\sigma_{\alpha}(f) \in \langle \sigma_{\alpha}(I) \rangle$ if and only if there is an $i$ such that $\alpha \in Y_{i}$ and $\sigma_{\alpha}(r) = 0$, where $r$ is a pseudo-remainder of $f$ modulo $G_{i}$.
 \end{theorem}
 \begin{proof}
-  Fix an $\alpha \in k^{|U|}$, and find some $i$ such that $\alpha \in Y_{i}$. This exists since $\mathcal G$ is comprehensive. Let $G_{i} = \{g_{1}, \dots, g_{m}\}$ and let
+  Fix an $\alpha \in k_{1}^{|U|}$, and find some $i$ such that $\alpha \in Y_{i}$. This exists since $\mathcal G$ is comprehensive. Let $G_{i} = \{g_{1}, \dots, g_{m}\}$ and let
   \[c f = r + \sum_{j=1}^{m} h_{j} g_{j}\]
   be a pseudo-reduction. Then $\sigma_{\alpha}(f) \in \langle \sigma_{\alpha}(G_{i}) \rangle = \langle \sigma_{\alpha}(I) \rangle$ if and only if $\sigma_{\alpha}(r) = 0$, by lemma~\ref{lem:ps_rem_unique}.
 \end{proof}
 
 In this manner, we can determine conditions on when $\sigma_{\alpha}(f) \in \langle \sigma_{\alpha}(I) \rangle$. We simply require $\sigma_{\alpha}(r) = 0$, i.e. $\alpha \in Y_{i} \cap \V(r)$. Do note, that we might need to repeat this for each $Y$ with $\alpha \in Y$.
 
-It is well-known, that standard geometric constructions can be expressed as polynomial ideals. For example, consider a triangle with vertices $A = (0, 0)$, $B = (x_{1}, y_{1})$ and $C = (x_{2}, y_{2})$. Then expressing that the triangle $ABC$ has a right angle in $A$ corresponds to $x_{1} x_{2} + y_{1} y_{2} = 0$. Then the pythagorean theorem $a^{2} + b^{2} = c^{2}$ corresponds to $x_{1}^{2} + y_{1}^{2} + x_{2}^{2} + y_{2}^{2} = (x_{1} - x_{2})^{2} + (y_{1} - y_{2})^{2}$. In algebraic terms, the fact that the pythagorean theorem holds for right triangles, is the statement that
+It is well-known, that standard geometric constructions can be expressed as polynomial ideals. For example, consider a triangle with vertices $A = (0, 0)$, $B = (x_{1}, y_{1})$ and $C = (x_{2}, y_{2})$. Then expressing that the triangle $ABC$ has a right angle in $A$ corresponds to $x_{1} x_{2} + y_{1} y_{2} = 0$. The pythagorean theorem $a^{2} + b^{2} = c^{2}$ corresponds to $x_{1}^{2} + y_{1}^{2} + x_{2}^{2} + y_{2}^{2} = (x_{1} - x_{2})^{2} + (y_{1} - y_{2})^{2}$. In algebraic terms, the fact that the pythagorean theorem holds for right triangles, is the statement that
 \[x_{1}^{2} + y_{1}^{2} + x_{2}^{2} + y_{2}^{2} - \left((x_{1} - x_{2})^{2} + (y_{1} - y_{2})^{2}\right) \in \sqrt{\langle x_{1} x_{2} + y_{1} y_{2} \rangle} \]
 In general, a geometric conclusion $f \in k[X]$ follows from a set of assumptions generating the ideal $I$ if and only if $f \in \sqrt{I}$. Thankfully, $\sqrt{ \langle x_{1} x_{2} + y_{1} y_{2} \rangle } = \langle x_{1} x_{2} + y_{1} y_{2} \rangle$. However, in general, computing the radical of an ideal is quite difficult. We do however have the following theorem.
 
@@ -104,13 +101,13 @@ In general, a geometric conclusion $f \in k[X]$ follows from a set of assumption
   See chapter 3,  proposition 8 in~\cite{IVA}. Checking whether $1 \in I + \langle 1 - yf \rangle$ can be done by computing a Gröbner basis $G$ of $I + \langle 1 - yf \rangle$, then $1 \in I + \langle 1 - yf \rangle$ if and only if $G$ contains a unit.
 \end{proof}
 
-Hence, if we can compute Gröbner bases, we can automatically prove geometric theorem, which is already pretty cool. But parametric Gröbner bases opens the door for even more: automatic theorem discovery. Most conclusions will not be true, given a set of assumptions. However, using reduced Gröbner systems, we can automatically discover sufficient and necessary assumptions that make the conclusion true.
+Hence, if we can compute Gröbner bases, we can automatically prove geometric theorems, which is already pretty cool. But parametric Gröbner bases opens the door for even more: automatic theorem discovery. Most conclusions will not be true, given a set of assumptions. However, using reduced Gröbner systems, we can automatically discover sufficient and necessary assumptions that make the conclusion true.
 
-\begin{theorem}
-  Let $I \subset K[U][X]$ be an ideal, let $(Y, G)$ be a segment of a reduced Gröbner system for $I$ and let $f \in k[U][X]$. Assume that $r$ is a pseudo-remainder of $f$ modulo $G$ and that $r \in k[U]$. Then $\sigma_{\alpha}(f) \in \sqrt{\langle \sigma_{\alpha}(I) \rangle}$ if and only if $\sigma_{\alpha}(r) = 0$
+\begin{theorem}\label{thm:in_rad_iff_r_eq_z}
+  Let $\,I \subset K[U][X]$ be an ideal, let $\,(Y, G)$ be a segment of a reduced Gröbner system for $I$ and let $f \in k[U][X]$. Assume that $r$ is a pseudo-remainder of $f$ modulo $G$ and that $r \in k[U]$. Then $\sigma_{\alpha}(f) \in \sqrt{\langle \sigma_{\alpha}(I) \rangle}$ if and only if $\sigma_{\alpha}(r) = 0$.
 \end{theorem}
 \begin{proof}
-  If $\langle \sigma_{\alpha}(I) \rangle = \langle 1 \rangle$, then the conclusion follows immediately. Hence, we assume that $\langle \sigma_{\alpha}(I) \rangle \neq \langle 1 \rangle$.
+  If $\langle \sigma_{\alpha}(I) \rangle = \langle 1 \rangle$, then $\sqrt{\langle \sigma_{\alpha}(I) \rangle} = \langle \sigma_{\alpha}(I) \rangle$ so the conclusion follows from lemma~\ref{lem:ps_rem_unique}. Hence, we assume that $\langle \sigma_{\alpha}(I) \rangle \neq \langle 1 \rangle$.
 
   Let $r$ be a pseudo-remainder of $f$ modulo $G$. If $\sigma_{\alpha}(r) = 0$, then $\sigma_{\alpha}(f) \in \langle \sigma_{\alpha}(I) \rangle \subset \sqrt{\langle \sigma_{\alpha}(I) \rangle}$. On the other hand, if $\sigma_{\alpha}(f) \in \sqrt{\langle \sigma_{\alpha}(I) \rangle}$, then $\sigma_{\alpha}(r) \in \sqrt{\langle \sigma_{\alpha}(I) \rangle} $. Hence $1 \in \langle \sigma_{\alpha}(I) \rangle + \langle 1 - y \sigma_{\alpha}(r) \rangle$ by theorem~\ref{thm:rad}. Since $r \in k[U]$, $\sigma_{\alpha}(r) \in k$. Since $\langle \sigma_{\alpha}(I) \rangle \neq \langle 1 \rangle$, meaning $\sigma_{\alpha}(G)$ does not contain a unit, and $\LM(1 - y \sigma_{\alpha}(r)) = y$ when $\sigma_{\alpha}(r) \neq 0$, which is relatively prime with every leading monomial in $\langle \sigma_{\alpha}(I) \rangle$, $\sigma_{\alpha}(G) \cup \{1 - y \sigma_{\alpha}(r)\}$ is a Gröbner basis of $\langle \sigma_{\alpha}(I) \rangle + \langle 1 - y \sigma_{\alpha}(r) \rangle$. Hence, $1 \in \langle \sigma_{\alpha}(I) \rangle + \langle 1 - y \sigma_{\alpha}(r) \rangle$ if and only if $\sigma_{\alpha}(r) = 0$.
 \end{proof}
@@ -151,7 +148,7 @@ We can use this theorem to discover geometric theorems in the complex plane. Let
     I = [(a + 1)*(x2 - 1) + b*y2, b*(x2 + 1) - (a + 1)*y2, (a - 1)*(x3 + 1) + b*y3, b*(x3 - 1) - (a - 1)*y3]
   \end{minted}
 
-  We want to determine for which values of $a$ and $b$ we have that $\,|P_{1} P_{2}| = |P_{1} P_{3}|$, i.e.\ that $\,0 = f = (x_{3} - a)^{2} + y_{3}^{2} - (x_{2} - a)^{2} + y_{2}^{2}$. This is equivalent to asking whether $\sigma(f) \in \langle \sigma(I) \rangle$ for some specialization $\sigma : \C[a, b] \to \C$.
+  We want to determine for which values of $a$ and $b$ we have that $\,|P_{1} P_{2}| = |P_{1} P_{3}|$, i.e.\ that $\,0 = f = (x_{3} - a)^{2} + y_{3}^{2} - (x_{2} - a)^{2} + y_{2}^{2}$. This is equivalent to asking whether $\sigma(f) \in \sqrt{\langle \sigma(I) \rangle}$ for some specialization $\sigma : \C[a, b] \to \C$.
 
   \begin{minted}{julia}
     f = (x3 - a)^2 + y3^2 - (x2 - a)^2 - y2^2
@@ -188,26 +185,26 @@ We can use this theorem to discover geometric theorems in the complex plane. Let
   \end{align*}
   Factorizing multivariate polynomials isn't in Julia yet, unfortunately. It can be done in Macaulay2 or WolframAlpha.
 
-  Since, $\sigma(f) \in \langle \sigma(I) \rangle$ if and only if $\sigma(r) = 0$, we just need to find values of $a$ and $b$, that set $r$ to zero. By considering the factorization, we have five factors, we can make 0, in order to get $r$ to be 0. However, neither $a^{2} + 2a + b^{2} + 1$, $a^{2} - 2a + b^{2} + 1$ nor $b$ can be $0$ by the conditions on the segment. So, we're left with three options.
+  Since $\sigma(f) \in \sqrt{\langle \sigma(I) \rangle}$ if and only if $\sigma(r) = 0$ by theorem~\ref{thm:in_rad_iff_r_eq_z}, we just need to find values of $a$ and $b$, that set $r$ to zero. By considering the factorization, we have five factors we can make 0, in order to get $r$ to be 0. However, neither $a^{2} + 2a + b^{2} + 1$, $a^{2} - 2a + b^{2} + 1$ nor $b$ can be $0$ by the conditions on the segment. So, we're left with three options.
   \begin{enumerate}
     \item $a = 0$ means that the triangle $ABC$ is isosceles. This immediately gives that $x_{3} = -x_{2}$ and $y_{2} = y_{3}$, which indeed gives us that $|P_{1}P_{2}| = |P_{1}P_{3}|$.
-    \item $a^{2} + b^{2} - 1 = 0$ In this case, the triangle has a right angle in vertex $C$, which implies that $P_{2} = P_{3} = C$. Hence, $|P_{1}P_{2}| = |P_{1}P_{3}|$.
-          \item $a^{2} - b^{2} - 1 = 0$. This equation traces out a hyperbola, and gives a surprising solution to the problem. Here, the orthic triangle does not sit inside the triangle $ABC$, and the points $P_{1}, P_{2}$ and $P_{3}$ might not be between the vertices. Instead, they lie on the infinite lines described by the vertices. See figure~\ref{fig:orthic_solution}.
+    \item $a^{2} + b^{2} - 1 = 0$. In this case, the triangle has a right angle in vertex $C$, which implies that $P_{2} = P_{3} = C$. Hence, $|P_{1}P_{2}| = |P_{1}P_{3}|$.
+    \item $a^{2} - b^{2} - 1 = 0$. This equation traces out a hyperbola, and gives a surprising solution to the problem. Here, the orthic triangle does not sit inside the triangle $ABC$, and the points $P_{1}, P_{2}$ and $P_{3}$ might not be between the vertices. Instead, they lie on the infinite lines described by the vertices. See figure~\ref{fig:orthic_solution}.
   \end{enumerate}
 
-  We also get that for every other value of $a$ and $b$, we have $\sigma(r) \neq 0$ since $\C$ is an integral domain. Hence $\sigma(f) \notin \langle \sigma(I) \rangle$, meaning that the triangle does not have an isosceles orthic triangle. In this way, we have found nescessary and sufficient conditions for the geometric theorem.
+  We also get that for every other value of $a$ and $b$, we have $\sigma(r) \neq 0$ since $\C$ is an integral domain. Hence $\sigma(f) \notin \sqrt{\langle \sigma(I) \rangle}$, meaning that the triangle does not have an isosceles orthic triangle. In this way, we have found nescessary and sufficient conditions for the geometric theorem.
 \end{example}
 
 It should be noted, that even though the example of finding an isosceles orthic triangle has been worked through in \cite{MONTES20101391}, the method is completely different. In that paper, they computed a Gröbner cover of $I + \langle f \rangle$. While their output is arguably simpler, the method described above has the benefit of being indifferent to the conclusion. In other words, if instead we wanted to ask whether a side of the orthic triangle was parallel to a side of $ABC$, we can do that immediately from $G$ using pseudo-divisions\footnote{The answer is rather boring: it never happens for a non-degenerate triangle.}. In the other approach, we would need to recompute the Gröbner system, which may well take a long time for more complex applications. Let us take one more example, to illustrate why this approach works better in the complex plane than the real plane.
 
 \begin{example}\upshape
-  Let $I$ and $G$ be given as before. We want to answer when the area of the orthic triangle is one fifth of the area of the whole triangle. The area of the triangle $ABC$ is $A_{ABC} = b$, and by using the shoelace formula we find that the area of the orthic triangle is $A_{o} = \frac{1}{2}(a(y_{2} - y_{3}) + x_{2} y_{3} - x_{3} y_{2})$. However, those are signed areas, so if the triangle is five times as large as its orthic triangle, we can either have $A_{ABC} = 5 A_{o}$ or $A_{ABC} = -5 A_{o}$. Hence, the polynomial representing the conclusion is $f = (A_{ABC} - 5 A_{o})(A_{ABC} + 5 A_{o})$, since $\sigma(f) = 0$ if either $A_{ABC} = 5 A_{o}$ or $A_{ABC} = -5 A_{o}$. After pseudo-reducing $f$ by $G$, we get a pseudo-remainder that is too large to reproduce, but its factorization is
+  Let $I$ and $G$ be given as before. We want to answer when the area of the orthic triangle is one fifth of the area of the whole triangle. The area of the triangle $ABC$ is $A_{ABC} = b$, and by using the shoelace formula we find that the area of the orthic triangle is $A_{o} = \frac{1}{2}(a(y_{2} - y_{3}) + x_{2} y_{3} - x_{3} y_{2})$. However, those are signed areas, so if the triangle is five times as large as its orthic triangle, we can either have $A_{ABC} = 5 A_{o}$ or $A_{ABC} = -5 A_{o}$. Hence, the polynomial representing the conclusion is $f = (A_{ABC} - 5 A_{o})(A_{ABC} + 5 A_{o})$, since $\sigma(f) = 0$ if and only if either $A_{ABC} = 5 A_{o}$ or $A_{ABC} = -5 A_{o}$. After pseudo-reducing $f$ by $G$, we get a pseudo-remainder that is too large to reproduce, but its factorization is
   \begin{align*}
     r = &-b^{7} \cdot (a^{2} + b^{2} - 2a + 1)^{11} \cdot (a^{2} + b^{2} + 2a + 1)^{8} \cdot \\
         &(11a^{4} + 12a^{2}b^{2} + b^{4} - 22a^{2} - 8b^{2} + 11) \cdot (9a^{4} + 8a^{2}b^{2} - b^{4} - 18a^{2} - 12b^{2} + 9)
   \end{align*}
 
-  We see that $\sigma(f) \in \langle \sigma(I) \rangle$ is and only if $\sigma(11a^{4} + 12a^{2}b^{2} + b^{4} - 22a^{2} - 8b^{2} + 11) = 0$ or $\sigma(9a^{4} + 8a^{2}b^{2} - b^{4} - 18a^{2} - 12b^{2} + 9) = 0$. We'll focus on the first condition. In the complex plane, this is fine. The polynomial is quartic in both $a$ and $b$, so for every fixed $a$-value, we get four solutions for $b$, counted with multiplicity. The real case, however, is not as simple.
+  We see that $\sigma(f) \in \sqrt{\langle \sigma(I) \rangle}$ if and only if $\sigma(11a^{4} + 12a^{2}b^{2} + b^{4} - 22a^{2} - 8b^{2} + 11) = 0$ or $\sigma(9a^{4} + 8a^{2}b^{2} - b^{4} - 18a^{2} - 12b^{2} + 9) = 0$. We'll focus on the first condition. In the complex plane, this is fine. The polynomial is quartic in both $a$ and $b$, so for every fixed value of $a$, we get four solutions for $b$, counted with multiplicity. The real case, however, is not as simple.
 
   Using a CAS system we get the following roots of the polynomial:
   \[b = \pm \sqrt{4 - 6 a^2 \pm \sqrt{5 - 26 a^2 + 25 a^4}}\]
@@ -218,7 +215,7 @@ It should be noted, that even though the example of finding an isosceles orthic 
   \end{center}
   This shows us, that when $a$ lies between $-0.51$ and $0.51$, the polynomial above has a solution in the real plane. By looking at the other branches of the solution, we see that there is also an isolated solution in $a = 1$, $b = 0$ corresponding to the degenerate triangle. However, this solution is excluded by the conditions on the segment. For other values of $a$ there is no solution over the reals.
 
-  By doing a bit of manual analysis and plotting parts of the graph seperately, the complete set of solutions in the real plane can be found on figure~\ref{fig:orthic_wow}. The two blobs are solutions for acute triangles, whereas the the two unbounded curves correspond to solutions for obtuse triangles.
+  By doing a bit of manual analysis and plotting parts of the graph seperately, the complete set of solutions in the real plane can be found on figure~\ref{fig:orthic_wow}. The two ``blobs'' are solutions for acute triangles, whereas the the two unbounded curves correspond to solutions for obtuse triangles.
 
   We're lucky in this case, as the quartic is solvable in radicals. Had the pseudo-remainder been of fifth degree (ignoring the factors from the conditions on the segment), we might not be able to say much about the real case. Hence this method of discovering geometric theorems may not always work in the real plane. It could, however, be a useful first step, as we do get nescesary and sufficient conditions for the theorem to be true. Those conditions just might be difficult to analyse, but more sophisticated tools can use this as a first step, see \cite{10.1145/2755996.2756646}.
 

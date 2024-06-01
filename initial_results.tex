@@ -53,10 +53,10 @@ As can be seen from the above example, a set of generators can form a parametric
 \begin{definition}[Vanishing sets \& locally closed sets]
   Let $k \supset k_{1}$ be fields and $E \subset k[X]$. Then the \textit{vanishing set} of $E$ is $\V(E) := \{v \in k_{1}^{n} \mid e(v) = 0 \;\; \forall e \in E\}$.  If $f \in k[X]$ we will write $\V(f)$ to mean $\V(\{f\})$.
 
-  A \textit{locally closed set}\footnote{Called such because if $Y = C \setminus D$ is a locally closed set, then $Y$ is closed set in the subspace topology on $D^{\complement}$} is a set of the form $\V(E) \setminus \V(N)$ for two closed sets $\V(E)$ and $\V(N)$.
+  A \textit{locally closed set}\footnote{Called such because if $\,Y = C \setminus D$ is a locally closed set, then $Y$ is a closed set in the subspace topology on $D^{\complement}$} is a set of the form $\V(E) \setminus \V(N)$ for two closed sets $\V(E)$ and $\V(N)$.
 \end{definition}
 
-For example, when working over $k = \R$, we have $\V(0) = \R^{n}$, $\V(1) = \emptyset$ and $\V(x^{2} + y^{2} - 1)$ is the unit circle in $\R^{2}$. $\V(x^{2} + y^{2} - 1) \setminus \V(x)$ is the unit circle in $\R^{2}$ with the  $x$-axis removed. The Zariski topology is defined as having a subset $C \subset k_{1}^{n}$ being closed if and only if $C = \V(E)$ for some $E \subset k[X]$. It should be noted, that $\V(E) = \V(\langle E \rangle)$ for all $E \subset k[X]$.
+For example, when working over $k = \R$, we have $\V(0) = \R^{n}$, $\V(1) = \emptyset$, and $\V(x^{2} + y^{2} - 1)$ is the unit circle in $\R^{2}$. $\V(x^{2} + y^{2} - 1) \setminus \V(x)$ is the unit circle in $\R^{2}$ with the  $x$-axis removed. In the Zariski topology a subset $C \subset k_{1}^{n}$ is closed if and only if $C = \V(E)$ for some $E \subset k[X]$. It should be noted, that $\V(E) = \V(\langle E \rangle)$ for all $E \subset k[X]$.
 
 \begin{definition}[Parametric Gröbner basis]
   Let $k \supset k_{1}$ be fields, let $X$ be a set of variables, let $F \subset k[U[X]$ be a finite set of polynomials and let $Y \subset k_{1}^{|U|}$ be a locally closed set. A \textit{parametric Gröbner basis} of $\langle F \rangle$ on $Y$ is a finite set of polynomials $G \subset \langle F \rangle$ such that $\sigma(G)$ is a Gröbner basis of $\langle \sigma(\langle F \rangle) \rangle$ for any ring homomorphism $\sigma_{\alpha} : k[U] \to k_{1}$ with $\alpha \in Y$.
@@ -169,7 +169,7 @@ Since remainders modulo a Gröbner basis $G$ are unique, we have that $f \in \la
   \end{align*}
   Since $\sum_{i=1}^{n}(\sigma_{\alpha}(c f_{i}') - \sigma_{\alpha}(c' f_{i}))\sigma_{\alpha}(g_{i}) \in \langle \sigma_{\alpha}(G) \rangle$, we must have $\sigma_{\alpha}(c' r) - \sigma_{\alpha}(c r') \in \langle \sigma_{\alpha}(G) \rangle$. If $\sigma_{\alpha}(c't) - \sigma_{\alpha}(cr') \neq 0$ then, since $\sigma_{\alpha}(G)$ is a Gröbner basis, that would imply that the leading term of $\sigma_{\alpha}(c' r) - \sigma_{\alpha}(c r')$ is divisible by some $\LM(\sigma_{\alpha}(g_{i}))$. But that would imply some term of either $\sigma_{\alpha}(c' r)$ or $\sigma_{\alpha}(c r')$ is divisible by that $\LM(\sigma_{\alpha}(g_{i}))$. Since $\LM(\sigma_{\alpha}(g_{i})) = \LM(g_{i})$ and no term of $r$ is divisible by any $\LM(g_{i})$ (by the properties of pseudo-division), this cannot happen. Hence $\sigma_{\alpha}(c' r) - \sigma_{\alpha}(c r') = 0$.
 
-  For the last assertion, if $\sigma_{\alpha}(r) = 0$, then clearly $\sigma_{\alpha}(f) \in \langle \sigma_{\alpha}(G) \rangle$. On the other hand, if $\sigma_{\alpha}(f) \in \langle \sigma_{\alpha}(G) \rangle$, find a pseudo-reduction
+  For the last assertion, if $\sigma_{\alpha}(r) = 0$, then clearly $\sigma_{\alpha}(f) \in \langle \sigma_{\alpha}(G) \rangle$ since $\sigma_{\alpha}(c)$ is invertible. On the other hand, if $\sigma_{\alpha}(f) \in \langle \sigma_{\alpha}(G) \rangle$, find a pseudo-reduction
   \[c f = r + \sum_{i=1}^{n} g_{i} f_{i}\]
   Then, since $\sigma_{\alpha}(c) \neq 0$ for any $\alpha \in Y$, by lemma~\ref{lem:ps_div_to_div} we get that
   \[\sigma_{\alpha}(c)\sigma_{\alpha}(f) = \sigma_{\alpha}(r) + \sum_{i=1}^{n} g_{i} f_{i}\]
@@ -185,7 +185,7 @@ Since remainders modulo a Gröbner basis $G$ are unique, we have that $f \in \la
 
   We could also have reduced the term $cxy$ using $(a - b)y$:
   \[(a-b)(cxy + 1) = (cx)((a-b)y) + a - b \]
-  giving us a mulitplier $c' = (a - b)$ and remainder $a - b$. We see that $c r' = (a-b)(a^{2} - ab) = (a - b)((a-b)a) = c' r$ in accordance with the theorem above.
+  giving us a multiplier $c' = (a - b)$ and remainder $a - b$. We see that $c r' = (a-b)(a^{2} - ab) = (a - b)((a-b)a) = c' r$ in accordance with the theorem above.
 
   If the segment induces relations between leading coefficients, this might show up in the pseudo-remainders. Consider the segment $(\V(a - b), \{ax + 1, bx + 1\})$ and the polynomial $abx$. Here, we find two different pseudo-remainders:
   \begin{align*}
@@ -235,7 +235,7 @@ Finally, to fully establish the correspondance between pseudo-division before sp
 
 
 \subsection{A criterion on stability}
-In this section we will prove a criterion to decide when a Gröbner basis $G$ of an ideal $\langle F \rangle$ maps to a Gröbner basis $\sigma(G)$ if the ideal $\langle \sigma(F) \rangle$. This is theorem 3.1 in \cite{Kalkbrener}.
+In this section we will prove a criterion to decide when a Gröbner basis $G$ of an ideal $\langle F \rangle$ maps to a Gröbner basis $\sigma(G)$ of the ideal $\langle \sigma(F) \rangle$. This is theorem 3.1 in \cite{Kalkbrener}.
 
 \begin{lemma}\label{lem:grb_iff_reduc_to_z}
   Let $G$ be a Gröbner basis of an ideal $\langle F \rangle \subset A[X]$ w.r.t. $<$, let $\sigma : A \to K$ be a ring homomorphism to a field $K$ and set $\,G_{\sigma} = \{g \in G \mid \sigma(\LC(g)) \neq 0\} = \{g_{1}, g_{2}, \dots, g_{l}\} \subset A[X]$. Then $\sigma(G_{\sigma})$ is a Gröbner basis of the ideal $\langle \sigma(F) \rangle$ w.r.t. $<_{X}$ if and only if $\sigma(g)$ is reducible to 0 modulo $\sigma(G_{\sigma})$ for every $g \in G$.
@@ -281,10 +281,10 @@ We will use a consequence of this lemma, which uses a test that is much easier t
   On the other hand, if $\sigma_{\alpha}(g) \notin G_{\alpha}$, then we must have $g \in G \cap k[U]$. Since $\alpha \in \V(G \cap k[U])$ then $\sigma_{\alpha}(g) = 0$, so is immediately reducible to zero. Thus $\sigma_{\alpha}(G)$ is a Gröbner basis of $\langle \sigma_{\alpha}(F) \rangle$ by lemma~\ref{lem:grb_iff_reduc_to_z}.
 \end{proof}
 
-With lemma~\ref{lem:grb_if_nmap_to_z} in mind, we can start constructing Gröbner systems. Let $G$ be a reduced Gröbner basis of an ideal $\langle F \rangle \subset k[X, U]$, and let $H = \{\LC_{U}(g) \mid g \in G \setminus k[U]\}$. Then $\left(\V(0) \setminus \bigcup_{h \in H} \V(h), G\right)$ is a segment of a Gröbner system. Thus, to make a Gröbner system, we need to find segments covering $\bigcup_{h \in H} V(h) = V(\lcm(H))$. As we will see later, we can find a Gröbner basis under the condition $\V(S)$ for some $S \subset k[U]$, by computing a Gröbner basis of $\langle F \cup S \rangle$ and remove everything in $\langle S \rangle$.
+With lemma~\ref{lem:grb_if_nmap_to_z} in mind, we can start constructing Gröbner systems. Let $G$ be the reduced Gröbner basis of an ideal $\langle F \rangle \subset k[X, U]$, and let $H = \LC_{U}(G)$. Then $\left(\V(0) \setminus \bigcup_{h \in H} \V(h), G\right)$ is a segment of a Gröbner system. Thus, to make a Gröbner system, we need to find segments covering $\bigcup_{h \in H} \V(h) = \V(\lcm(H))$. As we will see later, we can find a Gröbner basis under the condition $\V(S)$ for some $S \subset k[U]$, by computing a Gröbner basis of $\langle F \cup S \rangle$ and remove everything in $\langle S \rangle$.
 
 \begin{example}\upshape
-  Consider the ideal $I = \langle ax + cy, bx + dy \rangle \subset \C[a, b, c, d][x, y]$. The reduced Gröbner basis for $I$ w.r.t. the lexicographic order with $x > y$ is $G = \{ax + cy, bx + dy, (ad - bc)y\}$. The leading coefficients are $\{a, b, ad - bc\}$, so for any specialization with $\sigma(a), \sigma(b), \sigma(ad - bc) \neq 0$, this specializes to a Gröbner basis. This is equivalent to requiring that $\sigma(ab(ad-bc)) \neq 0$.
+  Consider the ideal $I = \langle ax + cy, bx + dy \rangle \subset \C[a, b, c, d][x, y]$. The reduced Gröbner basis for $I$ w.r.t.\ the lexicographic order with $x > y$ is $G = \{ax + cy, bx + dy, (ad - bc)y\}$. The leading coefficients are $\{a, b, ad - bc\}$, so for any specialization with $\sigma(a), \sigma(b), \sigma(ad - bc) \neq 0$, this specializes to a Gröbner basis. This is equivalent to requiring that $\sigma(ab(ad-bc)) \neq 0$.
 
   Now, we need to produce Gröbner systems covering the rest. If $\sigma(a) = 0$, then the ideal becomes $\langle cy, bx + dy, bcy \rangle$ with leading coefficients $\{c, b, bc\}$. Since $\sigma(bc) \neq 0 \iff \sigma(b) \neq 0 \land \sigma(c) \neq 0$ and we can reduce $bcy$ using $cy$, we have that $\{cy, bx + dy\}$ is a Gröbner basis of the segment $\V(a) \setminus \V(bc)$.
 

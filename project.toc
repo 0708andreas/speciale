@@ -11,7 +11,7 @@
 \contentsline {section}{\numberline {4}Geometric description \& Gröbner covers}{27}{section.4}%
 \contentsline {subsection}{\numberline {4.1}Parametric sets}{29}{subsection.4.1}%
 \contentsline {subsection}{\numberline {4.2}Monic ideals and the reduced Gröbner basis of $\symcal I_{S}$}{31}{subsection.4.2}%
-\contentsline {subsection}{\numberline {4.3}The singular ideal}{33}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.3}The singular ideal}{34}{subsection.4.3}%
 \contentsline {subsection}{\numberline {4.4}The projective case}{38}{subsection.4.4}%
 \contentsline {subsection}{\numberline {4.5}Relation to the $\mathbf {CGS}$ algorithm}{41}{subsection.4.5}%
 \contentsline {section}{\numberline {5}Applications}{43}{section.5}%
