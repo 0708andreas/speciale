@@ -3,7 +3,6 @@
 % \usepackage[utf8]{inputenc}
 % \usepackage{tgtermes}
 % \usepackage{fouriernc}
-\usepackage[T1]{fontenc}
 \usepackage[margin=3cm]{geometry}
 % \usepackage[margin=1.5cm]{geometry}
 \usepackage[english]{babel}
@@ -78,9 +77,12 @@
 \setminted{breaklines}
 % \newcommand{\lean}[1]{\mintinline{lean}{#1}}
 
+\usepackage[T1]{fontenc}
 % \setmainfont{Linux Libertine O}
 % \setmathfont[Digits, Latin]{Linux Biolinum O}
 \usepackage{libertinus}
+% \usepackage{libertine}
+% \usepackage{libertinust1math}
 % \usepackage{ebgaramond-maths}
 % \usepackage{ebgaramond}
 % \usepackage[cmintegrals, cmbraces]{newtxmath}
@@ -234,6 +236,9 @@
 
 \newpage
 \input{thanks.tex}
+
+\newpage
+\input{abstract.tex}
 
 \newpage
 \pagenumbering{arabic}

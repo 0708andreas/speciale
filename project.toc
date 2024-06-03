@@ -6,7 +6,7 @@
 \contentsline {subsection}{\numberline {2.3}A criterion on stability}{12}{subsection.2.3}%
 \contentsline {section}{\numberline {3}Computing Gröbner systems}{16}{section.3}%
 \contentsline {subsection}{\numberline {3.1}Reducing segments}{17}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}Parametric Gröbner bases}{19}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.2}Parametric Gröbner bases}{20}{subsection.3.2}%
 \contentsline {subsection}{\numberline {3.3}Computing faithful segments}{20}{subsection.3.3}%
 \contentsline {section}{\numberline {4}Geometric description \& Gröbner covers}{27}{section.4}%
 \contentsline {subsection}{\numberline {4.1}Parametric sets}{29}{subsection.4.1}%

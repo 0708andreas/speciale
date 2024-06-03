@@ -59,7 +59,7 @@ As can be seen from the above example, a set of generators can form a parametric
 For example, when working over $k = \R$, we have $\V(0) = \R^{n}$, $\V(1) = \emptyset$, and $\V(x^{2} + y^{2} - 1)$ is the unit circle in $\R^{2}$. $\V(x^{2} + y^{2} - 1) \setminus \V(x)$ is the unit circle in $\R^{2}$ with the  $x$-axis removed. In the Zariski topology a subset $C \subset k_{1}^{n}$ is closed if and only if $C = \V(E)$ for some $E \subset k[X]$. It should be noted, that $\V(E) = \V(\langle E \rangle)$ for all $E \subset k[X]$.
 
 \begin{definition}[Parametric Gröbner basis]
-  Let $k \supset k_{1}$ be fields, let $X$ be a set of variables, let $F \subset k[U[X]$ be a finite set of polynomials and let $Y \subset k_{1}^{|U|}$ be a locally closed set. A \textit{parametric Gröbner basis} of $\langle F \rangle$ on $Y$ is a finite set of polynomials $G \subset \langle F \rangle$ such that $\sigma(G)$ is a Gröbner basis of $\langle \sigma(\langle F \rangle) \rangle$ for any ring homomorphism $\sigma_{\alpha} : k[U] \to k_{1}$ with $\alpha \in Y$.
+  Let $k \supset k_{1}$ be fields, let $X$ be a set of variables, let $F \subset k[U][X]$ be a finite set of polynomials and let $Y \subset k_{1}^{|U|}$ be a locally closed set. A \textit{parametric Gröbner basis} of $\langle F \rangle$ on $Y$ is a finite set of polynomials $G \subset \langle F \rangle$ such that $\sigma(G)$ is a Gröbner basis of $\langle \sigma(\langle F \rangle) \rangle$ for any ring homomorphism $\sigma_{\alpha} : k[U] \to k_{1}$ with $\alpha \in Y$.
 \end{definition}
 \begin{definition}[Gröbner system]
   Let $Y$ be a locally closed set and $F, G \subset k[U][X]$ be finite sets. Then $(Y, G)$ is called a \textit{segment of a Gröbner system for $F$} if $\sigma_{\alpha}(G)$ is a Gröbner basis of $\langle \sigma_{\alpha}(F) \rangle$ for all $\alpha \in Y$. A set $\{(Y_{1}, G_{1}), \dots, (Y_{t}, G_{t})\}$ is called a \textit{Gröbner system} if each $(Y_{i}, G_{i})$ is a segment of a Gröbner system.
@@ -82,7 +82,7 @@ Gröbner systems and parametric Gröbner bases are restricted to ideals in $k[U]
 \end{example}
 
 \begin{definition}[Leading coefficient w.r.t.\ variables]
-  Let $f \in k[U][X]$. Then the leading term of $f$ is denoted $\LT_{U}(f)$, the leading coefficient is $\LC_{U}(f)$ and the leading monomial is $\LM_{U}(f)$. These notations are also used when $f \in k[X, U]$, just viewing $f$ as a polynomial in $k[U][X]$.
+  Let $f \in k[X, U]$. Then $\LT_{U}(f)$ denotes the leading term of $f$, when we see $f$ as an element of $k[U][X]$. Similarly, the leading coefficient of $f \in k[U][X]$ is $\LC_{U}(f)$ and the leading monomial is $\LM_{U}(f)$.
 \end{definition}
 
 Note that $\LC_{U}(f) \in k[U]$, i.e.\ the leading term is a polynomial in $k[U]$ times a monomial in $X$. For example, the polynomial $f = ux + vx + 1 \in C[x, u, v]$ has $\LC_{\{u, v\}}(f) = u + v$, $\LM_{\{u, v\}}(f) = x$ and $\LT_{\{u, v\}}(f) = (u+v)x$.
@@ -113,7 +113,7 @@ From this point, we assume that the monomial order on $k[X, U]$ satisfies $X^{v_
 \subsection{Pseudo-division}\label{sec:ps_div}
 The division algorithm for polynomial rings over fields form the basis of most of the applications of Gröbner bases. One could even say that having a well-behaved remainder under the division algorithm is one of the primary motivations behind Gröbner bases. Pseudo-division will turn out to be equally important in the parametric setting. The idea is straight-forward. Suppose you want to divide $ax$ by $bx$ in $k[a, b][x]$. Since $b$ does not divide $a$, it seems we are stuck. But that is only due to the nature of the ring we work over (specifically that it's not a field) rather than the structure of the polynomials. Had $a$ and $b$ been any non-zero field elements, the division would be easy.
 
-Pseudo-division is a way to overcome the fact, that our ground ring may not be a field. The idea is to allow ourselves to scale the polynomial by an appropriate scalar from the ground ring. In the case above, we can't divide $ax$ by $bx$, but we can divide $b(ax)$ by $bx$ and get a remainder of zero. Pseudo-division in a restricted setting over $k[U][X]$ can be found in \cite{IVA}. I am not aware that the rest of the results in this subsection appear in literature, but they have been extracted from proofs of other theorems in \cite{grb_covers}, \cite{MONTES20101391}.
+Pseudo-division is a way to overcome the fact, that our ground ring may not be a field. The idea is to allow ourselves to scale the polynomial by an appropriate scalar from the ground ring. In the case above, we can't divide $ax$ by $bx$, but we can divide $bax$ by $bx$ and get a remainder of zero. Pseudo-division in a restricted setting over $k[U][X]$ can be found in \cite{IVA}. I am not aware that the rest of the results in this subsection appear in literature, but they have been extracted from proofs of other theorems in \cite{grb_covers}, \cite{MONTES20101391}.
 
 \begin{definition}[Pseudo-division]
   Let $f, f_{1}, f_{2}, \dots, f_{n}, g_{1}, g_{2}, \dots, g_{n}, r \in A[X]$ be polynomials and let $c \in A$. A \textit{pseudo-division of $f$ modulo $g_{1}, \dots, g_{n}$} is a relation
@@ -155,11 +155,11 @@ Pseudo-division allows us to overcome the problem, that our ground ring isn't a 
 Since remainders modulo a Gröbner basis $G$ are unique, we have that $f \in \langle G \rangle$ if and only if $f$ leaves a remainder of $0$ under division modulo $G$. We have the following analogous statement for parametric Gröbner bases and pseudo-division.
 
 \begin{lemma}\label{lem:ps_rem_unique}
-  Let $(Y, G)$ be a segment of a parametric Gröbner basis with $G = \{g_{1}, \dots, g_{n}\} \subset A[X]$, let $f \in A[X]$ and let
+  Let $(Y, G)$ be a segment of a parametric Gröbner basis with $G = \{g_{1}, \dots, g_{n}\} \subset A[X]$, and assume that $\sigma_{\alpha}(\LC(g)) \neq 0$ for all $\alpha \in Y$ and $g \in G$. Let $f \in A[X]$ and let
   \[cf = r + \sum_{i=1}^{n} f_{i} g_{i}, \quad c'f = r' + \sum_{i=1}^{n} f'_{i} g_{i}\]
-  be pseudo-divisions. If $\,\sigma_{\alpha}(\LC(g)) \neq 0$ for all $\alpha \in Y$ and $g \in G$, then
+  be pseudo-divisions. Then
   \[\sigma_{\alpha}(r'c) = \sigma_{\alpha}(rc')\]
-  for all specializations $\sigma_{\alpha}$ with $\alpha \in Y$, and $\sigma_{\alpha}(f) \in \langle \sigma_{\alpha}(G) \rangle$ if and only if $\sigma_{\alpha}(r) = 0$.
+  for all specializations $\sigma_{\alpha}$ with $\alpha \in Y$. Furthermore, $\sigma_{\alpha}(f) \in \langle \sigma_{\alpha}(G) \rangle$ if and only if $\sigma_{\alpha}(r) = 0$.
 \end{lemma}
 \begin{proof}
   Consider
@@ -281,7 +281,7 @@ We will use a consequence of this lemma, which uses a test that is much easier t
   On the other hand, if $\sigma_{\alpha}(g) \notin G_{\alpha}$, then we must have $g \in G \cap k[U]$. Since $\alpha \in \V(G \cap k[U])$ then $\sigma_{\alpha}(g) = 0$, so is immediately reducible to zero. Thus $\sigma_{\alpha}(G)$ is a Gröbner basis of $\langle \sigma_{\alpha}(F) \rangle$ by lemma~\ref{lem:grb_iff_reduc_to_z}.
 \end{proof}
 
-With lemma~\ref{lem:grb_if_nmap_to_z} in mind, we can start constructing Gröbner systems. Let $G$ be the reduced Gröbner basis of an ideal $\langle F \rangle \subset k[X, U]$, and let $H = \LC_{U}(G)$. Then $\left(\V(0) \setminus \bigcup_{h \in H} \V(h), G\right)$ is a segment of a Gröbner system. Thus, to make a Gröbner system, we need to find segments covering $\bigcup_{h \in H} \V(h) = \V(\lcm(H))$. As we will see later, we can find a Gröbner basis under the condition $\V(S)$ for some $S \subset k[U]$, by computing a Gröbner basis of $\langle F \cup S \rangle$ and remove everything in $\langle S \rangle$.
+With lemma~\ref{lem:grb_if_nmap_to_z} in mind, we can start constructing Gröbner systems. Let $G$ be the reduced Gröbner basis of an ideal $\langle F \rangle \subset k[X, U]$, and let $H = \{\LC_{U}(g) \mid g \in G \}$. Then $\left(\V(0) \setminus \bigcup_{h \in H} \V(h), G\right)$ is a segment of a Gröbner system. Thus, to make a Gröbner system, we need to find segments covering $\bigcup_{h \in H} \V(h) = \V(\lcm(H))$. Here, $\lcm(H)$ is the least common multiple of the elements in $H$. As we will see later, we can find a Gröbner basis under the condition $\V(S)$ for some $S \subset k[U]$, by computing a Gröbner basis of $\langle F \cup S \rangle$ and remove everything in $\langle S \rangle$.
 
 \begin{example}\upshape
   Consider the ideal $I = \langle ax + cy, bx + dy \rangle \subset \C[a, b, c, d][x, y]$. The reduced Gröbner basis for $I$ w.r.t.\ the lexicographic order with $x > y$ is $G = \{ax + cy, bx + dy, (ad - bc)y\}$. The leading coefficients are $\{a, b, ad - bc\}$, so for any specialization with $\sigma(a), \sigma(b), \sigma(ad - bc) \neq 0$, this specializes to a Gröbner basis. This is equivalent to requiring that $\sigma(ab(ad-bc)) \neq 0$.
