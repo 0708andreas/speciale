@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2023.9.5)  2 JUN 2024 22:23
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2023.9.5)  4 JUN 2024 17:43
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -2876,8 +2876,8 @@ Requested font "[LibertinusSerif-Italic.otf]/OT:script=latn;language=dflt;+tnum
 ;+onum;mapping=tex-text;" at 14.4pt
  -> /usr/share/texlive/texmf-dist/fonts/opentype/public/libertinus-fonts/Libert
 inusSerif-Italic.otf
-File: front_logo.png Graphic file (type bmp)
-<front_logo.png>
+File: front_logo2.png Graphic file (type bmp)
+<front_logo2.png>
 
 Overfull \hbox (56.9055pt too wide) in paragraph at lines 229--229
 [] []
@@ -3429,13 +3429,11 @@ Overfull \hbox (2.00528pt too wide) in paragraph at lines 7--8
  \TU/LibertinusSerif(0)/m/n/12 is a well-order[][][][][]
  []
 
-Package mdframed Info: Not enough space on this page on input line 23.
 [3]
-Package mdframed Info: Not enough space on this page on input line 23.
 Package hyperref Info: bookmark level for unknown theorem defaults to 0 on inpu
-t line 25.
+t line 27.
 Package hyperref Info: bookmark level for unknown proof defaults to 0 on input 
-line 29.
+line 31.
 ) [4] (./initial_results.tex
 LaTeX Font Info:    Font shape `TU/LibertinusSerif(0)/m/n' will be
 (Font)              scaled to size 7.2pt on input line 15.
@@ -3640,35 +3638,27 @@ Package microtype Info: Character `\guilsinglright ' is missing
 (microtype)             in font `\TU/LibertinusMono(1)/m/n/7.2'.
 (microtype)             Ignoring protrusion settings for this character.
  [17] [18] [19]
-Overfull \hbox (1.50226pt too wide) in paragraph at lines 183--184
+Overfull \hbox (1.50226pt too wide) in paragraph at lines 190--191
 []\TU/LibertinusSerif(0)/m/n/12 A Gröbner system $[][][][][] [][][][] [] [] [][
 ][][] [][][][]$
  []
 
 [20]
-Overfull \hbox (7.5469pt too wide) in paragraph at lines 222--223
+Overfull \hbox (7.5469pt too wide) in paragraph at lines 229--230
 []\TU/LibertinusSerif(0)/m/n/12 Let $[] [] [][][][] [] [][][][][][][]$. By lemm
-a [][]3.8[][] we have that $[][][][][][][] [] [][][]$ and thus $[][][][][][][][
+a [][]3.9[][] we have that $[][][][][][][] [] [][][]$ and thus $[][][][][][][][
 ][][][] []
  []
 
 [21] [22]
-Package mdframed Info: Not enough space on this page on input line 261.
-
-Overfull \hbox (2.5779pt too wide) in paragraph at lines 288--289
-\TU/LibertinusSerif(0)/m/n/12 theorem [][]3.11[][], $[] [] [][][][] [][]$ is a 
-faithful, comprehensive Gröbner system on $[][][][] []
- []
-
-
-Overfull \hbox (5.58774pt too wide) in paragraph at lines 307--308
+Overfull \hbox (5.58774pt too wide) in paragraph at lines 314--315
 []\TU/LibertinusSerif(0)/m/n/12 Next, consider the segment $[][][][][] [][][]$.
  Computing a reduced Gröbner basis of $[][][] [] [][][][][] [][][] []
  []
 
 [23] [24]
 Package hyperref Info: bookmark level for unknown remark defaults to 0 on input
- line 344.
+ line 351.
 \openout6 = `project.pyg'.
 
  (./_minted-project/default.pygstyle)
@@ -3680,17 +3670,14 @@ Overfull \hbox (7.82991pt too wide) in paragraph at lines 13--14
 ][][][] []
  []
 
-[27]
+[27] [28]
 Overfull \hbox (20.56128pt too wide) in paragraph at lines 38--39
 []\TU/LibertinusSerif(0)/m/n/12 Consider now the polynomial $[] [] [] [] [] [] 
 [] [] [][][][][][][][] [][]$, and let $[] [] [][][][][][] [][] [][] [][][] [][]
 [][] []
  []
 
-[28]
-Package mdframed Info: Not enough space on this page on input line 48.
- [29]
-Package mdframed Info: Not enough space on this page on input line 85.
+[29]
 Package hyperref Info: bookmark level for unknown proposition defaults to 0 on 
 input line 101.
  [30]
@@ -3826,24 +3813,16 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 434.
 
-[41]) [42] (./applications.tex [43] [44]
-Package mdframed Info: Not enough space on this page on input line 84.
- [45]
-Package mdframed Info: Not enough space on this page on input line 108.
-
-Overfull \hbox (2.22498pt too wide) in paragraph at lines 110--111
-[]\TU/LibertinusSerif(0)/m/n/12 If $[][][][][][][] [] [][][]$, then $[] [] [][]
-[][][][][]$ so the conclusion follows from lemma [][]2.12[][].
- []
-
+[41]) [42] (./applications.tex [43]
 File: geogebra_setup.png Graphic file (type bmp)
 <geogebra_setup.png>
 File: geogebra_orthic.png Graphic file (type bmp)
 <geogebra_orthic.png>
+ [44]
 \openout5 = `project.pyg'.
 
 
-(./_minted-project/207371775AC5276C33CE0490D41C1605B628A47E597F7E7F4F45EB4227F7
+(./_minted-project/FF01AE9AA53D5CD2E17B4C7677C3C79CB628A47E597F7E7F4F45EB4227F7
 5598.pygtex
 LaTeX Font Info:    Font shape `TU/LibertinusMono(0)/b/n' will be
 (Font)              scaled to size 10.40002pt on input line 2.
@@ -3902,52 +3881,60 @@ m;+lnum;mapping=tex-text;" at 6.0pt
  -> /usr/share/texlive/texmf-dist/fonts/opentype/public/libertinus-fonts/Libert
 inusSerif-Regular.otf
 )
+Package mdframed Info: Not enough space on this page on input line 108.
+Package mdframed Info: Box was splittet wrong
+ starting loop to iterate the splitting point
+(mdframed)              on input line 108.
+ [45] [46]
+Overfull \hbox (2.22498pt too wide) in paragraph at lines 157--158
+[]\TU/LibertinusSerif(0)/m/n/12 If $[][][][][][][] [] [][][]$, then $[] [] [][]
+[][][][][]$ so the conclusion follows from lemma [][]2.12[][].
+ []
+
 \openout5 = `project.pyg'.
 
 
-(./_minted-project/2087EE9D01F8607A6E3E716ACF908CF8B628A47E597F7E7F4F45EB4227F7
+(./_minted-project/1915230B3841103F9B80AA4993DFD9F8B628A47E597F7E7F4F45EB4227F7
 5598.pygtex)
 \openout5 = `project.pyg'.
 
 
 (./_minted-project/B00F78D6B87D8683B04CA0DE11581F55B628A47E597F7E7F4F45EB4227F7
-5598.pygtex) [46] [47]
+5598.pygtex) [47] [48] [49]
 File: geogebra_sqrt.png Graphic file (type bmp)
 <geogebra_sqrt.png>
-Package mdframed Info: Not enough space on this page on input line 222.
- [48]
-Package mdframed Info: Not enough space on this page on input line 222.
- [49]
-File: geogebra_orthic_wow.png Graphic file (type bmp)
-<geogebra_orthic_wow.png>
+Package mdframed Info: Box was splittet wrong
+ starting loop to iterate the splitting point
+(mdframed)              on input line 251.
  [50]
-Package mdframed Info: Not enough space on this page on input line 258.
- [51]) [52]
+File: geogebra_orthic_wow2.png Graphic file (type bmp)
+<geogebra_orthic_wow2.png>
+ [51] [52]) [53]
 Overfull \hbox (1.25064pt too wide) in paragraph at lines 269--269
 []\TU/LibertinusSerif(0)/m/n/12 Bernd Sturmfels. “  Computational algebraic geo
 metry of projective configurations”.
  []
 
-[53] [54] (./appendix.tex
+[54] [55] (./appendix.tex
 Overfull \hbox (10.26384pt too wide) in paragraph at lines 8--9
 []\TU/LibertinusSerif(0)/m/it/12 Let $[] [] [][][][]$ and $ [] [] [][][][] [] [
 ] [][][] [] [][][][]$. Then there exists $ [][][][] [] [] [][][] []
  []
 
-[55]
+[56]
 Overfull \hbox (8.78094pt too wide) in paragraph at lines 41--42
 []\TU/LibertinusSerif(0)/m/n/12 The final property follows from the invariant, 
 that at every step $[]$, we have that $[][][][][] [][] []
  []
 
-[56]
-Overfull \hbox (8.58658pt too wide) in paragraph at lines 91--92
-\TU/LibertinusSerif(0)/m/n/12 The julia code at [][]$[][][][][] [] [] [] [][][]
+[57]
+Overfull \hbox (9.18657pt too wide) in paragraph at lines 91--92
+\TU/LibertinusSerif(0)/m/n/12 The Julia code at [][]$[][][][][] [] [] [] [][][]
 [][][] [] [][][] [] [][][][][][][][][][][] [] [][][][][][][][][][][][][][][][][
 ][][][][][] []
  []
 
-[57]
+[58]
 \openout5 = `project.pyg'.
 
 
@@ -3962,7 +3949,7 @@ Overfull \hbox (8.58658pt too wide) in paragraph at lines 91--92
 
 
 (./_minted-project/422AD88ADFFE20298CD19535F55668D2B628A47E597F7E7F4F45EB4227F7
-5598.pygtex [58])
+5598.pygtex [59])
 \openout6 = `project.pyg'.
 
 
@@ -4002,13 +3989,103 @@ Overfull \hbox (8.58658pt too wide) in paragraph at lines 91--92
 
 
 (./_minted-project/596BAE3E6BA3C04EBBB98939BAF96CE7B628A47E597F7E7F4F45EB4227F7
-5598.pygtex))
+5598.pygtex)
+Requested font "[LibertinusMath-Regular.otf]/OT:script=math;language=dflt;;" at
+ 17.28pt
+Unknown feature `' in font `[LibertinusMath-Regular.otf]/OT:script=math;languag
+e=dflt;;'.
+ -> /usr/share/texlive/texmf-dist/fonts/opentype/public/libertinus-fonts/Libert
+inusMath-Regular.otf
+LaTeX Font Info:    Font shape `TU/LibertinusSerif(1)/m/n' will be
+(Font)              scaled to size 17.28pt on input line 172.
+Requested font "[LibertinusSerif-Regular.otf]/OT:script=latn;language=dflt;+tnu
+m;+lnum;" at 17.28pt
+ -> /usr/share/texlive/texmf-dist/fonts/opentype/public/libertinus-fonts/Libert
+inusSerif-Regular.otf
+Requested font "cmmi12" at 17.28pt
+ -> /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmmi12.tfm
+LaTeX Font Info:    Font shape `TU/LibertinusMath-Regular.otf(2)/m/n' will be
+(Font)              scaled to size 17.28183pt on input line 172.
+Requested font "[LibertinusMath-Regular.otf]/OT:script=math;language=dflt;;" at
+ 17.28183pt
+Unknown feature `' in font `[LibertinusMath-Regular.otf]/OT:script=math;languag
+e=dflt;;'.
+ -> /usr/share/texlive/texmf-dist/fonts/opentype/public/libertinus-fonts/Libert
+inusMath-Regular.otf
+LaTeX Font Info:    Font shape `TU/LibertinusMath-Regular.otf(3)/m/n' will be
+(Font)              scaled to size 17.27815pt on input line 172.
+Requested font "[LibertinusMath-Regular.otf]/OT:script=math;language=dflt;;" at
+ 17.27815pt
+Unknown feature `' in font `[LibertinusMath-Regular.otf]/OT:script=math;languag
+e=dflt;;'.
+ -> /usr/share/texlive/texmf-dist/fonts/opentype/public/libertinus-fonts/Libert
+inusMath-Regular.otf
+LaTeX Font Info:    Font shape `TU/LibertinusSerif(1)/b/n' will be
+(Font)              scaled to size 17.28pt on input line 172.
+Requested font "[LibertinusSerif-Bold.otf]/OT:script=latn;language=dflt;+tnum;+
+lnum;" at 17.28pt
+ -> /usr/share/texlive/texmf-dist/fonts/opentype/public/libertinus-fonts/Libert
+inusSerif-Bold.otf
+LaTeX Font Info:    Font shape `TU/LibertinusMono(1)/m/n' will be
+(Font)              scaled to size 14.97603pt on input line 172.
+Requested font "[LibertinusMono-Regular.otf]/OT:script=latn;language=dflt;exten
+d=0.9;+tnum; +lnum;" at 14.97603pt
+ -> /usr/share/texlive/texmf-dist/fonts/opentype/public/libertinus-fonts/Libert
+inusMono-Regular.otf
+Package microtype Info: Character `\guilsinglleft ' is missing
+(microtype)             in font `\TU/LibertinusMono(1)/m/n/17.28'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `\guilsinglright ' is missing
+(microtype)             in font `\TU/LibertinusMono(1)/m/n/17.28'.
+(microtype)             Ignoring protrusion settings for this character.
+Requested font "msam10" at 17.28pt
+ -> /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
+Requested font "msbm10" at 17.28pt
+ -> /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 172.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\mathbf' on input line 172.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 172.
+
+LaTeX Font Info:    Font shape `TU/LibertinusSerif(0)/m/n' will be
+(Font)              scaled to size 8.0pt on input line 174.
+Requested font "[LibertinusSerif-Regular.otf]/OT:script=latn;language=dflt;+tnu
+m;+lnum;mapping=tex-text;" at 8.0pt
+ -> /usr/share/texlive/texmf-dist/fonts/opentype/public/libertinus-fonts/Libert
+inusSerif-Regular.otf
+LaTeX Font Info:    Font shape `TU/LibertinusSerif(1)/m/n' will be
+(Font)              scaled to size 8.0pt on input line 175.
+Requested font "[LibertinusSerif-Regular.otf]/OT:script=latn;language=dflt;+tnu
+m;+lnum;" at 8.0pt
+ -> /usr/share/texlive/texmf-dist/fonts/opentype/public/libertinus-fonts/Libert
+inusSerif-Regular.otf
+LaTeX Font Info:    Font shape `TU/LibertinusMono(1)/m/n' will be
+(Font)              scaled to size 6.93335pt on input line 175.
+Requested font "[LibertinusMono-Regular.otf]/OT:script=latn;language=dflt;exten
+d=0.9;+tnum; +lnum;" at 6.93335pt
+ -> /usr/share/texlive/texmf-dist/fonts/opentype/public/libertinus-fonts/Libert
+inusMono-Regular.otf
+Package microtype Info: Character `\guilsinglleft ' is missing
+(microtype)             in font `\TU/LibertinusMono(1)/m/n/8'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `\guilsinglright ' is missing
+(microtype)             in font `\TU/LibertinusMono(1)/m/n/8'.
+(microtype)             Ignoring protrusion settings for this character.
+[60])
 \tf@thm=\write9
 \openout9 = `project.thm'.
 
- [59] (./project.aux)
+ [61] (./project.aux)
 Package rerunfilecheck Info: File `project.out' has not changed.
-(rerunfilecheck)             Checksum: B85EEA22494E6CB4F3BE1945F0A67EB3;4907.
+(rerunfilecheck)             Checksum: 925896A1E024EDAA1D413D651CA74069;5138.
 runsystem(rm project.pyg)...executed.
 
 Package logreq Info: Writing requests to 'project.run.xml'.
@@ -4016,12 +4093,12 @@ Package logreq Info: Writing requests to 'project.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 49477 strings out of 476191
- 1028724 string characters out of 5812073
- 2012015 words of memory out of 5000000
- 69288 multiletter control sequences out of 15000+600000
- 486629 words of font info for 221 fonts, out of 8000000 for 9000
+ 49516 strings out of 476191
+ 1030282 string characters out of 5812073
+ 2011318 words of memory out of 5000000
+ 69318 multiletter control sequences out of 15000+600000
+ 487638 words of font info for 233 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  129i,16n,151p,1550b,5064s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on project.pdf (63 pages).
+Output written on project.pdf (65 pages).
