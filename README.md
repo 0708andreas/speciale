@@ -11,4 +11,4 @@ yet published
 
 Finally, the code developed for this project can be found at [https://github.com/0708andreas/ParametricGroebnerBases.jl].
 
-I am very grateful to my supervisor Niels Lauritzen for his help and guidance, to Aarhus University as a whole, and to all my friends and family who distracted my from this project. Thank you.
+I am very grateful to my supervisor Niels Lauritzen for his help and guidance, to Aarhus University as a whole, and to all my friends and family who distracted me from this project. Thank you.
