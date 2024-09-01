@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2023.9.5)  4 JUN 2024 17:43
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2023.9.5)  4 JUN 2024 18:28
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -3663,7 +3663,14 @@ Package hyperref Info: bookmark level for unknown remark defaults to 0 on input
 
  (./_minted-project/default.pygstyle)
 (./_minted-project/00E5B4FA7C2DB7038C22724F2E5E0179B628A47E597F7E7F4F45EB4227F7
-5598.pygtex) [25]) [26] (./geometry_and_covers.tex
+5598.pygtex)
+Overfull \hbox (2.59387pt too wide) in paragraph at lines 360--361
+[]\TU/LibertinusSerif(0)/m/n/12 At [][]$[][][][][] [] [] [] [][][][][][] [] [][
+][] [] [][][][][][][][][][][] [] [][][][][][][][][][][][][][][][][][][][][][][]
+ [] [][]$[][], this re-
+ []
+
+[25]) [26] (./geometry_and_covers.tex
 Overfull \hbox (7.82991pt too wide) in paragraph at lines 13--14
 []\TU/LibertinusSerif(0)/m/n/12 Moving from $[][]$ to $[][][][][][] [][] [][] [
 ][][]$, we can identify $[][][][] [] [][][]$ with $[][][][][][] [][] [][] [][][
@@ -3821,8 +3828,12 @@ File: geogebra_orthic.png Graphic file (type bmp)
  [44]
 \openout5 = `project.pyg'.
 
+runsystem(pygmentize -l julia -f latex -P commandprefix=PYG -F tokenmerge -P st
+ripnl=False -o _minted-project/E5CD0D9D440908C0BB26ECE5ADAEDE98B628A47E597F7E7F
+4F45EB4227F75598.pygtex project.pyg)...executed.
 
-(./_minted-project/FF01AE9AA53D5CD2E17B4C7677C3C79CB628A47E597F7E7F4F45EB4227F7
+
+(./_minted-project/E5CD0D9D440908C0BB26ECE5ADAEDE98B628A47E597F7E7F4F45EB4227F7
 5598.pygtex
 LaTeX Font Info:    Font shape `TU/LibertinusMono(0)/b/n' will be
 (Font)              scaled to size 10.40002pt on input line 2.
@@ -3893,8 +3904,12 @@ Overfull \hbox (2.22498pt too wide) in paragraph at lines 157--158
 
 \openout5 = `project.pyg'.
 
+runsystem(pygmentize -l julia -f latex -P commandprefix=PYG -F tokenmerge -P st
+ripnl=False -o _minted-project/5519159CBB36E02DFA2909D6E4CCEBC3B628A47E597F7E7F
+4F45EB4227F75598.pygtex project.pyg)...executed.
 
-(./_minted-project/1915230B3841103F9B80AA4993DFD9F8B628A47E597F7E7F4F45EB4227F7
+
+(./_minted-project/5519159CBB36E02DFA2909D6E4CCEBC3B628A47E597F7E7F4F45EB4227F7
 5598.pygtex)
 \openout5 = `project.pyg'.
 
@@ -3928,17 +3943,21 @@ that at every step $[]$, we have that $[][][][][] [][] []
  []
 
 [57]
-Overfull \hbox (9.18657pt too wide) in paragraph at lines 91--92
+Overfull \hbox (15.84259pt too wide) in paragraph at lines 91--92
 \TU/LibertinusSerif(0)/m/n/12 The Julia code at [][]$[][][][][] [] [] [] [][][]
 [][][] [] [][][] [] [][][][][][][][][][][] [] [][][][][][][][][][][][][][][][][
-][][][][][] []
+][][][][][][] []
  []
 
 [58]
 \openout5 = `project.pyg'.
 
+runsystem(pygmentize -l julia -f latex -P commandprefix=PYG -F tokenmerge -P st
+ripnl=False -o _minted-project/334CD4D53A6E1ED4E8653559EF80F9C4B628A47E597F7E7F
+4F45EB4227F75598.pygtex project.pyg)...executed.
 
-(./_minted-project/76926AF7E06315BBF97CFAE8FC34213BB628A47E597F7E7F4F45EB4227F7
+
+(./_minted-project/334CD4D53A6E1ED4E8653559EF80F9C4B628A47E597F7E7F4F45EB4227F7
 5598.pygtex)
 \openout5 = `project.pyg'.
 
@@ -4080,6 +4099,15 @@ Package microtype Info: Character `\guilsinglright ' is missing
 (microtype)             in font `\TU/LibertinusMono(1)/m/n/8'.
 (microtype)             Ignoring protrusion settings for this character.
 [60])
+runsystem(rm _minted-project/FF01AE9AA53D5CD2E17B4C7677C3C79CB628A47E597F7E7F4F
+45EB4227F75598.pygtex)...executed.
+
+runsystem(rm _minted-project/1915230B3841103F9B80AA4993DFD9F8B628A47E597F7E7F4F
+45EB4227F75598.pygtex)...executed.
+
+runsystem(rm _minted-project/76926AF7E06315BBF97CFAE8FC34213BB628A47E597F7E7F4F
+45EB4227F75598.pygtex)...executed.
+
 \tf@thm=\write9
 \openout9 = `project.thm'.
 
@@ -4093,10 +4121,10 @@ Package logreq Info: Writing requests to 'project.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 49516 strings out of 476191
- 1030282 string characters out of 5812073
+ 49525 strings out of 476191
+ 1031032 string characters out of 5812073
  2011318 words of memory out of 5000000
- 69318 multiletter control sequences out of 15000+600000
+ 69324 multiletter control sequences out of 15000+600000
  487638 words of font info for 233 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  129i,16n,151p,1550b,5064s stack positions out of 5000i,500n,10000p,200000b,80000s

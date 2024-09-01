@@ -89,7 +89,7 @@ We can use this theorem to discover geometric theorems. In other words, we are d
   If you want to follow along with the code, here is the code to compute a comprehensive parametric Gröbner basis:
   \begin{minted}{julia}
     using Nemo
-    using ParametricGrobnerBases
+    using ParametricGroebnerBases
     R, (a, b) = QQ[:a, :b]
     S, (x2, x3, y2, y3) = R[:x2, :x3, :y2, :y3]
     I = [(a + 1)*(x2 - 1) + b*y2, b*(x2 + 1) - (a + 1)*y2, (a - 1)*(x3 + 1) + b*y3, b*(x3 - 1) - (a - 1)*y3, (x3 - a)^2 + y3 - (x2 - a)^2 - y2^2]
@@ -174,7 +174,7 @@ Let us again take the example of the orthic triangle from~\cite{MONTES20101391}.
 
   \begin{minted}{julia}
     using Nemo
-    using ParametricGrobnerBases
+    using ParametricGroebnerBases
     R, (a, b) = QQ[:a, :b]
     S, (x2, x3, y2, y3) = R[:x2, :x3, :y2, :y3]
     I = [(a + 1)*(x2 - 1) + b*y2, b*(x2 + 1) - (a + 1)*y2, (a - 1)*(x3 + 1) + b*y3, b*(x3 - 1) - (a - 1)*y3]

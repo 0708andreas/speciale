@@ -1,6 +1,6 @@
 \begin{Verbatim}[commandchars=\\\{\}]
   \PYG{k}{using} \PYG{n}{AbstractAlgebra}
-  \PYG{k}{using} \PYG{n}{ParametricGrobnerBases}
+  \PYG{k}{using} \PYG{n}{ParametricGroebnerBases}
 
   \PYG{n}{R}\PYG{p}{,} \PYG{p}{(}\PYG{n}{a}\PYG{p}{,} \PYG{n}{b}\PYG{p}{,} \PYG{n}{c}\PYG{p}{,} \PYG{n}{d}\PYG{p}{)} \PYG{o}{=} \PYG{n}{QQ}\PYG{p}{[}\PYG{l+s+ss}{:a}\PYG{p}{,} \PYG{l+s+ss}{:b}\PYG{p}{,} \PYG{l+s+ss}{:c}\PYG{p}{,} \PYG{l+s+ss}{:d}\PYG{p}{]}
   \PYG{n}{S}\PYG{p}{,} \PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{n}{y}\PYG{p}{)} \PYG{o}{=} \PYG{n}{R}\PYG{p}{[}\PYG{l+s+ss}{:x}\PYG{p}{,} \PYG{l+s+ss}{:y}\PYG{p}{]}
